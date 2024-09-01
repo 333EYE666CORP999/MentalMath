@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SwiftData
 
 struct ContentView: View {
 
@@ -15,6 +14,11 @@ struct ContentView: View {
     @FocusState private var isTextFieldFocused: Bool
 
     private var getProblem = MathGen().getProblem
+    private let font: Font = .system(
+        size: 60,
+        weight: .bold,
+        design: .monospaced
+    )
 
     var body: some View {
         ZStack {
@@ -25,16 +29,10 @@ struct ContentView: View {
                 CountdownTimerView()
                 Text(problem)
                     .foregroundStyle(.white)
-                    .font(
-                        .system(
-                            size: 60,
-                            weight: .bold,
-                            design: .monospaced
-                        )
-                    )
+                    .font(font)
                 TextField("input", text: $userInput)
                     .padding()
-                    .font(.system(size: 50, design: .rounded))
+                    .font(font)
                     .foregroundStyle(.white)
                     .focused($isTextFieldFocused)
                     .keyboardType(.numberPad)
