@@ -15,6 +15,7 @@
 		3F415BD82C83800800C94EB6 /* MentalMathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F415BD72C83800800C94EB6 /* MentalMathTests.swift */; };
 		3F415BE22C83800800C94EB6 /* MentalMathUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F415BE12C83800800C94EB6 /* MentalMathUITests.swift */; };
 		3F415BE42C83800800C94EB6 /* MentalMathUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F415BE32C83800800C94EB6 /* MentalMathUITestsLaunchTests.swift */; };
+		3F415BF62C8486A600C94EB6 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F415BF52C8486A600C94EB6 /* Math.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		3F415BDD2C83800800C94EB6 /* MentalMathUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MentalMathUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F415BE12C83800800C94EB6 /* MentalMathUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentalMathUITests.swift; sourceTree = "<group>"; };
 		3F415BE32C83800800C94EB6 /* MentalMathUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentalMathUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		3F415BF52C8486A600C94EB6 /* Math.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,10 +99,11 @@
 		3F415BC22C83800500C94EB6 /* MentalMath */ = {
 			isa = PBXGroup;
 			children = (
-				3F415BC32C83800500C94EB6 /* MentalMathApp.swift */,
+				3F415BF22C83807400C94EB6 /* Common */,
 				3F415BC52C83800500C94EB6 /* ContentView.swift */,
-				3F415BC72C83800500C94EB6 /* Item.swift */,
-				3F415BC92C83800800C94EB6 /* Assets.xcassets */,
+				3F415BF52C8486A600C94EB6 /* Math.swift */,
+				3F415BF12C83806500C94EB6 /* Storage */,
+				3F415BF02C83805A00C94EB6 /* Resources */,
 				3F415BCB2C83800800C94EB6 /* MentalMath.entitlements */,
 				3F415BCC2C83800800C94EB6 /* Preview Content */,
 			);
@@ -130,6 +133,30 @@
 				3F415BE32C83800800C94EB6 /* MentalMathUITestsLaunchTests.swift */,
 			);
 			path = MentalMathUITests;
+			sourceTree = "<group>";
+		};
+		3F415BF02C83805A00C94EB6 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3F415BC92C83800800C94EB6 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		3F415BF12C83806500C94EB6 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				3F415BC72C83800500C94EB6 /* Item.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		3F415BF22C83807400C94EB6 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				3F415BC32C83800500C94EB6 /* MentalMathApp.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,6 +290,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F415BC62C83800500C94EB6 /* ContentView.swift in Sources */,
+				3F415BF62C8486A600C94EB6 /* Math.swift in Sources */,
 				3F415BC82C83800500C94EB6 /* Item.swift in Sources */,
 				3F415BC42C83800500C94EB6 /* MentalMathApp.swift in Sources */,
 			);

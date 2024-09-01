@@ -9,52 +9,50 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
-    @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
+
+    @State private var userInput: String = ""
+    @State private var areOverlayViewsHidden = true
+    @FocusState private var isTextFieldFocused: Bool
+    @State private var problem: String = MathGen().getProblem()
+
+    private var getProblem = MathGen().getProblem
 
     var body: some View {
-        NavigationSplitView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
-                    } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
-                    }
+        ZStack {
+            Rectangle()
+                .foregroundColor(.black)
+                .ignoresSafeArea()
+            Text(problem)
+                .foregroundStyle(.gray)
+                .font(.system(size: 50, design: .rounded))
+                .opacity(areOverlayViewsHidden ? 1 : 0)
+                .onTapGesture {
+                    areOverlayViewsHidden = false
+                    isTextFieldFocused = true
                 }
-                .onDelete(perform: deleteItems)
-            }
-#if os(macOS)
-            .navigationSplitViewColumnWidth(min: 180, ideal: 200)
-#endif
-            .toolbar {
-#if os(iOS)
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-#endif
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
-                }
-            }
-        } detail: {
-            Text("Select an item")
-        }
-    }
 
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(timestamp: Date())
-            modelContext.insert(newItem)
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                modelContext.delete(items[index])
+            VStack {
+                TextField("input", text: $userInput)
+                    .padding()
+                    .font(.system(size: 50, design: .rounded))
+                    .foregroundStyle(.white)
+                    .focused($isTextFieldFocused)
+                    .keyboardType(.numberPad)
+                    .multilineTextAlignment(.center)
+                    .opacity(areOverlayViewsHidden ? 0 : 1)
+                    .onChange(of: userInput) { _, newValue in
+                        let filtered = newValue.filter { "0123456789".contains($0) }
+                        if newValue != filtered {
+                            userInput = filtered
+                        }
+                    }
+                Button("Submit") {
+                    print(userInput)
+                    areOverlayViewsHidden = true
+                    userInput.removeAll()
+                    problem = getProblem()
+                }
+                .opacity(areOverlayViewsHidden ? 0 : 1)
             }
         }
     }
@@ -62,5 +60,4 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
 }
