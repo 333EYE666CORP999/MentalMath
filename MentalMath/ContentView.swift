@@ -9,9 +9,15 @@ import SwiftUI
 
 struct ContentView: View {
 
+    @FocusState private var isTextFieldFocused: Bool
     @State private var userInput: String = ""
     @State private var problem: String = MathGen().getProblem()
-    @FocusState private var isTextFieldFocused: Bool
+    @State private var actionButtonText: String = "START"
+    @State private var isTimerStarted: Bool = false {
+        didSet(newValue) {
+            print(newValue)
+        }
+    }
 
     private var getProblem = MathGen().getProblem
     private let font: Font = .system(
@@ -26,7 +32,9 @@ struct ContentView: View {
                 .foregroundColor(.black)
                 .ignoresSafeArea()
             VStack {
-                CountdownTimerView()
+                CountdownTimerView(
+                    isStarted: $isTimerStarted
+                )
                 Text(problem)
                     .foregroundStyle(.white)
                     .font(font)
@@ -46,11 +54,20 @@ struct ContentView: View {
                     .onAppear {
                         isTextFieldFocused = true
                     }
-                Button("Submit") {
-                    print(userInput)
-                    userInput.removeAll()
-                    problem = getProblem()
+                Button(
+                    isTimerStarted ? "SUBMIT" : "START"
+                ) {
+                    switch isTimerStarted {
+                    case true:
+                        print(userInput)
+                        userInput.removeAll()
+                        problem = getProblem()
+                    case false:
+                        isTimerStarted = true
+                    }
                 }
+                .font(font)
+                .foregroundColor(.white)
             }
         }
     }

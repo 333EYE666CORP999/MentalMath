@@ -16,7 +16,8 @@
 		3F415BE22C83800800C94EB6 /* MentalMathUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F415BE12C83800800C94EB6 /* MentalMathUITests.swift */; };
 		3F415BE42C83800800C94EB6 /* MentalMathUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F415BE32C83800800C94EB6 /* MentalMathUITestsLaunchTests.swift */; };
 		3F415BF62C8486A600C94EB6 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F415BF52C8486A600C94EB6 /* Math.swift */; };
-		3F415BF82C848B8F00C94EB6 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F415BF72C848B8F00C94EB6 /* TimerView.swift */; };
+		3F415BF82C848B8F00C94EB6 /* CountdownTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F415BF72C848B8F00C94EB6 /* CountdownTimerView.swift */; };
+		3F415BFA2C8506E600C94EB6 /* TimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F415BF92C8506E600C94EB6 /* TimerManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,7 +51,8 @@
 		3F415BE12C83800800C94EB6 /* MentalMathUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentalMathUITests.swift; sourceTree = "<group>"; };
 		3F415BE32C83800800C94EB6 /* MentalMathUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentalMathUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		3F415BF52C8486A600C94EB6 /* Math.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
-		3F415BF72C848B8F00C94EB6 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+		3F415BF72C848B8F00C94EB6 /* CountdownTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownTimerView.swift; sourceTree = "<group>"; };
+		3F415BF92C8506E600C94EB6 /* TimerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,7 +105,8 @@
 			children = (
 				3F415BF22C83807400C94EB6 /* Common */,
 				3F415BC52C83800500C94EB6 /* ContentView.swift */,
-				3F415BF72C848B8F00C94EB6 /* TimerView.swift */,
+				3F415BF72C848B8F00C94EB6 /* CountdownTimerView.swift */,
+				3F415BF92C8506E600C94EB6 /* TimerManager.swift */,
 				3F415BF52C8486A600C94EB6 /* Math.swift */,
 				3F415BF12C83806500C94EB6 /* Storage */,
 				3F415BF02C83805A00C94EB6 /* Resources */,
@@ -292,9 +295,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F415BF82C848B8F00C94EB6 /* TimerView.swift in Sources */,
+				3F415BF82C848B8F00C94EB6 /* CountdownTimerView.swift in Sources */,
 				3F415BC62C83800500C94EB6 /* ContentView.swift in Sources */,
 				3F415BF62C8486A600C94EB6 /* Math.swift in Sources */,
+				3F415BFA2C8506E600C94EB6 /* TimerManager.swift in Sources */,
 				3F415BC82C83800500C94EB6 /* Item.swift in Sources */,
 				3F415BC42C83800500C94EB6 /* MentalMathApp.swift in Sources */,
 			);

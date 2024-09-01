@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Speech
 
 final class MathGen {
 
