@@ -7,17 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3F415BC42C83800500C94EB6 /* MentalMathApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F415BC32C83800500C94EB6 /* MentalMathApp.swift */; };
-		3F415BC62C83800500C94EB6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F415BC52C83800500C94EB6 /* ContentView.swift */; };
-		3F415BC82C83800500C94EB6 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F415BC72C83800500C94EB6 /* Item.swift */; };
-		3F415BCA2C83800800C94EB6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F415BC92C83800800C94EB6 /* Assets.xcassets */; };
 		3F415BCE2C83800800C94EB6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F415BCD2C83800800C94EB6 /* Preview Assets.xcassets */; };
 		3F415BD82C83800800C94EB6 /* MentalMathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F415BD72C83800800C94EB6 /* MentalMathTests.swift */; };
 		3F415BE22C83800800C94EB6 /* MentalMathUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F415BE12C83800800C94EB6 /* MentalMathUITests.swift */; };
 		3F415BE42C83800800C94EB6 /* MentalMathUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F415BE32C83800800C94EB6 /* MentalMathUITestsLaunchTests.swift */; };
-		3F415BF62C8486A600C94EB6 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F415BF52C8486A600C94EB6 /* Math.swift */; };
-		3F415BF82C848B8F00C94EB6 /* CountdownTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F415BF72C848B8F00C94EB6 /* CountdownTimerView.swift */; };
-		3F415BFA2C8506E600C94EB6 /* TimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F415BF92C8506E600C94EB6 /* TimerManager.swift */; };
+		3F8475942C8513000034EC78 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F8475862C8513000034EC78 /* Assets.xcassets */; };
+		3F8475952C8513000034EC78 /* MentalMathApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8475892C8513000034EC78 /* MentalMathApp.swift */; };
+		3F8475962C8513000034EC78 /* MathGen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F84758B2C8513000034EC78 /* MathGen.swift */; };
+		3F8475972C8513000034EC78 /* TimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F84758C2C8513000034EC78 /* TimerManager.swift */; };
+		3F8475982C8513000034EC78 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F84758E2C8513000034EC78 /* Item.swift */; };
+		3F8475992C8513000034EC78 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8475902C8513000034EC78 /* ContentView.swift */; };
+		3F84759A2C8513000034EC78 /* CountdownTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8475912C8513000034EC78 /* CountdownTimerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,20 +39,20 @@
 
 /* Begin PBXFileReference section */
 		3F415BC02C83800500C94EB6 /* MentalMath.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MentalMath.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		3F415BC32C83800500C94EB6 /* MentalMathApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentalMathApp.swift; sourceTree = "<group>"; };
-		3F415BC52C83800500C94EB6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		3F415BC72C83800500C94EB6 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
-		3F415BC92C83800800C94EB6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		3F415BCB2C83800800C94EB6 /* MentalMath.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MentalMath.entitlements; sourceTree = "<group>"; };
 		3F415BCD2C83800800C94EB6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3F415BD32C83800800C94EB6 /* MentalMathTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MentalMathTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F415BD72C83800800C94EB6 /* MentalMathTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentalMathTests.swift; sourceTree = "<group>"; };
 		3F415BDD2C83800800C94EB6 /* MentalMathUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MentalMathUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F415BE12C83800800C94EB6 /* MentalMathUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentalMathUITests.swift; sourceTree = "<group>"; };
 		3F415BE32C83800800C94EB6 /* MentalMathUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentalMathUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		3F415BF52C8486A600C94EB6 /* Math.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
-		3F415BF72C848B8F00C94EB6 /* CountdownTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownTimerView.swift; sourceTree = "<group>"; };
-		3F415BF92C8506E600C94EB6 /* TimerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerManager.swift; sourceTree = "<group>"; };
+		3F8475862C8513000034EC78 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3F8475872C8513000034EC78 /* Entitlements.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Entitlements.entitlements; sourceTree = "<group>"; };
+		3F8475892C8513000034EC78 /* MentalMathApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentalMathApp.swift; sourceTree = "<group>"; };
+		3F84758B2C8513000034EC78 /* MathGen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathGen.swift; sourceTree = "<group>"; };
+		3F84758C2C8513000034EC78 /* TimerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerManager.swift; sourceTree = "<group>"; };
+		3F84758E2C8513000034EC78 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		3F8475902C8513000034EC78 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		3F8475912C8513000034EC78 /* CountdownTimerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountdownTimerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,15 +103,9 @@
 		3F415BC22C83800500C94EB6 /* MentalMath */ = {
 			isa = PBXGroup;
 			children = (
-				3F415BF22C83807400C94EB6 /* Common */,
-				3F415BC52C83800500C94EB6 /* ContentView.swift */,
-				3F415BF72C848B8F00C94EB6 /* CountdownTimerView.swift */,
-				3F415BF92C8506E600C94EB6 /* TimerManager.swift */,
-				3F415BF52C8486A600C94EB6 /* Math.swift */,
-				3F415BF12C83806500C94EB6 /* Storage */,
-				3F415BF02C83805A00C94EB6 /* Resources */,
-				3F415BCB2C83800800C94EB6 /* MentalMath.entitlements */,
 				3F415BCC2C83800800C94EB6 /* Preview Content */,
+				3F8475882C8513000034EC78 /* Resources */,
+				3F8475932C8513000034EC78 /* Sources */,
 			);
 			path = MentalMath;
 			sourceTree = "<group>";
@@ -141,28 +135,58 @@
 			path = MentalMathUITests;
 			sourceTree = "<group>";
 		};
-		3F415BF02C83805A00C94EB6 /* Resources */ = {
+		3F8475882C8513000034EC78 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				3F415BC92C83800800C94EB6 /* Assets.xcassets */,
+				3F8475862C8513000034EC78 /* Assets.xcassets */,
+				3F8475872C8513000034EC78 /* Entitlements.entitlements */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		3F415BF12C83806500C94EB6 /* Storage */ = {
+		3F84758A2C8513000034EC78 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				3F415BC72C83800500C94EB6 /* Item.swift */,
+				3F8475892C8513000034EC78 /* MentalMathApp.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		3F84758D2C8513000034EC78 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				3F84758B2C8513000034EC78 /* MathGen.swift */,
+				3F84758C2C8513000034EC78 /* TimerManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		3F84758F2C8513000034EC78 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				3F84758E2C8513000034EC78 /* Item.swift */,
 			);
 			path = Storage;
 			sourceTree = "<group>";
 		};
-		3F415BF22C83807400C94EB6 /* Common */ = {
+		3F8475922C8513000034EC78 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				3F415BC32C83800500C94EB6 /* MentalMathApp.swift */,
+				3F8475902C8513000034EC78 /* ContentView.swift */,
+				3F8475912C8513000034EC78 /* CountdownTimerView.swift */,
 			);
-			path = Common;
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3F8475932C8513000034EC78 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				3F84758A2C8513000034EC78 /* Common */,
+				3F84758D2C8513000034EC78 /* Services */,
+				3F84758F2C8513000034EC78 /* Storage */,
+				3F8475922C8513000034EC78 /* Views */,
+			);
+			path = Sources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -269,8 +293,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F8475942C8513000034EC78 /* Assets.xcassets in Resources */,
 				3F415BCE2C83800800C94EB6 /* Preview Assets.xcassets in Resources */,
-				3F415BCA2C83800800C94EB6 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,12 +319,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F415BF82C848B8F00C94EB6 /* CountdownTimerView.swift in Sources */,
-				3F415BC62C83800500C94EB6 /* ContentView.swift in Sources */,
-				3F415BF62C8486A600C94EB6 /* Math.swift in Sources */,
-				3F415BFA2C8506E600C94EB6 /* TimerManager.swift in Sources */,
-				3F415BC82C83800500C94EB6 /* Item.swift in Sources */,
-				3F415BC42C83800500C94EB6 /* MentalMathApp.swift in Sources */,
+				3F8475982C8513000034EC78 /* Item.swift in Sources */,
+				3F8475992C8513000034EC78 /* ContentView.swift in Sources */,
+				3F84759A2C8513000034EC78 /* CountdownTimerView.swift in Sources */,
+				3F8475972C8513000034EC78 /* TimerManager.swift in Sources */,
+				3F8475962C8513000034EC78 /* MathGen.swift in Sources */,
+				3F8475952C8513000034EC78 /* MentalMathApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -456,7 +480,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = MentalMath/MentalMath.entitlements;
+				CODE_SIGN_ENTITLEMENTS = MentalMath/Resources/Entitlements.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MentalMath/Preview Content\"";
@@ -494,7 +518,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = MentalMath/MentalMath.entitlements;
+				CODE_SIGN_ENTITLEMENTS = MentalMath/Resources/Entitlements.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MentalMath/Preview Content\"";
