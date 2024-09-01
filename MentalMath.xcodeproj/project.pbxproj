@@ -15,9 +15,10 @@
 		3F8475952C8513000034EC78 /* MentalMathApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8475892C8513000034EC78 /* MentalMathApp.swift */; };
 		3F8475962C8513000034EC78 /* MathGen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F84758B2C8513000034EC78 /* MathGen.swift */; };
 		3F8475972C8513000034EC78 /* TimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F84758C2C8513000034EC78 /* TimerManager.swift */; };
-		3F8475982C8513000034EC78 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F84758E2C8513000034EC78 /* Item.swift */; };
+		3F8475982C8513000034EC78 /* GameSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F84758E2C8513000034EC78 /* GameSession.swift */; };
 		3F8475992C8513000034EC78 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8475902C8513000034EC78 /* ContentView.swift */; };
 		3F84759A2C8513000034EC78 /* CountdownTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8475912C8513000034EC78 /* CountdownTimerView.swift */; };
+		3F84759D2C8514480034EC78 /* Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F84759C2C8514480034EC78 /* Foundation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,9 +51,10 @@
 		3F8475892C8513000034EC78 /* MentalMathApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentalMathApp.swift; sourceTree = "<group>"; };
 		3F84758B2C8513000034EC78 /* MathGen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathGen.swift; sourceTree = "<group>"; };
 		3F84758C2C8513000034EC78 /* TimerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerManager.swift; sourceTree = "<group>"; };
-		3F84758E2C8513000034EC78 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		3F84758E2C8513000034EC78 /* GameSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSession.swift; sourceTree = "<group>"; };
 		3F8475902C8513000034EC78 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		3F8475912C8513000034EC78 /* CountdownTimerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountdownTimerView.swift; sourceTree = "<group>"; };
+		3F84759C2C8514480034EC78 /* Foundation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Foundation.swift; path = MentalMath/Foundation.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,7 +166,7 @@
 		3F84758F2C8513000034EC78 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
-				3F84758E2C8513000034EC78 /* Item.swift */,
+				3F84758E2C8513000034EC78 /* GameSession.swift */,
 			);
 			path = Storage;
 			sourceTree = "<group>";
@@ -181,12 +183,21 @@
 		3F8475932C8513000034EC78 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				3F84759B2C8514400034EC78 /* Extensions */,
 				3F84758A2C8513000034EC78 /* Common */,
 				3F84758D2C8513000034EC78 /* Services */,
 				3F84758F2C8513000034EC78 /* Storage */,
 				3F8475922C8513000034EC78 /* Views */,
 			);
 			path = Sources;
+			sourceTree = "<group>";
+		};
+		3F84759B2C8514400034EC78 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3F84759C2C8514480034EC78 /* Foundation.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -319,7 +330,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F8475982C8513000034EC78 /* Item.swift in Sources */,
+				3F8475982C8513000034EC78 /* GameSession.swift in Sources */,
+				3F84759D2C8514480034EC78 /* Foundation.swift in Sources */,
 				3F8475992C8513000034EC78 /* ContentView.swift in Sources */,
 				3F84759A2C8513000034EC78 /* CountdownTimerView.swift in Sources */,
 				3F8475972C8513000034EC78 /* TimerManager.swift in Sources */,
