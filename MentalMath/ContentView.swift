@@ -11,9 +11,8 @@ import SwiftData
 struct ContentView: View {
 
     @State private var userInput: String = ""
-    @State private var areOverlayViewsHidden = true
-    @FocusState private var isTextFieldFocused: Bool
     @State private var problem: String = MathGen().getProblem()
+    @FocusState private var isTextFieldFocused: Bool
 
     private var getProblem = MathGen().getProblem
 
@@ -22,16 +21,17 @@ struct ContentView: View {
             Rectangle()
                 .foregroundColor(.black)
                 .ignoresSafeArea()
-            Text(problem)
-                .foregroundStyle(.gray)
-                .font(.system(size: 50, design: .rounded))
-                .opacity(areOverlayViewsHidden ? 1 : 0)
-                .onTapGesture {
-                    areOverlayViewsHidden = false
-                    isTextFieldFocused = true
-                }
-
             VStack {
+                CountdownTimerView()
+                Text(problem)
+                    .foregroundStyle(.white)
+                    .font(
+                        .system(
+                            size: 60,
+                            weight: .bold,
+                            design: .monospaced
+                        )
+                    )
                 TextField("input", text: $userInput)
                     .padding()
                     .font(.system(size: 50, design: .rounded))
@@ -39,20 +39,20 @@ struct ContentView: View {
                     .focused($isTextFieldFocused)
                     .keyboardType(.numberPad)
                     .multilineTextAlignment(.center)
-                    .opacity(areOverlayViewsHidden ? 0 : 1)
                     .onChange(of: userInput) { _, newValue in
                         let filtered = newValue.filter { "0123456789".contains($0) }
                         if newValue != filtered {
                             userInput = filtered
                         }
                     }
+                    .onAppear {
+                        isTextFieldFocused = true
+                    }
                 Button("Submit") {
                     print(userInput)
-                    areOverlayViewsHidden = true
                     userInput.removeAll()
                     problem = getProblem()
                 }
-                .opacity(areOverlayViewsHidden ? 0 : 1)
             }
         }
     }
