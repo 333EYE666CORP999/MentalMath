@@ -10,24 +10,18 @@ import SwiftData
 
 @main
 struct MentalMathApp: App {
-    var sharedModelContainer: ModelContainer = {
-        let schema = Schema([GameSession.self])
-        let modelConfiguration = ModelConfiguration(
-            schema: schema,
-            isStoredInMemoryOnly: false
-        )
-
-        do {
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
-        } catch {
-            fatalError("Could not create ModelContainer: \(error)")
-        }
-    }()
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            GameView()
+                .environmentObject(
+                    GameViewModel(
+                        storageService: StorageService(
+                            modelContext: sharedModelContainer.mainContext
+                        ),
+                        mathGen: MathGen()
+                    )
+                )
         }
-        .modelContainer(sharedModelContainer)
     }
 }

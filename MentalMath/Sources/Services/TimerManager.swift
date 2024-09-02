@@ -13,8 +13,11 @@ final class TimerManager: ObservableObject {
     @Published var isTimerRunning: Bool = false
     @Published var remainingTime: Int = .defaultRemainingTime
 
+    var onTimerEnd: (() -> Void)?
+
     private var timerSubscription: Cancellable?
 
+#warning("изучить вызовы комбайна")
     func startTimer() {
         remainingTime = .defaultRemainingTime
         isTimerRunning = true
@@ -38,9 +41,10 @@ final class TimerManager: ObservableObject {
         isTimerRunning = false
         timerSubscription?.cancel()
         timerSubscription = nil
+        if let onTimerEnd { onTimerEnd() }
     }
 }
 
 private extension Int {
-    static let defaultRemainingTime: Self = 60
+    static let defaultRemainingTime: Self = 6
 }
