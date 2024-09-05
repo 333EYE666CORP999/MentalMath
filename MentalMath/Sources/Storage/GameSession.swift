@@ -16,7 +16,7 @@ final class GameSession {
     var badAnswersCount: Int
 
     init(
-        sessionDate: Date,
+        sessionDate: Date = Date(),
         goodAnswersCount: Int = .zero,
         badAnswersCount: Int = .zero
     ) {

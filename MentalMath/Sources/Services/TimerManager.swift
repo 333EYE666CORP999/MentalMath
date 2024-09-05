@@ -10,14 +10,13 @@ import Combine
 
 final class TimerManager: ObservableObject {
 
-    @Published var isTimerRunning: Bool = false
     @Published var remainingTime: Int = .defaultRemainingTime
 
+    let timerEndSubject = PassthroughSubject<Void, Never>()
     private var timerSubscription: Cancellable?
 
     func startTimer() {
         remainingTime = .defaultRemainingTime
-        isTimerRunning = true
         timerSubscription = Timer.publish(
             every: 1,
             on: .main,
@@ -35,12 +34,12 @@ final class TimerManager: ObservableObject {
     }
 
     func stopTimer() {
-        isTimerRunning = false
         timerSubscription?.cancel()
         timerSubscription = nil
+        timerEndSubject.send(())
     }
 }
 
 private extension Int {
-    static let defaultRemainingTime: Self = 60
+    static let defaultRemainingTime: Self = 6
 }
