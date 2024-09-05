@@ -11,14 +11,19 @@
 		3F415BD82C83800800C94EB6 /* MentalMathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F415BD72C83800800C94EB6 /* MentalMathTests.swift */; };
 		3F415BE22C83800800C94EB6 /* MentalMathUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F415BE12C83800800C94EB6 /* MentalMathUITests.swift */; };
 		3F415BE42C83800800C94EB6 /* MentalMathUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F415BE32C83800800C94EB6 /* MentalMathUITestsLaunchTests.swift */; };
+		3F6435062C899BD60016C7AC /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6435052C899BD60016C7AC /* ActionButton.swift */; };
 		3F8475942C8513000034EC78 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F8475862C8513000034EC78 /* Assets.xcassets */; };
 		3F8475952C8513000034EC78 /* MentalMathApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8475892C8513000034EC78 /* MentalMathApp.swift */; };
 		3F8475962C8513000034EC78 /* MathGen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F84758B2C8513000034EC78 /* MathGen.swift */; };
 		3F8475972C8513000034EC78 /* TimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F84758C2C8513000034EC78 /* TimerManager.swift */; };
 		3F8475982C8513000034EC78 /* GameSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F84758E2C8513000034EC78 /* GameSession.swift */; };
-		3F8475992C8513000034EC78 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8475902C8513000034EC78 /* ContentView.swift */; };
+		3F8475992C8513000034EC78 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8475902C8513000034EC78 /* GameView.swift */; };
 		3F84759A2C8513000034EC78 /* CountdownTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8475912C8513000034EC78 /* CountdownTimerView.swift */; };
 		3F84759D2C8514480034EC78 /* Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F84759C2C8514480034EC78 /* Foundation.swift */; };
+		3F8475A12C8527E90034EC78 /* SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8475A02C8527E90034EC78 /* SwiftUI.swift */; };
+		3F8475A32C85A29A0034EC78 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8475A22C85A29A0034EC78 /* StorageService.swift */; };
+		3F8475A72C85D3480034EC78 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8475A62C85D3480034EC78 /* GameViewModel.swift */; };
+		3FE64FA82C8851240053C96C /* SwiftDataGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE64FA72C8851240053C96C /* SwiftDataGlobal.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,15 +51,20 @@
 		3F415BDD2C83800800C94EB6 /* MentalMathUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MentalMathUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F415BE12C83800800C94EB6 /* MentalMathUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentalMathUITests.swift; sourceTree = "<group>"; };
 		3F415BE32C83800800C94EB6 /* MentalMathUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentalMathUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		3F6435052C899BD60016C7AC /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
 		3F8475862C8513000034EC78 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F8475872C8513000034EC78 /* Entitlements.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Entitlements.entitlements; sourceTree = "<group>"; };
 		3F8475892C8513000034EC78 /* MentalMathApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentalMathApp.swift; sourceTree = "<group>"; };
 		3F84758B2C8513000034EC78 /* MathGen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathGen.swift; sourceTree = "<group>"; };
 		3F84758C2C8513000034EC78 /* TimerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerManager.swift; sourceTree = "<group>"; };
 		3F84758E2C8513000034EC78 /* GameSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSession.swift; sourceTree = "<group>"; };
-		3F8475902C8513000034EC78 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		3F8475902C8513000034EC78 /* GameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		3F8475912C8513000034EC78 /* CountdownTimerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountdownTimerView.swift; sourceTree = "<group>"; };
 		3F84759C2C8514480034EC78 /* Foundation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Foundation.swift; path = MentalMath/Foundation.swift; sourceTree = SOURCE_ROOT; };
+		3F8475A02C8527E90034EC78 /* SwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI.swift; sourceTree = "<group>"; };
+		3F8475A22C85A29A0034EC78 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
+		3F8475A62C85D3480034EC78 /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
+		3FE64FA72C8851240053C96C /* SwiftDataGlobal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataGlobal.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +147,14 @@
 			path = MentalMathUITests;
 			sourceTree = "<group>";
 		};
+		3F6435042C899BC20016C7AC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3F8475A62C85D3480034EC78 /* GameViewModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		3F8475882C8513000034EC78 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -167,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				3F84758E2C8513000034EC78 /* GameSession.swift */,
+				3F8475A22C85A29A0034EC78 /* StorageService.swift */,
 			);
 			path = Storage;
 			sourceTree = "<group>";
@@ -174,7 +193,8 @@
 		3F8475922C8513000034EC78 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				3F8475902C8513000034EC78 /* ContentView.swift */,
+				3F8475902C8513000034EC78 /* GameView.swift */,
+				3F6435052C899BD60016C7AC /* ActionButton.swift */,
 				3F8475912C8513000034EC78 /* CountdownTimerView.swift */,
 			);
 			path = Views;
@@ -187,6 +207,7 @@
 				3F84758A2C8513000034EC78 /* Common */,
 				3F84758D2C8513000034EC78 /* Services */,
 				3F84758F2C8513000034EC78 /* Storage */,
+				3F6435042C899BC20016C7AC /* Models */,
 				3F8475922C8513000034EC78 /* Views */,
 			);
 			path = Sources;
@@ -196,6 +217,8 @@
 			isa = PBXGroup;
 			children = (
 				3F84759C2C8514480034EC78 /* Foundation.swift */,
+				3F8475A02C8527E90034EC78 /* SwiftUI.swift */,
+				3FE64FA72C8851240053C96C /* SwiftDataGlobal.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -332,11 +355,16 @@
 			files = (
 				3F8475982C8513000034EC78 /* GameSession.swift in Sources */,
 				3F84759D2C8514480034EC78 /* Foundation.swift in Sources */,
-				3F8475992C8513000034EC78 /* ContentView.swift in Sources */,
+				3F8475992C8513000034EC78 /* GameView.swift in Sources */,
+				3FE64FA82C8851240053C96C /* SwiftDataGlobal.swift in Sources */,
+				3F8475A12C8527E90034EC78 /* SwiftUI.swift in Sources */,
 				3F84759A2C8513000034EC78 /* CountdownTimerView.swift in Sources */,
 				3F8475972C8513000034EC78 /* TimerManager.swift in Sources */,
+				3F8475A72C85D3480034EC78 /* GameViewModel.swift in Sources */,
 				3F8475962C8513000034EC78 /* MathGen.swift in Sources */,
+				3F8475A32C85A29A0034EC78 /* StorageService.swift in Sources */,
 				3F8475952C8513000034EC78 /* MentalMathApp.swift in Sources */,
+				3F6435062C899BD60016C7AC /* ActionButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,7 +453,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -480,7 +510,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
