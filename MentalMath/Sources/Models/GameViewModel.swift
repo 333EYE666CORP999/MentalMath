@@ -15,10 +15,7 @@ final class GameViewModel: ObservableObject {
     @Published var actionButtonText: String = .startButtonTitle
     @Published var isGameStarted: Bool = false
     @Published var remainingTime: Int = .defaultTimeInterval
-    @Published var isTimerRunning: Bool = false
 
-    // FIXME: - подумать, надо ли это
-#warning("изучить вызовы комбайна")
     private var cancellables: Set<AnyCancellable> = []
 
     private var gameSession: GameSession?
@@ -49,34 +46,30 @@ final class GameViewModel: ObservableObject {
         }
     }
 
-    // FIXME: - private?
-    func updateProblem() {
+    private func updateProblem() {
         problem = mathGen.getProblem()
     }
 
-    // FIXME: - обрабатывать ответ внутри
     func process(answer: String) {
         if answer.isNumeric {
             userInput = answer
         }
     }
 
-    // FIXME: - private?
-    func start() {
-        isGameStarted = true
+    private func start() {
         problem = mathGen.getProblem()
         actionButtonText = .submitButtonTitle
+        isGameStarted = true
         timerManager.startTimer()
     }
 
-    // FIXME: - private?
-    func end() {
-        isGameStarted = false
-        actionButtonText = .startButtonTitle
+    private func end() {
         problem.removeAll()
+        actionButtonText = .startButtonTitle
+        isGameStarted = false
         remainingTime = .defaultTimeInterval
 
-        // FIXME: - Убрать потом, это дебажный код
+        // FIXME: - Убрать потом, это дебажный код (на этапе логики игры)
         do {
             gameSession = GameSession(
                 sessionDate: Date(),
@@ -91,15 +84,13 @@ final class GameViewModel: ObservableObject {
         }
     }
 
-    #warning("изучить вызовы комбайна")
     private func bindTimer() {
         timerManager.$remainingTime
             .assign(to: \.remainingTime, on: self)
             .store(in: &cancellables)
-        timerManager.$isTimerRunning
-            .assign(to: \.isTimerRunning, on: self)
+        timerManager.timerEndSubject
+            .sink { [weak self] in self?.end() }
             .store(in: &cancellables)
-        timerManager.onTimerEnd = { self.end() }
     }
 }
 

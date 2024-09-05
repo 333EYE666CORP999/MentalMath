@@ -11,8 +11,6 @@ import SwiftData
 struct GameView: View {
 
     @EnvironmentObject var viewModel: GameViewModel
-
-    // FIXME: - перетащить в модель
     @FocusState private var isTextFieldFocused: Bool
 
     var body: some View {
@@ -56,13 +54,10 @@ struct GameView: View {
             .keyboardType(.numberPad)
             .multilineTextAlignment(.center)
             .focused($isTextFieldFocused)
-
-        // FIXME: - перетащить в модель
+        // FIXME: - перетащить в модель (на этапе логики игры)
             .onChange(of: viewModel.userInput) {
                 viewModel.process(answer: $1)
             }
-
-        // FIXME: - перетащить в модель
             .onAppear {
                 isTextFieldFocused = true
             }
