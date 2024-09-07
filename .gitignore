@@ -1,2 +1,60 @@
+# Xcode
+.DS_Store
+*.swp
+*.xcuserdatad
+xcuserdata/
+DerivedData/
+build/
+*.xcodeproj/xcuserdata/
+*.xcworkspace/xcuserdata/
+*.xcworkspace/contents.xcworkspacedata
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+*.pbxuser
 *.xcbkptlist
-MentalMath.xcodeproj/xcuserdata/dmitryaksyonov.xcuserdatad
+!default.pbxuser
+
+# Swift Package Manager
+Packages/
+Package.pins
+Package.resolved
+
+# CocoaPods
+Pods/
+Podfile.lock
+
+# Carthage
+Carthage/Build/
+Carthage/Checkouts/
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+
+# App packaging
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# Playground files
+timeline.xctimeline
+playground.xcworkspace
+
+# Logs and temporary files
+*.log
+*.tmp
+*.swp
+
+# Other
+*.hmap
+*.xccheckout
+*.moved-aside
+*.xcuserstate
+*.xctest
+
+# User-specific files
+*.xcuserdatad
+*.xcworkspace/xcuserdata/
+*.xcworkspace/contents.xcworkspacedata
