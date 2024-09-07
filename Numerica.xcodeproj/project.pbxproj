@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		3F415BCE2C83800800C94EB6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F415BCD2C83800800C94EB6 /* Preview Assets.xcassets */; };
 		3F4DB9032C8C71DD0013DB66 /* Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4DB9022C8C71DD0013DB66 /* Foundation.swift */; };
+		3F4F31D42C8CC1750053CAF9 /* NumericaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA763982C8C75B600333C0C /* NumericaTests.swift */; };
+		3F4F31D62C8CC17B0053CAF9 /* NumericaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA763962C8C75B600333C0C /* NumericaUITests.swift */; };
+		3F4F31D72C8CC1820053CAF9 /* NumericaTestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA763952C8C75B600333C0C /* NumericaTestsLaunchTests.swift */; };
 		3F6435062C899BD60016C7AC /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6435052C899BD60016C7AC /* ActionButton.swift */; };
 		3F8475942C8513000034EC78 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F8475862C8513000034EC78 /* Assets.xcassets */; };
 		3F8475952C8513000034EC78 /* MentalMathApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8475892C8513000034EC78 /* MentalMathApp.swift */; };
@@ -20,9 +23,6 @@
 		3F8475A12C8527E90034EC78 /* SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8475A02C8527E90034EC78 /* SwiftUI.swift */; };
 		3F8475A32C85A29A0034EC78 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8475A22C85A29A0034EC78 /* StorageService.swift */; };
 		3F8475A72C85D3480034EC78 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8475A62C85D3480034EC78 /* GameViewModel.swift */; };
-		3FA7639A2C8C75B600333C0C /* NumericaTestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA763952C8C75B600333C0C /* NumericaTestsLaunchTests.swift */; };
-		3FA7639B2C8C75B600333C0C /* NumericaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA763962C8C75B600333C0C /* NumericaUITests.swift */; };
-		3FA7639C2C8C75B600333C0C /* NumericaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA763982C8C75B600333C0C /* NumericaTests.swift */; };
 		3FE64FA82C8851240053C96C /* SwiftDataGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE64FA72C8851240053C96C /* SwiftDataGlobal.swift */; };
 /* End PBXBuildFile section */
 
@@ -353,16 +353,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3FA7639A2C8C75B600333C0C /* NumericaTestsLaunchTests.swift in Sources */,
 				3F8475982C8513000034EC78 /* GameSession.swift in Sources */,
 				3F8475992C8513000034EC78 /* GameView.swift in Sources */,
 				3FE64FA82C8851240053C96C /* SwiftDataGlobal.swift in Sources */,
 				3F8475A12C8527E90034EC78 /* SwiftUI.swift in Sources */,
-				3FA7639B2C8C75B600333C0C /* NumericaUITests.swift in Sources */,
 				3F84759A2C8513000034EC78 /* CountdownTimerView.swift in Sources */,
 				3F8475972C8513000034EC78 /* TimerManager.swift in Sources */,
 				3F4DB9032C8C71DD0013DB66 /* Foundation.swift in Sources */,
-				3FA7639C2C8C75B600333C0C /* NumericaTests.swift in Sources */,
 				3F8475A72C85D3480034EC78 /* GameViewModel.swift in Sources */,
 				3F8475962C8513000034EC78 /* MathGen.swift in Sources */,
 				3F8475A32C85A29A0034EC78 /* StorageService.swift in Sources */,
@@ -375,6 +372,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F4F31D42C8CC1750053CAF9 /* NumericaTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -382,6 +380,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F4F31D72C8CC1820053CAF9 /* NumericaTestsLaunchTests.swift in Sources */,
+				3F4F31D62C8CC17B0053CAF9 /* NumericaUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
