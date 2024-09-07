@@ -1,0 +1,730 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3F415BCE2C83800800C94EB6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F415BCD2C83800800C94EB6 /* Preview Assets.xcassets */; };
+		3F4DB9032C8C71DD0013DB66 /* Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4DB9022C8C71DD0013DB66 /* Foundation.swift */; };
+		3F6435062C899BD60016C7AC /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6435052C899BD60016C7AC /* ActionButton.swift */; };
+		3F8475942C8513000034EC78 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F8475862C8513000034EC78 /* Assets.xcassets */; };
+		3F8475952C8513000034EC78 /* MentalMathApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8475892C8513000034EC78 /* MentalMathApp.swift */; };
+		3F8475962C8513000034EC78 /* MathGen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F84758B2C8513000034EC78 /* MathGen.swift */; };
+		3F8475972C8513000034EC78 /* TimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F84758C2C8513000034EC78 /* TimerManager.swift */; };
+		3F8475982C8513000034EC78 /* GameSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F84758E2C8513000034EC78 /* GameSession.swift */; };
+		3F8475992C8513000034EC78 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8475902C8513000034EC78 /* GameView.swift */; };
+		3F84759A2C8513000034EC78 /* CountdownTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8475912C8513000034EC78 /* CountdownTimerView.swift */; };
+		3F8475A12C8527E90034EC78 /* SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8475A02C8527E90034EC78 /* SwiftUI.swift */; };
+		3F8475A32C85A29A0034EC78 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8475A22C85A29A0034EC78 /* StorageService.swift */; };
+		3F8475A72C85D3480034EC78 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8475A62C85D3480034EC78 /* GameViewModel.swift */; };
+		3FA7639A2C8C75B600333C0C /* NumericaTestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA763952C8C75B600333C0C /* NumericaTestsLaunchTests.swift */; };
+		3FA7639B2C8C75B600333C0C /* NumericaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA763962C8C75B600333C0C /* NumericaUITests.swift */; };
+		3FA7639C2C8C75B600333C0C /* NumericaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA763982C8C75B600333C0C /* NumericaTests.swift */; };
+		3FE64FA82C8851240053C96C /* SwiftDataGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE64FA72C8851240053C96C /* SwiftDataGlobal.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3F415BD42C83800800C94EB6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3F415BB82C83800500C94EB6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3F415BBF2C83800500C94EB6;
+			remoteInfo = MentalMath;
+		};
+		3F415BDE2C83800800C94EB6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3F415BB82C83800500C94EB6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3F415BBF2C83800500C94EB6;
+			remoteInfo = MentalMath;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		3F415BC02C83800500C94EB6 /* Numerica.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Numerica.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F415BCD2C83800800C94EB6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		3F415BD32C83800800C94EB6 /* NumericaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NumericaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F415BDD2C83800800C94EB6 /* NumericaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NumericaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F4DB9022C8C71DD0013DB66 /* Foundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Foundation.swift; sourceTree = "<group>"; };
+		3F6435052C899BD60016C7AC /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
+		3F8475862C8513000034EC78 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3F8475872C8513000034EC78 /* Entitlements.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Entitlements.entitlements; sourceTree = "<group>"; };
+		3F8475892C8513000034EC78 /* MentalMathApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentalMathApp.swift; sourceTree = "<group>"; };
+		3F84758B2C8513000034EC78 /* MathGen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathGen.swift; sourceTree = "<group>"; };
+		3F84758C2C8513000034EC78 /* TimerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerManager.swift; sourceTree = "<group>"; };
+		3F84758E2C8513000034EC78 /* GameSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSession.swift; sourceTree = "<group>"; };
+		3F8475902C8513000034EC78 /* GameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
+		3F8475912C8513000034EC78 /* CountdownTimerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountdownTimerView.swift; sourceTree = "<group>"; };
+		3F8475A02C8527E90034EC78 /* SwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI.swift; sourceTree = "<group>"; };
+		3F8475A22C85A29A0034EC78 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
+		3F8475A62C85D3480034EC78 /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
+		3FA763952C8C75B600333C0C /* NumericaTestsLaunchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumericaTestsLaunchTests.swift; sourceTree = "<group>"; };
+		3FA763962C8C75B600333C0C /* NumericaUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumericaUITests.swift; sourceTree = "<group>"; };
+		3FA763982C8C75B600333C0C /* NumericaTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumericaTests.swift; sourceTree = "<group>"; };
+		3FE64FA72C8851240053C96C /* SwiftDataGlobal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataGlobal.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3F415BBD2C83800500C94EB6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3F415BD02C83800800C94EB6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3F415BDA2C83800800C94EB6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3F415BB72C83800500C94EB6 = {
+			isa = PBXGroup;
+			children = (
+				3F415BC22C83800500C94EB6 /* Numerica */,
+				3FA763992C8C75B600333C0C /* NumericaTests */,
+				3FA763972C8C75B600333C0C /* NumericaUITests */,
+				3F415BC12C83800500C94EB6 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3F415BC12C83800500C94EB6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3F415BC02C83800500C94EB6 /* Numerica.app */,
+				3F415BD32C83800800C94EB6 /* NumericaTests.xctest */,
+				3F415BDD2C83800800C94EB6 /* NumericaUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3F415BC22C83800500C94EB6 /* Numerica */ = {
+			isa = PBXGroup;
+			children = (
+				3F415BCC2C83800800C94EB6 /* Preview Content */,
+				3F8475882C8513000034EC78 /* Resources */,
+				3F8475932C8513000034EC78 /* Sources */,
+			);
+			path = Numerica;
+			sourceTree = "<group>";
+		};
+		3F415BCC2C83800800C94EB6 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				3F415BCD2C83800800C94EB6 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		3F6435042C899BC20016C7AC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3F8475A62C85D3480034EC78 /* GameViewModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		3F8475882C8513000034EC78 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3F8475862C8513000034EC78 /* Assets.xcassets */,
+				3F8475872C8513000034EC78 /* Entitlements.entitlements */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		3F84758A2C8513000034EC78 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				3F8475892C8513000034EC78 /* MentalMathApp.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		3F84758D2C8513000034EC78 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				3F84758B2C8513000034EC78 /* MathGen.swift */,
+				3F84758C2C8513000034EC78 /* TimerManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		3F84758F2C8513000034EC78 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				3F84758E2C8513000034EC78 /* GameSession.swift */,
+				3F8475A22C85A29A0034EC78 /* StorageService.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		3F8475922C8513000034EC78 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3F8475902C8513000034EC78 /* GameView.swift */,
+				3F6435052C899BD60016C7AC /* ActionButton.swift */,
+				3F8475912C8513000034EC78 /* CountdownTimerView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3F8475932C8513000034EC78 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				3F84759B2C8514400034EC78 /* Extensions */,
+				3F84758A2C8513000034EC78 /* Common */,
+				3F84758D2C8513000034EC78 /* Services */,
+				3F84758F2C8513000034EC78 /* Storage */,
+				3F6435042C899BC20016C7AC /* Models */,
+				3F8475922C8513000034EC78 /* Views */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		3F84759B2C8514400034EC78 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3F4DB9022C8C71DD0013DB66 /* Foundation.swift */,
+				3F8475A02C8527E90034EC78 /* SwiftUI.swift */,
+				3FE64FA72C8851240053C96C /* SwiftDataGlobal.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		3FA763972C8C75B600333C0C /* NumericaUITests */ = {
+			isa = PBXGroup;
+			children = (
+				3FA763952C8C75B600333C0C /* NumericaTestsLaunchTests.swift */,
+				3FA763962C8C75B600333C0C /* NumericaUITests.swift */,
+			);
+			path = NumericaUITests;
+			sourceTree = "<group>";
+		};
+		3FA763992C8C75B600333C0C /* NumericaTests */ = {
+			isa = PBXGroup;
+			children = (
+				3FA763982C8C75B600333C0C /* NumericaTests.swift */,
+			);
+			path = NumericaTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3F415BBF2C83800500C94EB6 /* Numerica */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3F415BE72C83800800C94EB6 /* Build configuration list for PBXNativeTarget "Numerica" */;
+			buildPhases = (
+				3F415BBC2C83800500C94EB6 /* Sources */,
+				3F415BBD2C83800500C94EB6 /* Frameworks */,
+				3F415BBE2C83800500C94EB6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Numerica;
+			productName = MentalMath;
+			productReference = 3F415BC02C83800500C94EB6 /* Numerica.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3F415BD22C83800800C94EB6 /* NumericaTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3F415BEA2C83800800C94EB6 /* Build configuration list for PBXNativeTarget "NumericaTests" */;
+			buildPhases = (
+				3F415BCF2C83800800C94EB6 /* Sources */,
+				3F415BD02C83800800C94EB6 /* Frameworks */,
+				3F415BD12C83800800C94EB6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3F415BD52C83800800C94EB6 /* PBXTargetDependency */,
+			);
+			name = NumericaTests;
+			productName = MentalMathTests;
+			productReference = 3F415BD32C83800800C94EB6 /* NumericaTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		3F415BDC2C83800800C94EB6 /* NumericaUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3F415BED2C83800800C94EB6 /* Build configuration list for PBXNativeTarget "NumericaUITests" */;
+			buildPhases = (
+				3F415BD92C83800800C94EB6 /* Sources */,
+				3F415BDA2C83800800C94EB6 /* Frameworks */,
+				3F415BDB2C83800800C94EB6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3F415BDF2C83800800C94EB6 /* PBXTargetDependency */,
+			);
+			name = NumericaUITests;
+			productName = MentalMathUITests;
+			productReference = 3F415BDD2C83800800C94EB6 /* NumericaUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3F415BB82C83800500C94EB6 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1530;
+				LastUpgradeCheck = 1530;
+				TargetAttributes = {
+					3F415BBF2C83800500C94EB6 = {
+						CreatedOnToolsVersion = 15.3;
+					};
+					3F415BD22C83800800C94EB6 = {
+						CreatedOnToolsVersion = 15.3;
+						TestTargetID = 3F415BBF2C83800500C94EB6;
+					};
+					3F415BDC2C83800800C94EB6 = {
+						CreatedOnToolsVersion = 15.3;
+						TestTargetID = 3F415BBF2C83800500C94EB6;
+					};
+				};
+			};
+			buildConfigurationList = 3F415BBB2C83800500C94EB6 /* Build configuration list for PBXProject "Numerica" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3F415BB72C83800500C94EB6;
+			productRefGroup = 3F415BC12C83800500C94EB6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3F415BBF2C83800500C94EB6 /* Numerica */,
+				3F415BD22C83800800C94EB6 /* NumericaTests */,
+				3F415BDC2C83800800C94EB6 /* NumericaUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3F415BBE2C83800500C94EB6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F8475942C8513000034EC78 /* Assets.xcassets in Resources */,
+				3F415BCE2C83800800C94EB6 /* Preview Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3F415BD12C83800800C94EB6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3F415BDB2C83800800C94EB6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3F415BBC2C83800500C94EB6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3FA7639A2C8C75B600333C0C /* NumericaTestsLaunchTests.swift in Sources */,
+				3F8475982C8513000034EC78 /* GameSession.swift in Sources */,
+				3F8475992C8513000034EC78 /* GameView.swift in Sources */,
+				3FE64FA82C8851240053C96C /* SwiftDataGlobal.swift in Sources */,
+				3F8475A12C8527E90034EC78 /* SwiftUI.swift in Sources */,
+				3FA7639B2C8C75B600333C0C /* NumericaUITests.swift in Sources */,
+				3F84759A2C8513000034EC78 /* CountdownTimerView.swift in Sources */,
+				3F8475972C8513000034EC78 /* TimerManager.swift in Sources */,
+				3F4DB9032C8C71DD0013DB66 /* Foundation.swift in Sources */,
+				3FA7639C2C8C75B600333C0C /* NumericaTests.swift in Sources */,
+				3F8475A72C85D3480034EC78 /* GameViewModel.swift in Sources */,
+				3F8475962C8513000034EC78 /* MathGen.swift in Sources */,
+				3F8475A32C85A29A0034EC78 /* StorageService.swift in Sources */,
+				3F8475952C8513000034EC78 /* MentalMathApp.swift in Sources */,
+				3F6435062C899BD60016C7AC /* ActionButton.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3F415BCF2C83800800C94EB6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3F415BD92C83800800C94EB6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3F415BD52C83800800C94EB6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3F415BBF2C83800500C94EB6 /* Numerica */;
+			targetProxy = 3F415BD42C83800800C94EB6 /* PBXContainerItemProxy */;
+		};
+		3F415BDF2C83800800C94EB6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3F415BBF2C83800500C94EB6 /* Numerica */;
+			targetProxy = 3F415BDE2C83800800C94EB6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		3F415BE52C83800800C94EB6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		3F415BE62C83800800C94EB6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		3F415BE82C83800800C94EB6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Numerica/Resources/Entitlements.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Numerica/Preview Content\"";
+				DEVELOPMENT_TEAM = 59RDP58P84;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = eyecorp.MentalMath;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3F415BE92C83800800C94EB6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Numerica/Resources/Entitlements.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Numerica/Preview Content\"";
+				DEVELOPMENT_TEAM = 59RDP58P84;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = eyecorp.MentalMath;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		3F415BEB2C83800800C94EB6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 59RDP58P84;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = eyecorp.MentalMathTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Numerica.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Numerica";
+			};
+			name = Debug;
+		};
+		3F415BEC2C83800800C94EB6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 59RDP58P84;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = eyecorp.MentalMathTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Numerica.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Numerica";
+			};
+			name = Release;
+		};
+		3F415BEE2C83800800C94EB6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 59RDP58P84;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = eyecorp.MentalMathUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MentalMath;
+			};
+			name = Debug;
+		};
+		3F415BEF2C83800800C94EB6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 59RDP58P84;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = eyecorp.MentalMathUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MentalMath;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3F415BBB2C83800500C94EB6 /* Build configuration list for PBXProject "Numerica" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3F415BE52C83800800C94EB6 /* Debug */,
+				3F415BE62C83800800C94EB6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3F415BE72C83800800C94EB6 /* Build configuration list for PBXNativeTarget "Numerica" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3F415BE82C83800800C94EB6 /* Debug */,
+				3F415BE92C83800800C94EB6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3F415BEA2C83800800C94EB6 /* Build configuration list for PBXNativeTarget "NumericaTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3F415BEB2C83800800C94EB6 /* Debug */,
+				3F415BEC2C83800800C94EB6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3F415BED2C83800800C94EB6 /* Build configuration list for PBXNativeTarget "NumericaUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3F415BEE2C83800800C94EB6 /* Debug */,
+				3F415BEF2C83800800C94EB6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3F415BB82C83800500C94EB6 /* Project object */;
+}
