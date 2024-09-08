@@ -16,7 +16,7 @@ final class GameViewModel: ObservableObject {
     @Published var isGameStarted: Bool = false
     @Published var remainingTime: Int = .defaultTimeInterval
 
-    private var cancellables: Set<AnyCancellable> = []
+    private var cancellables = Set<AnyCancellable>()
 
     private var gameSession: GameSession?
     private let storageService: StorageService
