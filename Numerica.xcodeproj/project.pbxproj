@@ -23,6 +23,7 @@
 		3F8475A12C8527E90034EC78 /* SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8475A02C8527E90034EC78 /* SwiftUI.swift */; };
 		3F8475A32C85A29A0034EC78 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8475A22C85A29A0034EC78 /* StorageService.swift */; };
 		3F8475A72C85D3480034EC78 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8475A62C85D3480034EC78 /* GameViewModel.swift */; };
+		3F8CE8192C8E14D40082B4DB /* Docs.docc in Sources */ = {isa = PBXBuildFile; fileRef = 3F8CE8182C8E14D40082B4DB /* Docs.docc */; };
 		3FE64FA82C8851240053C96C /* SwiftDataGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE64FA72C8851240053C96C /* SwiftDataGlobal.swift */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +62,7 @@
 		3F8475A02C8527E90034EC78 /* SwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI.swift; sourceTree = "<group>"; };
 		3F8475A22C85A29A0034EC78 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		3F8475A62C85D3480034EC78 /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
+		3F8CE8182C8E14D40082B4DB /* Docs.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = Docs.docc; sourceTree = SOURCE_ROOT; };
 		3FA763952C8C75B600333C0C /* NumericaTestsLaunchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumericaTestsLaunchTests.swift; sourceTree = "<group>"; };
 		3FA763962C8C75B600333C0C /* NumericaUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumericaUITests.swift; sourceTree = "<group>"; };
 		3FA763982C8C75B600333C0C /* NumericaTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumericaTests.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				3F415BCC2C83800800C94EB6 /* Preview Content */,
 				3F8475882C8513000034EC78 /* Resources */,
 				3F8475932C8513000034EC78 /* Sources */,
+				3F8CE8182C8E14D40082B4DB /* Docs.docc */,
 			);
 			path = Numerica;
 			sourceTree = "<group>";
@@ -356,6 +359,7 @@
 				3F8475982C8513000034EC78 /* GameSession.swift in Sources */,
 				3F8475992C8513000034EC78 /* GameView.swift in Sources */,
 				3FE64FA82C8851240053C96C /* SwiftDataGlobal.swift in Sources */,
+				3F8CE8192C8E14D40082B4DB /* Docs.docc in Sources */,
 				3F8475A12C8527E90034EC78 /* SwiftUI.swift in Sources */,
 				3F84759A2C8513000034EC78 /* CountdownTimerView.swift in Sources */,
 				3F8475972C8513000034EC78 /* TimerManager.swift in Sources */,
