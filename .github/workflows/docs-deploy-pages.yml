@@ -1,51 +1,31 @@
-# Name your workflow.
 name: Deploy DocC
+
 on:
-    push:
-    branches: ["**"]
-
-permissions:
-    contents: read
-    pages: write
-    id-token: write
-
-concurrency:
-    group: "pages"
-    cancel-in-progress: true
+  push:
+    branches:
+      - '**'  # Trigger on any branch
 
 jobs:
-    deploy:
-    environment:
-        name: github-pages
-        url: ${{ steps.deployment.outputs.page_url }}
+  docc:
     runs-on: macos-latest
     steps:
-        - name: Checkout 🛎️
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-        - name: Build DocC
-        run: |
-          xcodebuild docbuild -scheme Numerica \
-            -derivedDataPath /tmp/docbuild \
-            CODE_SIGN_IDENTITY="" \
-            CODE_SIGNING_REQUIRED=NO \
-            -destination 'generic/platform=iOS';
-          $(xcrun --find docc) process-archive \
-            transform-for-static-hosting /tmp/docbuild/Build/Products/Debug-iphoneos/Numerica.doccarchive \
-            --hosting-base-path MentalMath \
-            --output-path docs;
+      - name: Build and deploy DocC
+        uses: fwcd/swift-docc-action@v1.0.2
+        with:
+          project: Numerica
+          scheme: Numerica
+          output: ./docs
+          hosting-base-path: MentalMath
+          disable-indexing: 'true'
+          transform-for-static-hosting: 'true'
 
-          # Add Jekyll configuration to exclude SCSS file
-          echo "exclude: [assets/css/style.scss]" > docs/_config.yml
-
-          # Create a redirect index.html
-          echo "<script>window.location.href += \"/documentation/mypackage\"</script>" > docs/index.html;
-
-        - name: Upload artifact
+      - name: Upload docs to GitHub Pages
         uses: actions/upload-pages-artifact@v1
         with:
-            path: 'docs'
+          path: './docs'
 
-        - name: Deploy to GitHub Pages
-        id: deployment
+      - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v1

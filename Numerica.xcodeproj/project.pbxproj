@@ -13,6 +13,7 @@
 		3F4F31D62C8CC17B0053CAF9 /* NumericaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA763962C8C75B600333C0C /* NumericaUITests.swift */; };
 		3F4F31D72C8CC1820053CAF9 /* NumericaTestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA763952C8C75B600333C0C /* NumericaTestsLaunchTests.swift */; };
 		3F6435062C899BD60016C7AC /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6435052C899BD60016C7AC /* ActionButton.swift */; };
+		3F74F62E2C8EDF1C00AE5E00 /* snippet-extract in Frameworks */ = {isa = PBXBuildFile; productRef = 3F74F62D2C8EDF1C00AE5E00 /* snippet-extract */; };
 		3F8475942C8513000034EC78 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F8475862C8513000034EC78 /* Assets.xcassets */; };
 		3F8475952C8513000034EC78 /* MentalMathApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8475892C8513000034EC78 /* MentalMathApp.swift */; };
 		3F8475962C8513000034EC78 /* MathGen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F84758B2C8513000034EC78 /* MathGen.swift */; };
@@ -74,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F74F62E2C8EDF1C00AE5E00 /* snippet-extract in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,6 +244,9 @@
 			dependencies = (
 			);
 			name = Numerica;
+			packageProductDependencies = (
+				3F74F62D2C8EDF1C00AE5E00 /* snippet-extract */,
+			);
 			productName = MentalMath;
 			productReference = 3F415BC02C83800500C94EB6 /* Numerica.app */;
 			productType = "com.apple.product-type.application";
@@ -314,6 +319,9 @@
 				Base,
 			);
 			mainGroup = 3F415BB72C83800500C94EB6;
+			packageReferences = (
+				3F74F62C2C8EDF1C00AE5E00 /* XCRemoteSwiftPackageReference "swift-docc-plugin" */,
+			);
 			productRefGroup = 3F415BC12C83800500C94EB6 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -729,6 +737,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3F74F62C2C8EDF1C00AE5E00 /* XCRemoteSwiftPackageReference "swift-docc-plugin" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-docc-plugin.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.4.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3F74F62D2C8EDF1C00AE5E00 /* snippet-extract */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3F74F62C2C8EDF1C00AE5E00 /* XCRemoteSwiftPackageReference "swift-docc-plugin" */;
+			productName = "snippet-extract";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3F415BB82C83800500C94EB6 /* Project object */;
 }
