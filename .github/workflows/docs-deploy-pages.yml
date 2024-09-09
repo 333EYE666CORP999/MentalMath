@@ -7,15 +7,21 @@ on:
 
 jobs:
   docc:
-    runs-on: macos-14
+    runs-on: macos-14  # Specify macOS version
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: Set up Xcode
+        uses: apple-actions/setup-xcode@v3
+        with:
+          xcode-version: '15.4'  # Specify the Xcode version compatible with your code
+
       - name: Build and deploy DocC
         uses: fwcd/swift-docc-action@v1.0.2
         with:
-          target: Numerica
+          project: Numerica
           scheme: Numerica
           output: ./docs
           hosting-base-path: MentalMath
