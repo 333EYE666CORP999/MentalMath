@@ -19,7 +19,7 @@ jobs:
           xcode-version: latest
 
       - name: Build DocC Documentation
-        uses: swift-actions/build-docc-static-site@v1
+        uses: actions/build-docC-static-site@v1.0.2
         with:
           project: Numerica
           scheme: Numerica
@@ -29,7 +29,7 @@ jobs:
           transform-for-static-hosting: 'true'
 
       - name: Deploy DocC Documentation to GitHub Pages
-        uses: swift-actions/deploy-docc-to-github-pages@v1
+        uses: kiarashvosough1999/docC-github-pages-deploy@v1.0.0
         with:
           docs-path: './docs'
           branch: 'gh-pages'  # Specify the branch for GitHub Pages
