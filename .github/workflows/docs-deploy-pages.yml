@@ -15,7 +15,7 @@ jobs:
       - name: Build and deploy DocC
         uses: fwcd/swift-docc-action@v1.0.2
         with:
-          project: Numerica
+          target: Numerica
           scheme: Numerica
           output: ./docs
           hosting-base-path: MentalMath
