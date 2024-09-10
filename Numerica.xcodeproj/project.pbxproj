@@ -12,8 +12,8 @@
 		3F4F31D42C8CC1750053CAF9 /* NumericaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA763982C8C75B600333C0C /* NumericaTests.swift */; };
 		3F4F31D62C8CC17B0053CAF9 /* NumericaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA763962C8C75B600333C0C /* NumericaUITests.swift */; };
 		3F4F31D72C8CC1820053CAF9 /* NumericaTestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA763952C8C75B600333C0C /* NumericaTestsLaunchTests.swift */; };
-		3F50E6C22C8F4D1800207F5F /* Documentation.docc in Sources */ = {isa = PBXBuildFile; fileRef = 3F50E6C12C8F4D1800207F5F /* Documentation.docc */; };
 		3F6435062C899BD60016C7AC /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6435052C899BD60016C7AC /* ActionButton.swift */; };
+		3F646ABC2C907CEE0022B033 /* Documentation.docc in Sources */ = {isa = PBXBuildFile; fileRef = 3F646ABB2C907CEE0022B033 /* Documentation.docc */; };
 		3F8475942C8513000034EC78 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F8475862C8513000034EC78 /* Assets.xcassets */; };
 		3F8475952C8513000034EC78 /* MentalMathApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8475892C8513000034EC78 /* MentalMathApp.swift */; };
 		3F8475962C8513000034EC78 /* MathGen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F84758B2C8513000034EC78 /* MathGen.swift */; };
@@ -50,8 +50,8 @@
 		3F415BD32C83800800C94EB6 /* NumericaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NumericaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F415BDD2C83800800C94EB6 /* NumericaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NumericaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F4DB9022C8C71DD0013DB66 /* Foundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Foundation.swift; sourceTree = "<group>"; };
-		3F50E6C12C8F4D1800207F5F /* Documentation.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = Documentation.docc; sourceTree = "<group>"; };
 		3F6435052C899BD60016C7AC /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
+		3F646ABB2C907CEE0022B033 /* Documentation.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = Documentation.docc; sourceTree = "<group>"; };
 		3F8475862C8513000034EC78 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F8475872C8513000034EC78 /* Entitlements.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Entitlements.entitlements; sourceTree = "<group>"; };
 		3F8475892C8513000034EC78 /* MentalMathApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentalMathApp.swift; sourceTree = "<group>"; };
@@ -117,10 +117,10 @@
 		3F415BC22C83800500C94EB6 /* Numerica */ = {
 			isa = PBXGroup;
 			children = (
+				3F646ABB2C907CEE0022B033 /* Documentation.docc */,
 				3F415BCC2C83800800C94EB6 /* Preview Content */,
 				3F8475882C8513000034EC78 /* Resources */,
 				3F8475932C8513000034EC78 /* Sources */,
-				3F50E6C12C8F4D1800207F5F /* Documentation.docc */,
 			);
 			path = Numerica;
 			sourceTree = "<group>";
@@ -366,7 +366,7 @@
 				3F8475A72C85D3480034EC78 /* GameViewModel.swift in Sources */,
 				3F8475962C8513000034EC78 /* MathGen.swift in Sources */,
 				3F8475A32C85A29A0034EC78 /* StorageService.swift in Sources */,
-				3F50E6C22C8F4D1800207F5F /* Documentation.docc in Sources */,
+				3F646ABC2C907CEE0022B033 /* Documentation.docc in Sources */,
 				3F8475952C8513000034EC78 /* MentalMathApp.swift in Sources */,
 				3F6435062C899BD60016C7AC /* ActionButton.swift in Sources */,
 			);
