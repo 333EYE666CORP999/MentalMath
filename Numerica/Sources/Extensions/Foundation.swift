@@ -19,6 +19,10 @@ extension Int {
             self % .secondsInMunute
         )
     }
+
+    var stringValue: String {
+        String(self)
+    }
 }
 
 extension String {
@@ -32,4 +36,24 @@ extension String {
     }
 
     static var minutesSecondsFormat: Self = "%02d:%02d"
+}
+
+extension DateFormatter {
+    
+    static let dateTimeDateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.YYYY, HH:mm:ss"
+        return formatter
+    }()
+}
+
+extension Decimal {
+
+    var intValue: Int {
+        NSDecimalNumber(
+            decimal: self
+        ).rounding(
+            accordingToBehavior: nil
+        ).intValue
+    }
 }
