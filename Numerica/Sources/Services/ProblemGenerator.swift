@@ -15,15 +15,15 @@ final class ProblemGenerator {
     // TODO: - покрыть тестами
     func getProblem() -> ProblemDTO {
         guard
-            let op = Operation.allCases.randomElement()
+            let operation = Operation.allCases.randomElement()
         else { return .empty }
 
         let problem = [
             getRandomNumber().stringValue,
             " ",
-            op.rawValue,
+            operation.rawValue,
             " ",
-            getRandomNumber(excludeZeroRhs: op == .division).stringValue
+            getRandomNumber(excludeZeroRhs: operation == .division).stringValue
         ].joined()
 
         return ProblemDTO(

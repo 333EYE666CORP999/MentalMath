@@ -236,10 +236,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3F415BE72C83800800C94EB6 /* Build configuration list for PBXNativeTarget "Numerica" */;
 			buildPhases = (
+				3F65EE712C91DAC0004F08EB /* SwiftLint */,
 				3F415BBC2C83800500C94EB6 /* Sources */,
 				3F415BBD2C83800500C94EB6 /* Frameworks */,
 				3F415BBE2C83800500C94EB6 /* Resources */,
-				3F65EE712C91DAC0004F08EB /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -359,6 +359,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		3F65EE712C91DAC0004F08EB /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);

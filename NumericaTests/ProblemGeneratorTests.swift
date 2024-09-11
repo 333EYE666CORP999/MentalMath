@@ -31,7 +31,7 @@ final class ProblemGeneratorTests: XCTestCase {
             let count = problem.split(separator: " ").count
 
             // Assert
-            XCTAssertEqual(count,3)
+            XCTAssertEqual(count, 3)
         }
     }
 
@@ -78,14 +78,14 @@ final class ProblemGeneratorTests: XCTestCase {
             }
 
             guard
-                let op = ProblemGenerator.Operation(rawValue: "\(problemStringSplitted.map { $0 }[1])")
+                let operation = ProblemGenerator.Operation(rawValue: "\(problemStringSplitted.map { $0 }[1])")
             else {
                 XCTFail("No valid operator provided")
                 return
             }
 
             // Act
-            let res = switch op {
+            let res = switch operation {
             case .addition:
                 lhs + rhs
             case .subtraction:

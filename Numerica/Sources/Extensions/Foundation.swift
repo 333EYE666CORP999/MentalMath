@@ -39,7 +39,7 @@ extension String {
 }
 
 extension DateFormatter {
-    
+
     static let dateTimeDateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.YYYY, HH:mm:ss"
