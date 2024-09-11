@@ -9,13 +9,15 @@
 /* Begin PBXBuildFile section */
 		3F415BCE2C83800800C94EB6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F415BCD2C83800800C94EB6 /* Preview Assets.xcassets */; };
 		3F4DB9032C8C71DD0013DB66 /* Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4DB9022C8C71DD0013DB66 /* Foundation.swift */; };
-		3F4F31D42C8CC1750053CAF9 /* NumericaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA763982C8C75B600333C0C /* NumericaTests.swift */; };
 		3F4F31D62C8CC17B0053CAF9 /* NumericaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA763962C8C75B600333C0C /* NumericaUITests.swift */; };
 		3F4F31D72C8CC1820053CAF9 /* NumericaTestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA763952C8C75B600333C0C /* NumericaTestsLaunchTests.swift */; };
 		3F6435062C899BD60016C7AC /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6435052C899BD60016C7AC /* ActionButton.swift */; };
+		3F65EE6C2C91AA98004F08EB /* Problem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F65EE6B2C91AA98004F08EB /* Problem.swift */; };
+		3F65EE6E2C91AEFC004F08EB /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F65EE6D2C91AEFC004F08EB /* Logger.swift */; };
+		3F65EE702C91C360004F08EB /* ProblemGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F65EE6F2C91C360004F08EB /* ProblemGeneratorTests.swift */; };
 		3F8475942C8513000034EC78 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F8475862C8513000034EC78 /* Assets.xcassets */; };
 		3F8475952C8513000034EC78 /* MentalMathApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8475892C8513000034EC78 /* MentalMathApp.swift */; };
-		3F8475962C8513000034EC78 /* MathGen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F84758B2C8513000034EC78 /* MathGen.swift */; };
+		3F8475962C8513000034EC78 /* ProblemGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F84758B2C8513000034EC78 /* ProblemGenerator.swift */; };
 		3F8475972C8513000034EC78 /* TimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F84758C2C8513000034EC78 /* TimerManager.swift */; };
 		3F8475982C8513000034EC78 /* GameSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F84758E2C8513000034EC78 /* GameSession.swift */; };
 		3F8475992C8513000034EC78 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8475902C8513000034EC78 /* GameView.swift */; };
@@ -50,10 +52,13 @@
 		3F415BDD2C83800800C94EB6 /* NumericaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NumericaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F4DB9022C8C71DD0013DB66 /* Foundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Foundation.swift; sourceTree = "<group>"; };
 		3F6435052C899BD60016C7AC /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
+		3F65EE6B2C91AA98004F08EB /* Problem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Problem.swift; sourceTree = "<group>"; };
+		3F65EE6D2C91AEFC004F08EB /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		3F65EE6F2C91C360004F08EB /* ProblemGeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemGeneratorTests.swift; sourceTree = "<group>"; };
 		3F8475862C8513000034EC78 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F8475872C8513000034EC78 /* Entitlements.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Entitlements.entitlements; sourceTree = "<group>"; };
 		3F8475892C8513000034EC78 /* MentalMathApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentalMathApp.swift; sourceTree = "<group>"; };
-		3F84758B2C8513000034EC78 /* MathGen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathGen.swift; sourceTree = "<group>"; };
+		3F84758B2C8513000034EC78 /* ProblemGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProblemGenerator.swift; sourceTree = "<group>"; };
 		3F84758C2C8513000034EC78 /* TimerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerManager.swift; sourceTree = "<group>"; };
 		3F84758E2C8513000034EC78 /* GameSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSession.swift; sourceTree = "<group>"; };
 		3F8475902C8513000034EC78 /* GameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
@@ -63,7 +68,6 @@
 		3F8475A62C85D3480034EC78 /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
 		3FA763952C8C75B600333C0C /* NumericaTestsLaunchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumericaTestsLaunchTests.swift; sourceTree = "<group>"; };
 		3FA763962C8C75B600333C0C /* NumericaUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumericaUITests.swift; sourceTree = "<group>"; };
-		3FA763982C8C75B600333C0C /* NumericaTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumericaTests.swift; sourceTree = "<group>"; };
 		3FE64FA72C8851240053C96C /* SwiftDataGlobal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataGlobal.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -158,7 +162,8 @@
 		3F84758D2C8513000034EC78 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				3F84758B2C8513000034EC78 /* MathGen.swift */,
+				3F84758B2C8513000034EC78 /* ProblemGenerator.swift */,
+				3F65EE6D2C91AEFC004F08EB /* Logger.swift */,
 				3F84758C2C8513000034EC78 /* TimerManager.swift */,
 			);
 			path = Services;
@@ -168,6 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				3F84758E2C8513000034EC78 /* GameSession.swift */,
+				3F65EE6B2C91AA98004F08EB /* Problem.swift */,
 				3F8475A22C85A29A0034EC78 /* StorageService.swift */,
 			);
 			path = Storage;
@@ -218,7 +224,7 @@
 		3FA763992C8C75B600333C0C /* NumericaTests */ = {
 			isa = PBXGroup;
 			children = (
-				3FA763982C8C75B600333C0C /* NumericaTests.swift */,
+				3F65EE6F2C91C360004F08EB /* ProblemGeneratorTests.swift */,
 			);
 			path = NumericaTests;
 			sourceTree = "<group>";
@@ -294,6 +300,7 @@
 					};
 					3F415BD22C83800800C94EB6 = {
 						CreatedOnToolsVersion = 15.3;
+						LastSwiftMigration = 1530;
 						TestTargetID = 3F415BBF2C83800500C94EB6;
 					};
 					3F415BDC2C83800800C94EB6 = {
@@ -360,9 +367,11 @@
 				3F84759A2C8513000034EC78 /* CountdownTimerView.swift in Sources */,
 				3F8475972C8513000034EC78 /* TimerManager.swift in Sources */,
 				3F4DB9032C8C71DD0013DB66 /* Foundation.swift in Sources */,
+				3F65EE6C2C91AA98004F08EB /* Problem.swift in Sources */,
 				3F8475A72C85D3480034EC78 /* GameViewModel.swift in Sources */,
-				3F8475962C8513000034EC78 /* MathGen.swift in Sources */,
+				3F8475962C8513000034EC78 /* ProblemGenerator.swift in Sources */,
 				3F8475A32C85A29A0034EC78 /* StorageService.swift in Sources */,
+				3F65EE6E2C91AEFC004F08EB /* Logger.swift in Sources */,
 				3F8475952C8513000034EC78 /* MentalMathApp.swift in Sources */,
 				3F6435062C899BD60016C7AC /* ActionButton.swift in Sources */,
 			);
@@ -372,7 +381,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F4F31D42C8CC1750053CAF9 /* NumericaTests.swift in Sources */,
+				3F65EE702C91C360004F08EB /* ProblemGeneratorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -600,6 +609,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 59RDP58P84;
@@ -612,6 +622,7 @@
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Numerica.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Numerica";
@@ -623,6 +634,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 59RDP58P84;
