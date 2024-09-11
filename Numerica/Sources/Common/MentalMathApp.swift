@@ -19,7 +19,7 @@ struct NumericaApp: App {
                         storageService: StorageService(
                             modelContext: sharedModelContainer.mainContext
                         ),
-                        mathGen: MathGen()
+                        mathGen: ProblemGenerator()
                     )
                 )
         }

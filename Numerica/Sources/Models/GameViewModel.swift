@@ -20,19 +20,19 @@ final class GameViewModel: ObservableObject {
 
     private var gameSession: GameSession?
     private let storageService: StorageService
-    private let mathGen: MathGen
-    private var timerManager: TimerManager
+    private let mathGen: ProblemGenerator
 
 
     init(
         storageService: StorageService,
-        mathGen: MathGen
+        mathGen: ProblemGenerator
     ) {
         self.storageService = storageService
-        self.mathGen = MathGen()
-        self.problem = mathGen.getProblem()
         self.timerManager = TimerManager()
         bindTimer()
+        self.mathGen = ProblemGenerator()
+        // TODO: - переписать, чтоб целый объект отдавался
+        self.problem = mathGen.getProblem().problemString
     }
 
     // FIXME: - тут нужно объединить всю логику обработки инпута после нажатия submit / start
