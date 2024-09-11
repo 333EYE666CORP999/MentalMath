@@ -27,5 +27,9 @@ extension String {
         self.allSatisfy { $0.isNumber }
     }
 
+    var intValue: Int? {
+        Int(self)
+    }
+
     static var minutesSecondsFormat: Self = "%02d:%02d"
 }
