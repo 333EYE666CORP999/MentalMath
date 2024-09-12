@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Foundation
 
 struct GameView: View {
 
@@ -17,7 +18,9 @@ struct GameView: View {
             background
             VStack {
                 if viewModel.isGameStarted {
-                    countdown
+                    if viewModel.mode != .zen {
+                        countdown
+                    }
                     problemView
                     inputTextField
                 }
@@ -77,7 +80,7 @@ struct GameView: View {
                 storageService: StorageService(
                     modelContext: sharedModelContainer.mainContext
                 ),
-                mathGen: MathGen()
+                mathGen: ProblemGenerator()
             )
         )
 }
