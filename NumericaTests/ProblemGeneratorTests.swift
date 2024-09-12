@@ -100,4 +100,77 @@ final class ProblemGeneratorTests: XCTestCase {
             XCTAssertEqual(res, problem.solution)
         }
     }
+
+    func testDifferentProblemsGenerated() {
+        var problems = Set<String>()
+        for _ in 0...100 {
+            // Arrange
+            let problem = sut.getProblem().problemString
+
+            // Act
+            problems.insert(problem)
+        }
+
+        // Assert
+        XCTAssertGreaterThan(problems.count, 1, "Generator should produce different problems")
+    }
+
+    func testEmptyProblemDTOIsValid() {
+        // Arrange
+        // Act
+        let emptyProblem = ProblemGenerator.ProblemDTO.empty
+
+        // Assert
+        XCTAssertEqual(emptyProblem.problemString, "")
+        XCTAssertEqual(emptyProblem.solution, .zero)
+    }
+
+    func testDivisionProblemsAlwaysHaveNonZeroRhs() {
+        for _ in 0...100 {
+            // Arrange
+            guard
+                let rhs = String(
+                    sut.getProblem(
+                        for: .division
+                    ).problemString.split(
+                        separator: " "
+                    )[2]
+                ).intValue
+            else {
+                XCTFail("Not a number returned")
+                return
+            }
+
+            // Act
+            // Assert
+            XCTAssertGreaterThan(rhs, .zero)
+        }
+    }
+
+    func testProblemGeneratesCorrectOperatorOnCertainArguments() {
+        for iteration in 0...100 {
+            // Arrange
+            var operation: ProblemGenerator.Operation
+
+            if iteration < 25 {
+                operation = .addition
+            } else if iteration >= 25 {
+                operation = .subtraction
+            } else if iteration >= 50 {
+                operation = .multiplication
+            } else {
+                operation = .division
+            }
+
+            var generatedOperator = String(
+                sut.getProblem(
+                    for: operation
+                ).problemString.split(
+                    separator: " "
+                )[1]
+            )
+
+            XCTAssertEqual(operation.rawValue, generatedOperator)
+        }
+    }
 }

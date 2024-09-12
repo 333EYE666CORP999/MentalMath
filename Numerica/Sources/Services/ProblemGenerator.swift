@@ -11,17 +11,21 @@ import Foundation
 
 final class ProblemGenerator {
 
-    // TODO: - предусмотреть, чтобы не давало деления на ноль
-    // TODO: - покрыть тестами
-    func getProblem() -> ProblemDTO {
-        guard
-            let operation = Operation.allCases.randomElement()
-        else { return .empty }
+    func getProblem(for selected: Operation? = nil) -> ProblemDTO {
+        let operation: Operation? = if let selected {
+            selected
+        } else if let randomOperation = Operation.allCases.randomElement() {
+            randomOperation
+        } else {
+            nil
+        }
+
+        guard let composedOperation = operation else { return .empty }
 
         let problem = [
             getRandomNumber().stringValue,
             " ",
-            operation.rawValue,
+            composedOperation.rawValue,
             " ",
             getRandomNumber(excludeZeroRhs: operation == .division).stringValue
         ].joined()
@@ -67,7 +71,6 @@ extension ProblemGenerator {
 
 private extension ProblemGenerator {
 
-    // TODO: - покрыть тестами
     func solve(expression: String) -> Int {
         let components = expression.split(
             separator: " "
@@ -80,7 +83,6 @@ private extension ProblemGenerator {
             let operation = Operation(rawValue: components[1]),
             let rhs = Int(components[2])
         else {
-            // FIXME: - возвращать ноль не круто, подумать, реально ли здесь что нужно допилить в плане ошибок
             return .zero
         }
 
@@ -98,7 +100,6 @@ private extension ProblemGenerator {
 
     /// Generates a random number within a random digits count
     /// - Returns: Generated random number
-    // TODO: - покрыть тестами
     private func getRandomNumber(excludeZeroRhs: Bool = false) -> Int {
         let digitCount = Int.random(in: 1...4)
 
