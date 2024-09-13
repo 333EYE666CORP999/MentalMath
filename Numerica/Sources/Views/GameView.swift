@@ -16,16 +16,35 @@ struct GameView: View {
     var body: some View {
         ZStack {
             background
-            VStack {
-                if viewModel.isGameStarted {
-                    if viewModel.mode != .zen {
-                        countdown
-                    }
-                    problemView
-                    inputTextField
-                }
-                actionButton
+            endGameButtonView
+
+            switch viewModel.mode {
+            case .zen:
+                zenGameView
+            case .timed:
+                timedGameView
             }
+        }
+    }
+
+    var zenGameView: some  View {
+        VStack {
+            if viewModel.isGameStarted {
+                problemView
+                inputTextField
+            }
+            actionButton
+        }
+    }
+
+    var timedGameView: some View {
+        VStack {
+            if viewModel.isGameStarted {
+                countdown
+                problemView
+                inputTextField
+            }
+            actionButton
         }
     }
 
@@ -70,6 +89,20 @@ struct GameView: View {
             title: $viewModel.actionButtonText,
             action: viewModel.onButtonTap
         )
+    }
+
+    var endGameButtonView: some View {
+        VStack {
+            HStack {
+                Spacer()
+                Button(
+                    "✋🏻",
+                    action: viewModel.onEndButtonTap
+                )
+                .font(.basic)
+            }
+            Spacer()
+        }
     }
 }
 
