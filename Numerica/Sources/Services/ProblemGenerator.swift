@@ -22,59 +22,19 @@ final class ProblemGenerator {
 
         guard let composedOperation = operation else { return .empty }
 
-        let problem = [
-            getRandomNumber().stringValue,
-            " ",
-            composedOperation.rawValue,
-            " ",
-            getRandomNumber(excludeZeroRhs: operation == .division).stringValue
-        ].joined()
-
-        return ProblemDTO(
-            problemString: problem,
-            solution: solve(expression: problem)
-        )
+        return composedOperation != .division
+        ? constructProblem(for: composedOperation)
+        : constructDivisionOperationProblem()
     }
 }
 
-// MARK: - ProblemDTO
-
-extension ProblemGenerator {
-
-    struct ProblemDTO {
-
-        var id: UUID = UUID()
-
-        var problemString: String
-        var solution: Int
-        var solved: Bool = false
-
-        static var empty: Self = ProblemDTO(
-            problemString: "",
-            solution: .zero
-        )
-    }
-}
-
-// MARK: - Operation
-
-extension ProblemGenerator {
-
-    enum Operation: String, CaseIterable {
-        case addition =         "+"
-        case subtraction =      "-"
-        case multiplication =   "*"
-        case division =         "/"
-    }
-}
-
-// MARK: - Expression Calc
+// MARK: - Expression Solving
 
 private extension ProblemGenerator {
 
     func solve(expression: String) -> Int {
         let components = expression.split(
-            separator: " "
+            separator: .space
         ).map(
             String.init
         )
@@ -105,9 +65,15 @@ private extension ProblemGenerator {
 private extension ProblemGenerator {
 
     private func constructDivisionOperationProblem() -> ProblemDTO {
-        let transformableProblem = constructProblem(for: .multiplication)
-        let components = transformableProblem.problemString.split(separator: "")
+        let transformableProblem = constructProblem(
+            for: .multiplication,
+            avoidZero: true
+        )
+        let components = transformableProblem.problemString.split(
+            separator: .space
+        )
 
+        // FIXME: - это должно обеспечиваться методом конструкции проблемы
         guard
             let lhs = String(components[0]).intValue,
             let rhs = String(components[2]).intValue
@@ -115,22 +81,32 @@ private extension ProblemGenerator {
             return .empty
         }
 
+        // Additional randomization of lhs / rhs
+        let randomNumber = Int.random(in: 0...1)
+
+
         let product = lhs * rhs
         let divisionProblemString = [
-            product.stringValue,
+            randomNumber == 0 ? rhs.stringValue : lhs.stringValue,
             Operation.division.rawValue,
-        ].joined(separator: " ")
-
+            randomNumber == 1 ? rhs.stringValue : lhs.stringValue
+        ].joined(separator: .space)
+        
+        return ProblemDTO(
+            problemString: divisionProblemString,
+            solution: solve(expression: divisionProblemString)
+        )
     }
 
     private func constructProblem(
-        for operation: Operation
+        for operation: Operation,
+        avoidZero: Bool = false
     ) -> ProblemDTO {
         let problemString = [
-            getRandomNumber().stringValue,
+            getRandomNumber(avoidZero: avoidZero).stringValue,
             operation.rawValue,
-            getRandomNumber().stringValue
-        ].joined(separator: " ")
+            getRandomNumber(avoidZero: avoidZero).stringValue
+        ].joined(separator: .space)
 
         return ProblemDTO(
             problemString: problemString,
@@ -139,26 +115,70 @@ private extension ProblemGenerator {
     }
 
 
-    private func getRandomNumber(maxDigitCount: Int, nonZero: Bool = false) -> Int {
-        // Ensure the digitCount is at least 1
-        guard maxDigitCount > 0 else {
-            fatalError("UpperBound digit count must be greater than zero.")
+    private func getRandomNumber(
+        maxDigitsCount: Int = .maxDigitsCount,
+        avoidZero: Bool = false
+    ) -> Int {
+        // Ensure the maxDigitsCount is at least 1
+        guard maxDigitsCount > .zero else {
+            assertionFailure("Max digits count must be greater than zero.")
+            return Int.random(in: 1...2)
         }
+
+        // Random digit count in range from 1 to maxDigitsCount
+        let digitCount = Int.random(in: 1...maxDigitsCount)
 
         // Decremented by `1` as 2-digit value means 10^1 and so on
         let minValueExponent = digitCount - 1
         let maxValueExponent = digitCount
 
-        let minValue = (pow(10.0, minValueExponent)).intValue
+        let minValue = pow(10.0, Double(minValueExponent)).intValue
         // Decremented by `1` as 10^2 = 100. 100-1 = 99, max 2-digit number
-        let maxValue = (pow(10.0, maxValueExponent) - 1).intValue
+        let maxValue = (pow(10.0, Double(maxValueExponent)) - 1).intValue
 
-        let randomNumber = Int.random(in: minValue...maxValue)
+        var randomNumber = Int.random(in: minValue...maxValue)
 
-        return if excludeZeroRhs, randomNumber == .zero {
-            Int.random(in: 1...maxValue)
-        } else {
-            Int.random(in: minValue...maxValue)
+        // Ensure the random number is non-zero if the flag is set
+        if avoidZero && randomNumber == .zero {
+            randomNumber = Int.random(in: 1...maxValue) // Regenerate a number in the valid range excluding zero
         }
+
+        return randomNumber
     }
+}
+
+// MARK: - ProblemDTO
+
+extension ProblemGenerator {
+
+    struct ProblemDTO {
+
+        var problemString: String
+        var solution: Int
+        var solved: Bool = false
+
+        static var empty: Self = ProblemDTO(
+            problemString: "",
+            solution: .zero
+        )
+    }
+}
+
+// MARK: - Operation
+
+extension ProblemGenerator {
+
+    enum Operation: String, CaseIterable {
+        case addition =         "+"
+        case subtraction =      "-"
+        case multiplication =   "*"
+        case division =         "/"
+    }
+}
+
+// MARK: - Constants
+
+private extension Int {
+
+    static let maxDigitsCount: Self = 3
 }

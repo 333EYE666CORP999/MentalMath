@@ -28,7 +28,7 @@ final class ProblemGeneratorTests: XCTestCase {
             let problem = sut.getProblem().problemString
 
             // Act
-            let count = problem.split(separator: " ").count
+            let count = problem.split(separator: .space).count
 
             // Assert
             XCTAssertEqual(count, 3)
@@ -42,7 +42,7 @@ final class ProblemGeneratorTests: XCTestCase {
         // Act
         for _ in 0...100 {
             let problem = sut.getProblem().problemString
-            let expectedOperator = String(problem.split(separator: " ")[1])
+            let expectedOperator = String(problem.split(separator: .space)[1])
 
             // Assert
             XCTAssertTrue(ops.contains(expectedOperator))
@@ -52,7 +52,7 @@ final class ProblemGeneratorTests: XCTestCase {
     func testLhsAndRhsAreAlwaysNumbers() {
         for _ in 0...100 {
             // Arrange
-            let problem = sut.getProblem().problemString.split(separator: " ")
+            let problem = sut.getProblem().problemString.split(separator: .space)
             let lhs = "\(problem.map { $0 }[0])".intValue
             let rhs = "\(problem.map { $0 }[2])".intValue
 
@@ -67,7 +67,7 @@ final class ProblemGeneratorTests: XCTestCase {
         for _ in 0...100 {
             // Arrange
             let problem = sut.getProblem()
-            let problemStringSplitted = problem.problemString.split(separator: " ")
+            let problemStringSplitted = problem.problemString.split(separator: .space)
 
             guard
                 let lhs = "\(problemStringSplitted.map { $0 }[0])".intValue,
@@ -128,14 +128,14 @@ final class ProblemGeneratorTests: XCTestCase {
     func testDivisionProblemsAlwaysHaveNonZeroRhs() {
         for _ in 0...100 {
             // Arrange
+            let splittedProblemString = sut.getProblem(
+                for: .division
+            ).problemString.split(
+                separator: .space
+            ).map(String.init)
+
             guard
-                let rhs = String(
-                    sut.getProblem(
-                        for: .division
-                    ).problemString.split(
-                        separator: " "
-                    )[2]
-                ).intValue
+                let rhs = splittedProblemString[2].intValue
             else {
                 XCTFail("Not a number returned")
                 return
@@ -166,11 +166,30 @@ final class ProblemGeneratorTests: XCTestCase {
                 sut.getProblem(
                     for: operation
                 ).problemString.split(
-                    separator: " "
+                    separator: .space
                 )[1]
             )
 
             XCTAssertEqual(operation.rawValue, generatedOperator)
+        }
+    }
+
+    func testDivisionViaMultiplicationRhsAlwaysNonZero() {
+        for _ in 0...100 {
+            // Arrange
+            // Act
+            var divisionProblem = sut.getProblem(
+                for: .division
+            ).problemString.split(
+                separator: .space
+            ).map(String.init)
+
+            guard let rhs = divisionProblem[2].intValue else {
+                XCTFail("Could not parse number from the given string")
+                return
+            }
+
+            XCTAssertTrue(rhs > .zero)
         }
     }
 }
