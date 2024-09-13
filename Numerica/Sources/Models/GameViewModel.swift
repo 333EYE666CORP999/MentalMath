@@ -12,8 +12,10 @@ import Combine
 
 final class MainViewModel: ObservableObject {
 
+    typealias Problem = ProblemGenerator.ProblemDTO
+
     @Published var userInput: String = ""
-    @Published var problem: ProblemGenerator.ProblemDTO = .empty
+    @Published var problem: Problem = .empty
     @Published var actionButtonText: String = .startButtonTitle
     @Published var isGameStarted: Bool = false
     @Published var remainingTime: Int = .defaultTimeInterval
@@ -23,7 +25,7 @@ final class MainViewModel: ObservableObject {
 
     private var gameSession: GameSessionModel?
     private let storageService: StorageService
-    private let mathGen: ProblemGenerator
+    private let problemGenerator: ProblemGenerator
     private var timerManager: TimerManager?
 
     init(
@@ -31,16 +33,16 @@ final class MainViewModel: ObservableObject {
         mathGen: ProblemGenerator
     ) {
         self.storageService = storageService
-        self.mathGen = ProblemGenerator()
+        self.problemGenerator = ProblemGenerator()
         self.problem = mathGen.getProblem()
     }
 
     func onActionButtonTap() {
         switch isGameStarted {
         case true:
-            processAnswer()
-            updateProblem()
+            problem = problemGenerator.getProblem()
             userInput.removeAll()
+            processAnswer()
         case false:
             start()
         }
@@ -53,31 +55,23 @@ final class MainViewModel: ObservableObject {
 
 // MARK: - Game Mode
 
-extension GameViewModel {
+extension MainViewModel {
 
     enum Mode {
         case zen, timed
     }
 }
 
-// MARK: - Private
+// MARK: - Game Logic
 
-private extension GameViewModel {
-
-    func setup() {
-        guard mode != .zen else {
-            return
-        }
-        timerManager = TimerManager()
-        bindTimer()
-    }
+private extension MainViewModel {
 
     func start() {
-        problem = mathGen.getProblem()
-        gameSession = GameSessionModel(sessionDate: Date())
-        actionButtonText = .submitButtonTitle
         isGameStarted = true
+        problem = problemGenerator.getProblem()
+        actionButtonText = .submitButtonTitle
         timerManager?.startTimer()
+        gameSession = GameSessionModel(sessionDate: Date())
     }
 
     func end() {
@@ -90,24 +84,11 @@ private extension GameViewModel {
         isGameStarted = false
         remainingTime = .defaultTimeInterval
         self.gameSession = nil
-        self.problem = .empty
+        problem = .empty
         userInput.removeAll()
 
         let xddd = storageService.fetch(GameSessionObject.self).map { $0 }
         print(xddd)
-    }
-
-    func updateProblem() {
-        problem = mathGen.getProblem()
-    }
-
-    func bindTimer() {
-        timerManager?.$remainingTime
-            .assign(to: \.remainingTime, on: self)
-            .store(in: &cancellables)
-        timerManager?.timerEndSubject
-            .sink { [weak self] in self?.end() }
-            .store(in: &cancellables)
     }
 
     func processAnswer() {
@@ -129,6 +110,28 @@ private extension GameViewModel {
                 solved: problem.solved
             )
         )
+    }
+}
+
+// MARK: - Private Methods
+
+private extension MainViewModel {
+
+    func setupTimerIfNeeded() {
+        guard mode != .zen else {
+            return
+        }
+        timerManager = TimerManager()
+        bindTimer()
+    }
+
+    func bindTimer() {
+        timerManager?.$remainingTime
+            .assign(to: \.remainingTime, on: self)
+            .store(in: &cancellables)
+        timerManager?.timerEndSubject
+            .sink { [weak self] in self?.end() }
+            .store(in: &cancellables)
     }
 }
 
