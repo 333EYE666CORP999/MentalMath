@@ -61,7 +61,7 @@ struct GameView: View {
     }
 
     var problemView: some View {
-        Text(viewModel.problem)
+        Text(viewModel.problem.problemString)
             .foregroundStyle(.white)
             .multilineTextAlignment(.center)
             .font(.basic)
@@ -75,10 +75,6 @@ struct GameView: View {
             .keyboardType(.numberPad)
             .multilineTextAlignment(.center)
             .focused($isTextFieldFocused)
-        // FIXME: - перетащить в модель (на этапе логики игры)
-            .onChange(of: viewModel.userInput) {
-                viewModel.process(answer: $1)
-            }
             .onAppear {
                 isTextFieldFocused = true
             }
@@ -87,7 +83,7 @@ struct GameView: View {
     var actionButton: some View {
         ActionButton(
             title: $viewModel.actionButtonText,
-            action: viewModel.onButtonTap
+            action: viewModel.onActionButtonTap
         )
     }
 

@@ -47,6 +47,7 @@ extension ProblemGenerator {
 
         var problemString: String
         var solution: Int
+        var solved: Bool = false
 
         static var empty: Self = ProblemDTO(
             problemString: "",
@@ -101,7 +102,7 @@ private extension ProblemGenerator {
     /// Generates a random number within a random digits count
     /// - Returns: Generated random number
     private func getRandomNumber(excludeZeroRhs: Bool = false) -> Int {
-        let digitCount = Int.random(in: 1...4)
+        let digitCount = Int.random(in: 1...1)
 
         // Decremented by `1` as 2-digit value means 10^1 and so on
         let minValueExponent = digitCount - 1
