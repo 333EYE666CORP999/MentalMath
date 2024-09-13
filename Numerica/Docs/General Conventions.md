@@ -4,6 +4,8 @@ Here are some conventional things that are enforced on the project.
 
 ## Naming Persistable Entities and Their in-Memory Twins
 
+### Convention
+
 Entities that are stored in SwiftData should:
 - have `Object` suffix
 - implement `PersistentObject` protocol
@@ -61,3 +63,8 @@ extension ProblemModel: PersistableModel {
     }
 }
 ```
+
+### Rationale
+SwiftData has some disappointing intricacies concerning mutating `@Model` objects on the fly. 
+Therefore any modifications and passing here and there should be made with `Model` (not `@Model`) entities.
+
