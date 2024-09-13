@@ -10,7 +10,7 @@ import SwiftData
 
 #warning("Global scope variable, use ONLY for previews")
 var sharedModelContainer: ModelContainer = {
-    let schema = Schema([GameSession.self])
+    let schema = Schema([GameSessionObject.self])
     let modelConfiguration = ModelConfiguration(
         schema: schema,
         isStoredInMemoryOnly: false

@@ -8,91 +8,131 @@
 import SwiftUI
 import Combine
 
+// MARK: - GameViewModel
+
 final class GameViewModel: ObservableObject {
 
     @Published var userInput: String = ""
-    @Published var problem: String
+    @Published var problem: ProblemGenerator.ProblemDTO = .empty
     @Published var actionButtonText: String = .startButtonTitle
     @Published var isGameStarted: Bool = false
     @Published var remainingTime: Int = .defaultTimeInterval
+    @Published var mode: Mode = .zen
 
     private var cancellables = Set<AnyCancellable>()
 
-    private var gameSession: GameSession?
+    private var gameSession: GameSessionModel?
     private let storageService: StorageService
     private let mathGen: ProblemGenerator
-
+    private var timerManager: TimerManager?
 
     init(
         storageService: StorageService,
         mathGen: ProblemGenerator
     ) {
         self.storageService = storageService
-        self.timerManager = TimerManager()
-        bindTimer()
         self.mathGen = ProblemGenerator()
-        // TODO: - переписать, чтоб целый объект отдавался
-        self.problem = mathGen.getProblem().problemString
+        self.problem = mathGen.getProblem()
     }
 
-    // FIXME: - тут нужно объединить всю логику обработки инпута после нажатия submit / start
-    func onButtonTap() {
+    func onActionButtonTap() {
         switch isGameStarted {
         case true:
-            userInput.removeAll()
+            processAnswer()
             updateProblem()
+            userInput.removeAll()
         case false:
             start()
         }
     }
 
-    private func updateProblem() {
-        problem = mathGen.getProblem()
+    func onEndButtonTap() {
+        end()
     }
+}
 
-    func process(answer: String) {
-        if answer.isNumeric {
-            userInput = answer
+// MARK: - Game Mode
+
+extension GameViewModel {
+
+    enum Mode {
+        case zen, timed
+    }
+}
+
+// MARK: - Private
+
+private extension GameViewModel {
+
+    func setup() {
+        guard mode != .zen else {
+            return
         }
+        timerManager = TimerManager()
+        bindTimer()
     }
 
-    private func start() {
+    func start() {
         problem = mathGen.getProblem()
+        gameSession = GameSessionModel(sessionDate: Date())
         actionButtonText = .submitButtonTitle
         isGameStarted = true
-        timerManager.startTimer()
+        timerManager?.startTimer()
     }
 
-    private func end() {
-        problem.removeAll()
+    func end() {
+        guard let gameSession else {
+            return
+        }
+
+        storageService.save(gameSession.convertToObject())
         actionButtonText = .startButtonTitle
         isGameStarted = false
         remainingTime = .defaultTimeInterval
+        self.gameSession = nil
+        self.problem = .empty
+        userInput.removeAll()
 
-        // FIXME: - Убрать потом, это дебажный код (на этапе логики игры)
-        do {
-            gameSession = GameSession(
-                sessionDate: Date(),
-                goodAnswersCount: Int.random(in: 0...10),
-                badAnswersCount: Int.random(in: 0...10)
-            )
-            if let gameSession {
-                storageService.save(gameSession)
-            }
-            gameSession = nil
-            print(storageService.fetch(GameSession.self).map { $0.sessionDate })
-        }
+        let xddd = storageService.fetch(GameSessionObject.self).map { $0 }
+        print(xddd)
     }
 
-    private func bindTimer() {
-        timerManager.$remainingTime
+    func updateProblem() {
+        problem = mathGen.getProblem()
+    }
+
+    func bindTimer() {
+        timerManager?.$remainingTime
             .assign(to: \.remainingTime, on: self)
             .store(in: &cancellables)
-        timerManager.timerEndSubject
+        timerManager?.timerEndSubject
             .sink { [weak self] in self?.end() }
             .store(in: &cancellables)
     }
+
+    func processAnswer() {
+        guard let solution = userInput.intValue else {
+            return
+        }
+
+        if solution == problem.solution {
+            gameSession?.goodAnswersCount += 1
+            problem.solved = true
+        } else {
+            gameSession?.badAnswersCount += 1
+        }
+
+        gameSession?.problems.append(
+            ProblemModel(
+                problem: problem.problemString,
+                solution: problem.solution,
+                solved: problem.solved
+            )
+        )
+    }
 }
+
+// MARK: - Constants
 
 private extension String {
 
