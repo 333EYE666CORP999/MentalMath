@@ -178,9 +178,9 @@
 		3F480BBA2C94D6BE0047B9AE /* MainView */ = {
 			isa = PBXGroup;
 			children = (
-				3F8475902C8513000034EC78 /* GameView.swift */,
 				3F6435052C899BD60016C7AC /* ActionButton.swift */,
 				3F8475912C8513000034EC78 /* CountdownTimerView.swift */,
+				3F8475902C8513000034EC78 /* GameView.swift */,
 			);
 			path = MainView;
 			sourceTree = "<group>";
@@ -196,9 +196,9 @@
 		3F6435042C899BC20016C7AC /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				3F480BB62C9464220047B9AE /* GameSessionModel.swift */,
 				3F8475A62C85D3480034EC78 /* GameViewModel.swift */,
 				3F480BB42C9464140047B9AE /* ProblemModel.swift */,
-				3F480BB62C9464220047B9AE /* GameSessionModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -241,8 +241,8 @@
 		3F8475922C8513000034EC78 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				3F480BBD2C94D7170047B9AE /* SessionResultsView */,
 				3F480BBA2C94D6BE0047B9AE /* MainView */,
+				3F480BBD2C94D7170047B9AE /* SessionResultsView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -250,12 +250,12 @@
 		3F8475932C8513000034EC78 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				3F480BB12C9462C20047B9AE /* Protocols */,
-				3F84759B2C8514400034EC78 /* Extensions */,
 				3F84758A2C8513000034EC78 /* Common */,
+				3F84759B2C8514400034EC78 /* Extensions */,
+				3F6435042C899BC20016C7AC /* Models */,
+				3F480BB12C9462C20047B9AE /* Protocols */,
 				3F84758D2C8513000034EC78 /* Services */,
 				3F84758F2C8513000034EC78 /* Storage */,
-				3F6435042C899BC20016C7AC /* Models */,
 				3F8475922C8513000034EC78 /* Views */,
 			);
 			path = Sources;
