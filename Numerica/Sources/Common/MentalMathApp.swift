@@ -13,9 +13,9 @@ struct NumericaApp: App {
 
     var body: some Scene {
         WindowGroup {
-            GameView()
+            MainView()
                 .environmentObject(
-                    GameViewModel(
+                    MainViewModel(
                         storageService: StorageService(
                             modelContext: sharedModelContainer.mainContext
                         ),

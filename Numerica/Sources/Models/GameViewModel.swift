@@ -8,9 +8,9 @@
 import SwiftUI
 import Combine
 
-// MARK: - GameViewModel
+// MARK: - MainViewModel
 
-final class GameViewModel: ObservableObject {
+final class MainViewModel: ObservableObject {
 
     @Published var userInput: String = ""
     @Published var problem: ProblemGenerator.ProblemDTO = .empty

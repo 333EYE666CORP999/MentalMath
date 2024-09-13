@@ -8,9 +8,9 @@
 import SwiftUI
 import Foundation
 
-struct GameView: View {
+struct MainView: View {
 
-    @EnvironmentObject var viewModel: GameViewModel
+    @EnvironmentObject var viewModel: MainViewModel
     @FocusState private var isTextFieldFocused: Bool
 
     var body: some View {
@@ -20,14 +20,14 @@ struct GameView: View {
 
             switch viewModel.mode {
             case .zen:
-                zenGameView
+                zenMainView
             case .timed:
-                timedGameView
+                timedMainView
             }
         }
     }
 
-    var zenGameView: some  View {
+    var zenMainView: some  View {
         VStack {
             if viewModel.isGameStarted {
                 problemView
@@ -37,7 +37,7 @@ struct GameView: View {
         }
     }
 
-    var timedGameView: some View {
+    var timedMainView: some View {
         VStack {
             if viewModel.isGameStarted {
                 countdown
@@ -103,9 +103,9 @@ struct GameView: View {
 }
 
 #Preview {
-    GameView()
+    MainView()
         .environmentObject(
-            GameViewModel(
+            MainViewModel(
                 storageService: StorageService(
                     modelContext: sharedModelContainer.mainContext
                 ),
