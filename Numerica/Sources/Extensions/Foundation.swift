@@ -36,6 +36,12 @@ extension String {
     }
 
     static var minutesSecondsFormat: Self = "%02d:%02d"
+    static var space: Self = " "
+}
+
+extension Character {
+
+    static var space: Self = " "
 }
 
 extension DateFormatter {
@@ -56,4 +62,9 @@ extension Decimal {
             accordingToBehavior: nil
         ).intValue
     }
+}
+
+extension Double {
+
+    var intValue: Int { Int(self) }
 }

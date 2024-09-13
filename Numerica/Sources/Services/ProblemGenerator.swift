@@ -98,11 +98,52 @@ private extension ProblemGenerator {
             lhs / rhs
         }
     }
+}
 
-    /// Generates a random number within a random digits count
-    /// - Returns: Generated random number
-    private func getRandomNumber(excludeZeroRhs: Bool = false) -> Int {
-        let digitCount = Int.random(in: 1...1)
+// MARK: - Expression Generation
+
+private extension ProblemGenerator {
+
+    private func constructDivisionOperationProblem() -> ProblemDTO {
+        let transformableProblem = constructProblem(for: .multiplication)
+        let components = transformableProblem.problemString.split(separator: "")
+
+        guard
+            let lhs = String(components[0]).intValue,
+            let rhs = String(components[2]).intValue
+        else {
+            return .empty
+        }
+
+        let product = lhs * rhs
+        let divisionProblemString = [
+            product.stringValue,
+            Operation.division.rawValue,
+        ].joined(separator: " ")
+
+    }
+
+    private func constructProblem(
+        for operation: Operation
+    ) -> ProblemDTO {
+        let problemString = [
+            getRandomNumber().stringValue,
+            operation.rawValue,
+            getRandomNumber().stringValue
+        ].joined(separator: " ")
+
+        return ProblemDTO(
+            problemString: problemString,
+            solution: solve(expression: problemString)
+        )
+    }
+
+
+    private func getRandomNumber(maxDigitCount: Int, nonZero: Bool = false) -> Int {
+        // Ensure the digitCount is at least 1
+        guard maxDigitCount > 0 else {
+            fatalError("UpperBound digit count must be greater than zero.")
+        }
 
         // Decremented by `1` as 2-digit value means 10^1 and so on
         let minValueExponent = digitCount - 1
