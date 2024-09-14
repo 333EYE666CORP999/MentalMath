@@ -64,48 +64,14 @@ private extension ProblemGenerator {
 
 private extension ProblemGenerator {
 
-    private func constructDivisionOperationProblem() -> ProblemDTO {
-        let transformableProblem = constructProblem(
-            for: .multiplication,
-            avoidZero: true
-        )
-        let components = transformableProblem.problemString.split(
-            separator: .space
-        )
-
-        // FIXME: - это должно обеспечиваться методом конструкции проблемы
-        guard
-            let lhs = String(components[0]).intValue,
-            let rhs = String(components[2]).intValue
-        else {
-            return .empty
-        }
-
-        // Additional randomization of lhs / rhs
-        let randomNumber = Int.random(in: 0...1)
-
-
-        let product = lhs * rhs
-        let divisionProblemString = [
-            randomNumber == 0 ? rhs.stringValue : lhs.stringValue,
-            Operation.division.rawValue,
-            randomNumber == 1 ? rhs.stringValue : lhs.stringValue
-        ].joined(separator: .space)
-        
-        return ProblemDTO(
-            problemString: divisionProblemString,
-            solution: solve(expression: divisionProblemString)
-        )
-    }
-
     private func constructProblem(
         for operation: Operation,
         avoidZero: Bool = false
     ) -> ProblemDTO {
         let problemString = [
-            getRandomNumber(avoidZero: avoidZero).stringValue,
+            getRandomNumber().stringValue,
             operation.rawValue,
-            getRandomNumber(avoidZero: avoidZero).stringValue
+            getRandomNumber(avoidZero: operation == .division).stringValue
         ].joined(separator: .space)
 
         return ProblemDTO(
