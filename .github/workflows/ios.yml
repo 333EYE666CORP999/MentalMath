@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    name: xcodebuild + test: any iOS device
+    name: xcodebuild + test on any iOS device
     runs-on: macos-latest
 
     steps:
