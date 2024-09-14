@@ -104,9 +104,13 @@ private extension ProblemGenerator {
         shouldAvoidZero: Bool = false
     ) -> ProblemDTO {
         let problemString = [
-            getRandomNumber(shouldAvoidZero: shouldAvoidZero).stringValue,
+            getRandomNumber(
+                shouldAvoidZero: operation == .division
+            ).stringValue,
             operation.rawValue,
-            getRandomNumber(shouldAvoidZero: shouldAvoidZero).stringValue
+            getRandomNumber(
+                shouldAvoidZero: operation == .division
+            ).stringValue
         ].joined(separator: .space)
 
         return ProblemDTO(
