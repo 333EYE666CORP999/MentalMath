@@ -11,7 +11,10 @@ import Foundation
 
 final class ProblemGenerator {
 
+    private var rng = SystemRandomNumberGenerator()
+
     func getProblem(for selected: Operation? = nil) -> ProblemDTO {
+        // FIXME: - какой смысл ей тут появляться опциональной, надо что-то с этим сделать
         let operation: Operation? = if let selected {
             selected
         } else if let randomOperation = Operation.allCases.randomElement() {
@@ -22,9 +25,7 @@ final class ProblemGenerator {
 
         guard let composedOperation = operation else { return .empty }
 
-        return composedOperation != .division
-        ? constructProblem(for: composedOperation)
-        : constructDivisionOperationProblem()
+        return constructProblem(for: composedOperation)
     }
 }
 
@@ -80,7 +81,6 @@ private extension ProblemGenerator {
         )
     }
 
-
     private func getRandomNumber(
         maxDigitsCount: Int = .maxDigitsCount,
         avoidZero: Bool = false
@@ -88,11 +88,11 @@ private extension ProblemGenerator {
         // Ensure the maxDigitsCount is at least 1
         guard maxDigitsCount > .zero else {
             assertionFailure("Max digits count must be greater than zero.")
-            return Int.random(in: 1...2)
+            return Int.random(in: 1...2, using: &rng)
         }
 
         // Random digit count in range from 1 to maxDigitsCount
-        let digitCount = Int.random(in: 1...maxDigitsCount)
+        let digitCount = Int.random(in: 1...maxDigitsCount, using: &rng)
 
         // Decremented by `1` as 2-digit value means 10^1 and so on
         let minValueExponent = digitCount - 1
@@ -102,11 +102,10 @@ private extension ProblemGenerator {
         // Decremented by `1` as 10^2 = 100. 100-1 = 99, max 2-digit number
         let maxValue = (pow(10.0, Double(maxValueExponent)) - 1).intValue
 
-        var randomNumber = Int.random(in: minValue...maxValue)
+        var randomNumber = Int.random(in: minValue...maxValue, using: &rng)
 
-        // Ensure the random number is non-zero if the flag is set
         if avoidZero && randomNumber == .zero {
-            randomNumber = Int.random(in: 1...maxValue) // Regenerate a number in the valid range excluding zero
+            randomNumber = Int.random(in: 1...maxValue, using: &rng)
         }
 
         return randomNumber
