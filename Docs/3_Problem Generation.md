@@ -45,7 +45,11 @@ Digits capacity is selected based on provided max digits count number. Capacity 
 
 ## Defining the series' upper and lower bounds for random number selection
 
+Upper and lower bounds of number selection series are determined via formulas:
 
+- $10^{\text{minValueExponent}}$
+
+- $10^{\text{maxValueExponent}} - 1$
 
 ## Pikcing random number from the series
 
