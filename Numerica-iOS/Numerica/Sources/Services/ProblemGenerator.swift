@@ -131,9 +131,12 @@ private extension ProblemGenerator {
 
         // Random digit count in range from 1 to maxDigitsCount
         let digitCount = Int.random(in: 1...maxDigitsCount, using: &rng)
+        
         let maxValueExponent = digitCount
+
         // Decremented by `1` as 10^2 = 100. 100-1 = 99, max 2-digit number
         let maxValue = (pow(10.0, Double(maxValueExponent)) - 1).intValue
+        
         var randomNumber = Int.random(in: .zero...maxValue, using: &rng)
 
         if shouldAvoidZero && randomNumber == .zero {

@@ -27,36 +27,49 @@ todo: Write legend for points in text that signify that certain line of methodol
 
 # Problem Generation Methodology
 
+```
+> [!TIP]
+> It is recommended to use single centralozed instance of rng to save performance.
+```
+
 In general, problem generation flow can be enumerated by the follwing steps:
 
 1. Determining the operation
 2. Selecting digits capacity
-3. Defining the series' upper and lower bounds for random number selection
+3. Defining the series' upper bound for random number selection
 4. Pikcing random number from the series
 5. Optional zero-check for division operations
 
-## Determining the operation
+## Determining The Operation
 
-The operation is selected randomly from the finite set of [basic arithmetic operations](https://en.wikipedia.org/wiki/Arithmetic#:~:text=The%20main%20arithmetic%20operations%20are,subtraction%2C%20multiplication%2C%20and%20division.). The best way to do implement this in an enum.
+The operation is selected randomly from the finite set of [basic arithmetic operations](https://en.wikipedia.org/wiki/Arithmetic#:~:text=The%20main%20arithmetic%20operations%20are,subtraction%2C%20multiplication%2C%20and%20division.).
 
-## Selecting digits capacity
+## Selecting Digits Capacity
 
-Digits capacity is selected based on provided max digits count number. Capacity is selected randomly from a finite ascendingly sorted series of numbers where the first number is always 1 and the last number is the maximum capacity that can be selected.
+Digits capacity is selected based on provided max capacity number. Capacity is selected randomly from a range where the lower bound is always 1 and the upper bound is the max capacity number. Selected capacity is later used to determine the range from which the random number will be selected.
 
-## Defining the series' upper and lower bounds for random number selection
+## Defining the upper and lower bounds for random number selection range
 
 Upper and lower bounds of number selection series are determined via formulas:
 
-- $\text{min value}=10^{\text{minValueExponent}}$
+- $\text{always zero}$
 
 - $\text{max value}=10^{\text{maxValueExponent}} - 1$
 
-## Pikcing random number from the series
+## Pikcing random number from the range
+
+The number is selected randomly and stored into a `var`.
 
 ## Optional zero-check for division operations
 
-# Division Over Multiplication
+In some cases the number should not be zero. If, in such context, it appears to be zero, fallback random selection engages. There, random number is selected from the range, where the lower bound is `1` and the upper bound is max value.
 
-## Avoid Zero RHSs
+## Constructing Division Problems Over Multiplication
 
-## Avoid Fractional Solution
+When constructng division problem via the above described algorithm, two challenges arise:
+
+- How to avoid zero rhs's?
+
+- How to avoid fractional solution?
+
+First one is tackled with optional zero-check for division operations. Second is dealt with through constructing and solving multiplication problem. Once constructed, it's solution (product) is taken as a dividend and one of the factors selected as a divisor. Therefore the solution cannot be fractional.
