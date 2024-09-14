@@ -162,7 +162,7 @@ final class ProblemGeneratorTests: XCTestCase {
                 operation = .division
             }
 
-            var generatedOperator = String(
+            let generatedOperator = String(
                 sut.getProblem(
                     for: operation
                 ).problemString.split(
@@ -178,7 +178,7 @@ final class ProblemGeneratorTests: XCTestCase {
         for _ in 0...100 {
             // Arrange
             // Act
-            var divisionProblem = sut.getProblem(
+            let divisionProblem = sut.getProblem(
                 for: .division
             ).problemString.split(
                 separator: .space
