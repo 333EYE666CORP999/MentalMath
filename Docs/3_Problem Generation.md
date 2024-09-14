@@ -47,9 +47,9 @@ Digits capacity is selected based on provided max digits count number. Capacity 
 
 Upper and lower bounds of number selection series are determined via formulas:
 
-- $10^{\text{minValueExponent}}$
+- $\text{min value}=10^{\text{minValueExponent}}$
 
-- $10^{\text{maxValueExponent}} - 1$
+- $\text{max value}=10^{\text{maxValueExponent}} - 1$
 
 ## Pikcing random number from the series
 
