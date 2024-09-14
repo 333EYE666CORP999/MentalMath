@@ -17,7 +17,9 @@ final class ProblemGenerator {
         // FIXME: - какой смысл ей тут появляться опциональной, надо что-то с этим сделать
         let operation: Operation? = if let selected {
             selected
-        } else if let randomOperation = Operation.allCases.randomElement() {
+        } else if let randomOperation = Operation.allCases.randomElement(
+            using: &rng
+        ) {
             randomOperation
         } else {
             nil
