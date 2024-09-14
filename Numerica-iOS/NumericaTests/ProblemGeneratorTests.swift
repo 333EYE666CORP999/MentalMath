@@ -192,4 +192,26 @@ final class ProblemGeneratorTests: XCTestCase {
             XCTAssertTrue(rhs > .zero)
         }
     }
+
+    func testOperationsContainProperItems() {
+        // Arrange
+        let operations = ProblemGenerator.Operation.allCases
+
+        // Act
+        // Assert
+        operations.enumerated().forEach { idx, value in
+            switch idx {
+            case .zero:
+                XCTAssertEqual(value.rawValue, "+")
+            case 1:
+                XCTAssertEqual(value.rawValue, "-")
+            case 2:
+                XCTAssertEqual(value.rawValue, "*")
+            case 3:
+                XCTAssertEqual(value.rawValue, "/")
+            default:
+                XCTFail("Number of operations exceeds the needed number (4)")
+            }
+        }
+    }
 }
