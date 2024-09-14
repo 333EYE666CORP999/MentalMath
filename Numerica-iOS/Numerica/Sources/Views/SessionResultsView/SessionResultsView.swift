@@ -55,6 +55,14 @@ struct SessionResultsView: View {
 
 struct SessionListItem: View {
 
+    static var empty = Self(
+        date: Date(),
+        answersCount: .zero,
+        goodAnswersCount: .zero,
+        badAnswersCount: .zero,
+        winrate: .zero
+    )
+
     var date: Date
     var answersCount: Int
     var goodAnswersCount: Int
@@ -100,18 +108,9 @@ struct SessionListItem: View {
                     Text("50%")
                         .foregroundStyle(.white)
                 }
-
             }
         }
     }
-
-    static var empty: Self = Self(
-        date: Date(),
-        answersCount: .zero,
-        goodAnswersCount: .zero,
-        badAnswersCount: .zero,
-        winrate: .zero
-    )
 }
 
 #Preview {

@@ -7,28 +7,26 @@ analyzer_rules:
 opt_in_rules:
   - all
 disabled_rules:
+  - vertical_whitespace_opening_braces
   - anonymous_argument_in_multiline_closure
-  - conditional_returns_on_newline
+  - file_name
   - contrasted_opening_brace
-  - convenience_type
-  - discouraged_optional_collection
+  - prefer_key_path
+  - private_subject
   - explicit_acl
   - explicit_enum_raw_value
   - explicit_top_level_acl
+  - no_magic_numbers
+  - trailing_comma
   - explicit_type_interface
   - file_types_order
-  - force_unwrapping
-  - function_default_parameter_at_end
   - indentation_width
   - inert_defer
   - missing_docs
-  - multiline_arguments
-  - multiline_arguments_brackets
+  - unused_capture_list
   - multiline_function_chains
-  - multiline_parameters_brackets
   - no_extension_access_modifier
   - no_grouping_extension
-  - no_magic_numbers
   - one_declaration_per_file
   - prefer_nimble
   - prefixed_toplevel_constant
@@ -36,10 +34,6 @@ disabled_rules:
   - sorted_enum_cases
   - strict_fileprivate
   - switch_case_on_newline
-  - todo
-  - trailing_closure
-  - type_contents_order
-  - unused_capture_list
   - vertical_whitespace_between_cases
 
 # Configurations
@@ -56,13 +50,11 @@ closure_body_length:
     warning: 50
     error: 100
 empty_xctest_method: *unit_test_configuration
-file_name:
-  excluded:
-    - Exports.swift
-    - GeneratedTests.swift
-    - RuleConfigurationMacros.swift
-    - SwiftSyntax+SwiftLint.swift
-    - TestHelpers.swift
+line_length:
+  warning: 100
+  error: 140
+  ignores_comments: true
+  ignores_urls: true
 final_test_case: *unit_test_configuration
 function_body_length: 60
 identifier_name:
@@ -71,13 +63,9 @@ identifier_name:
 large_tuple: 3
 number_separator:
   minimum_length: 5
-prefer_key_path:
-  restrict_to_standard_functions: false
 redundant_type_annotation:
   consider_default_literal_types_redundant: true
 single_test_class: *unit_test_configuration
-trailing_comma:
-  mandatory_comma: true
 type_body_length: 400
 unneeded_override:
   affect_initializers: true
@@ -93,14 +81,6 @@ custom_rules:
     name: Rule ID
     message: Rule IDs must be all lowercase, snake case and not end with `rule`
     regex: ^\s+identifier:\s*("\w+_rule"|"\S*[^a-z_]\S*")
-    severity: error
-  fatal_error:
-    name: Fatal Error
-    excluded: "Tests/*"
-    message: Prefer using `queuedFatalError` over `fatalError` to avoid leaking compiler host machine paths.
-    regex: \bfatalError\b
-    match_kinds:
-      - identifier
     severity: error
   rule_test_function:
     included: Tests/SwiftLintFrameworkTests/RulesTests.swift

@@ -32,9 +32,9 @@ extension GameSessionModel: PersistableModel {
     func convertToObject() -> GameSessionObject {
         GameSessionObject(
             sessionDate: sessionDate,
+            problems: problems.map { $0.convertToObject() },
             goodAnswersCount: goodAnswersCount,
-            badAnswersCount: badAnswersCount,
-            problems: problems.map { $0.convertToObject() }
+            badAnswersCount: badAnswersCount
         )
     }
 }

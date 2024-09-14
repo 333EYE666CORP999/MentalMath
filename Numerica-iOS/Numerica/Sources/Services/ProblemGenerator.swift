@@ -25,7 +25,9 @@ final class ProblemGenerator {
             nil
         }
 
-        guard let composedOperation = operation else { return .empty }
+        guard let composedOperation = operation else {
+            return .empty
+        }
 
         return operation == .division
         ? constructDivisionOperationProblem()
@@ -71,8 +73,7 @@ private extension ProblemGenerator {
 
     private func constructDivisionOperationProblem() -> ProblemDTO {
         let transformableProblem = constructProblem(
-            for: .multiplication,
-            shouldAvoidZero: true
+            for: .multiplication
         )
         let components = transformableProblem.problemString.split(
             separator: .space
@@ -101,10 +102,7 @@ private extension ProblemGenerator {
         )
     }
 
-    private func constructProblem(
-        for operation: Operation,
-        shouldAvoidZero: Bool = false
-    ) -> ProblemDTO {
+    private func constructProblem(for operation: Operation) -> ProblemDTO {
         let problemString = [
             getRandomNumber(
                 shouldAvoidZero: operation == .division
@@ -160,9 +158,9 @@ extension ProblemGenerator {
 
         var problemString: String
         var solution: Int
-        var solved: Bool = false
+        var solved = false
 
-        static var empty: Self = ProblemDTO(
+        static var empty = Self(
             problemString: "",
             solution: .zero
         )
@@ -174,10 +172,10 @@ extension ProblemGenerator {
 extension ProblemGenerator {
 
     enum Operation: String, CaseIterable {
-        case addition =         "+"
-        case subtraction =      "-"
-        case multiplication =   "*"
-        case division =         "/"
+        case addition = "+"
+        case subtraction = "-"
+        case multiplication = "*"
+        case division = "/"
     }
 }
 

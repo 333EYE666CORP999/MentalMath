@@ -5,8 +5,8 @@
 //  Created by Dmitry Aksyonov on 31.08.2024.
 //
 
-import SwiftUI
 import SwiftData
+import SwiftUI
 
 @main
 struct NumericaApp: App {

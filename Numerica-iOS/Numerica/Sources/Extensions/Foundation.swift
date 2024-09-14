@@ -27,6 +27,9 @@ extension Int {
 
 extension String {
 
+    static var minutesSecondsFormat: Self = "%02d:%02d"
+    static var space: Self = " "
+
     var isNumeric: Bool {
         self.allSatisfy { $0.isNumber }
     }
@@ -34,9 +37,6 @@ extension String {
     var intValue: Int? {
         Int(self)
     }
-
-    static var minutesSecondsFormat: Self = "%02d:%02d"
-    static var space: Self = " "
 }
 
 extension Character {

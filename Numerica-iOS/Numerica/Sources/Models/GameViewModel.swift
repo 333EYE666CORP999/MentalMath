@@ -5,8 +5,8 @@
 //  Created by Dmitry Aksyonov on 02.09.2024.
 //
 
-import SwiftUI
 import Combine
+import SwiftUI
 
 // MARK: - MainViewModel
 
@@ -14,10 +14,10 @@ final class MainViewModel: ObservableObject {
 
     typealias Problem = ProblemGenerator.ProblemDTO
 
-    @Published var userInput: String = ""
+    @Published var userInput = ""
     @Published var problem: Problem = .empty
     @Published var actionButtonText: String = .startButtonTitle
-    @Published var isGameStarted: Bool = false
+    @Published var isGameStarted = false
     @Published var remainingTime: Int = .defaultTimeInterval
     @Published var mode: Mode = .zen
 
@@ -87,8 +87,13 @@ private extension MainViewModel {
         problem = .empty
         userInput.removeAll()
 
-        let xddd = storageService.fetch(GameSessionObject.self).map { $0 }
-        print(xddd)
+        print(
+            Array(
+                storageService.fetch(
+                    GameSessionObject.self
+                )
+            )
+        )
     }
 
     func processAnswer() {

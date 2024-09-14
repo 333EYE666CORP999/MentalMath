@@ -20,10 +20,10 @@ final class GameSessionObject {
     var problems: [ProblemObject]
 
     init(
-        sessionDate: Date = Date(),
+        sessionDate: Date,
+        problems: [ProblemObject],
         goodAnswersCount: Int = .zero,
-        badAnswersCount: Int = .zero,
-        problems: [ProblemObject]
+        badAnswersCount: Int = .zero
     ) {
         self.sessionDate = sessionDate
         self.goodAnswersCount = goodAnswersCount

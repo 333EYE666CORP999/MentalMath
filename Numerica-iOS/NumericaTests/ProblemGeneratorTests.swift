@@ -5,12 +5,18 @@
 //  Created by Dmitry Aksyonov on 11.09.2024.
 //
 
-import XCTest
 @testable import Numerica
+import XCTest
 
+// swiftlint:disable test_case_accessibility
+// swiftlint:disable implicitly_unwrapped_optional
 final class ProblemGeneratorTests: XCTestCase {
 
-    var sut: ProblemGenerator!
+    typealias Operation = ProblemGenerator.Operation
+    // swiftlint:enable test_case_accessibility
+
+    private var sut: ProblemGenerator!
+    // swiftlint:enable implicitly_unwrapped_optional
 
     override func setUp() {
         super.setUp()
@@ -37,7 +43,7 @@ final class ProblemGeneratorTests: XCTestCase {
 
     func testProblemSecondPartIsAlwaysOperator() {
         // Arrange
-        let ops = ProblemGenerator.Operation.allCases.map { $0.rawValue }
+        let ops = Operation.allCases.map { $0.rawValue }
 
         // Act
         for _ in 0...100 {
@@ -52,9 +58,9 @@ final class ProblemGeneratorTests: XCTestCase {
     func testLhsAndRhsAreAlwaysNumbers() {
         for _ in 0...100 {
             // Arrange
-            let problem = sut.getProblem().problemString.split(separator: .space)
-            let lhs = "\(problem.map { $0 }[0])".intValue
-            let rhs = "\(problem.map { $0 }[2])".intValue
+            let problem = Array(sut.getProblem().problemString.split(separator: .space))
+            let lhs = "\(problem[0])".intValue
+            let rhs = "\(problem[2])".intValue
 
             // Act
             // Assert
@@ -67,18 +73,18 @@ final class ProblemGeneratorTests: XCTestCase {
         for _ in 0...100 {
             // Arrange
             let problem = sut.getProblem()
-            let problemStringSplitted = problem.problemString.split(separator: .space)
+            let problemStringSplitted = Array(problem.problemString.split(separator: .space))
 
             guard
-                let lhs = "\(problemStringSplitted.map { $0 }[0])".intValue,
-                let rhs = "\(problemStringSplitted.map { $0 }[2])".intValue
+                let lhs = "\(problemStringSplitted[0])".intValue,
+                let rhs = "\(problemStringSplitted[2])".intValue
             else {
                 XCTFail("Items provided for solution are not numbers")
                 return
             }
 
             guard
-                let operation = ProblemGenerator.Operation(rawValue: "\(problemStringSplitted.map { $0 }[1])")
+                let operation = Operation(rawValue: "\(problemStringSplitted[1])")
             else {
                 XCTFail("No valid operator provided")
                 return
@@ -150,7 +156,7 @@ final class ProblemGeneratorTests: XCTestCase {
     func testProblemGeneratesCorrectOperatorOnCertainArguments() {
         for iteration in 0...100 {
             // Arrange
-            var operation: ProblemGenerator.Operation
+            var operation: Operation
 
             if iteration < 25 {
                 operation = .addition
@@ -195,7 +201,7 @@ final class ProblemGeneratorTests: XCTestCase {
 
     func testOperationsContainProperItems() {
         // Arrange
-        let operations = ProblemGenerator.Operation.allCases
+        let operations = Operation.allCases
 
         // Act
         // Assert

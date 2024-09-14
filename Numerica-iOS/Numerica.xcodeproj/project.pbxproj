@@ -19,7 +19,7 @@
 		3F65EE6C2C91AA98004F08EB /* ProblemObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F65EE6B2C91AA98004F08EB /* ProblemObject.swift */; };
 		3F65EE702C91C360004F08EB /* ProblemGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F65EE6F2C91C360004F08EB /* ProblemGeneratorTests.swift */; };
 		3F8475942C8513000034EC78 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F8475862C8513000034EC78 /* Assets.xcassets */; };
-		3F8475952C8513000034EC78 /* MentalMathApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8475892C8513000034EC78 /* MentalMathApp.swift */; };
+		3F8475952C8513000034EC78 /* NumericaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8475892C8513000034EC78 /* NumericaApp.swift */; };
 		3F8475962C8513000034EC78 /* ProblemGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F84758B2C8513000034EC78 /* ProblemGenerator.swift */; };
 		3F8475972C8513000034EC78 /* TimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F84758C2C8513000034EC78 /* TimerManager.swift */; };
 		3F8475982C8513000034EC78 /* GameSessionObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F84758E2C8513000034EC78 /* GameSessionObject.swift */; };
@@ -63,7 +63,7 @@
 		3F65EE6F2C91C360004F08EB /* ProblemGeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemGeneratorTests.swift; sourceTree = "<group>"; };
 		3F8475862C8513000034EC78 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F8475872C8513000034EC78 /* Entitlements.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Entitlements.entitlements; sourceTree = "<group>"; };
-		3F8475892C8513000034EC78 /* MentalMathApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentalMathApp.swift; sourceTree = "<group>"; };
+		3F8475892C8513000034EC78 /* NumericaApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumericaApp.swift; sourceTree = "<group>"; };
 		3F84758B2C8513000034EC78 /* ProblemGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProblemGenerator.swift; sourceTree = "<group>"; };
 		3F84758C2C8513000034EC78 /* TimerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerManager.swift; sourceTree = "<group>"; };
 		3F84758E2C8513000034EC78 /* GameSessionObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSessionObject.swift; sourceTree = "<group>"; };
@@ -205,7 +205,7 @@
 		3F84758A2C8513000034EC78 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				3F8475892C8513000034EC78 /* MentalMathApp.swift */,
+				3F8475892C8513000034EC78 /* NumericaApp.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -423,7 +423,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/sh\n\nif [[ \"$(uname -m)\" == arm64 ]]; then\n  export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, do `brew bundle` in repo root\"\nfi\n";
+			shellScript = "#!/bin/sh\n\nif [[ \"$(uname -m)\" == arm64 ]]; then\n  export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint > /dev/null; then\n  swiftlint --config \"swiftlint.yml\"\nelse\n  echo \"warning: SwiftLint not installed, do `brew bundle` in repo root\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -445,7 +445,7 @@
 				3F8475A72C85D3480034EC78 /* GameViewModel.swift in Sources */,
 				3F8475962C8513000034EC78 /* ProblemGenerator.swift in Sources */,
 				3F8475A32C85A29A0034EC78 /* StorageService.swift in Sources */,
-				3F8475952C8513000034EC78 /* MentalMathApp.swift in Sources */,
+				3F8475952C8513000034EC78 /* NumericaApp.swift in Sources */,
 				3F6435062C899BD60016C7AC /* ActionButton.swift in Sources */,
 				3F480BB52C9464140047B9AE /* ProblemModel.swift in Sources */,
 				3F480BB72C9464220047B9AE /* GameSessionModel.swift in Sources */,

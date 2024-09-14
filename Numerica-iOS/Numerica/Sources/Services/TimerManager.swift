@@ -5,8 +5,8 @@
 //  Created by Dmitry Aksyonov on 01.09.2024.
 //
 
-import Foundation
 import Combine
+import Foundation
 
 final class TimerManager: ObservableObject {
 
@@ -24,11 +24,13 @@ final class TimerManager: ObservableObject {
         )
         .autoconnect()
         .sink { [weak self] _ in
-            guard let self = self else { return }
-            if self.remainingTime > 0 {
-                self.remainingTime -= 1
+            guard let self else {
+                return
+            }
+            if remainingTime > 0 {
+                remainingTime -= 1
             } else {
-                self.stopTimer()
+                stopTimer()
             }
         }
     }
