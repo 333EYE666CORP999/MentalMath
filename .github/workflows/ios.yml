@@ -1,4 +1,4 @@
-name: iOS starter workflow
+name: xcodebuild + test
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    name: Build and Test default scheme using any available iPhone simulator
+    name: xcodebuild + test: any iOS device
     runs-on: macos-latest
 
     steps:
