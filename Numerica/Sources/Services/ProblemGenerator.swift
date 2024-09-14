@@ -25,7 +25,9 @@ final class ProblemGenerator {
 
         guard let composedOperation = operation else { return .empty }
 
-        return constructProblem(for: composedOperation)
+        return operation == .division
+        ? constructDivisionOperationProblem()
+        : constructProblem(for: composedOperation)
     }
 }
 
@@ -68,7 +70,7 @@ private extension ProblemGenerator {
     private func constructDivisionOperationProblem() -> ProblemDTO {
         let transformableProblem = constructProblem(
             for: .multiplication,
-            avoidZero: true
+            shouldAvoidZero: true
         )
         let components = transformableProblem.problemString.split(
             separator: .space
@@ -83,16 +85,14 @@ private extension ProblemGenerator {
         }
 
         // Additional randomization of lhs / rhs
-        let randomNumber = Int.random(in: 0...1)
+        let randomNumber = Int.random(in: 0...1, using: &rng)
 
-
-        let product = lhs * rhs
         let divisionProblemString = [
             randomNumber == 0 ? rhs.stringValue : lhs.stringValue,
             Operation.division.rawValue,
             randomNumber == 1 ? rhs.stringValue : lhs.stringValue
         ].joined(separator: .space)
-        
+
         return ProblemDTO(
             problemString: divisionProblemString,
             solution: solve(expression: divisionProblemString)
@@ -101,12 +101,12 @@ private extension ProblemGenerator {
 
     private func constructProblem(
         for operation: Operation,
-        avoidZero: Bool = false
+        shouldAvoidZero: Bool = false
     ) -> ProblemDTO {
         let problemString = [
-            getRandomNumber(avoidZero: avoidZero).stringValue,
+            getRandomNumber(shouldAvoidZero: shouldAvoidZero).stringValue,
             operation.rawValue,
-            getRandomNumber(avoidZero: avoidZero).stringValue
+            getRandomNumber(shouldAvoidZero: shouldAvoidZero).stringValue
         ].joined(separator: .space)
 
         return ProblemDTO(
@@ -117,7 +117,7 @@ private extension ProblemGenerator {
 
     private func getRandomNumber(
         maxDigitsCount: Int = .maxDigitsCount,
-        avoidZero: Bool = false
+        shouldAvoidZero: Bool = false
     ) -> Int {
         // Ensure the maxDigitsCount is at least 1
         guard maxDigitsCount > .zero else {
@@ -138,7 +138,7 @@ private extension ProblemGenerator {
 
         var randomNumber = Int.random(in: minValue...maxValue, using: &rng)
 
-        if avoidZero && randomNumber == .zero {
+        if shouldAvoidZero && randomNumber == .zero {
             randomNumber = Int.random(in: 1...maxValue, using: &rng)
         }
 
