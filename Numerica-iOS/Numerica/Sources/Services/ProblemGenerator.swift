@@ -173,6 +173,19 @@ extension ProblemGenerator {
 extension ProblemGenerator {
 
     enum Operation: String, CaseIterable {
+
+        static var random: Self {
+            guard
+                let random = Self.allCases.randomElement(
+                    using: &ProblemGenerator.rng
+                )
+            else {
+                return .subtraction
+            }
+
+            return random
+        }
+
         case addition = "+"
         case subtraction = "-"
         case multiplication = "*"
