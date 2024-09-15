@@ -1,16 +1,13 @@
 name: Build For Tests
-
 on:
   push:
     branches: [ "develop" ]
   pull_request:
     branches: [ "develop" ]
-
 jobs:
   build:
     name: xcodebuild + test any iOS
     runs-on: macos-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
