@@ -184,7 +184,6 @@ final class ProblemGeneratorTests: XCTestCase {
 
             // Assert
             XCTAssertEqual(operation.rawValue, generatedOperator)
-
         }
     }
 
@@ -233,7 +232,7 @@ final class ProblemGeneratorTests: XCTestCase {
     func testOperationRandomness() {
         // Arrange
         let symbols = ["+", "-", "*", "/"]
-        var numberOfOperations = 1000
+        let numberOfOperations = 1000
         var frequency = [String: Int]()
         symbols.forEach {
             frequency[$0] = 0
