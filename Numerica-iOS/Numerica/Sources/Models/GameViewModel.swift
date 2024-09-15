@@ -91,6 +91,7 @@ private extension MainViewModel {
         problem = .empty
         userInput.removeAll()
 
+        #if DEBUG
         print(
             Array(
                 storageService.fetch(
@@ -98,6 +99,7 @@ private extension MainViewModel {
                 )
             )
         )
+        #endif
     }
 
     func processAnswer() {
