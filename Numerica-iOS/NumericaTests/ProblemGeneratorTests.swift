@@ -18,6 +18,10 @@ final class ProblemGeneratorTests: XCTestCase {
     private var sut: ProblemGenerator!
     // swiftlint:enable implicitly_unwrapped_optional
 
+    private var operation: Operation {
+        .random
+    }
+
     override func setUp() {
         super.setUp()
         sut = ProblemGenerator()
@@ -31,7 +35,7 @@ final class ProblemGeneratorTests: XCTestCase {
     func testProblemConsistOfThreeParts() {
         for _ in 0...100 {
             // Arrange
-            let problem = sut.getProblem().problemString
+            let problem = sut.getProblem(for: operation).problemString
 
             // Act
             let count = problem.split(separator: .space).count
@@ -47,7 +51,7 @@ final class ProblemGeneratorTests: XCTestCase {
 
         // Act
         for _ in 0...100 {
-            let problem = sut.getProblem().problemString
+            let problem = sut.getProblem(for: operation).problemString
             let expectedOperator = String(problem.split(separator: .space)[1])
 
             // Assert
@@ -55,24 +59,10 @@ final class ProblemGeneratorTests: XCTestCase {
         }
     }
 
-    func testLhsAndRhsAreAlwaysNumbers() {
-        for _ in 0...100 {
-            // Arrange
-            let problem = Array(sut.getProblem().problemString.split(separator: .space))
-            let lhs = "\(problem[0])".intValue
-            let rhs = "\(problem[2])".intValue
-
-            // Act
-            // Assert
-            XCTAssertNotNil(lhs)
-            XCTAssertNotNil(rhs)
-        }
-    }
-
     func testProblemSolutionIsCorrect() {
         for _ in 0...100 {
             // Arrange
-            let problem = sut.getProblem()
+            let problem = sut.getProblem(for: operation)
             let problemStringSplitted = Array(problem.problemString.split(separator: .space))
 
             guard
@@ -111,7 +101,7 @@ final class ProblemGeneratorTests: XCTestCase {
         var problems = Set<String>()
         for _ in 0...100 {
             // Arrange
-            let problem = sut.getProblem().problemString
+            let problem = sut.getProblem(for: operation).problemString
 
             // Act
             problems.insert(problem)
@@ -119,6 +109,22 @@ final class ProblemGeneratorTests: XCTestCase {
 
         // Assert
         XCTAssertGreaterThan(problems.count, 1, "Generator should produce different problems")
+    }
+
+    func testLhsAndRhsAreAlwaysNumbers() {
+        for _ in 0...100 {
+            // Arrange
+            let problem = Array(
+                sut.getProblem(for: operation).problemString.split(separator: .space)
+            )
+            let lhs = "\(problem[0])".intValue
+            let rhs = "\(problem[2])".intValue
+
+            // Act
+            // Assert
+            XCTAssertNotNil(lhs)
+            XCTAssertNotNil(rhs)
+        }
     }
 
     func testEmptyProblemDTOIsValid() {
@@ -219,5 +225,45 @@ final class ProblemGeneratorTests: XCTestCase {
                 XCTFail("Number of operations exceeds the needed number (4)")
             }
         }
+    }
+
+    func testOperationRandomness() {
+        let symbols = ["+", "-", "*", "/"]
+        var numberOfOperations = 1000
+        var frequency = [String: Int]()
+        symbols.forEach {
+            frequency[$0] = 0
+        }
+
+        for _ in .zero...numberOfOperations {
+            let `operator` = String(
+                sut.getProblem(
+                    for: self.operation
+                ).problemString.split(
+                    separator: .space
+                )[1]
+            )
+
+            guard frequency[`operator`] != nil else {
+                XCTFail("Got operator that should not be generated")
+                return
+            }
+
+            frequency[`operator`]? += 1
+        }
+
+        let expectedFrequency = Double(numberOfOperations / symbols.count)
+        var chiSquare = 0.0
+
+        symbols.forEach {
+            guard let observedFrequency = frequency[$0]?.doubleValue else {
+                XCTFail("Got operator that should not be generated")
+                return
+            }
+            chiSquare += pow(observedFrequency - expectedFrequency, 2) / expectedFrequency
+        }
+
+        let threshold = 7.81
+        print("chiSquare: \(chiSquare), threshold: \(threshold)")
     }
 }
