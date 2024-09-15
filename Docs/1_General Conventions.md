@@ -1,6 +1,8 @@
 # General Conventions
 
-Here are some conventional things that are enforced on the project.
+## Intro
+
+This doc focuses on some conventions to streamline development process and facilitate decision-making in certain cases.
 
 ## Naming Persistable Entities and Their in-Memory Twins
 
