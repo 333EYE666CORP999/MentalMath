@@ -23,6 +23,10 @@ extension Int {
     var stringValue: String {
         String(self)
     }
+
+    var doubleValue: Double {
+        Double(self)
+    }
 }
 
 extension String {
