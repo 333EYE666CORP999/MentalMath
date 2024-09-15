@@ -173,7 +173,7 @@ final class ProblemGeneratorTests: XCTestCase {
             } else {
                 operation = .division
             }
-
+            // Act
             let generatedOperator = String(
                 sut.getProblem(
                     for: operation
@@ -182,7 +182,9 @@ final class ProblemGeneratorTests: XCTestCase {
                 )[1]
             )
 
+            // Assert
             XCTAssertEqual(operation.rawValue, generatedOperator)
+
         }
     }
 
@@ -201,6 +203,7 @@ final class ProblemGeneratorTests: XCTestCase {
                 return
             }
 
+            // Assert
             XCTAssertTrue(rhs > .zero)
         }
     }
@@ -228,6 +231,7 @@ final class ProblemGeneratorTests: XCTestCase {
     }
 
     func testOperationRandomness() {
+        // Arrange
         let symbols = ["+", "-", "*", "/"]
         var numberOfOperations = 1000
         var frequency = [String: Int]()
@@ -235,6 +239,7 @@ final class ProblemGeneratorTests: XCTestCase {
             frequency[$0] = 0
         }
 
+        // Act
         for _ in .zero...numberOfOperations {
             let `operator` = String(
                 sut.getProblem(
@@ -264,6 +269,8 @@ final class ProblemGeneratorTests: XCTestCase {
         }
 
         let threshold = 7.81
+        // Assert
+        // FIXME: - make XCTASSERTEQUAL
         print("chiSquare: \(chiSquare), threshold: \(threshold)")
     }
 }

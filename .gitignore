@@ -57,5 +57,5 @@ playground.xcworkspace
 # User-specific files
 *.xcuserdatad
 *.xcworkspace/xcuserdata/
-*.xcworkspace/contents.xcworkspacedata
-Numerica.xcodeproj/xcuserdata/dmitryaksyonov.xcuserdatad/xcschemes/xcschememanagement.plist
+*.xcworkspacedata
+*.xcschememanagement.plist

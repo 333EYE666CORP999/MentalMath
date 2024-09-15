@@ -2,7 +2,7 @@
 
 ## Intro
 
-This doc is focused on describing how problems are generated, brealing down the anatomy of generation process.
+This doc is focused on describing how problems are generated, breaking down the anatomy of generation process.
 
 ## Rationale
 
@@ -15,20 +15,23 @@ As discussed at the very beginning, all problem generation logic should be abstr
 5. Analytics
 6. Insights
 
-will be stored in separate package written in [Rust](https://www.rust-lang.org). See technical consideration of selectig Rust as a primary language for game logic in [Core in Rust](./4_4_TDR%3A%20Core%20in%20Rust.md). Not only should the game logic be thoroughly encoded in a framework, it should have meaningful textual description to facilitate migration to Rust. Moreover, stated methodology mill allow for targetet unit-testing.
+will be stored in separate package written in [Rust](https://www.rust-lang.org). See technical consideration of selecting Rust as a primary language for game logic in [Core in Rust](./4_4_TDR%3A%20Core%20in%20Rust.md). Not only should the game logic be thoroughly encoded in a framework, it should have meaningful textual description to facilitate migration to Rust. Moreover, stated methodology mill allow for targeted unit-testing.
 
 ## Enforcing Methodology in Code
 
-`XCTestCase` is a good option to enforce methodology thtrough the system of test-calses. For one, randomness ratios, edge cases ans conforming to methodology principles can be testet thoughout unit-tests. Having these tests in place will alert a developer each time he has broken the crucial logic.
+`XCTestCase` is a good option to enforce methodology through the system of test cases. For one, randomness ratios, edge cases and conforming to methodology principles can be tested via unit testing. Having these tests in place will alert a developer each time he has broken the crucial logic.
+These tests should be structured according to the methodology described below. 
+
+```suggestion
 
 ## Problem Generation Methodology
 
-In general, problem generation flow can be enumerated by the follwing steps:
+Problem generation anatomy comprises of the following steps:
 
 1. Determining the operation
 2. Selecting digits capacity
-3. Defining the series' upper bound for random number selection
-4. Pikcing random number from the series
+3. Defining the upper and lower bounds for random number selection range
+4. Pikcing random number from the range
 5. Optional zero-check for division operations
 
 ### Determining The Operation

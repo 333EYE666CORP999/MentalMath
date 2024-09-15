@@ -1,4 +1,4 @@
-name: xcodebuild + test
+name: Build For Tests
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    name: xcodebuild + test on any iOS device
+    name: xcodebuild + test any iOS
     runs-on: macos-latest
 
     steps:
