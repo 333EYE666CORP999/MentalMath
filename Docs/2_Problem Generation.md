@@ -1,12 +1,10 @@
 # Problem Generation
 
-[toc]
-
-# # Intro
+## Intro
 
 This doc is focused on describing how problems are generated, brealing down the anatomy of generation process.
 
-# # Rationale
+## Rationale
 
 As discussed at the very beginning, all problem generation logic should be abstracted to separate namespace. This will allow for scalability so the mobile teams would only have to write frontend. Game aspects such as:
 
@@ -19,16 +17,11 @@ As discussed at the very beginning, all problem generation logic should be abstr
 
 will be stored in separate package written in [Rust](https://www.rust-lang.org). See technical consideration of selectig Rust as a primary language for game logic in [Core in Rust](./4_4_TDR%3A%20Core%20in%20Rust.md). Not only should the game logic be thoroughly encoded in a framework, it should have meaningful textual description to facilitate migration to Rust. Moreover, stated methodology mill allow for targetet unit-testing.
 
-# Enforcing Methodology in Code
+## Enforcing Methodology in Code
 
 `XCTestCase` is a good option to enforce methodology thtrough the system of test-calses. For one, randomness ratios, edge cases ans conforming to methodology principles can be testet thoughout unit-tests. Having these tests in place will alert a developer each time he has broken the crucial logic.
 
-# Problem Generation Methodology
-
-```
-> [!TIP]
-> It is recommended to use single centralozed instance of rng to save performance.
-```
+## Problem Generation Methodology
 
 In general, problem generation flow can be enumerated by the follwing steps:
 
@@ -38,15 +31,15 @@ In general, problem generation flow can be enumerated by the follwing steps:
 4. Pikcing random number from the series
 5. Optional zero-check for division operations
 
-## Determining The Operation
+### Determining The Operation
 
 The operation is selected randomly from the finite set of [basic arithmetic operations](https://en.wikipedia.org/wiki/Arithmetic#:~:text=The%20main%20arithmetic%20operations%20are,subtraction%2C%20multiplication%2C%20and%20division.).
 
-## Selecting Digits Capacity
+### Selecting Digits Capacity
 
 Digits capacity is selected based on provided max capacity number. Capacity is selected randomly from a range where the lower bound is always 1 and the upper bound is the max capacity number. Selected capacity is later used to determine the range from which the random number will be selected.
 
-## Defining the upper and lower bounds for random number selection range
+### Defining the upper and lower bounds for random number selection range
 
 Upper and lower bounds of number selection series are determined via formulas:
 
@@ -54,11 +47,11 @@ Upper and lower bounds of number selection series are determined via formulas:
 
 - $\text{max value}=10^{\text{maxValueExponent}} - 1$
 
-## Pikcing random number from the range
+### Pikcing random number from the range
 
 The number is selected randomly and stored into a `var`.
 
-## Optional zero-check for division operations
+### Optional zero-check for division operations
 
 In some cases the number should not be zero. If, in such context, it appears to be zero, fallback random selection engages. There, random number is selected from the range, where the lower bound is `1` and the upper bound is max value.
 
