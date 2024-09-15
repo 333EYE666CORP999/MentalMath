@@ -4,7 +4,15 @@
 
 This doc focuses on some conventions to streamline development process and facilitate decision-making in certain cases.
 
+## Rationale
+
+Like a code style, some things sohould be standardised to ensure cognitive load decline. This is vital for effective development. The programmer should think less about "grammatical" twists, syntactic stuff, and "what approach to chose". Here such standartizations will reside.
+
 ## Naming Persistable Entities and Their in-Memory Twins
+
+### Rationale
+
+SwiftData has some disappointing intricacies concerning mutating `@Model` objects on the fly.  Therefore any modifications and passing here and there should be made with `Model` (not `@Model`) entities.
 
 ### Convention
 
@@ -65,8 +73,4 @@ extension ProblemModel: PersistableModel {
     }
 }
 ```
-
-### Rationale
-SwiftData has some disappointing intricacies concerning mutating `@Model` objects on the fly. 
-Therefore any modifications and passing here and there should be made with `Model` (not `@Model`) entities.
 
