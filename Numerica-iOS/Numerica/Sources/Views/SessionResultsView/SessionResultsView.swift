@@ -10,6 +10,7 @@ import SwiftUI
 
 struct SessionResultsView: View {
 
+    // FIXME: - убрать после того, как закончим экран статы сессии
     struct DataKKK: Identifiable {
         var id = UUID()
 
@@ -20,6 +21,7 @@ struct SessionResultsView: View {
         var rate: Double
     }
 
+    // FIXME: - убрать после того, как закончим экран статы сессии
     let data = Array(
         repeating: DataKKK(
             date: Date(),
@@ -53,6 +55,7 @@ struct SessionResultsView: View {
     }
 }
 
+// FIXME: - нужно дорабтотать, пока early prototype
 struct SessionListItem: View {
 
     static var empty = Self(
