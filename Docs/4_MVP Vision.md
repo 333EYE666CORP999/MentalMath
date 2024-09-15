@@ -9,7 +9,7 @@ This doc is describing on how we see the eventual [minimum-viable product](https
 ## Guide (🚧🕵🏻‍♂️🏗️)
 
 <details>
-  <summary>Title of Collapsible Section</summary>
+  <summary>Structuring the MVP Vision for an Indie Team</summary>
 
   # Structuring the MVP Vision for an Indie Team
 
@@ -89,8 +89,8 @@ This doc is describing on how we see the eventual [minimum-viable product](https
 ## Serega's Thoughts (🚧🕵🏻‍♂️🏗️)
 
 <details>
-  <summary>Title of Collapsible Section</summary>
-  Certainly! Here is the structured text in Markdown format:
+  <summary>Serega's Processed Thoughts</summary>
+
 
 ---
 
