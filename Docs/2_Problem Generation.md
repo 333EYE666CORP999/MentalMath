@@ -22,8 +22,6 @@ will be stored in separate package written in [Rust](https://www.rust-lang.org).
 `XCTestCase` is a good option to enforce methodology through the system of test cases. For one, randomness ratios, edge cases and conforming to methodology principles can be tested via unit testing. Having these tests in place will alert a developer each time he has broken the crucial logic.
 These tests should be structured according to the methodology described below. 
 
-```suggestion
-
 ## Problem Generation Methodology
 
 Problem generation anatomy comprises of the following steps:
