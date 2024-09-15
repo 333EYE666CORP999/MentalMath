@@ -6,7 +6,7 @@ Welcome to Numerica Doc Hub 😀👋🏻. This page lists all meaningful docs th
 
 <br>
 
-![howly-cow](https://imgur.com/gallery/rtfm-ZkvoSsp)
+<img src="https://i.imgur.com/ZkvoSsp.jpeg" alt="how2bb" style="float: left; margin-right: 10px;" />
 
 ## Index
 
