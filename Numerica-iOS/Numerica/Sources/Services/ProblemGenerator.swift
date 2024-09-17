@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK: - MathGen
+// MARK: - ProblemGenerator
 
 final class ProblemGenerator {
 
@@ -24,22 +24,12 @@ final class ProblemGenerator {
 
 private extension ProblemGenerator {
 
-    func solve(expression: String) -> Int {
-        let components = expression.split(
-            separator: .space
-        ).map(
-            String.init
-        )
-
-        guard
-            let lhs = Int(components[.zero]),
-            let operation = Operation(rawValue: components[1]),
-            let rhs = Int(components[2])
-        else {
-            return .zero
-        }
-
-        return switch operation {
+    func solve(
+        lhs: Int,
+        operation: Operation,
+        rhs: Int
+    ) -> Int {
+        switch operation {
         case .addition:
             lhs + rhs
         case .subtraction:
@@ -57,34 +47,22 @@ private extension ProblemGenerator {
 private extension ProblemGenerator {
 
     private func constructDivisionOperationProblem() -> ProblemDTO {
-        let transformableProblem = constructProblem(
+        let problem = constructProblem(
             for: .multiplication,
             divisionViaMultiplication: true
         )
-        let components = transformableProblem.problemString.split(
-            separator: .space
-        )
-
-        // FIXME: - это должно обеспечиваться методом конструкции проблемы
-        guard
-            let lhs = String(components[0]).intValue,
-            let rhs = String(components[2]).intValue
-        else {
-            return .empty
-        }
 
         // Additional randomization of lhs / rhs
-        let randomNumber = Int.random(in: 0...1, using: &Self.rng)
-
-        let divisionProblemString = [
-            randomNumber == 0 ? rhs.stringValue : lhs.stringValue,
-            Operation.division.rawValue,
-            randomNumber == 1 ? rhs.stringValue : lhs.stringValue
-        ].joined(separator: .space)
+        let randomPositioningNumber = Int.random(
+            in: 0...1,
+            using: &Self.rng
+        )
 
         return ProblemDTO(
-            problemString: divisionProblemString,
-            solution: solve(expression: divisionProblemString)
+            lhs: randomPositioningNumber == 0 ? problem.rhs : problem.lhs,
+            operation: problem.operation,
+            rhs: randomPositioningNumber == 1 ? problem.rhs : problem.lhs,
+            solution: problem.solution
         )
     }
 
@@ -92,19 +70,21 @@ private extension ProblemGenerator {
         for operation: Operation,
         divisionViaMultiplication: Bool = false
     ) -> ProblemDTO {
-        let problemString = [
-            getRandomNumber(
-                shouldAvoidZero: operation == .division || divisionViaMultiplication
-            ).stringValue,
-            operation.rawValue,
-            getRandomNumber(
-                shouldAvoidZero: operation == .division || divisionViaMultiplication
-            ).stringValue
-        ].joined(separator: .space)
-
+        let lhs = getRandomNumber(
+            shouldAvoidZero: operation == .division || divisionViaMultiplication
+        )
+        let rhs = getRandomNumber(
+            shouldAvoidZero: operation == .division || divisionViaMultiplication
+        )
         return ProblemDTO(
-            problemString: problemString,
-            solution: solve(expression: problemString)
+            lhs: lhs,
+            operation: operation,
+            rhs: rhs,
+            solution: solve(
+                lhs: lhs,
+                operation: operation,
+                rhs: rhs
+            )
         )
     }
 
@@ -156,12 +136,24 @@ extension ProblemGenerator {
 
     struct ProblemDTO {
 
-        var problemString: String
-        var solution: Int
+        let lhs: Int
+        let operation: Operation
+        let rhs: Int
+        let solution: Int
         var solved = false
 
+        var problemString: String {
+            [
+                lhs.stringValue,
+                operation.rawValue,
+                rhs.stringValue
+            ].joined(separator: " ")
+        }
+
         static var empty = Self(
-            problemString: "",
+            lhs: .zero,
+            operation: .random,
+            rhs: .zero,
             solution: .zero
         )
     }

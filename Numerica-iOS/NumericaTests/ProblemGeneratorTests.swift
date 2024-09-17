@@ -133,7 +133,6 @@ final class ProblemGeneratorTests: XCTestCase {
         let emptyProblem = ProblemGenerator.ProblemDTO.empty
 
         // Assert
-        XCTAssertEqual(emptyProblem.problemString, "")
         XCTAssertEqual(emptyProblem.solution, .zero)
     }
 
