@@ -1,82 +1,138 @@
 # MVP Vision
 
+Tech notes:
+
+*`⚠️ t0 d0` - means that something should be done here*
+
+*`👀 need review` - this very line needs special attention*
+
 ## Intro
 
 This doc is describing on how we see the eventual [minimum-viable product](https://en.wikipedia.org/wiki/Minimum_viable_product) that'll be shipped to the AppStore.
 
 ## Core Purpose and Value
 
-```
-  - Focus on the Problem: Determine the core problem your app is solving. Your MVP should address this main issue, ensuring it is the most polished aspect of the app.
-  - Define Your Unique Value Proposition: What makes your app stand out? This unique element is crucial for competing with larger companies, giving users a compelling reason to choose your app.
-```
+### Proposed Commercial Name and Title
+
+**Numerica: Personalized Feedback for Mental Math Mastery**
+
+### Purpose
+
+Numerica serves the simple purpose: help people thrive in mental math.
+
+### UVP / USP
+
+Numerica delivers targeted insights to help users improve their mental math skills. Key features include:
+
+- Game Session Analytics: Detailed performance data from each session.
+- Time-Based Stats: Progress tracking across day, week, month, and year.
+- Growth & Excellence Areas: Highlights of improvement opportunities and strengths.
+- Tailored Learning: Customized recommendations based on user performance. `👀 need review`
+
+Additionally, Numerica offers a *zen mode* for non-competitive, stress-free learning, allowing users to focus purely on skill development without pressure.
 
 ## Understanding Target Audience
 
-```
-Questions to Ask:
-  - What platforms do our users prefer (iOS only, or future cross-platform)?
-  - What are their pain points? How does our app fit into their routine?
-  - Who Are You Building For?: Specify your audience—casual users, power users, or beginners. 
-		This ensures your MVP focuses on features valuable to them.
-```
+The target audience for Numerica could include:
+
+1. Students: Primary and secondary school students looking to improve their mental math skills in a supportive, non-competitive environment.
+2. Professionals: Adults in professions that require quick mental calculations (e.g., finance, engineering) who want to refine their mental math abilities.
+3. Lifelong Learners: Individuals interested in cognitive improvement, brain training, or maintaining mental sharpness through math exercises.
+4. Gamers/EdTech Enthusiasts: gamified experiences enjoyers combining fun with skill development.
+
+---
+
+*Non-mvp scope*
+
+ *`⚠️ t0 d0` - think out where to abstract this out*
+
+*`👀 need review` - do we really need to keep in mind these categories? wdut?*
+
+1. *Educators: Teachers seeking tools to track student progress, identify areas of strength and improvement, and provide personalized feedback.*
+2. *Parents: Parents who want to help their children practice mental math in a structured yet stress-free manner.*
 
 ## Critical Features (Must-Have vs Nice-to-Have)
 
-```
-Categorize features into must-have (essential for functionality) and nice-to-have (additional but not crucial). Avoid feature creep (???).
-Example Breakdown:
-- Must-Have: Core functionality that drives the app’s purpose (e.g., for a note-taking app, basic note creation, editing, and saving).
-- Nice-to-Have: Additional features like themes or advanced analytics can be added later.
+### Must-Have
 
-Can be rendered as table
-```
+- Zen game mode
+- Game-session analytics
+- Growth & excellence areas highlights
+- Tailored learning paths *`👀 need review` - do we need this right away?*
 
-## Goals and Metrics
+### Nice-to-Have
 
-```
-  - User Acquisition: Set realistic goals for user acquisition, such as expected downloads, initial feedback, or engagement metrics like daily active users.
-  - User Retention: Focus on retaining users. Measure engagement to understand why users may not return after their first use.
-  - Technical Performance: Track metrics around app stability (e.g., crash rates) and performance (e.g., load time).
+- Icon / font / color theme change option
+- Zen music
+- Animated backgrounds ([Endel](https://endel.io) Style) *`👀 need review` - need to discuss this, have a look and let's talk*
+- Gamification: Achievements
 
-Key Metrics for MVP Success:
-  - How many users complete the core task?
-  - How many users return after their first use?
-  - What is the app’s crash rate?
-```
+## Goals, Metrics and Funnels
+
+### Goals
+
+| Goal             | Description                                                  | ⚠️ t0 d0  |
+| ---------------- | ------------------------------------------------------------ | -------- |
+| User Acquisition | How many new users or customers a business or app gains over a specific period. | set kpis |
+| User Retention   | `Retention Rate = (Q users: period start / Q users: period end) × 100` | set kpis |
+| Tech Performance | Launch time, loading time, database, core performance        | set kpis |
+| `👀 need review`  | *more goals?*                                                | discuss  |
+
+### Metrics
+
+| Metric                        | Description                                    | ⚠️ t0 d0 |
+| ----------------------------- | ---------------------------------------------- | ------- |
+| Time Spent in App Per Session | Obvious - we need somehow to raise this metric | -       |
+| Return after First Use        | Obvious - depicts on how ou app is replayable  | -       |
+| Crash-free sessions           | Crashes distress users a lot…                  | -       |
+| Crash-free users              | Crashes distress users a lot…                  | -       |
+| `👀 need review`               | *more metrics?*                                | discuss |
+
+### Funnels
+
+*`👀 need review` - do we really need to keep in mind funnels now? wdut?*
+
+- How do we answer the question "why our users are not finishing games?". User can close the app in mid-game and abort the session.
 
 ## Competition and Market
 
-```
-Know Your Competitors: Research similar apps and user feedback. Identify gaps and address them in your MVP.
-App Store Categories and Trends: Understand your app’s category, competition, and market trends. Ensure your app fits into a growing or under-served space.
-```
+**`👀 need review` - here i deem to do the following:*
+
+1) *analyze competition and synthesize brief*
+2) *analyze domain market trends*
+3) *combine 1) and 2) to synthesize market fit*
+
+### Competition
+
+| Competitor | Category | Rating | Regions | User's Feedback | Product Awards (If Any) | Gaps and Pitfalls | Age Rating | Market Share | Pricing Model | Features | User Engagement | Update Frequency | Customer Support | Languages |
+| ---------- | -------- | ------ | ------- | --------------- | ----------------------- | ----------------- | ---------- | ------------ | ------------- | -------- | --------------- | ---------------- | ---------------- | --------- |
+|            |          |        |         |                 |                         |                   |            |              |               |          |                 |                  |                  |           |
+
+### Domain Market Trends (If Any)
+
+- - - 
+
+### Market Fit
+
+- - - 
 
 ## Launch Strategy
 
-```
-  - Soft Launch: Target a smaller region or group first to gather feedback and fix issues before a full release.
-  - App Store Optimization (ASO): Optimize your app’s title, description, keywords, and screenshots for better visibility in the App Store.
-  - Marketing and Community: Promote your MVP using social media, developer forums, or niche communities. Build a small, passionate group of early adopters.
-```
+*`⚠️ t0 d0` - prerequisites:*
 
-## Checklist
+- *crit features*
+- *goals & metrics*
+- *market understanding* 
 
-| Vision Element                                               | Status |
-| ------------------------------------------------------------ | ------ |
-| What problem does the MVP solve?                             | 😴      |
-| Who is the target audience, and what are their needs?        | 😴      |
-| What are the essential features we need for launch?          | 😴      |
-| What success metrics (downloads, retention, engagement) do we track? | 😴      |
-| What is the competition doing, and how do we stand out?      | 😴      |
-| How do we gather early feedback and iterate fast?            | 😴      |
-| How do we prepare for a soft launch with ASO and community engagement? | 😴      |
+### General Strategy
+
+```
+- Soft Launch: Target a smaller region or group first to gather feedback and fix issues before a full release.
+- App Store Optimization (ASO): Optimize your app’s title, description, keywords, and screenshots for better visibility in the App Store.
+- Marketing and Community: Promote your MVP using social media, developer forums, or niche communities. Build a small, passionate group of early adopters.
+```
 
 ## Serega's Thoughts (🚧🕵🏻‍♂️🏗️)
-
-<details>
-  <summary>Serega's Processed Thoughts</summary>
-
 
 ---
 
