@@ -11,9 +11,9 @@ import Foundation
 
 final class ProblemGenerator {
 
-    private static var rng = SystemRandomNumberGenerator()
+    static var rng = SystemRandomNumberGenerator()
 
-    func getProblem(for selected: Operation) -> ProblemDTO {
+    func getProblem(for selected: Operator) -> ProblemModel {
         selected == .division
         ? constructDivisionOperationProblem()
         : constructProblem(for: selected)
@@ -26,7 +26,7 @@ private extension ProblemGenerator {
 
     func solve(
         lhs: Int,
-        operation: Operation,
+        operation: Operator,
         rhs: Int
     ) -> Int {
         switch operation {
@@ -46,7 +46,7 @@ private extension ProblemGenerator {
 
 private extension ProblemGenerator {
 
-    private func constructDivisionOperationProblem() -> ProblemDTO {
+    private func constructDivisionOperationProblem() -> ProblemModel {
         let problem = constructProblem(
             for: .multiplication,
             divisionViaMultiplication: true
@@ -58,25 +58,25 @@ private extension ProblemGenerator {
             using: &Self.rng
         )
 
-        return ProblemDTO(
+        return ProblemModel(
             lhs: randomPositioningNumber == 0 ? problem.rhs : problem.lhs,
-            operation: problem.operation,
+            operation: problem.`operator`,
             rhs: randomPositioningNumber == 1 ? problem.rhs : problem.lhs,
             solution: problem.solution
         )
     }
 
     private func constructProblem(
-        for operation: Operation,
+        for operation: Operator,
         divisionViaMultiplication: Bool = false
-    ) -> ProblemDTO {
+    ) -> ProblemModel {
         let lhs = getRandomNumber(
             shouldAvoidZero: operation == .division || divisionViaMultiplication
         )
         let rhs = getRandomNumber(
             shouldAvoidZero: operation == .division || divisionViaMultiplication
         )
-        return ProblemDTO(
+        return ProblemModel(
             lhs: lhs,
             operation: operation,
             rhs: rhs,
@@ -127,60 +127,6 @@ private extension ProblemGenerator {
         }
 
         return randomNumber
-    }
-}
-
-// MARK: - ProblemDTO
-
-extension ProblemGenerator {
-
-    struct ProblemDTO {
-
-        let lhs: Int
-        let operation: Operation
-        let rhs: Int
-        let solution: Int
-        var solved = false
-
-        var problemString: String {
-            [
-                lhs.stringValue,
-                operation.rawValue,
-                rhs.stringValue
-            ].joined(separator: " ")
-        }
-
-        static var empty = Self(
-            lhs: .zero,
-            operation: .random,
-            rhs: .zero,
-            solution: .zero
-        )
-    }
-}
-
-// MARK: - Operation
-
-extension ProblemGenerator {
-
-    enum Operation: String, CaseIterable {
-
-        static var random: Self {
-            guard
-                let random = Self.allCases.randomElement(
-                    using: &ProblemGenerator.rng
-                )
-            else {
-                return .subtraction
-            }
-
-            return random
-        }
-
-        case addition = "+"
-        case subtraction = "-"
-        case multiplication = "*"
-        case division = "/"
     }
 }
 

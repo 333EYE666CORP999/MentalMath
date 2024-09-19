@@ -8,17 +8,13 @@
 @testable import Numerica
 import XCTest
 
-// swiftlint:disable test_case_accessibility
 // swiftlint:disable implicitly_unwrapped_optional
 final class ProblemGeneratorTests: XCTestCase {
-
-    typealias Operation = ProblemGenerator.Operation
-    // swiftlint:enable test_case_accessibility
 
     private var sut: ProblemGenerator!
     // swiftlint:enable implicitly_unwrapped_optional
 
-    private var operation: Operation {
+    private var `operator`: Operator {
         .random
     }
 
@@ -35,7 +31,7 @@ final class ProblemGeneratorTests: XCTestCase {
     func testProblemConsistOfThreeParts() {
         for _ in 0...100 {
             // Arrange
-            let problem = sut.getProblem(for: operation).problemString
+            let problem = sut.getProblem(for: `operator`).problemString
 
             // Act
             let count = problem.split(separator: .space).count
@@ -47,11 +43,11 @@ final class ProblemGeneratorTests: XCTestCase {
 
     func testProblemSecondPartIsAlwaysOperator() {
         // Arrange
-        let ops = Operation.allCases.map { $0.rawValue }
+        let ops = Operator.allCases.map { $0.rawValue }
 
         // Act
         for _ in 0...100 {
-            let problem = sut.getProblem(for: operation).problemString
+            let problem = sut.getProblem(for: `operator`).problemString
             let expectedOperator = String(problem.split(separator: .space)[1])
 
             // Assert
@@ -62,34 +58,18 @@ final class ProblemGeneratorTests: XCTestCase {
     func testProblemSolutionIsCorrect() {
         for _ in 0...100 {
             // Arrange
-            let problem = sut.getProblem(for: operation)
-            let problemStringSplitted = Array(problem.problemString.split(separator: .space))
-
-            guard
-                let lhs = "\(problemStringSplitted[0])".intValue,
-                let rhs = "\(problemStringSplitted[2])".intValue
-            else {
-                XCTFail("Items provided for solution are not numbers")
-                return
-            }
-
-            guard
-                let operation = Operation(rawValue: "\(problemStringSplitted[1])")
-            else {
-                XCTFail("No valid operator provided")
-                return
-            }
+            let problem = sut.getProblem(for: `operator`)
 
             // Act
-            let res = switch operation {
+            let res = switch problem.`operator` {
             case .addition:
-                lhs + rhs
+                problem.lhs + problem.rhs
             case .subtraction:
-                lhs - rhs
+                problem.lhs - problem.rhs
             case .multiplication:
-                lhs * rhs
+                problem.lhs * problem.rhs
             case .division:
-                lhs / rhs
+                problem.lhs / problem.rhs
             }
 
             // Assert
@@ -101,7 +81,7 @@ final class ProblemGeneratorTests: XCTestCase {
         var problems = Set<String>()
         for _ in 0...100 {
             // Arrange
-            let problem = sut.getProblem(for: operation).problemString
+            let problem = sut.getProblem(for: `operator`).problemString
 
             // Act
             problems.insert(problem)
@@ -111,26 +91,10 @@ final class ProblemGeneratorTests: XCTestCase {
         XCTAssertGreaterThan(problems.count, 1, "Generator should produce different problems")
     }
 
-    func testLhsAndRhsAreAlwaysNumbers() {
-        for _ in 0...100 {
-            // Arrange
-            let problem = Array(
-                sut.getProblem(for: operation).problemString.split(separator: .space)
-            )
-            let lhs = "\(problem[0])".intValue
-            let rhs = "\(problem[2])".intValue
-
-            // Act
-            // Assert
-            XCTAssertNotNil(lhs)
-            XCTAssertNotNil(rhs)
-        }
-    }
-
-    func testEmptyProblemDTOIsValid() {
+    func testEmptyProblemModelIsValid() {
         // Arrange
         // Act
-        let emptyProblem = ProblemGenerator.ProblemDTO.empty
+        let emptyProblem = ProblemModel.empty
 
         // Assert
         XCTAssertEqual(emptyProblem.solution, .zero)
@@ -139,50 +103,40 @@ final class ProblemGeneratorTests: XCTestCase {
     func testDivisionProblemsAlwaysHaveNonZeroRhs() {
         for _ in 0...100 {
             // Arrange
-            let splittedProblemString = sut.getProblem(
-                for: .division
-            ).problemString.split(
-                separator: .space
-            ).map(String.init)
-
-            guard
-                let rhs = splittedProblemString[2].intValue
-            else {
-                XCTFail("Not a number returned")
-                return
-            }
-
             // Act
             // Assert
-            XCTAssertGreaterThan(rhs, .zero)
+            XCTAssertGreaterThan(
+                sut.getProblem(
+                    for: .division
+                ).rhs,
+                .zero
+            )
         }
     }
 
     func testProblemGeneratesCorrectOperatorOnCertainArguments() {
         for iteration in 0...100 {
             // Arrange
-            var operation: Operation
+            var `operator`: Operator
 
             if iteration < 25 {
-                operation = .addition
+                `operator` = .addition
             } else if iteration >= 25 {
-                operation = .subtraction
+                `operator` = .subtraction
             } else if iteration >= 50 {
-                operation = .multiplication
+                `operator` = .multiplication
             } else {
-                operation = .division
+                `operator` = .division
             }
-            // Act
-            let generatedOperator = String(
-                sut.getProblem(
-                    for: operation
-                ).problemString.split(
-                    separator: .space
-                )[1]
-            )
 
+            // Act
             // Assert
-            XCTAssertEqual(operation.rawValue, generatedOperator)
+            XCTAssertEqual(
+                `operator`,
+                sut.getProblem(
+                    for: `operator`
+                ).operator
+            )
         }
     }
 
@@ -208,7 +162,7 @@ final class ProblemGeneratorTests: XCTestCase {
 
     func testOperationsContainProperItems() {
         // Arrange
-        let operations = Operation.allCases
+        let operations = Operator.allCases
 
         // Act
         // Assert
@@ -241,7 +195,7 @@ final class ProblemGeneratorTests: XCTestCase {
         for _ in .zero...numberOfOperations {
             let `operator` = String(
                 sut.getProblem(
-                    for: self.operation
+                    for: self.`operator`
                 ).problemString.split(
                     separator: .space
                 )[1]

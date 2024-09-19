@@ -11,18 +11,22 @@ import SwiftData
 @Model
 final class ProblemObject {
 
-    var id = UUID()
-
-    var problem: String
-    var solution: Int
-    var solved: Bool
+    private(set) var lhs: Int
+    private(set) var `operator`: Operator
+    private(set) var rhs: Int
+    private(set) var solution: Int
+    private(set) var solved: Bool
 
     init(
-        problem: String,
+        lhs: Int,
+        operation: Operator,
+        rhs: Int,
         solution: Int,
         solved: Bool = false
     ) {
-        self.problem = problem
+        self.lhs = lhs
+        self.`operator` = operation
+        self.rhs = rhs
         self.solution = solution
         self.solved = solved
     }
@@ -32,9 +36,10 @@ extension ProblemObject: PersistentObject {
 
     func convertToModel() -> ProblemModel {
         ProblemModel(
-            problem: problem,
-            solution: solution,
-            solved: solved
+            lhs: lhs,
+            operation: `operator`,
+            rhs: rhs,
+            solution: solution
         )
     }
 }

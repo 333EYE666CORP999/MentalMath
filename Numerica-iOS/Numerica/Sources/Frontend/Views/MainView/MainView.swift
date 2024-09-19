@@ -38,10 +38,11 @@ struct MainView: View {
                         .navigationTitle("SESSION RESULTS")
                 }
             }
-            .onChange(of: viewModel.shouldShowResultsView) { _, newValue in
+            .onChange(
+                of: viewModel.shouldShowResultsView
+            ) { _, newValue in
                 if newValue {
                     navigationPath.append("SessionResultsView")
-                    print(navigationPath.count)
                 }
             }
         }
@@ -84,13 +85,13 @@ struct MainView: View {
         Text(viewModel.problem.problemString)
             .foregroundStyle(.white)
             .multilineTextAlignment(.center)
-            .font(.basic)
+            .font(.primary)
     }
 
     var inputTextField: some View {
         TextField("input", text: $viewModel.userInput)
             .padding()
-            .font(.basic)
+            .font(.primary)
             .foregroundStyle(.white)
             .keyboardType(.numberPad)
             .multilineTextAlignment(.center)
@@ -112,10 +113,12 @@ struct MainView: View {
             HStack {
                 Spacer()
                 Button(
-                    "✋🏻",
+                    "STOP",
                     action: viewModel.onEndButtonTap
                 )
-                .font(.basic)
+                .foregroundStyle(.white)
+                .font(.secondary)
+                Spacer()
             }
             Spacer()
         }

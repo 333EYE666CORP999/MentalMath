@@ -17,7 +17,7 @@ struct ActionButton: View {
             title,
             action: action
         )
-        .font(.basic)
+        .font(.primary)
         .foregroundStyle(.white)
     }
 }

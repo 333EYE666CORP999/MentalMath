@@ -12,11 +12,8 @@ import SwiftUI
 
 final class MainViewModel: ObservableObject {
 
-    typealias Problem = ProblemGenerator.ProblemDTO
-    typealias Operation = ProblemGenerator.Operation
-
     @Published var userInput = ""
-    @Published var problem: Problem = .empty
+    @Published var problem: ProblemModel = .empty
     @Published var actionButtonText: String = .startButtonTitle
     @Published var isGameStarted = false
     @Published var remainingTime: Int = .defaultTimeInterval
@@ -29,7 +26,7 @@ final class MainViewModel: ObservableObject {
     private var timerManager: TimerManager?
 
     private var cancellables = Set<AnyCancellable>()
-    private var operation: Operation {
+    private var operation: Operator {
         .random
     }
 
@@ -74,6 +71,7 @@ extension MainViewModel {
 private extension MainViewModel {
 
     func start() {
+        gameSession = nil
         isGameStarted = true
         problem = problemGenerator.getProblem(for: operation)
         actionButtonText = .submitButtonTitle
@@ -90,19 +88,8 @@ private extension MainViewModel {
         actionButtonText = .startButtonTitle
         isGameStarted = false
         remainingTime = .defaultTimeInterval
-        self.gameSession = nil
         problem = .empty
         userInput.removeAll()
-
-        #if DEBUG
-        print(
-            Array(
-                storageService.fetch(
-                    GameSessionObject.self
-                )
-            )
-        )
-        #endif
     }
 
     func processAnswer() {
@@ -117,13 +104,7 @@ private extension MainViewModel {
             gameSession?.badAnswersCount += 1
         }
 
-        gameSession?.problems.append(
-            ProblemModel(
-                problem: problem.problemString,
-                solution: problem.solution,
-                solved: problem.solved
-            )
-        )
+        gameSession?.problems.append(problem)
     }
 }
 

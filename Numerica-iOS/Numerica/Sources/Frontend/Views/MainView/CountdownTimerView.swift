@@ -13,7 +13,7 @@ struct CountdownTimerView: View {
 
     var body: some View {
         Text("\(remainingTime.timeStringFromSeconds)")
-            .font(.basic)
+            .font(.primary)
             .padding()
             .padding()
             .foregroundColor(.white)
