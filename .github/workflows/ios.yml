@@ -10,7 +10,7 @@ jobs:
     name: Build and Test
     runs-on: macos-latest
     steps:
-      - name: Checkout Repository
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Setup Xcode
@@ -40,7 +40,7 @@ jobs:
             brew install xcbeautify
           fi
 
-      - name: Run SwiftLint with Configuration
+      - name: SwiftLint
         run: |
           cd $GITHUB_WORKSPACE/Numerica-iOS
           swiftlint lint --config swiftlint.yml | tee swiftlint.log
@@ -51,10 +51,10 @@ jobs:
           echo "Found $num_violations violations."
 
           if [ "$num_violations" -gt "$threshold" ]; then
-            echo "Linting Failed: $num_violations violations found (Threshold: $threshold)."
+            echo "Linting ✅: $num_violations violations found (Threshold: $threshold)."
             exit 1
           else
-            echo "Linting Passed: $num_violations violations found (Threshold: $threshold)."
+            echo "Linting ❌: $num_violations violations found (Threshold: $threshold)."
           fi
 
       - name: Set Default Scheme
@@ -104,7 +104,7 @@ jobs:
           echo "✅ Default scheme: $default"
           echo $default > default
 
-      - name: Build Project
+      - name: Build
         env:
           scheme: ${{ 'default' }}
           platform: ${{ 'iOS Simulator' }}
@@ -122,7 +122,7 @@ jobs:
           file_to_build=$(echo $file_to_build | awk '{$1=$1;print}')
           xcodebuild build-for-testing -scheme "$scheme" -"$filetype_parameter" "$file_to_build" -destination "platform=$platform,name=$device" | xcbeautify --is-ci --renderer github-actions
 
-      - name: Run Tests
+      - name: Test
         env:
           scheme: ${{ 'default' }}
           platform: ${{ 'iOS Simulator' }}
@@ -139,8 +139,3 @@ jobs:
           fi
           file_to_build=$(echo $file_to_build | awk '{$1=$1;print}')
           xcodebuild test-without-building -scheme "$scheme" -"$filetype_parameter" "$file_to_build" -destination "platform=$platform,name=$device" | xcbeautify --is-ci --renderer github-actions
-
-      - name: Cleanup
-        if: always()
-        run: |
-          rm -rf ~/Library/Developer/Xcode/DerivedData
