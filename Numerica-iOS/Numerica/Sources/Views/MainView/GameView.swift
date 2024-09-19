@@ -12,17 +12,37 @@ struct MainView: View {
 
     @EnvironmentObject var viewModel: MainViewModel
     @FocusState private var isTextFieldFocused: Bool
+    @State private var navigationPath = NavigationPath()
 
     var body: some View {
-        ZStack {
-            background
-            endGameButtonView
+        NavigationStack(path: $navigationPath) {
+            ZStack {
+                background
 
-            switch viewModel.mode {
-            case .zen:
-                zenMainView
-            case .timed:
-                timedMainView
+                if viewModel.isGameStarted {
+                    endGameButtonView
+                }
+
+                switch viewModel.mode {
+                case .zen:
+                    zenMainView
+                case .timed:
+                    timedMainView
+                }
+            }
+            .navigationDestination(
+                for: String.self
+            ) {
+                if $0 == "SessionResultsView" {
+                    SessionResultsView()
+                        .navigationTitle("SESSION RESULTS")
+                }
+            }
+            .onChange(of: viewModel.shouldShowResultsView) { _, newValue in
+                if newValue {
+                    navigationPath.append("SessionResultsView")
+                    print(navigationPath.count)
+                }
             }
         }
     }

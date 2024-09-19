@@ -21,6 +21,7 @@ final class MainViewModel: ObservableObject {
     @Published var isGameStarted = false
     @Published var remainingTime: Int = .defaultTimeInterval
     @Published var mode: Mode = .zen
+    @Published var shouldShowResultsView = false
 
     private var gameSession: GameSessionModel?
     private let storageService: StorageService
@@ -44,6 +45,7 @@ final class MainViewModel: ObservableObject {
     func onActionButtonTap() {
         switch isGameStarted {
         case true:
+            shouldShowResultsView = false
             problem = problemGenerator.getProblem(for: operation)
             userInput.removeAll()
             processAnswer()
@@ -54,6 +56,7 @@ final class MainViewModel: ObservableObject {
 
     func onEndButtonTap() {
         end()
+        shouldShowResultsView = true
     }
 }
 
