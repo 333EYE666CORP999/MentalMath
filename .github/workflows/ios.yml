@@ -36,7 +36,7 @@ jobs:
             brew install swiftlint
           fi
 
-          gem install xcpretty
+          gem install xcbeautify
 
       - name: Run SwiftLint with Configuration
         run: |
@@ -118,7 +118,7 @@ jobs:
             file_to_build="$(ls -A | grep -i \.xcodeproj\$)"
           fi
           file_to_build=$(echo $file_to_build | awk '{$1=$1;print}')
-          xcodebuild build-for-testing -scheme "$scheme" -"$filetype_parameter" "$file_to_build" -destination "platform=$platform,name=$device" | xcpretty
+          xcodebuild build-for-testing -scheme "$scheme" -"$filetype_parameter" "$file_to_build" -destination "platform=$platform,name=$device" | xcbeautify --is-ci --renderer github-actions
 
       - name: Run Tests
         env:
@@ -136,7 +136,7 @@ jobs:
             file_to_build="$(ls -A | grep -i \.xcodeproj\$)"
           fi
           file_to_build=$(echo $file_to_build | awk '{$1=$1;print}')
-          xcodebuild test-without-building -scheme "$scheme" -"$filetype_parameter" "$file_to_build" -destination "platform=$platform,name=$device" | xcpretty
+          xcodebuild test-without-building -scheme "$scheme" -"$filetype_parameter" "$file_to_build" -destination "platform=$platform,name=$device" | xcbeautify --is-ci --renderer github-actions
 
       - name: Cleanup
         if: always()
