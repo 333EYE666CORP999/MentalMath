@@ -36,7 +36,9 @@ jobs:
             brew install swiftlint
           fi
 
-          gem install xcbeautify
+          if [ ! -x "${HOMEBREW_PREFIX}/bin/xcbeautify" ]; then
+            brew install xcbeautify
+          fi
 
       - name: Run SwiftLint with Configuration
         run: |
