@@ -91,16 +91,23 @@ struct MainView: View {
     }
 
     var inputTextField: some View {
-        TextField("input", text: $viewModel.userInput)
-            .padding()
-            .font(.primary)
-            .foregroundStyle(.white)
-            .keyboardType(.numberPad)
-            .multilineTextAlignment(.center)
-            .focused($isTextFieldFocused)
-            .onAppear {
-                isTextFieldFocused = true
-            }
+        TextField(
+            text: $viewModel.userInput
+        ) {
+            Text(viewModel.placeholderText)
+                .font(.secondary)
+                .foregroundStyle(viewModel.placeholderColor)
+                .transition(.opacity)
+        }
+        .padding()
+        .font(.primary)
+        .foregroundStyle(.white)
+        .keyboardType(.numberPad)
+        .multilineTextAlignment(.center)
+        .focused($isTextFieldFocused)
+        .onAppear {
+            isTextFieldFocused = true
+        }
     }
 
     var actionButton: some View {

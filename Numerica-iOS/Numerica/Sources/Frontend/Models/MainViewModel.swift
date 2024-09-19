@@ -12,13 +12,21 @@ import SwiftUI
 
 final class MainViewModel: ObservableObject {
 
+    @Published var mode: Mode = .zen
+    @Published var isGameStarted = false
+    @Published var shouldShowResultsView = false
+
     @Published var userInput = ""
     @Published var problem: ProblemModel = .empty
+
     @Published var actionButtonText: String = .startButtonTitle
-    @Published var isGameStarted = false
     @Published var remainingTime: Int = .defaultTimeInterval
-    @Published var mode: Mode = .zen
-    @Published var shouldShowResultsView = false
+    @Published var placeholderText = "enter here"
+    @Published var placeholderColor: Color = .gray
+
+    var sessionResults: [ProblemModel] {
+        gameSession?.problems ?? []
+    }
 
     private var gameSession: GameSessionModel?
     private let storageService: StorageService
@@ -29,6 +37,7 @@ final class MainViewModel: ObservableObject {
     private var operation: Operator {
         .random
     }
+    private var showingError = false
 
     init(
         storageService: StorageService,
@@ -93,6 +102,11 @@ private extension MainViewModel {
     }
 
     func processAnswer() {
+        guard !userInput.isEmpty else {
+            showErrorPlaceholder()
+            return
+        }
+
         guard let solution = userInput.intValue else {
             return
         }
@@ -105,6 +119,31 @@ private extension MainViewModel {
         }
 
         gameSession?.problems.append(problem)
+    }
+
+    func showErrorPlaceholder() {
+        guard !showingError else {
+            return
+        }
+
+        showingError = true
+
+        withAnimation(
+            .easeInOut(duration: 0.5)
+        ) {
+            self.placeholderText = "!!!"
+            self.placeholderColor = .red
+        }
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            withAnimation(
+                .easeInOut(duration: 0.5)
+            ) {
+                self.placeholderText = "enter here"
+                self.placeholderColor = .gray
+                self.showingError = false
+            }
+        }
     }
 }
 
