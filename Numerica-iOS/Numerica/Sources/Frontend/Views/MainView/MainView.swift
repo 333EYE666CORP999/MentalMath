@@ -34,8 +34,10 @@ struct MainView: View {
                 for: String.self
             ) {
                 if $0 == "SessionResultsView" {
-                    SessionResultsView()
-                        .navigationTitle("SESSION RESULTS")
+                    SessionResultsView(
+                        sessionResults: viewModel.sessionResults
+                    )
+                    .navigationTitle("SESSION RESULTS")
                 }
             }
             .onChange(

@@ -10,34 +10,17 @@ import SwiftUI
 
 struct SessionResultsView: View {
 
-    // FIXME: - убрать после того, как закончим экран статы сессии
-    struct DataKKK: Identifiable {
-        var id = UUID()
-
-        var date: Date
-        var total: Int
-        var good: Int
-        var bad: Int
-        var rate: Double
-    }
-
-    // FIXME: - убрать после того, как закончим экран статы сессии
-    let data = Array(
-        repeating: DataKKK(
-            date: Date(),
-            total: 22,
-            good: 10,
-            bad: 12,
-            rate: 2.9
-        ),
-        count: 25
-    )
+    var sessionResults: [ProblemModel]
 
     var body: some View {
         ZStack {
             VStack {
-                List(data, id: \.id) { rowItem in
-                    SessionListItem.empty
+                List(sessionResults) { rowItem in
+                    SessionListItem(
+                        problemString: rowItem.problemString,
+                        solution: rowItem.solution,
+                        solved: rowItem.solved
+                    )
                 }
             }
         }
@@ -83,6 +66,6 @@ struct SessionListItem: View {
 }
 
 #Preview {
-    SessionResultsView()
+    SessionResultsView(sessionResults: [])
     //    SessionListItem.empty
 }

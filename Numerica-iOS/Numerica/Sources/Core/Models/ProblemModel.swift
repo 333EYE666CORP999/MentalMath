@@ -7,7 +7,8 @@
 
 import Foundation
 
-final class ProblemModel {
+// TODO: - поднять в кодстайл - протоколы, полностью с дефолтн реализ - сразу в объявление
+final class ProblemModel: ProblemStringRepresentable {
 
     static var empty = ProblemModel(
         lhs: .zero,
@@ -37,6 +38,7 @@ final class ProblemModel {
     }
 }
 
+// TODO: - поднять в кодстайл - протоколы хотя бы без одного дефолта - в экстеншены
 extension ProblemModel: PersistableModel {
 
     func convertToObject() -> ProblemObject {
@@ -50,4 +52,9 @@ extension ProblemModel: PersistableModel {
     }
 }
 
-extension ProblemModel: ProblemStringRepresentable { }
+extension ProblemModel: Identifiable {
+    
+    var id: UUID {
+        UUID()
+    }
+}
