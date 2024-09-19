@@ -8,7 +8,7 @@
 import Foundation
 
 // TODO: - поднять в кодстайл - протоколы, полностью с дефолтн реализ - сразу в объявление
-final class ProblemModel: ProblemStringRepresentable {
+final class ProblemModel {
 
     static var empty = ProblemModel(
         lhs: .zero,
@@ -17,11 +17,20 @@ final class ProblemModel: ProblemStringRepresentable {
         solution: .zero
     )
 
-    private(set) var lhs: Int
-    private(set) var `operator`: Operator
-    private(set) var rhs: Int
-    private(set) var solution: Int
+    let lhs: Int
+    let `operator`: Operator
+    let rhs: Int
+    let solution: Int
+
     var solved: Bool
+
+    var problemString: String {
+        [
+            lhs.stringValue,
+            `operator`.rawValue,
+            rhs.stringValue
+        ].joined(separator: " ")
+    }
 
     init(
         lhs: Int,

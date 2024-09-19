@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3F2E29CD2C9C55D0002CACCE /* ProblemStringRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2E29CC2C9C55D0002CACCE /* ProblemStringRepresentable.swift */; };
 		3F415BCE2C83800800C94EB6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F415BCD2C83800800C94EB6 /* Preview Assets.xcassets */; };
 		3F41CE762C9C67B0006358E4 /* Operator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F41CE752C9C67B0006358E4 /* Operator.swift */; };
 		3F480BB02C9462B40047B9AE /* PersistentLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F480BAF2C9462B40047B9AE /* PersistentLayer.swift */; };
@@ -51,7 +50,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3F2E29CC2C9C55D0002CACCE /* ProblemStringRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemStringRepresentable.swift; sourceTree = "<group>"; };
 		3F415BC02C83800500C94EB6 /* Numerica.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Numerica.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F415BCD2C83800800C94EB6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3F415BD32C83800800C94EB6 /* NumericaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NumericaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -188,7 +186,6 @@
 			isa = PBXGroup;
 			children = (
 				3F480BAF2C9462B40047B9AE /* PersistentLayer.swift */,
-				3F2E29CC2C9C55D0002CACCE /* ProblemStringRepresentable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -470,7 +467,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F2E29CD2C9C55D0002CACCE /* ProblemStringRepresentable.swift in Sources */,
 				3F480BB02C9462B40047B9AE /* PersistentLayer.swift in Sources */,
 				3F8475982C8513000034EC78 /* GameSessionObject.swift in Sources */,
 				3F8475992C8513000034EC78 /* MainView.swift in Sources */,
