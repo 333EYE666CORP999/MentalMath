@@ -51,10 +51,10 @@ jobs:
           echo "Found $num_violations violations."
 
           if [ "$num_violations" -gt "$threshold" ]; then
-            echo "Linting ✅: $num_violations violations found (Threshold: $threshold)."
+            echo "Linting ❌: $num_violations violations found (Threshold: $threshold)."
             exit 1
           else
-            echo "Linting ❌: $num_violations violations found (Threshold: $threshold)."
+            echo "Linting ✅: $num_violations violations found (Threshold: $threshold)."
           fi
 
       - name: Set Default Scheme
