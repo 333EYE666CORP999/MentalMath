@@ -283,8 +283,8 @@
 		3F8475932C8513000034EC78 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				3F41CE722C9C66EF006358E4 /* Frontend */,
 				3F41CE712C9C66D8006358E4 /* Core */,
+				3F41CE722C9C66EF006358E4 /* Frontend */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
