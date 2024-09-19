@@ -43,7 +43,7 @@ jobs:
       - name: SwiftLint
         run: |
           cd $GITHUB_WORKSPACE/Numerica-iOS
-          swiftlint lint --config swiftlint.yml | tee swiftlint.log
+          swiftlint lint --config swiftlint.yml | tee swiftlint.log | xcbeautify --is-ci --renderer github-actions
           num_violations=$(wc -l < swiftlint.log | xargs)
 
           threshold=20
