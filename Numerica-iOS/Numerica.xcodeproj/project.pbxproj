@@ -29,6 +29,7 @@
 		3F8475A12C8527E90034EC78 /* SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8475A02C8527E90034EC78 /* SwiftUI.swift */; };
 		3F8475A32C85A29A0034EC78 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8475A22C85A29A0034EC78 /* StorageService.swift */; };
 		3F8475A72C85D3480034EC78 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8475A62C85D3480034EC78 /* MainViewModel.swift */; };
+		3FDAF7B72C9D877D0089AAFC /* ErrorShowingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDAF7B62C9D877D0089AAFC /* ErrorShowingTextField.swift */; };
 		3FE64FA82C8851240053C96C /* SwiftData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE64FA72C8851240053C96C /* SwiftData.swift */; };
 /* End PBXBuildFile section */
 
@@ -76,6 +77,7 @@
 		3F8475A62C85D3480034EC78 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		3FA763952C8C75B600333C0C /* NumericaTestsLaunchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumericaTestsLaunchTests.swift; sourceTree = "<group>"; };
 		3FA763962C8C75B600333C0C /* NumericaUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumericaUITests.swift; sourceTree = "<group>"; };
+		3FDAF7B62C9D877D0089AAFC /* ErrorShowingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorShowingTextField.swift; sourceTree = "<group>"; };
 		3FE64FA72C8851240053C96C /* SwiftData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -213,6 +215,7 @@
 				3F6435052C899BD60016C7AC /* ActionButton.swift */,
 				3F8475912C8513000034EC78 /* CountdownTimerView.swift */,
 				3F8475902C8513000034EC78 /* MainView.swift */,
+				3FDAF7B62C9D877D0089AAFC /* ErrorShowingTextField.swift */,
 			);
 			path = MainView;
 			sourceTree = "<group>";
@@ -481,6 +484,7 @@
 				3F8475A72C85D3480034EC78 /* MainViewModel.swift in Sources */,
 				3F8475962C8513000034EC78 /* ProblemGenerator.swift in Sources */,
 				3F8475A32C85A29A0034EC78 /* StorageService.swift in Sources */,
+				3FDAF7B72C9D877D0089AAFC /* ErrorShowingTextField.swift in Sources */,
 				3F8475952C8513000034EC78 /* NumericaApp.swift in Sources */,
 				3F6435062C899BD60016C7AC /* ActionButton.swift in Sources */,
 				3F480BB52C9464140047B9AE /* ProblemModel.swift in Sources */,

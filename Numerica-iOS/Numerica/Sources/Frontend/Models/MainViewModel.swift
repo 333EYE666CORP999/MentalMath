@@ -12,6 +12,8 @@ import SwiftUI
 
 final class MainViewModel: ObservableObject {
 
+    // TODO: - Refactor ErrorShowingView logic - mb some unused
+
     @Published var mode: Mode = .zen
     @Published var isGameStarted = false
     @Published var shouldShowResultsView = false
@@ -21,8 +23,9 @@ final class MainViewModel: ObservableObject {
 
     @Published var actionButtonText: String = .startButtonTitle
     @Published var remainingTime: Int = .defaultTimeInterval
-    @Published var placeholderText = "enter here"
+    @Published var placeholderText = ""
     @Published var placeholderColor: Color = .gray
+    @Published var showingError = false
 
     var sessionResults: [ProblemModel] {
         gameSession?.problems ?? []
@@ -37,7 +40,6 @@ final class MainViewModel: ObservableObject {
     private var operation: Operator {
         .random
     }
-    private var showingError = false
 
     init(
         storageService: StorageService,
@@ -51,10 +53,8 @@ final class MainViewModel: ObservableObject {
     func onActionButtonTap() {
         switch isGameStarted {
         case true:
-            shouldShowResultsView = false
-            problem = problemGenerator.getProblem(for: operation)
-            userInput.removeAll()
             processAnswer()
+            userInput.removeAll()
         case false:
             start()
         }
@@ -119,6 +119,8 @@ private extension MainViewModel {
         }
 
         gameSession?.problems.append(problem)
+
+        problem = problemGenerator.getProblem(for: operation)
     }
 
     func showErrorPlaceholder() {
@@ -131,7 +133,7 @@ private extension MainViewModel {
         withAnimation(
             .easeInOut(duration: 0.5)
         ) {
-            self.placeholderText = "!!!"
+            self.placeholderText = "input number"
             self.placeholderColor = .red
         }
 
@@ -139,7 +141,7 @@ private extension MainViewModel {
             withAnimation(
                 .easeInOut(duration: 0.5)
             ) {
-                self.placeholderText = "enter here"
+                self.placeholderText.removeAll()
                 self.placeholderColor = .gray
                 self.showingError = false
             }

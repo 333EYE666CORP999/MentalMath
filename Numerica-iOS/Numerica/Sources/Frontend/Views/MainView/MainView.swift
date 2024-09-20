@@ -48,6 +48,7 @@ struct MainView: View {
                 }
             }
         }
+        .foregroundStyle(.black)
     }
 
     var zenMainView: some  View {
@@ -91,14 +92,11 @@ struct MainView: View {
     }
 
     var inputTextField: some View {
-        TextField(
-            text: $viewModel.userInput
-        ) {
-            Text(viewModel.placeholderText)
-                .font(.secondary)
-                .foregroundStyle(viewModel.placeholderColor)
-                .transition(.opacity)
-        }
+        ErrorShowingTextField(
+            text: $viewModel.userInput,
+            placeholderText: $viewModel.placeholderText,
+            placeholderColor: $viewModel.placeholderColor
+        )
         .padding()
         .font(.primary)
         .foregroundStyle(.white)
