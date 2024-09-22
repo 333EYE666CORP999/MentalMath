@@ -14,6 +14,7 @@ struct NumericaApp: App {
     var body: some Scene {
         WindowGroup {
             MainView()
+                .tint(.white)
                 .environmentObject(
                     MainViewModel(
                         storageService: StorageService(
@@ -22,6 +23,8 @@ struct NumericaApp: App {
                         mathGen: ProblemGenerator()
                     )
                 )
+            // FIXME: - убрать через семантические цвета на ui
+                .environment(\.colorScheme, .dark)
         }
     }
 }

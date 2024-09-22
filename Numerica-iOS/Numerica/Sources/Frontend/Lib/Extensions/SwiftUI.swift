@@ -22,3 +22,10 @@ extension Font {
         design: .monospaced
     )
 }
+
+extension View {
+
+    static var semanticBackground: some View {
+        Color(.defaultBackground)
+    }
+}

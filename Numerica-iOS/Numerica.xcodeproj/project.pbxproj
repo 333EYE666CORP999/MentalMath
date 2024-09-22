@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F296D582CA0371F00D1A2C6 /* SessionResutsListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F296D572CA0371F00D1A2C6 /* SessionResutsListItem.swift */; };
+		3F296D5A2CA038CB00D1A2C6 /* Magic Numbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F296D592CA038CB00D1A2C6 /* Magic Numbers.swift */; };
 		3F296D5C2CA039CA00D1A2C6 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 3F296D5B2CA039CA00D1A2C6 /* Localizable.xcstrings */; };
 		3F415BCE2C83800800C94EB6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F415BCD2C83800800C94EB6 /* Preview Assets.xcassets */; };
 		3F41CE762C9C67B0006358E4 /* Operator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F41CE752C9C67B0006358E4 /* Operator.swift */; };
@@ -52,6 +54,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3F296D572CA0371F00D1A2C6 /* SessionResutsListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionResutsListItem.swift; sourceTree = "<group>"; };
+		3F296D592CA038CB00D1A2C6 /* Magic Numbers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Magic Numbers.swift"; sourceTree = "<group>"; };
 		3F296D5B2CA039CA00D1A2C6 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		3F415BC02C83800500C94EB6 /* Numerica.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Numerica.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F415BCD2C83800800C94EB6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -108,6 +112,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3F296D562CA0340400D1A2C6 /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+				3F84759B2C8514400034EC78 /* Extensions */,
+				3F480BB12C9462C20047B9AE /* Protocols */,
+				3F296D592CA038CB00D1A2C6 /* Magic Numbers.swift */,
+			);
+			path = Lib;
+			sourceTree = "<group>";
+		};
 		3F415BB72C83800500C94EB6 = {
 			isa = PBXGroup;
 			children = (
@@ -160,9 +174,8 @@
 			isa = PBXGroup;
 			children = (
 				3F84758A2C8513000034EC78 /* Common */,
-				3F84759B2C8514400034EC78 /* Extensions */,
+				3F296D562CA0340400D1A2C6 /* Lib */,
 				3F6435042C899BC20016C7AC /* Models */,
-				3F480BB12C9462C20047B9AE /* Protocols */,
 				3F84758F2C8513000034EC78 /* Storage */,
 				3F8475922C8513000034EC78 /* Views */,
 			);
@@ -226,6 +239,7 @@
 			isa = PBXGroup;
 			children = (
 				3F480BBB2C94D70F0047B9AE /* SessionResultsView.swift */,
+				3F296D572CA0371F00D1A2C6 /* SessionResutsListItem.swift */,
 			);
 			path = SessionResultsView;
 			sourceTree = "<group>";
@@ -500,6 +514,7 @@
 				3F480BB02C9462B40047B9AE /* PersistentLayer.swift in Sources */,
 				3F8475982C8513000034EC78 /* GameSessionObject.swift in Sources */,
 				3F8475992C8513000034EC78 /* MainView.swift in Sources */,
+				3F296D582CA0371F00D1A2C6 /* SessionResutsListItem.swift in Sources */,
 				3FE64FA82C8851240053C96C /* SwiftData.swift in Sources */,
 				3F8475A12C8527E90034EC78 /* SwiftUI.swift in Sources */,
 				3F480BBC2C94D70F0047B9AE /* SessionResultsView.swift in Sources */,
@@ -510,6 +525,7 @@
 				3F65EE6C2C91AA98004F08EB /* ProblemObject.swift in Sources */,
 				3F8475A72C85D3480034EC78 /* MainViewModel.swift in Sources */,
 				3F8475962C8513000034EC78 /* ProblemGenerator.swift in Sources */,
+				3F296D5A2CA038CB00D1A2C6 /* Magic Numbers.swift in Sources */,
 				3F8475A32C85A29A0034EC78 /* StorageService.swift in Sources */,
 				3FDAF7B72C9D877D0089AAFC /* ErrorShowingTextField.swift in Sources */,
 				3F8475952C8513000034EC78 /* NumericaApp.swift in Sources */,

@@ -62,6 +62,9 @@ final class MainViewModel: ObservableObject {
 
     func onEndButtonTap() {
         end()
+        guard !sessionResults.isEmpty else {
+            return
+        }
         shouldShowResultsView = true
     }
 }
