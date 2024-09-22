@@ -17,8 +17,8 @@ struct MainView: View {
     var body: some View {
         NavigationStack(path: $navigationPath) {
             ZStack {
-                background
-
+                Self.semanticBackground
+            
                 if viewModel.isGameStarted {
                     endGameButtonView
                 }
@@ -35,6 +35,7 @@ struct MainView: View {
             ) {
                 if $0 == "SessionResultsView" {
                     SessionResultsView(
+                        shouldShowSessionResultsView: $viewModel.shouldShowResultsView,
                         sessionResults: viewModel.sessionResults
                     )
                     .navigationTitle("SESSION RESULTS")
@@ -48,7 +49,6 @@ struct MainView: View {
                 }
             }
         }
-        .foregroundStyle(.black)
     }
 
     var zenMainView: some  View {
@@ -70,12 +70,6 @@ struct MainView: View {
             }
             actionButton
         }
-    }
-
-    var background: some View {
-        Rectangle()
-            .foregroundColor(.black)
-            .ignoresSafeArea()
     }
 
     var countdown: some View {

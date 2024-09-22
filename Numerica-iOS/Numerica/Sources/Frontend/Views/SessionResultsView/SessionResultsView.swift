@@ -10,13 +10,17 @@ import SwiftUI
 
 struct SessionResultsView: View {
 
+    @Binding var shouldShowSessionResultsView: Bool
+
     var sessionResults: [ProblemModel]
 
     var body: some View {
         ZStack {
+            Self.semanticBackground
             VStack {
+                Spacer()
                 List(sessionResults) { rowItem in
-                    SessionListItem(
+                    SessionResultsListItem(
                         problemString: rowItem.problemString,
                         solution: rowItem.solution,
                         solved: rowItem.solved
@@ -24,48 +28,8 @@ struct SessionResultsView: View {
                 }
             }
         }
-    }
-}
-
-// FIXME: - нужно дорабтотать, пока early prototype
-struct SessionListItem: View {
-
-    static var empty = Self(
-        problemString: "",
-        solution: .zero,
-        solved: .random()
-    )
-
-    var problemString: String
-    var solution: Int
-    var solved: Bool
-
-    var body: some View {
-        ZStack {
-            Rectangle()
-                .foregroundColor(.black)
-            HStack(alignment: .top) {
-                VStack {
-                    Text("ProblemString")
-                        .foregroundStyle(.white)
-                }
-                Spacer()
-                VStack {
-                    Text("Answer")
-                        .foregroundStyle(.white)
-                }
-                Spacer()
-                VStack {
-                    Text("❌ / ✅")
-                        .foregroundStyle(.white)
-                }
-            }
-            .padding()
+        .onDisappear {
+            shouldShowSessionResultsView = false
         }
     }
-}
-
-#Preview {
-    SessionResultsView(sessionResults: [])
-    //    SessionListItem.empty
 }
