@@ -3,7 +3,9 @@ import XCTest
 
 final class LocalizationTests: XCTestCase {
 
+    // swiftlint:disable implicitly_unwrapped_optional
     private var sut: XCUIApplication!
+    // swiftlint:enable implicitly_unwrapped_optional
     private var languagesAndLocales: [[String: String]] = []
     private var testBundle = Bundle(for: currentObjectMetatype)
 
