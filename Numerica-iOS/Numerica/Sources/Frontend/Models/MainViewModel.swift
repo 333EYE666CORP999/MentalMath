@@ -178,8 +178,8 @@ private extension MainViewModel {
 
 private extension String {
 
-    static let startButtonTitle: Self = "START"
-    static let submitButtonTitle: Self = "SUBMIT"
+    static let startButtonTitle: Self = String(localized: "START")
+    static let submitButtonTitle: Self = String(localized: "SUBMIT")
 }
 
 private extension Int {

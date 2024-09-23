@@ -72,3 +72,10 @@ extension Double {
 
     var intValue: Int { Int(self) }
 }
+
+extension NSObjectProtocol {
+
+    static var currentObjectMetatype: Self.Type {
+        Self.self
+    }
+}

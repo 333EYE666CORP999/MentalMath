@@ -134,5 +134,5 @@ private extension ProblemGenerator {
 
 private extension Int {
 
-    static let maxDigitsCount: Self = 3
+    static let maxDigitsCount: Self = 1
 }

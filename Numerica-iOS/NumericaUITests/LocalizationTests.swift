@@ -5,37 +5,151 @@
 //  Created by Dmitry Aksyonov on 22.09.2024.
 //
 
+@testable import Numerica
 import XCTest
 
+// swiftlint:disable implicitly_unwrapped_optional
 final class LocalizationTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    private var sut: XCUIApplication!
+    // swiftlint:enable implicitly_unwrapped_optional
 
-        // In UI tests it is usually best to stop immediately when a failure occurs.
+    private let testBundle = Bundle(for: currentObjectMetatype)
+    private let languagesAndLocales: [[String: String]]
+
+    init(
+        sut: XCUIApplication!,
+        languagesAndLocales: [[String : String]]
+    ) {
+        self.sut = sut
+        self.languagesAndLocales = languagesAndLocales
+        super.init()
+    }
+
+    override func setUp() {
+        super.setUp()
         continueAfterFailure = false
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+        sut = XCUIApplication()
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    override func tearDown() {
+        sut = nil
+        super.tearDown()
     }
 
-    func testExample() throws {
-        // UI tests must launch the application that they test.
-        let app = XCUIApplication()
-        app.launch()
+    func testStartButtonOnAllLanguages() {
+        for element in languagesAndLocales {
+            guard
+                let lang = element["-AppleLanguage"],
+                let locale = element["-AppleLocale"],
+                let localizedString = getLocalizedString(
+                    for: "START",
+                    language: lang,
+                    locale: locale
+                )
+            else {
+                XCTFail("non retrieved data from localization array")
+                return
+            }
 
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+            configureApp(language: lang, locale: locale)
+            sut.launch()
+            let buttonText = getuButton(for: "MainView.ActionButton").label
+
+            XCTAssertEqual(
+                buttonText,
+                localizedString,
+                """
+                Button text: \(buttonText) is not equal to localized string: \(localizedString) \
+                on locale: \(locale) and language: \(lang)
+                """
+            )
+        }
     }
 
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
+    func testSubmitButtonTitleOnAllLanguages() {
+        for element in languagesAndLocales {
+            guard
+                let lang = element["-AppleLanguage"],
+                let locale = element["-AppleLocale"],
+                let localizedString = getLocalizedString(
+                    for: "SUBMIT",
+                    language: lang,
+                    locale: locale
+                )
+            else {
+                XCTFail("non retrieved data from localization array")
+                return
             }
         }
+    }
+}
+
+private extension LocalizationTests {
+
+    private typealias Info = [String: [[String: String]]]
+
+    func getLanguagesAndLocales() -> [[String: String]] {
+        guard let url = testBundle.url(
+            forResource: "languages_and_locales",
+            withExtension: "json"
+        ) else {
+            return []
+        }
+
+        do {
+            let data = try Data(contentsOf: url)
+            guard
+                let info = try? JSONSerialization.jsonObject(with: data) as? Info,
+                let langs = info["languages_and_locales"]
+            else {
+                return []
+            }
+            return langs
+        } catch let error as NSError {
+            XCTFail(
+                error.userInfo.map { "\($0): \($1)" }.joined(separator: "\n")
+            )
+            return []
+        }
+    }
+
+    func configureApp(
+        language: String,
+        locale: String
+    ) {
+        sut.launchArguments = [
+            "-AppleLanguages", "(\(language))",
+            "-AppleLocale", "\(locale)"
+        ]
+    }
+
+    func getuButton(for id: String) -> XCUIElement {
+        sut.buttons[id]
+    }
+
+    func getLocalizedString(
+        for key: String,
+        language: String,
+        locale: String
+    ) -> String? {
+        guard let lprojPath = testBundle.path(
+            forResource: language,
+            ofType: "lproj"
+        ) else {
+            XCTFail("Did not retrieve lproj path for \(locale)")
+            return nil
+        }
+
+        guard let localizationBundle = Bundle(path: lprojPath) else {
+            XCTFail("Did not retrieve localization bundle for \(language)")
+            return nil
+        }
+
+        return localizationBundle.localizedString(
+            forKey: key,
+            value: nil,
+            table: nil
+        )
     }
 }

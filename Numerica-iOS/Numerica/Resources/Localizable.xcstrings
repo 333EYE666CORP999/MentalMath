@@ -39,12 +39,6 @@
             "value" : "РЕЗУЛТАТИ ОТ СЕСИЯТА"
           }
         },
-        "ca-tribal" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "SESSION RESULTS (CANADIAN TRIBAL)"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -275,12 +269,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "СТАРТ"
-          }
-        },
-        "ca-tribal" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "BEGIN (CANADIAN TRIBAL)"
           }
         },
         "cs" : {
@@ -515,12 +503,6 @@
             "value" : "СТОП"
           }
         },
-        "ca-tribal" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "STOP (CANADIAN TRIBAL)"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -751,12 +733,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ИЗПРАТИ"
-          }
-        },
-        "ca-tribal" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "SUBMIT (CANADIAN TRIBAL)"
           }
         },
         "cs" : {

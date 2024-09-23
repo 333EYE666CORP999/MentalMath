@@ -18,7 +18,7 @@ struct MainView: View {
         NavigationStack(path: $navigationPath) {
             ZStack {
                 Self.semanticBackground
-            
+
                 if viewModel.isGameStarted {
                     endGameButtonView
                 }
@@ -107,6 +107,7 @@ struct MainView: View {
             title: $viewModel.actionButtonText,
             action: viewModel.onActionButtonTap
         )
+        .accessibilityIdentifier("MainView.ActionButton")
     }
 
     var endGameButtonView: some View {
