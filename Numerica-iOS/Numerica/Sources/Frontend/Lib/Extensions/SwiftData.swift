@@ -1,10 +1,3 @@
-//
-//  Previews.swift
-//  Numerica
-//
-//  Created by Dmitry Aksyonov on 04.09.2024.
-//
-
 import Foundation
 import SwiftData
 

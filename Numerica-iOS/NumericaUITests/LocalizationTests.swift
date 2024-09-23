@@ -1,10 +1,3 @@
-//
-//  LocalizationTests.swift
-//  NumericaUITests
-//
-//  Created by Dmitry Aksyonov on 22.09.2024.
-//
-
 @testable import Numerica
 import XCTest
 

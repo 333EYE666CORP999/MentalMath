@@ -1,10 +1,3 @@
-//
-//  Problem.swift
-//  Numerica
-//
-//  Created by Dmitry Aksyonov on 11.09.2024.
-//
-
 import Foundation
 import SwiftData
 
