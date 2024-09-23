@@ -1,3 +1,10 @@
+//
+//  ActionButton.swift
+//  Numerica
+//
+//  Created by Dmitry Aksyonov on 05.09.2024.
+//
+
 import SwiftUI
 
 struct ActionButton: View {

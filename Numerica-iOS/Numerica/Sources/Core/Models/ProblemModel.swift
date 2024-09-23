@@ -1,3 +1,10 @@
+//
+//  ProblemModel.swift
+//  Numerica
+//
+//  Created by Dmitry Aksyonov on 13.09.2024.
+//
+
 import Foundation
 
 // TODO: - поднять в кодстайл - протоколы, полностью с дефолтн реализ - сразу в объявление

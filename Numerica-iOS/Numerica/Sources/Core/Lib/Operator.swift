@@ -1,3 +1,10 @@
+//
+//  Operation.swift
+//  Numerica
+//
+//  Created by Dmitry Aksyonov on 19.09.2024.
+//
+
 import Foundation
 
 enum Operator: String, CaseIterable, Codable {

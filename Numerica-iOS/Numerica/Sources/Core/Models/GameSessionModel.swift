@@ -1,3 +1,10 @@
+//
+//  GameSessionModel.swift
+//  Numerica
+//
+//  Created by Dmitry Aksyonov on 13.09.2024.
+//
+
 import Foundation
 
 final class GameSessionModel {

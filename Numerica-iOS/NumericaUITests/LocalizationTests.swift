@@ -1,6 +1,14 @@
+//
+//  LocalizationTests.swift
+//  NumericaUITests
+//
+//  Created by Dmitry Aksyonov on 22.09.2024.
+//
+
 @testable import Numerica
 import XCTest
 
+// swiftlint:disable implicitly_unwrapped_optional
 final class LocalizationTests: XCTestCase {
 
     // swiftlint:disable implicitly_unwrapped_optional
@@ -9,16 +17,10 @@ final class LocalizationTests: XCTestCase {
     private var languagesAndLocales: [[String: String]] = []
     private var testBundle = Bundle(for: currentObjectMetatype)
 
-    // Retrieve languages and locales once during setUp
     override func setUp() {
         super.setUp()
         continueAfterFailure = false
         sut = XCUIApplication()
-
-        // Retrieve languages and locales once here
-        if languagesAndLocales.isEmpty {
-            languagesAndLocales = getLanguagesAndLocales()
-        }
     }
 
     override func tearDown() {
@@ -26,32 +28,24 @@ final class LocalizationTests: XCTestCase {
         super.tearDown()
     }
 
-    // Test for "START" button localization on all languages
     func testStartButtonOnAllLanguages() {
-        testButtonLocalization(for: "START", buttonId: "MainView.ActionButton")
-    }
-
-    // Test for "SUBMIT" button localization on all languages
-    func testSubmitButtonTitleOnAllLanguages() {
-        testButtonLocalization(for: "SUBMIT", buttonId: "SubmitButton")
-    }
-
-    // Generalized function to test button localization
-    private func testButtonLocalization(for key: String, buttonId: String) {
         for element in languagesAndLocales {
             guard
                 let lang = element["-AppleLanguage"],
                 let locale = element["-AppleLocale"],
-                let localizedString = getLocalizedString(for: key, language: lang, locale: locale)
+                let localizedString = getLocalizedString(
+                    for: "START",
+                    language: lang,
+                    locale: locale
+                )
             else {
-                XCTFail("Failed to retrieve localization data for \(key)")
-                continue
+                XCTFail("non retrieved data from localization array")
+                return
             }
 
             configureApp(language: lang, locale: locale)
             sut.launch()
-
-            let buttonText = sut.buttons[buttonId].label
+            let buttonText = getuButton(for: "MainView.ActionButton").label
 
             XCTAssertEqual(
                 buttonText,
@@ -63,61 +57,90 @@ final class LocalizationTests: XCTestCase {
             )
         }
     }
+
+    func testSubmitButtonTitleOnAllLanguages() {
+        for element in languagesAndLocales {
+            guard
+                let lang = element["-AppleLanguage"],
+                let locale = element["-AppleLocale"],
+                let localizedString = getLocalizedString(
+                    for: "SUBMIT",
+                    language: lang,
+                    locale: locale
+                )
+            else {
+                XCTFail("non retrieved data from localization array")
+                return
+            }
+        }
+    }
 }
 
-// MARK: - Helper Functions
 private extension LocalizationTests {
 
-    typealias Info = [String: [[String: String]]]
+    private typealias Info = [String: [[String: String]]]
 
-    // This function retrieves the languages and locales only once
     func getLanguagesAndLocales() -> [[String: String]] {
-        guard let url = Bundle(for: type(of: self)).url(
+        guard let url = testBundle.url(
             forResource: "languages_and_locales",
             withExtension: "json"
         ) else {
-            XCTFail("Failed to find languages_and_locales.json")
             return []
         }
 
         do {
             let data = try Data(contentsOf: url)
-            guard let info = try? JSONSerialization.jsonObject(with: data) as? Info else {
-                XCTFail("Failed to parse languages_and_locales.json")
+            guard
+                let info = try? JSONSerialization.jsonObject(with: data) as? Info,
+                let langs = info["languages_and_locales"]
+            else {
                 return []
             }
-            return info["languages_and_locales"] ?? []
-        } catch {
-            XCTFail("Failed to load languages and locales: \(error.localizedDescription)")
+            return langs
+        } catch let error as NSError {
+            XCTFail(
+                error.userInfo.map { "\($0): \($1)" }.joined(separator: "\n")
+            )
             return []
         }
     }
 
-    // Configure app with the specified language and locale
-    func configureApp(language: String, locale: String) {
+    func configureApp(
+        language: String,
+        locale: String
+    ) {
         sut.launchArguments = [
-            "-AppleLanguages", "\(language)",
+            "-AppleLanguages", "(\(language))",
             "-AppleLocale", "\(locale)"
         ]
     }
 
-    // Retrieve the localized string for a given key, language, and locale
-    func getLocalizedString(for key: String, language: String, locale: String) -> String? {
-        guard let lprojPath = Bundle(for: type(of: self)).path(forResource: language, ofType: "lproj") else {
-            XCTFail("Could not retrieve lproj path for language: \(language), locale: \(locale)")
+    func getuButton(for id: String) -> XCUIElement {
+        sut.buttons[id]
+    }
+
+    func getLocalizedString(
+        for key: String,
+        language: String,
+        locale: String
+    ) -> String? {
+        guard let lprojPath = testBundle.path(
+            forResource: language,
+            ofType: "lproj"
+        ) else {
+            XCTFail("Did not retrieve lproj path for \(locale)")
             return nil
         }
 
         guard let localizationBundle = Bundle(path: lprojPath) else {
-            XCTFail("Could not retrieve localization bundle for language: \(language)")
+            XCTFail("Did not retrieve localization bundle for \(language)")
             return nil
         }
 
-        return localizationBundle
-            .localizedString(
-                forKey: key,
-                value: nil,
-                table: nil
-            )
+        return localizationBundle.localizedString(
+            forKey: key,
+            value: nil,
+            table: nil
+        )
     }
 }

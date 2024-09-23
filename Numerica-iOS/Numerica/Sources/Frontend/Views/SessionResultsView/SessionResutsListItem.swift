@@ -1,3 +1,10 @@
+//
+//  SessionResutsListItem.swift
+//  Numerica
+//
+//  Created by Dmitry Aksyonov on 22.09.2024.
+//
+
 import Foundation
 import SwiftUI
 

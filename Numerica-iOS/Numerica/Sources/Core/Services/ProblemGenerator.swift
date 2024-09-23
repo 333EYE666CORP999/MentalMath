@@ -1,3 +1,10 @@
+//
+//  File.swift
+//  Numerica
+//
+//  Created by Dmitry Aksyonov on 01.09.2024.
+//
+
 import Foundation
 
 // MARK: - ProblemGenerator

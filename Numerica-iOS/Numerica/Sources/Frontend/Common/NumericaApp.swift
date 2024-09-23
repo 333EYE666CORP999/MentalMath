@@ -1,3 +1,10 @@
+//
+//  NumericaApp.swift
+//  Numerica
+//
+//  Created by Dmitry Aksyonov on 31.08.2024.
+//
+
 import SwiftData
 import SwiftUI
 

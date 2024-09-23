@@ -1,3 +1,10 @@
+//
+//  ProblemGeneratorTests.swift
+//  NumericaTests
+//
+//  Created by Dmitry Aksyonov on 11.09.2024.
+//
+
 @testable import Numerica
 import XCTest
 
