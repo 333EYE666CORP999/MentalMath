@@ -1,10 +1,3 @@
-//
-//  Foundation.swift
-//  Numerica
-//
-//  Created by Dmitry Aksyonov on 02.09.2024.
-//
-
 import Foundation
 
 extension Int {

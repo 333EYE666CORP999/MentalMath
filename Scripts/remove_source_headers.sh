@@ -15,26 +15,16 @@ find "$PROJECT_DIR" -name "*.swift" | while read -r file; do
 
     # Create a backup of the original file in the same directory with .bak extension
     cp "$file" "$file.bak"
-
     echo "Backup created for $file as $file.bak"
-    
-    # Print the content before modification for debugging
-    echo "---- To be deleted (before import statement) ----"
-    
-    # Print lines to be deleted (lines before the first import)
-    awk '/^import/{exit} {print}' "$file"
-    
-    echo "---- Contents below import statement ----"
-    
-    # Print a few lines after the first import for context (5 lines after import)
-    awk '/^import/{found=1} found{print; if(++count==5) exit}' "$file"
-    
-    # Use sed to remove all lines starting with // before the first import statement
-    # The `-i ''` ensures sed modifies files in place on macOS without creating additional backups
-    sed -i '' '/^import/,$!{/^\/\//d}' "$file"
-    
+
+    # Now, remove the header and the first empty line only, but keep everything else intact
+    awk 'NR==1,/^$/ {next} {print}' "$file" > "$file.tmp" && mv "$file.tmp" "$file"
+
     echo "Updated $file"
     echo "------------------------------------------"
 done
 
+# Delete all .bak files after processing
+find "$PROJECT_DIR" -name "*.bak" -delete
+echo "All .bak files have been deleted."
 echo "Header removal complete for all Swift files in $PROJECT_DIR"
