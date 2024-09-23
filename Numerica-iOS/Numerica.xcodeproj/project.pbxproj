@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 77;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -23,6 +23,7 @@
 		3F6C770E2CA159AA00492149 /* ProblemGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6C770B2CA159AA00492149 /* ProblemGeneratorTests.swift */; };
 		3F6C770F2CA15B2100492149 /* languages_and_locales.json in Resources */ = {isa = PBXBuildFile; fileRef = 3FE426492CA152FA0025EF36 /* languages_and_locales.json */; };
 		3F6C77102CA16A5A00492149 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 3F296D5B2CA039CA00D1A2C6 /* Localizable.xcstrings */; };
+		3F6C771D2CA20A1100492149 /* AllTests.xctestplan in Resources */ = {isa = PBXBuildFile; fileRef = 3F6C771C2CA20A1100492149 /* AllTests.xctestplan */; };
 		3F8475942C8513000034EC78 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F8475862C8513000034EC78 /* Assets.xcassets */; };
 		3F8475952C8513000034EC78 /* NumericaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8475892C8513000034EC78 /* NumericaApp.swift */; };
 		3F8475962C8513000034EC78 /* ProblemGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F84758B2C8513000034EC78 /* ProblemGenerator.swift */; };
@@ -72,6 +73,7 @@
 		3F6C76F62CA1594D00492149 /* NumericaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NumericaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F6C77012CA1598F00492149 /* LocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationTests.swift; sourceTree = "<group>"; };
 		3F6C770B2CA159AA00492149 /* ProblemGeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemGeneratorTests.swift; sourceTree = "<group>"; };
+		3F6C771C2CA20A1100492149 /* AllTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = AllTests.xctestplan; sourceTree = "<group>"; };
 		3F8475862C8513000034EC78 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F8475872C8513000034EC78 /* Entitlements.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Entitlements.entitlements; sourceTree = "<group>"; };
 		3F8475892C8513000034EC78 /* NumericaApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumericaApp.swift; sourceTree = "<group>"; };
@@ -127,8 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				3F415BC22C83800500C94EB6 /* Numerica */,
-				3F6C77052CA1598F00492149 /* NumericaUITests */,
-				3F6C770C2CA159AA00492149 /* NumericaTests */,
+				3F6C771E2CA20A6200492149 /* Numerica Tests */,
 				3F415BC12C83800500C94EB6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -261,12 +262,22 @@
 			path = NumericaUITests;
 			sourceTree = "<group>";
 		};
-		3F6C770C2CA159AA00492149 /* NumericaTests */ = {
+		3F6C770C2CA159AA00492149 /* NumericaUnitTests */ = {
 			isa = PBXGroup;
 			children = (
 				3F6C770B2CA159AA00492149 /* ProblemGeneratorTests.swift */,
 			);
-			path = NumericaTests;
+			path = NumericaUnitTests;
+			sourceTree = "<group>";
+		};
+		3F6C771E2CA20A6200492149 /* Numerica Tests */ = {
+			isa = PBXGroup;
+			children = (
+				3F6C771C2CA20A1100492149 /* AllTests.xctestplan */,
+				3F6C77052CA1598F00492149 /* NumericaUITests */,
+				3F6C770C2CA159AA00492149 /* NumericaUnitTests */,
+			);
+			path = "Numerica Tests";
 			sourceTree = "<group>";
 		};
 		3F8475882C8513000034EC78 /* Resources */ = {
@@ -419,7 +430,6 @@
 				};
 			};
 			buildConfigurationList = 3F415BBB2C83800500C94EB6 /* Build configuration list for PBXProject "Numerica" */;
-			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -450,6 +460,7 @@
 				th,
 			);
 			mainGroup = 3F415BB72C83800500C94EB6;
+			preferredProjectObjectVersion = 77;
 			productRefGroup = 3F415BC12C83800500C94EB6 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -478,6 +489,7 @@
 			files = (
 				3F6C77102CA16A5A00492149 /* Localizable.xcstrings in Resources */,
 				3F6C770F2CA15B2100492149 /* languages_and_locales.json in Resources */,
+				3F6C771D2CA20A1100492149 /* AllTests.xctestplan in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
