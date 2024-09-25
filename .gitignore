@@ -59,3 +59,4 @@ playground.xcworkspace
 *.xcworkspace/xcuserdata/
 *.xcworkspacedata
 *.xcschememanagement.plist
+Docs/.obsidian
