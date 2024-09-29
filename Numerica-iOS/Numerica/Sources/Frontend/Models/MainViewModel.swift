@@ -3,6 +3,7 @@ import SwiftUI
 
 // MARK: - MainViewModel
 
+@MainActor
 final class MainViewModel: ObservableObject {
 
     // TODO: - Refactor ErrorShowingView logic - mb some unused

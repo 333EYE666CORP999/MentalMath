@@ -122,12 +122,12 @@ struct MainView: View {
 
 #Preview {
     MainView()
-        .environmentObject(
-            MainViewModel(
-                storageService: StorageService(
-                    modelContext: sharedModelContainer.mainContext
-                ),
-                mathGen: ProblemGenerator()
-            )
-        )
+//        .environmentObject(
+//            MainViewModel(
+//                storageService: StorageService(
+//                    modelContext: sharedModelContainer.mainContext
+//                ),
+//                mathGen: ProblemGenerator()
+//            )
+//        )
 }

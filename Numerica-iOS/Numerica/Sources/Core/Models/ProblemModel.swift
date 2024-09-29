@@ -1,9 +1,9 @@
 import Foundation
 
 // TODO: - поднять в кодстайл - протоколы, полностью с дефолтн реализ - сразу в объявление
-final class ProblemModel {
+struct ProblemModel {
 
-    static var empty = ProblemModel(
+    @MainActor static let empty = Self(
         lhs: .zero,
         operation: .random,
         rhs: .zero,
@@ -15,7 +15,7 @@ final class ProblemModel {
     let rhs: Int
     let solution: Int
 
-    var solved: Bool
+    var solved = false
 
     var problemString: String {
         [
@@ -29,14 +29,16 @@ final class ProblemModel {
         lhs: Int,
         operation: Operator,
         rhs: Int,
-        solution: Int,
-        solved: Bool = false
+        solution: Int
     ) {
         self.lhs = lhs
         self.`operator` = operation
         self.rhs = rhs
         self.solution = solution
-        self.solved = solved
+    }
+
+    mutating func setSolved() {
+        self.solved = true
     }
 }
 
@@ -55,7 +57,8 @@ extension ProblemModel: PersistableModel {
 }
 
 extension ProblemModel: Identifiable {
-    
+
+    nonisolated
     var id: UUID {
         UUID()
     }

@@ -2,6 +2,7 @@ import Foundation
 
 // MARK: - ProblemGenerator
 
+@MainActor
 final class ProblemGenerator {
 
     static var rng = SystemRandomNumberGenerator()

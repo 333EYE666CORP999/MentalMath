@@ -1,5 +1,6 @@
 import Foundation
 
+@MainActor
 enum Operator: String, CaseIterable, Codable {
 
     case addition = "+"

@@ -2,13 +2,13 @@ import Foundation
 import SwiftData
 
 @Model
-final class ProblemObject {
+final class ProblemObject: Sendable {
 
-    private(set) var lhs: Int
-    private(set) var `operator`: Operator
-    private(set) var rhs: Int
-    private(set) var solution: Int
-    private(set) var solved: Bool
+    private let lhs: Int
+    private let `operator`: Operator
+    private let rhs: Int
+    private let solution: Int
+    private var solved: Bool
 
     init(
         lhs: Int,

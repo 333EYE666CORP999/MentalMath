@@ -24,8 +24,8 @@ extension Int {
 
 extension String {
 
-    static var minutesSecondsFormat: Self = "%02d:%02d"
-    static var space: Self = " "
+    static let minutesSecondsFormat: Self = "%02d:%02d"
+    static let space: Self = " "
 
     var isNumeric: Bool {
         self.allSatisfy { $0.isNumber }
@@ -38,7 +38,7 @@ extension String {
 
 extension Character {
 
-    static var space: Self = " "
+    static let space: Self = " "
 }
 
 extension DateFormatter {

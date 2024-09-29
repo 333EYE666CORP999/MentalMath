@@ -1,33 +1,34 @@
 import Foundation
 import SwiftData
 
-final class StorageService {
+final class StorageService: Sendable {
+    private let modelActor: ModelActor
 
-    var modelContext: ModelContext
-
-    init(modelContext: ModelContext) {
-        self.modelContext = modelContext
+    init(container: ModelContainer) {
+        self.modelActor = ModelActor(modelContainer: container)
     }
 
-    func save<T: PersistentModel>(_ model: T) {
+    func save<T: PersistentModel & Sendable>(_ model: T) {
+        Task { @Sendable [weak self] in
+            guard let self else {
+                return
+            }
+            await modelActor.saveModel(model)
+        }
+    }
+}
+
+@ModelActor
+actor ModelActor {
+
+    typealias SendablePersistentEntity = PersistentModel & Sendable
+
+    func saveModel<T: PersistentModel>(_ model: T) async {
+        modelContext.insert(model)
         do {
-            modelContext.insert(model)
             try modelContext.save()
-        } catch let error as NSError {
-            print(error)
+        } catch {
+            print("Error saving model: \(error.localizedDescription)")
         }
-    }
-
-    func fetch<T: PersistentModel>(_ type: T.Type) -> [T] {
-        let desc = FetchDescriptor<T>()
-        var all = [T]()
-
-        do {
-            all = try modelContext.fetch(desc)
-        } catch let error as NSError {
-            print(error)
-        }
-
-        return all
     }
 }

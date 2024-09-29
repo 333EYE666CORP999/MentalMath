@@ -1,6 +1,6 @@
 import Foundation
 
-final class GameSessionModel {
+struct GameSessionModel {
 
     var sessionDate: Date
     var goodAnswersCount: Int

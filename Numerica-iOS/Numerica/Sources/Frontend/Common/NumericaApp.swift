@@ -8,14 +8,14 @@ struct NumericaApp: App {
         WindowGroup {
             MainView()
                 .tint(.white)
-                .environmentObject(
-                    MainViewModel(
-                        storageService: StorageService(
-                            modelContext: sharedModelContainer.mainContext
-                        ),
-                        mathGen: ProblemGenerator()
-                    )
-                )
+//                .environmentObject(
+//                    MainViewModel(
+//                        storageService: StorageService(
+//                            modelContext: sharedModelContainer.mainContext
+//                        ),
+//                        mathGen: ProblemGenerator()
+//                    )
+//                )
             // FIXME: - убрать через семантические цвета на ui
                 .environment(\.colorScheme, .dark)
         }

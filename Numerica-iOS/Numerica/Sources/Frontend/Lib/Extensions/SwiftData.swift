@@ -2,7 +2,7 @@ import Foundation
 import SwiftData
 
 #warning("Global scope variable, use ONLY for previews")
-var sharedModelContainer: ModelContainer = {
+let sharedModelContainer: ModelContainer = {
     let schema = Schema([GameSessionObject.self])
     let modelConfiguration = ModelConfiguration(
         schema: schema,

@@ -2,7 +2,7 @@ import Foundation
 import SwiftData
 
 @Model
-final class GameSessionObject {
+final class GameSessionObject: Sendable {
 
     var id = UUID()
 

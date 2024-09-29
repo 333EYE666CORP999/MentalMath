@@ -50,4 +50,3 @@ struct SessionResultsListItem: View {
         ]
     )
 }
-
