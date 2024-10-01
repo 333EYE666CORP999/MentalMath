@@ -180,7 +180,7 @@ jobs:
           # Run unit tests with verbose logging
           echo "🚀 Starting unit tests..."
           set -o pipefail && xcodebuild test-without-building \
-            -scheme "NumericaTests" \
+            -scheme "AllTests" \
             -destination "platform=iOS Simulator,name=iPhone 15 Pro Max,OS=17.4" \
             -derivedDataPath DerivedData \
             -enableCodeCoverage YES \
@@ -193,46 +193,5 @@ jobs:
             echo "🧪 Unit Tests ✅ All unit tests passed successfully."
           else
             echo "🧪 Unit Tests ❌ Some unit tests failed. Check the log for details."
-            exit 1
-          fi
-
-      # Step 10: Run UI Tests
-      - name: Run UI Tests
-        env:
-          platform: ${{ 'iOS Simulator' }}
-        run: |
-          echo "🧪 Running UI Tests..."
-          cd $GITHUB_WORKSPACE/Numerica-iOS
-
-          device="iPhone 14"  # Use the same explicit device
-
-          # Determine if it's a workspace or project
-          echo "🔍 Identifying project or workspace file..."
-          if [ "$(ls -A | grep -i \.xcworkspace\$)" ]; then
-            filetype_parameter="workspace"
-            file_to_build="$(ls -A | grep -i \.xcworkspace\$)"
-          else
-            filetype_parameter="project"
-            file_to_build="$(ls -A | grep -i \.xcodeproj\$)"
-          fi
-
-          file_to_build=$(echo $file_to_build | awk '{$1=$1;print}')
-
-          # Run UI tests with verbose logging
-          echo "🚀 Starting UI tests..."
-          set -o pipefail && xcodebuild test-without-building \
-            -scheme "NumericaUITests" \
-            -destination "platform=iOS Simulator,name=iPhone 15 Pro Max,OS=17.4" \
-            -derivedDataPath DerivedData \
-            | tee ui_tests.log
-
-          # Process the xcodebuild log to make results readable
-          echo "📊 Parsing UI test log for individual test results..."
-          cat ui_tests.log | xcbeautify --is-ci --renderer github-actions
-
-          if [ $? -eq 0 ]; then
-            echo "🧪 UI Tests ✅ All UI tests passed successfully."
-          else
-            echo "🧪 UI Tests ❌ Some UI tests failed. Check the log for details."
             exit 1
           fi
