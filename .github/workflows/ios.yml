@@ -121,7 +121,8 @@ jobs:
             file_to_build="$(ls -A | grep -i \.xcodeproj\$)"
           fi
           file_to_build=$(echo $file_to_build | awk '{$1=$1;print}')
-          xcodebuild build-for-testing -scheme "$scheme" -"$filetype_parameter" "$file_to_build" -destination "platform=$platform,name=$device" -derivedDataPath DerivedData CODE_SIGNING_ALLOWED=NO | xcbeautify --is-ci --renderer github-actions
+          # Build with xcbeautify, but use pipefail to ensure the step fails if xcodebuild fails
+          set -o pipefail && xcodebuild build-for-testing -scheme "$scheme" -"$filetype_parameter" "$file_to_build" -destination "platform=$platform,name=$device" -derivedDataPath DerivedData CODE_SIGNING_ALLOWED=NO | xcbeautify --is-ci --renderer github-actions
 
       # Updated Test Step: Run All Tests
       - name: Run All Tests
@@ -141,8 +142,9 @@ jobs:
             file_to_build="$(ls -A | grep -i \.xcodeproj\$)"
           fi
           file_to_build=$(echo $file_to_build | awk '{$1=$1;print}')
-
-          xcodebuild test-without-building \
+          
+          # Test without building, but use pipefail to ensure the step fails if xcodebuild fails
+          set -o pipefail && xcodebuild test-without-building \
             -scheme "$scheme" \
             -"$filetype_parameter" "$file_to_build" \
             -destination "platform=$platform,name=$device" \
