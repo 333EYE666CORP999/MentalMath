@@ -115,40 +115,6 @@ jobs:
 
           echo "$scheme_list" > schemes.json
 
-      # Step 6: Find Unit Tests Scheme
-      - name: Find Unit Tests Scheme
-        run: |
-          echo "🔍 Finding Unit Tests scheme ending with 'Tests'..."
-          cd $GITHUB_WORKSPACE/Numerica-iOS
-
-          # Extract the scheme list from JSON and find a scheme that ends with "Tests"
-          unit_test_scheme=$(cat schemes.json | ruby -e "require 'json'; puts JSON.parse(STDIN.gets)['project']['schemes'].select { |s| s =~ /Tests$/ }[0]")
-
-          if [ -z "$unit_test_scheme" ]; then
-            echo "❌ Error: No Unit Tests scheme ending with 'Tests' found."
-            exit 1
-          fi
-
-          echo "✅ Unit Tests scheme found: $unit_test_scheme"
-          echo $unit_test_scheme > unit_test_scheme
-
-      # Step 7: Find UI Tests Scheme
-      - name: Find UI Tests Scheme
-        run: |
-          echo "🔍 Finding UI Tests scheme ending with 'UITests'..."
-          cd $GITHUB_WORKSPACE/Numerica-iOS
-
-          # Extract the scheme list from JSON and find a scheme that ends with "UITests"
-          ui_test_scheme=$(cat schemes.json | ruby -e "require 'json'; puts JSON.parse(STDIN.gets)['project']['schemes'].select { |s| s =~ /UITests$/ }[0]")
-
-          if [ -z "$ui_test_scheme" ]; then
-            echo "❌ Error: No UI Tests scheme ending with 'UITests' found."
-            exit 1
-          fi
-
-          echo "✅ UI Tests scheme found: $ui_test_scheme"
-          echo $ui_test_scheme > ui_test_scheme
-
       # Step 8: Build for Testing
       - name: Build for Testing
         env:
