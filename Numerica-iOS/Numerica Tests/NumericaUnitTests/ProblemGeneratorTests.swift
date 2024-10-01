@@ -2,6 +2,7 @@
 import XCTest
 
 // swiftlint:disable implicitly_unwrapped_optional
+@MainActor
 final class ProblemGeneratorTests: XCTestCase {
 
     private var sut: ProblemGenerator!
