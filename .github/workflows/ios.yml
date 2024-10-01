@@ -124,7 +124,6 @@ jobs:
           cd $GITHUB_WORKSPACE/Numerica-iOS
 
           device="iPhone 14"  # Explicitly specify simulator to avoid multiple matching issues
-          scheme=$(cat unit_test_scheme)
 
           # Determine if it's a workspace or project
           echo "🔍 Identifying project or workspace file..."
@@ -186,7 +185,6 @@ jobs:
             -destination "platform=$platform,name=$device" \
             -derivedDataPath DerivedData \
             -enableCodeCoverage YES \
-            | tee unit_tests.log
 
           # Process the xcodebuild log to make results readable
           echo "📊 Parsing unit test log for individual test results..."
@@ -208,7 +206,6 @@ jobs:
           cd $GITHUB_WORKSPACE/Numerica-iOS
 
           device="iPhone 14"  # Use the same explicit device
-          scheme=$(cat ui_test_scheme)
 
           # Determine if it's a workspace or project
           echo "🔍 Identifying project or workspace file..."
