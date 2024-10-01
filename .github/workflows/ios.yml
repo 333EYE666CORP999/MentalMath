@@ -10,17 +10,14 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      # Step 1: Checkout the repository
       - name: Checkout
         uses: actions/checkout@v4
 
-      # Step 2: Setup Xcode
       - name: Setup Xcode
         uses: maxim-lobanov/setup-xcode@v1
         with:
           xcode-version: 'latest-stable'
 
-      # Step 3: Prepare Environment
       - name: Prepare Environment
         run: |
           echo "🔧 Preparing Environment..."
@@ -56,7 +53,6 @@ jobs:
             echo "✅ xcbeautify already installed."
           fi
 
-      # Step 4: Run SwiftLint
       - name: SwiftLint
         run: |
           echo "📝 Running SwiftLint..."
@@ -76,7 +72,6 @@ jobs:
             echo "Linting ✅: $num_violations violations found (Threshold: $threshold)."
           fi
 
-      # Step 5: Set Default Scheme
       - name: Set Default Scheme
         run: |
           echo "⚙️ Setting Default Scheme..."
@@ -115,7 +110,6 @@ jobs:
 
           echo "$scheme_list" > schemes.json
 
-      # Step 6: Build for Testing
       - name: Build for Testing
         env:
           platform: ${{ 'iOS Simulator' }}
@@ -154,12 +148,11 @@ jobs:
             exit 1
           fi
 
-      # Step 7: Run All Tests
-      - name: Run Unit Tests
+      - name: Run All Tests
         env:
           platform: ${{ 'iOS Simulator' }}
         run: |
-          echo "🧪 Running Unit Tests..."
+          echo "🧪 Running All Tests..."
           cd $GITHUB_WORKSPACE/Numerica-iOS
 
           device="iPhone 15 Pro Max"
@@ -177,7 +170,7 @@ jobs:
           file_to_build=$(echo $file_to_build | awk '{$1=$1;print}')
 
           # Run unit tests with verbose logging
-          echo "🚀 Starting unit tests..."
+          echo "🚀 Starting all tests..."
           set -o pipefail && xcodebuild test \
             -scheme "NumericaTests" \
             -"$filetype_parameter" "$file_to_build" \
@@ -186,8 +179,8 @@ jobs:
             | tee unit_tests.log | xcbeautify --is-ci --renderer github-actions
 
           if [ $? -eq 0 ]; then
-            echo "🧪 Unit Tests ✅ All unit tests passed successfully."
+            echo "🧪 Tests ✅ All tests passed successfully."
           else
-            echo "🧪 Unit Tests ❌ Some unit tests failed. Check the log for details."
+            echo "🧪 Tests ❌ Some tests failed. Check the log for details."
             exit 1
           fi

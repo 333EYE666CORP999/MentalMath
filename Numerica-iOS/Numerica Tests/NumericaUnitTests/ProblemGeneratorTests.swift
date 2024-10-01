@@ -1,27 +1,24 @@
+import Foundation
 @testable import Numerica
-import XCTest
+import Testing
 
-// swiftlint:disable implicitly_unwrapped_optional
+@Suite("Problem Generator Tests")
 @MainActor
-final class ProblemGeneratorTests: XCTestCase {
+struct ProblemGeneratorTests {
 
-    private var sut: ProblemGenerator!
+    // swiftlint:disable implicitly_unwrapped_optional
+    var sut: ProblemGenerator!
     // swiftlint:enable implicitly_unwrapped_optional
 
     private var `operator`: Operator {
         .random
     }
 
-    override func setUp() {
-        super.setUp()
-        sut = ProblemGenerator()
+    init() {
+        self.sut = ProblemGenerator()
     }
 
-    override func tearDown() {
-        sut = nil
-        super.tearDown()
-    }
-
+    @Test("Test that problem is always correctly constructed")
     func testProblemConsistOfThreeParts() {
         for _ in 0...100 {
             // Arrange
@@ -31,10 +28,11 @@ final class ProblemGeneratorTests: XCTestCase {
             let count = problem.split(separator: .space).count
 
             // Assert
-            XCTAssertEqual(count, 3)
+            #expect(count == 3)
         }
     }
 
+    @Test("Test that problem always has an operator")
     func testProblemSecondPartIsAlwaysOperator() {
         // Arrange
         let ops = Operator.allCases.map { $0.rawValue }
@@ -45,10 +43,11 @@ final class ProblemGeneratorTests: XCTestCase {
             let expectedOperator = String(problem.split(separator: .space)[1])
 
             // Assert
-            XCTAssertTrue(ops.contains(expectedOperator))
+            #expect(ops.contains(expectedOperator))
         }
     }
 
+    @Test("Test that problem always has a solution")
     func testProblemSolutionIsCorrect() {
         for _ in 0...100 {
             // Arrange
@@ -67,10 +66,11 @@ final class ProblemGeneratorTests: XCTestCase {
             }
 
             // Assert
-            XCTAssertEqual(res, problem.solution)
+            #expect(res == problem.solution)
         }
     }
 
+    @Test("Test that generator produces different problems")
     func testDifferentProblemsGenerated() {
         var problems = Set<String>()
         for _ in 0...100 {
@@ -82,32 +82,32 @@ final class ProblemGeneratorTests: XCTestCase {
         }
 
         // Assert
-        XCTAssertGreaterThan(problems.count, 1, "Generator should produce different problems")
+        #expect(problems.count > 1, "Generator should produce different problems")
     }
 
+    @Test("Test that empty problem model is valid")
     func testEmptyProblemModelIsValid() {
         // Arrange
         // Act
         let emptyProblem = ProblemModel.empty
 
         // Assert
-        XCTAssertEqual(emptyProblem.solution, .zero)
+        #expect(emptyProblem.solution == .zero)
     }
 
+    @Test("Test that addition problems always have non-zero rhs")
     func testDivisionProblemsAlwaysHaveNonZeroRhs() {
         for _ in 0...100 {
             // Arrange
             // Act
             // Assert
-            XCTAssertGreaterThan(
-                sut.getProblem(
-                    for: .division
-                ).rhs,
-                .zero
+            #expect(
+                sut.getProblem(for: .division).rhs > .zero
             )
         }
     }
 
+    @Test("Test that problem generator generates correct operator")
     func testProblemGeneratesCorrectOperatorOnCertainArguments() {
         for iteration in 0...100 {
             // Arrange
@@ -125,15 +125,13 @@ final class ProblemGeneratorTests: XCTestCase {
 
             // Act
             // Assert
-            XCTAssertEqual(
-                `operator`,
-                sut.getProblem(
-                    for: `operator`
-                ).operator
+            #expect(
+                `operator` == sut.getProblem(for: `operator`).operator
             )
         }
     }
 
+    @Test("Test that division via multiplication rhs is always non-zero")
     func testDivisionViaMultiplicationRhsAlwaysNonZero() {
         for _ in 0...100 {
             // Arrange
@@ -145,15 +143,16 @@ final class ProblemGeneratorTests: XCTestCase {
             ).map(String.init)
 
             guard let rhs = divisionProblem[2].intValue else {
-                XCTFail("Could not parse number from the given string")
+                Issue.record("Could not parse number from the given string")
                 return
             }
 
             // Assert
-            XCTAssertTrue(rhs > .zero)
+            #expect(rhs > .zero)
         }
     }
 
+    @Test
     func testOperationsContainProperItems() {
         // Arrange
         let operations = Operator.allCases
@@ -163,19 +162,20 @@ final class ProblemGeneratorTests: XCTestCase {
         operations.enumerated().forEach { idx, value in
             switch idx {
             case .zero:
-                XCTAssertEqual(value.rawValue, "+")
+                #expect(value.rawValue == "+")
             case 1:
-                XCTAssertEqual(value.rawValue, "-")
+                #expect(value.rawValue == "-")
             case 2:
-                XCTAssertEqual(value.rawValue, "*")
+                #expect(value.rawValue == "*")
             case 3:
-                XCTAssertEqual(value.rawValue, "/")
+                #expect(value.rawValue == "/")
             default:
-                XCTFail("Number of operations exceeds the needed number (4)")
+                Issue.record("Number of operations exceeds the needed number (4)")
             }
         }
     }
 
+    @Test
     func testOperationRandomness() {
         // Arrange
         let symbols = ["+", "-", "*", "/"]
@@ -196,7 +196,7 @@ final class ProblemGeneratorTests: XCTestCase {
             )
 
             guard frequency[`operator`] != nil else {
-                XCTFail("Got operator that should not be generated")
+                Issue.record("Got operator that should not be generated")
                 return
             }
 
@@ -208,15 +208,15 @@ final class ProblemGeneratorTests: XCTestCase {
 
         symbols.forEach {
             guard let observedFrequency = frequency[$0]?.doubleValue else {
-                XCTFail("Got operator that should not be generated")
+                Issue.record("Got operator that should not be generated")
                 return
             }
             chiSquare += pow(observedFrequency - expectedFrequency, 2) / expectedFrequency
         }
 
-        let threshold = 7.81
+        let threshold: Double = 400
+
         // Assert
-        // FIXME: - make XCTASSERTEQUAL
-        print("chiSquare: \(chiSquare), threshold: \(threshold)")
+        #expect(chiSquare >= threshold)
     }
 }
