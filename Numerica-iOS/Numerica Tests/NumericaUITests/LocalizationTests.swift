@@ -1,7 +1,6 @@
 @testable import Numerica
 import XCTest
 
-@MainActor
 @preconcurrency
 final class LocalizationTests: XCTestCase {
 
@@ -18,7 +17,7 @@ final class LocalizationTests: XCTestCase {
     override func setUp() async throws {
         try await super.setUp()
         continueAfterFailure = false
-        sut = XCUIApplication()
+        sut = await XCUIApplication()
         languagesAndLocales = Array(
             loadLanguagesAndLocales()
                 .shuffled()
@@ -42,7 +41,7 @@ final class LocalizationTests: XCTestCase {
         await testButtonLocalization(
             buttonIdentifier: "MainView.ActionButton"
         ) { button, lang, locale in
-            button.tap()
+            await button.tap()
             await self.assertButtonLabel(
                 button,
                 key: "SUBMIT",
@@ -70,9 +69,9 @@ private extension LocalizationTests {
                 return
             }
 
-            configureApp(lang: lang, locale: locale)
+            await configureApp(lang: lang, locale: locale)
 
-            let button = sut.buttons[buttonIdentifier]
+            let button = await sut.buttons[buttonIdentifier]
 
             guard !labelKey.isEmpty else {
                 await postAction(button, lang, locale)
@@ -102,7 +101,7 @@ private extension LocalizationTests {
             locale: locale
         )
 
-        let label = button.label
+        let label = await button.label
 
         XCTAssertEqual(
             label,
@@ -111,6 +110,7 @@ private extension LocalizationTests {
         )
     }
 
+    @MainActor
     func configureApp(lang: String, locale: String) {
         sut.launchArguments = [
             "-AppleLanguages", "(\(lang))",
