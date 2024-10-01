@@ -141,7 +141,7 @@ jobs:
           # Build with xcbeautify, use pipefail to ensure xcodebuild failures stop the process
           echo "🏗️ Building using xcodebuild..."
           set -o pipefail && xcodebuild build-for-testing \
-            -scheme "$scheme" \
+            -scheme "Numerica" \
             -"$filetype_parameter" "$file_to_build" \
             -destination "platform=$platform,name=$device" \
             -derivedDataPath DerivedData \
