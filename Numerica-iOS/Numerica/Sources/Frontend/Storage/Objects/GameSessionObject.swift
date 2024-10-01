@@ -2,9 +2,8 @@ import Foundation
 import SwiftData
 
 @Model
-final class GameSessionObject: Sendable {
-
-    var id = UUID()
+@preconcurrency
+final class GameSessionObject {
 
     var sessionDate: Date
     var goodAnswersCount: Int

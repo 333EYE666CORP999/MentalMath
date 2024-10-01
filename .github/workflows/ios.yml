@@ -23,34 +23,43 @@ jobs:
       # Step 3: Prepare Environment
       - name: Prepare Environment
         run: |
+          echo "🔧 Preparing Environment..."
+          
           if [ "$(uname -m)" = "arm64" ]; then
             HOMEBREW_PREFIX="/opt/homebrew"
           else
             HOMEBREW_PREFIX="/usr/local"
           fi
 
-          # Install Homebrew if not already installed
+          echo "📦 Checking for Homebrew installation..."
           if ! command -v brew &> /dev/null; then
+            echo "🍺 Installing Homebrew..."
             /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+          else
+            echo "🍺 Homebrew already installed."
           fi
 
-          # Upgrade all packages
+          echo "📦 Updating and upgrading Homebrew packages..."
           brew upgrade --greedy-latest
 
-          # Install SwiftLint if not available
+          echo "⚙️ Installing SwiftLint if needed..."
           if [ ! -x "${HOMEBREW_PREFIX}/bin/swiftlint" ]; then
             brew install swiftlint
+          else
+            echo "✅ SwiftLint already installed."
           fi
 
-          # Install xcbeautify if not available
+          echo "⚙️ Installing xcbeautify if needed..."
           if [ ! -x "${HOMEBREW_PREFIX}/bin/xcbeautify" ]; then
             brew install xcbeautify
+          else
+            echo "✅ xcbeautify already installed."
           fi
 
       # Step 4: Run SwiftLint
       - name: SwiftLint
         run: |
-          echo "Running SwiftLint..."
+          echo "📝 Running SwiftLint..."
           cd $GITHUB_WORKSPACE/Numerica-iOS
 
           swiftlint lint --config swiftlint.yml | tee swiftlint.log | xcbeautify --is-ci --renderer github-actions
@@ -58,7 +67,7 @@ jobs:
           num_violations=$(wc -l < swiftlint.log | xargs)
           threshold=20
 
-          echo "Found $num_violations violations."
+          echo "📊 Found $num_violations violations."
 
           if [ "$num_violations" -gt "$threshold" ]; then
             echo "Linting ❌: $num_violations violations found (Threshold: $threshold)."
@@ -70,11 +79,11 @@ jobs:
       # Step 5: Set Default Scheme
       - name: Set Default Scheme
         run: |
-          echo "Setting Default Scheme..."
+          echo "⚙️ Setting Default Scheme..."
           cd $GITHUB_WORKSPACE/Numerica-iOS
 
           # Detect if it's a workspace or project
-          echo "Detecting Xcode project type..."
+          echo "🔍 Detecting Xcode project type..."
           if [ "$(ls -A | grep -i \.xcworkspace\$)" ]; then
             filetype_parameter="workspace"
             file_to_build="$(ls -A | grep -i \.xcworkspace\$)"
@@ -92,10 +101,11 @@ jobs:
           file_to_build=$(echo $file_to_build | awk '{$1=$1;print}')
 
           # Retrieve the scheme list
-          echo "Retrieving scheme list for: $file_to_build ($filetype_parameter)..."
+          echo "📄 Retrieving scheme list for: $file_to_build ($filetype_parameter)..."
           scheme_list=$(xcodebuild -list -$filetype_parameter "$file_to_build" -json)
 
           # Show raw output for debugging
+          echo "📄 Raw scheme list output:"
           echo "$scheme_list"
 
           if [ -z "$scheme_list" ]; then
@@ -111,7 +121,7 @@ jobs:
             exit 1
           fi
 
-          echo "✅ Default scheme: $default"
+          echo "✅ Default scheme set to: $default"
           echo $default > default
 
       # Step 6: Build for Testing
@@ -120,13 +130,14 @@ jobs:
           scheme: ${{ 'default' }}
           platform: ${{ 'iOS Simulator' }}
         run: |
-          echo "Building for Testing..."
+          echo "🔨 Building for Testing..."
           cd $GITHUB_WORKSPACE/Numerica-iOS
 
           device="iPhone 14"  # Explicitly specify simulator to avoid multiple matching issues
           scheme=$(cat default)
 
           # Determine if it's a workspace or project
+          echo "🔍 Identifying project or workspace file..."
           if [ "$(ls -A | grep -i \.xcworkspace\$)" ]; then
             filetype_parameter="workspace"
             file_to_build="$(ls -A | grep -i \.xcworkspace\$)"
@@ -138,6 +149,7 @@ jobs:
           file_to_build=$(echo $file_to_build | awk '{$1=$1;print}')
 
           # Build with xcbeautify, use pipefail to ensure xcodebuild failures stop the process
+          echo "🏗️ Building using xcodebuild..."
           set -o pipefail && xcodebuild build-for-testing \
             -scheme "$scheme" \
             -"$filetype_parameter" "$file_to_build" \
@@ -147,19 +159,27 @@ jobs:
             SWIFT_FLAGS="-Xfrontend -strict-concurrency=complete -swift-version 6" \
             | xcbeautify --is-ci --renderer github-actions
 
+          if [ $? -eq 0 ]; then
+            echo "🔨 Build ✅ Completed successfully."
+          else
+            echo "🔨 Build ❌ Failed."
+            exit 1
+          fi
+
       # Step 7: Run All Tests
       - name: Run All Tests
         env:
           scheme: ${{ 'default' }}
           platform: ${{ 'iOS Simulator' }}
         run: |
-          echo "Running All Tests..."
+          echo "🧪 Running All Tests..."
           cd $GITHUB_WORKSPACE/Numerica-iOS
 
           device="iPhone 14"  # Use the same explicit device
           scheme=$(cat default)
 
           # Determine if it's a workspace or project
+          echo "🔍 Identifying project or workspace file..."
           if [ "$(ls -A | grep -i \.xcworkspace\$)" ]; then
             filetype_parameter="workspace"
             file_to_build="$(ls -A | grep -i \.xcworkspace\$)"
@@ -171,6 +191,7 @@ jobs:
           file_to_build=$(echo $file_to_build | awk '{$1=$1;print}')
 
           # Test without building, use pipefail to ensure xcodebuild failures stop the process
+          echo "🚀 Starting tests..."
           set -o pipefail && xcodebuild test-without-building \
             -scheme "$scheme" \
             -"$filetype_parameter" "$file_to_build" \
@@ -178,3 +199,10 @@ jobs:
             -derivedDataPath DerivedData \
             -parallel-testing-enabled YES \
             | xcbeautify --is-ci --renderer github-actions
+
+          if [ $? -eq 0 ]; then
+            echo "🧪 Tests ✅ All tests passed successfully."
+          else
+            echo "🧪 Tests ❌ Some tests failed."
+            exit 1
+          fi

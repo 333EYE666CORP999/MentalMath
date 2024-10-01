@@ -2,12 +2,12 @@ import Foundation
 import SwiftData
 
 @Model
-final class ProblemObject: Sendable {
+final class ProblemObject {
 
-    private let lhs: Int
-    private let `operator`: Operator
-    private let rhs: Int
-    private let solution: Int
+    private var lhs: Int
+    private var `operator`: Operator
+    private var rhs: Int
+    private var solution: Int
     private var solved: Bool
 
     init(
