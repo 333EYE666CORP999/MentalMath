@@ -198,8 +198,7 @@ jobs:
           echo "🧪 Running Unit Tests..."
           cd $GITHUB_WORKSPACE/Numerica-iOS
 
-          device="iPhone 14"  # Use the same explicit device
-          scheme=$(cat unit_test_scheme)
+          device="iPhone 15"
 
           # Determine if it's a workspace or project
           echo "🔍 Identifying project or workspace file..."
@@ -216,7 +215,7 @@ jobs:
           # Run unit tests with verbose logging
           echo "🚀 Starting unit tests..."
           set -o pipefail && xcodebuild test-without-building \
-            -scheme "$scheme" \
+            -scheme "NumericaTests" \
             -"$filetype_parameter" "$file_to_build" \
             -destination "platform=$platform,name=$device" \
             -derivedDataPath DerivedData \
@@ -260,7 +259,7 @@ jobs:
           # Run UI tests with verbose logging
           echo "🚀 Starting UI tests..."
           set -o pipefail && xcodebuild test-without-building \
-            -scheme "$scheme" \
+            -scheme "NumericaUITests" \
             -"$filetype_parameter" "$file_to_build" \
             -destination "platform=$platform,name=$device" \
             -derivedDataPath DerivedData \
