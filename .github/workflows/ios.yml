@@ -166,17 +166,17 @@ jobs:
             exit 1
           fi
 
-      # Step 7: Run All Tests with Rich Output
-      - name: Run All Tests
+      # Step 7: Run Unit Tests
+      - name: Run Unit Tests
         env:
-          scheme: ${{ 'default' }}
+          scheme: "Tests"
           platform: ${{ 'iOS Simulator' }}
         run: |
-          echo "🧪 Running All Tests..."
+          echo "🧪 Running Unit Tests..."
           cd $GITHUB_WORKSPACE/Numerica-iOS
 
           device="iPhone 14"  # Use the same explicit device
-          scheme=$(cat default)
+          scheme="NumericaTests"  # Set the specific scheme for unit tests
 
           # Determine if it's a workspace or project
           echo "🔍 Identifying project or workspace file..."
@@ -190,25 +190,40 @@ jobs:
 
           file_to_build=$(echo $file_to_build | awk '{$1=$1;print}')
 
-          # Run tests with verbose logging and capture output in a log file
-          echo "🚀 Starting tests with real-time progress..."
+          # Run unit tests with verbose logging
+          echo "🚀 Starting unit tests..."
           set -o pipefail && xcodebuild test-without-building \
             -scheme "$scheme" \
             -"$filetype_parameter" "$file_to_build" \
             -destination "platform=$platform,name=$device" \
             -derivedDataPath DerivedData \
-            -parallel-testing-enabled YES \
             -enableCodeCoverage YES \
-            | tee xcodebuild.log
+            | tee unit_tests.log
 
           # Process the xcodebuild log to make results readable
-          echo "📊 Parsing xcodebuild log for individual test results..."
-          cat xcodebuild.log | xcbeautify --is-ci --renderer github-actions
+          echo "📊 Parsing unit test log for individual test results..."
+          cat unit_tests.log | xcbeautify --is-ci --renderer github-actions
 
-          # Check the result and print success or failure
           if [ $? -eq 0 ]; then
-            echo "🧪 Tests ✅ All tests passed successfully."
+            echo "🧪 Unit Tests ✅ All unit tests passed successfully."
           else
-            echo "🧪 Tests ❌ Some tests failed. Check the log for details."
+            echo "🧪 Unit Tests ❌ Some unit tests failed. Check the log for details."
             exit 1
           fi
+
+      # Step 8: Run UI Tests
+      - name: Run UI Tests
+        env:
+          scheme: "UITests"
+          platform: ${{ 'iOS Simulator' }}
+        run: |
+          echo "🧪 Running UI Tests..."
+          cd $GITHUB_WORKSPACE/Numerica-iOS
+
+          device="iPhone 14"  # Use the same explicit device
+          scheme="NumericaUITests"  # Set the specific scheme for UI tests
+
+          # Determine if it's a workspace or project
+          echo "🔍 Identifying project or workspace file..."
+          if [ "$(ls -A | grep -i \.xcworkspace\$)" ]; then
+            file
