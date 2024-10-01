@@ -103,19 +103,7 @@ jobs:
           echo "✅ Default scheme: $default"
           echo $default > default
 
-  build:
-    name: Build for Testing
-    runs-on: macos-latest
-    needs: build_and_test  # This ensures that the build job runs after the initial setup steps
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Xcode
-        uses: maxim-lobanov/setup-xcode@v1
-        with:
-          xcode-version: 'latest'
-
+      # New Step: Build for Testing
       - name: Build for Testing
         env:
           scheme: ${{ 'default' }}
@@ -135,19 +123,7 @@ jobs:
           file_to_build=$(echo $file_to_build | awk '{$1=$1;print}')
           xcodebuild build-for-testing -scheme "$scheme" -"$filetype_parameter" "$file_to_build" -destination "platform=$platform,name=$device" -derivedDataPath DerivedData CODE_SIGNING_ALLOWED=NO | xcbeautify --is-ci --renderer github-actions
 
-  test:
-    name: Run All Tests
-    runs-on: macos-latest
-    needs: build  # Ensure this job runs only after the build job has successfully completed
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Xcode
-        uses: maxim-lobanov/setup-xcode@v1
-        with:
-          xcode-version: 'latest'
-
+      # Updated Test Step: Run All Tests
       - name: Run All Tests
         env:
           scheme: ${{ 'default' }}
