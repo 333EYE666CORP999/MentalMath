@@ -1,6 +1,8 @@
 @testable import Numerica
 import XCTest
 
+@MainActor
+@preconcurrency
 final class LocalizationTests: XCTestCase {
 
     // swiftlint:disable implicitly_unwrapped_optional
@@ -13,8 +15,8 @@ final class LocalizationTests: XCTestCase {
         .random(in: 5...10)
     }
 
-    override func setUp() {
-        super.setUp()
+    override func setUp() async throws {
+        try await super.setUp()
         continueAfterFailure = false
         sut = XCUIApplication()
         languagesAndLocales = Array(
@@ -24,25 +26,24 @@ final class LocalizationTests: XCTestCase {
         )
     }
 
-    override func tearDown() {
+    override func tearDown() async throws {
         sut = nil
-        super.tearDown()
+        try await super.tearDown()
     }
 
-    func testStartButtonLocalization() {
-        testButtonLocalization(
+    func testStartButtonLocalization() async {
+        await testButtonLocalization(
             buttonIdentifier: "MainView.ActionButton",
             labelKey: "START"
         )
     }
 
-    func testSubmitButtonLocalizationAfterStart() {
-        testButtonLocalization(
+    func testSubmitButtonLocalizationAfterStart() async {
+        await testButtonLocalization(
             buttonIdentifier: "MainView.ActionButton"
         ) { button, lang, locale in
             button.tap()
-
-            self.assertButtonLabel(
+            await self.assertButtonLabel(
                 button,
                 key: "SUBMIT",
                 lang: lang,
@@ -59,9 +60,9 @@ private extension LocalizationTests {
     func testButtonLocalization(
         buttonIdentifier: String,
         labelKey: String = "",
-        postAction: (XCUIElement, String, String) -> Void = { _, _, _ in () }
-    ) {
-        languagesAndLocales.forEach { localeData in
+        postAction: (XCUIElement, String, String) async -> Void = { _, _, _ in () }
+    ) async {
+        for localeData in languagesAndLocales {
             guard
                 let lang = localeData["-AppleLanguage"],
                 let locale = localeData["-AppleLocale"]
@@ -74,18 +75,18 @@ private extension LocalizationTests {
             let button = sut.buttons[buttonIdentifier]
 
             guard !labelKey.isEmpty else {
-                postAction(button, lang, locale)
+                await postAction(button, lang, locale)
                 return
             }
 
-            assertButtonLabel(
+            await assertButtonLabel(
                 button,
                 key: labelKey,
                 lang: lang,
                 locale: locale
             )
 
-            postAction(button, lang, locale)
+            await postAction(button, lang, locale)
         }
     }
 
@@ -94,15 +95,17 @@ private extension LocalizationTests {
         key: String,
         lang: String,
         locale: String
-    ) {
+    ) async {
         let localizedString = getLocalizedString(
             for: key,
             language: lang,
             locale: locale
         )
 
+        let label = button.label
+
         XCTAssertEqual(
-            button.label,
+            label,
             localizedString,
             "Button label mismatch for key: \(key) in \(lang)-\(locale)"
         )
