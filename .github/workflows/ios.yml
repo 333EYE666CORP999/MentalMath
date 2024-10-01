@@ -166,7 +166,7 @@ jobs:
             exit 1
           fi
 
-      # Step 7: Run All Tests
+      # Step 7: Run All Tests with Rich Output
       - name: Run All Tests
         env:
           scheme: ${{ 'default' }}
@@ -198,8 +198,10 @@ jobs:
             -destination "platform=$platform,name=$device" \
             -derivedDataPath DerivedData \
             -parallel-testing-enabled YES \
+            -enableCodeCoverage YES \
             | xcbeautify --is-ci --renderer github-actions
 
+          # Check the result and print success or failure
           if [ $? -eq 0 ]; then
             echo "🧪 Tests ✅ All tests passed successfully."
           else
