@@ -2,10 +2,10 @@ import Foundation
 import SwiftData
 
 final class StorageService: Sendable {
-    private let modelActor: ModelActor
+    private let modelActor: PersistencyHandler
 
     init(container: ModelContainer) {
-        self.modelActor = ModelActor(modelContainer: container)
+        self.modelActor = PersistencyHandler(modelContainer: container)
     }
 
     func save<T: PersistentModel & Sendable>(_ model: T) {
@@ -19,7 +19,7 @@ final class StorageService: Sendable {
 }
 
 @ModelActor
-actor ModelActor {
+actor PersistencyHandler {
 
     typealias SendablePersistentEntity = PersistentModel & Sendable
 
