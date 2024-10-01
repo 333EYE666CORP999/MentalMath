@@ -115,7 +115,7 @@ jobs:
 
           echo "$scheme_list" > schemes.json
 
-      # Step 8: Build for Testing
+      # Step 6: Build for Testing
       - name: Build for Testing
         env:
           platform: ${{ 'iOS Simulator' }}
@@ -123,7 +123,7 @@ jobs:
           echo "🔨 Building for Testing..."
           cd $GITHUB_WORKSPACE/Numerica-iOS
 
-          device="iPhone 14"  # Explicitly specify simulator to avoid multiple matching issues
+          device="iPhone 15 Pro Max"  # Explicitly specify simulator with a recent model and OS version
 
           # Determine if it's a workspace or project
           echo "🔍 Identifying project or workspace file..."
@@ -143,7 +143,6 @@ jobs:
             -scheme "Numerica" \
             -"$filetype_parameter" "$file_to_build" \
             -destination "platform=iOS Simulator,name=iPhone 15 Pro Max,OS=17.4" \
-            -derivedDataPath DerivedData \
             CODE_SIGNING_ALLOWED=NO \
             SWIFT_FLAGS="-Xfrontend -strict-concurrency=complete -swift-version 6" \
             | xcbeautify --is-ci --renderer github-actions
@@ -155,7 +154,7 @@ jobs:
             exit 1
           fi
 
-      # Step 9: Run Unit Tests
+      # Step 7: Run Unit Tests
       - name: Run Unit Tests
         env:
           platform: ${{ 'iOS Simulator' }}
@@ -163,7 +162,7 @@ jobs:
           echo "🧪 Running Unit Tests..."
           cd $GITHUB_WORKSPACE/Numerica-iOS
 
-          device="iPhone 15"
+          device="iPhone 15 Pro Max"
 
           # Determine if it's a workspace or project
           echo "🔍 Identifying project or workspace file..."
@@ -179,19 +178,54 @@ jobs:
 
           # Run unit tests with verbose logging
           echo "🚀 Starting unit tests..."
-          set -o pipefail && xcodebuild test-without-building \
-            -scheme "AllTests" \
+          set -o pipefail && xcodebuild test \
+            -scheme "NumericaTests" \
+            -target "NumericaTests" \
+            -"$filetype_parameter" "$file_to_build" \
             -destination "platform=iOS Simulator,name=iPhone 15 Pro Max,OS=17.4" \
-            -derivedDataPath DerivedData \
             -enableCodeCoverage YES \
-
-          # Process the xcodebuild log to make results readable
-          echo "📊 Parsing unit test log for individual test results..."
-          cat unit_tests.log | xcbeautify --is-ci --renderer github-actions
+            | tee unit_tests.log | xcbeautify --is-ci --renderer github-actions
 
           if [ $? -eq 0 ]; then
             echo "🧪 Unit Tests ✅ All unit tests passed successfully."
           else
             echo "🧪 Unit Tests ❌ Some unit tests failed. Check the log for details."
+            exit 1
+          fi
+
+      # Step 8: Run UI Tests
+      - name: Run UI Tests
+        env:
+          platform: ${{ 'iOS Simulator' }}
+        run: |
+          echo "🧪 Running UI Tests..."
+          cd $GITHUB_WORKSPACE/Numerica-iOS
+
+          device="iPhone 15 Pro Max"
+
+          # Determine if it's a workspace or project
+          echo "🔍 Identifying project or workspace file..."
+          if [ "$(ls -A | grep -i \.xcworkspace\$)" ]; then
+            filetype_parameter="workspace"
+            file_to_build="$(ls -A | grep -i \.xcworkspace\$)"
+          else
+            filetype_parameter="project"
+            file_to_build="$(ls -A | grep -i \.xcodeproj\$)"
+          fi
+
+          file_to_build=$(echo $file_to_build | awk '{$1=$1;print}')
+
+          # Run UI tests with verbose logging
+          echo "🚀 Starting UI tests..."
+          set -o pipefail && xcodebuild test \
+            -scheme "NumericaUITests" \
+            -"$filetype_parameter" "$file_to_build" \
+            -destination "platform=iOS Simulator,name=iPhone 15 Pro Max,OS=17.4" \
+            | tee ui_tests.log | xcbeautify --is-ci --renderer github-actions
+
+          if [ $? -eq 0 ]; then
+            echo "🧪 UI Tests ✅ All UI tests passed successfully."
+          else
+            echo "🧪 UI Tests ❌ Some UI tests failed. Check the log for details."
             exit 1
           fi
