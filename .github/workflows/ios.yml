@@ -190,8 +190,8 @@ jobs:
 
           file_to_build=$(echo $file_to_build | awk '{$1=$1;print}')
 
-          # Test without building, use pipefail to ensure xcodebuild failures stop the process
-          echo "🚀 Starting tests..."
+          # Run tests with verbose logging and capture output in a log file
+          echo "🚀 Starting tests with real-time progress..."
           set -o pipefail && xcodebuild test-without-building \
             -scheme "$scheme" \
             -"$filetype_parameter" "$file_to_build" \
@@ -199,12 +199,16 @@ jobs:
             -derivedDataPath DerivedData \
             -parallel-testing-enabled YES \
             -enableCodeCoverage YES \
-            | xcbeautify --is-ci --renderer github-actions
+            | tee xcodebuild.log
+
+          # Process the xcodebuild log to make results readable
+          echo "📊 Parsing xcodebuild log for individual test results..."
+          cat xcodebuild.log | xcbeautify --is-ci --renderer github-actions
 
           # Check the result and print success or failure
           if [ $? -eq 0 ]; then
             echo "🧪 Tests ✅ All tests passed successfully."
           else
-            echo "🧪 Tests ❌ Some tests failed."
+            echo "🧪 Tests ❌ Some tests failed. Check the log for details."
             exit 1
           fi
