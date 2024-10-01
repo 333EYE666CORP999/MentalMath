@@ -113,28 +113,52 @@ jobs:
             exit 1
           fi
 
-          # Extract the first scheme as the default scheme
-          default=$(echo $scheme_list | ruby -e "require 'json'; puts JSON.parse(STDIN.gets)['project']['schemes'][0]")
+          echo "$scheme_list" > schemes.json
 
-          if [ -z "$default" ]; then
-            echo "❌ Error: No default scheme found."
+      # Step 6: Find Unit Tests Scheme
+      - name: Find Unit Tests Scheme
+        run: |
+          echo "🔍 Finding Unit Tests scheme ending with 'Tests'..."
+          cd $GITHUB_WORKSPACE/Numerica-iOS
+
+          # Extract the scheme list from JSON and find a scheme that ends with "Tests"
+          unit_test_scheme=$(cat schemes.json | ruby -e "require 'json'; puts JSON.parse(STDIN.gets)['project']['schemes'].select { |s| s =~ /Tests$/ }[0]")
+
+          if [ -z "$unit_test_scheme" ]; then
+            echo "❌ Error: No Unit Tests scheme ending with 'Tests' found."
             exit 1
           fi
 
-          echo "✅ Default scheme set to: $default"
-          echo $default > default
+          echo "✅ Unit Tests scheme found: $unit_test_scheme"
+          echo $unit_test_scheme > unit_test_scheme
 
-      # Step 6: Build for Testing
+      # Step 7: Find UI Tests Scheme
+      - name: Find UI Tests Scheme
+        run: |
+          echo "🔍 Finding UI Tests scheme ending with 'UITests'..."
+          cd $GITHUB_WORKSPACE/Numerica-iOS
+
+          # Extract the scheme list from JSON and find a scheme that ends with "UITests"
+          ui_test_scheme=$(cat schemes.json | ruby -e "require 'json'; puts JSON.parse(STDIN.gets)['project']['schemes'].select { |s| s =~ /UITests$/ }[0]")
+
+          if [ -z "$ui_test_scheme" ]; then
+            echo "❌ Error: No UI Tests scheme ending with 'UITests' found."
+            exit 1
+          fi
+
+          echo "✅ UI Tests scheme found: $ui_test_scheme"
+          echo $ui_test_scheme > ui_test_scheme
+
+      # Step 8: Build for Testing
       - name: Build for Testing
         env:
-          scheme: ${{ 'default' }}
           platform: ${{ 'iOS Simulator' }}
         run: |
           echo "🔨 Building for Testing..."
           cd $GITHUB_WORKSPACE/Numerica-iOS
 
           device="iPhone 14"  # Explicitly specify simulator to avoid multiple matching issues
-          scheme=$(cat default)
+          scheme=$(cat unit_test_scheme)
 
           # Determine if it's a workspace or project
           echo "🔍 Identifying project or workspace file..."
@@ -166,17 +190,16 @@ jobs:
             exit 1
           fi
 
-      # Step 7: Run Unit Tests
+      # Step 9: Run Unit Tests
       - name: Run Unit Tests
         env:
-          scheme: "Tests"
           platform: ${{ 'iOS Simulator' }}
         run: |
           echo "🧪 Running Unit Tests..."
           cd $GITHUB_WORKSPACE/Numerica-iOS
 
           device="iPhone 14"  # Use the same explicit device
-          scheme="NumericaTests"  # Set the specific scheme for unit tests
+          scheme=$(cat unit_test_scheme)
 
           # Determine if it's a workspace or project
           echo "🔍 Identifying project or workspace file..."
@@ -211,19 +234,45 @@ jobs:
             exit 1
           fi
 
-      # Step 8: Run UI Tests
+      # Step 10: Run UI Tests
       - name: Run UI Tests
         env:
-          scheme: "UITests"
           platform: ${{ 'iOS Simulator' }}
         run: |
           echo "🧪 Running UI Tests..."
           cd $GITHUB_WORKSPACE/Numerica-iOS
 
           device="iPhone 14"  # Use the same explicit device
-          scheme="NumericaUITests"  # Set the specific scheme for UI tests
+          scheme=$(cat ui_test_scheme)
 
           # Determine if it's a workspace or project
           echo "🔍 Identifying project or workspace file..."
           if [ "$(ls -A | grep -i \.xcworkspace\$)" ]; then
-            file
+            filetype_parameter="workspace"
+            file_to_build="$(ls -A | grep -i \.xcworkspace\$)"
+          else
+            filetype_parameter="project"
+            file_to_build="$(ls -A | grep -i \.xcodeproj\$)"
+          fi
+
+          file_to_build=$(echo $file_to_build | awk '{$1=$1;print}')
+
+          # Run UI tests with verbose logging
+          echo "🚀 Starting UI tests..."
+          set -o pipefail && xcodebuild test-without-building \
+            -scheme "$scheme" \
+            -"$filetype_parameter" "$file_to_build" \
+            -destination "platform=$platform,name=$device" \
+            -derivedDataPath DerivedData \
+            | tee ui_tests.log
+
+          # Process the xcodebuild log to make results readable
+          echo "📊 Parsing UI test log for individual test results..."
+          cat ui_tests.log | xcbeautify --is-ci --renderer github-actions
+
+          if [ $? -eq 0 ]; then
+            echo "🧪 UI Tests ✅ All UI tests passed successfully."
+          else
+            echo "🧪 UI Tests ❌ Some UI tests failed. Check the log for details."
+            exit 1
+          fi
