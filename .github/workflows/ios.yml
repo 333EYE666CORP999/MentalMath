@@ -169,13 +169,14 @@ jobs:
 
           file_to_build=$(echo $file_to_build | awk '{$1=$1;print}')
 
-          # Run unit tests with verbose logging
-          echo "🚀 Starting all tests..."
+          # Run unit tests with verbose logging, explicitly use the test plan "AllTests"
+          echo "🚀 Starting all tests using the AllTests test plan..."
           set -o pipefail && xcodebuild test \
             -scheme "NumericaTests" \
             -"$filetype_parameter" "$file_to_build" \
             -destination "platform=iOS Simulator,name=iPhone 15 Pro Max,OS=17.4" \
             -enableCodeCoverage YES \
+            -testPlan "AllTests" \
             | tee unit_tests.log | xcbeautify --is-ci --renderer github-actions
 
           if [ $? -eq 0 ]; then
@@ -184,3 +185,35 @@ jobs:
             echo "🧪 Tests ❌ Some tests failed. Check the log for details."
             exit 1
           fi
+          
+          echo "📄 Generating Detailed Test Report..."
+          cd $GITHUB_WORKSPACE/Numerica-iOS
+
+          # Define colors
+          blue='\033[1;34m'
+          deep_blue='\033[0;34m'
+          orange='\033[0;33m'
+          green='\033[0;32m'
+          red='\033[0;31m'
+          nc='\033[0m' # No Color
+
+          # Process the log and create a formatted report
+          while IFS= read -r line; do
+            if [[ $line == *"Test Suite"* ]]; then
+              suite_name=$(echo "$line" | grep -o "Test Suite '.*' started" | cut -d "'" -f 2)
+            elif [[ $line == *"Test Case"* ]]; then
+              if [[ $line == *"passed"* ]]; then
+                status="${green}✅${nc}"
+                test_name=$(echo "$line" | grep -o "Test Case '.*' passed" | cut -d "'" -f 2)
+                time_taken=$(echo "$line" | grep -o "[0-9]*\.[0-9]* seconds" | cut -d ' ' -f 1)
+              elif [[ $line == *"failed"* ]]; then
+                status="${red}❌${nc}"
+                test_name=$(echo "$line" | grep -o "Test Case '.*' failed" | cut -d "'" -f 2)
+                time_taken=$(echo "$line" | grep -o "[0-9]*\.[0-9]* seconds" | cut -d ' ' -f 1)
+              fi
+
+              # Print the formatted report
+              datetime=$(date "+%Y-%m-%d %H:%M:%S")
+              echo -e "[${blue}${datetime}${nc}] [$status] [${deep_blue}${suite_name}${nc}] [${test_name}] [${orange}${time_taken} sec${nc}]"
+            fi
+          done < unit_tests.log
