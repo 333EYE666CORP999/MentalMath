@@ -137,7 +137,7 @@ jobs:
           set -o pipefail && xcodebuild test \
             -scheme "${{ matrix.scheme }}" \
             -"$filetype_parameter" "$file_to_build" \
-            -destination "platform:iOS Simulator, id:B717521D-9EB6-4731-B189-0093C44EE3DA, OS:18.1, name:iPhone 15 Pro Max" \
+            -destination "platform=iOS Simulator,name=iPhone 15 Pro Max,OS=18.1"
             -enableCodeCoverage YES \
             -parallel-testing-enabled YES \
             | tee unit_tests_${{ matrix.scheme }}.log | xcbeautify --is-ci --renderer github-actions
