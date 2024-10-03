@@ -56,13 +56,6 @@
 			remoteGlobalIDString = 3F415BBF2C83800500C94EB6;
 			remoteInfo = Numerica;
 		};
-		3FEEFEBE2CAE84C8002A0F3E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3F415BB82C83800500C94EB6 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3F6C76E22CA1594200492149;
-			remoteInfo = NumericaUITests;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -409,7 +402,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				3FEEFEBF2CAE84C8002A0F3E /* PBXTargetDependency */,
 				3F6C76FB2CA1594D00492149 /* PBXTargetDependency */,
 			);
 			name = NumericaTests;
@@ -597,11 +589,6 @@
 			isa = PBXTargetDependency;
 			target = 3F415BBF2C83800500C94EB6 /* Numerica */;
 			targetProxy = 3F6C76FA2CA1594D00492149 /* PBXContainerItemProxy */;
-		};
-		3FEEFEBF2CAE84C8002A0F3E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 3F6C76E22CA1594200492149 /* NumericaUITests */;
-			targetProxy = 3FEEFEBE2CAE84C8002A0F3E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
