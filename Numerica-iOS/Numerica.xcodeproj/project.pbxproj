@@ -37,6 +37,8 @@
 		3FAC601F2CACA8C20037A440 /* languages_and_locales.json in Resources */ = {isa = PBXBuildFile; fileRef = 3FE426492CA152FA0025EF36 /* languages_and_locales.json */; };
 		3FDAF7B72C9D877D0089AAFC /* ErrorShowingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDAF7B62C9D877D0089AAFC /* ErrorShowingTextField.swift */; };
 		3FE64FA82C8851240053C96C /* SwiftData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE64FA72C8851240053C96C /* SwiftData.swift */; };
+		3FEEFEBC2CAE8396002A0F3E /* BundleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEEFEBB2CAE8396002A0F3E /* BundleTests.swift */; };
+		3FEEFEBD2CAE83C9002A0F3E /* AllTests.xctestplan in Resources */ = {isa = PBXBuildFile; fileRef = 3F6C771C2CA20A1100492149 /* AllTests.xctestplan */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 3F415BBF2C83800500C94EB6;
 			remoteInfo = Numerica;
+		};
+		3FEEFEBE2CAE84C8002A0F3E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3F415BB82C83800500C94EB6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3F6C76E22CA1594200492149;
+			remoteInfo = NumericaUITests;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -89,6 +98,7 @@
 		3FDAF7B62C9D877D0089AAFC /* ErrorShowingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorShowingTextField.swift; sourceTree = "<group>"; };
 		3FE426492CA152FA0025EF36 /* languages_and_locales.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = languages_and_locales.json; sourceTree = "<group>"; };
 		3FE64FA72C8851240053C96C /* SwiftData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftData.swift; sourceTree = "<group>"; };
+		3FEEFEBB2CAE8396002A0F3E /* BundleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -263,12 +273,13 @@
 			path = NumericaUITests;
 			sourceTree = "<group>";
 		};
-		3F6C770C2CA159AA00492149 /* NumericaUnitTests */ = {
+		3F6C770C2CA159AA00492149 /* NumericaTests */ = {
 			isa = PBXGroup;
 			children = (
 				3F6C770B2CA159AA00492149 /* ProblemGeneratorTests.swift */,
+				3FEEFEBB2CAE8396002A0F3E /* BundleTests.swift */,
 			);
-			path = NumericaUnitTests;
+			path = NumericaTests;
 			sourceTree = "<group>";
 		};
 		3F6C771E2CA20A6200492149 /* Numerica Tests */ = {
@@ -276,7 +287,7 @@
 			children = (
 				3F6C771C2CA20A1100492149 /* AllTests.xctestplan */,
 				3F6C77052CA1598F00492149 /* NumericaUITests */,
-				3F6C770C2CA159AA00492149 /* NumericaUnitTests */,
+				3F6C770C2CA159AA00492149 /* NumericaTests */,
 			);
 			path = "Numerica Tests";
 			sourceTree = "<group>";
@@ -398,6 +409,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				3FEEFEBF2CAE84C8002A0F3E /* PBXTargetDependency */,
 				3F6C76FB2CA1594D00492149 /* PBXTargetDependency */,
 			);
 			name = NumericaTests;
@@ -499,6 +511,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3FAC601F2CACA8C20037A440 /* languages_and_locales.json in Resources */,
+				3FEEFEBD2CAE83C9002A0F3E /* AllTests.xctestplan in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -568,6 +581,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F6C770E2CA159AA00492149 /* ProblemGeneratorTests.swift in Sources */,
+				3FEEFEBC2CAE8396002A0F3E /* BundleTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -583,6 +597,11 @@
 			isa = PBXTargetDependency;
 			target = 3F415BBF2C83800500C94EB6 /* Numerica */;
 			targetProxy = 3F6C76FA2CA1594D00492149 /* PBXContainerItemProxy */;
+		};
+		3FEEFEBF2CAE84C8002A0F3E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3F6C76E22CA1594200492149 /* NumericaUITests */;
+			targetProxy = 3FEEFEBE2CAE84C8002A0F3E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
