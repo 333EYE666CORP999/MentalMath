@@ -144,7 +144,7 @@ jobs:
           set -o pipefail && xcodebuild test \
             -scheme "${{ matrix.scheme }}" \
             -"$filetype_parameter" "$file_to_build" \
-            -destination "platform=iOS Simulator, OS=18.1, name=${{ matrix.device }}" \
+            -destination "platform=iOS Simulator, name=${{ matrix.device }}, OS=18.1" \
             -enableCodeCoverage YES \
             | tee unit_tests_${{ matrix.scheme }}.log | xcbeautify --is-ci --renderer github-actions
 
