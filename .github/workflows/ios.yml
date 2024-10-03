@@ -63,14 +63,13 @@ jobs:
           cd $GITHUB_WORKSPACE/Numerica-iOS
 
           swiftlint lint --config swiftlint.yml --reporter json > swiftlint_raw.json
-          cat swiftlint_raw.json | jq '.' | xcbeautify --is-ci --renderer github-actions | tee swiftlint.json
 
           num_violations=$(jq '. | length' swiftlint_raw.json)
           threshold=20
 
           echo "📊 Found $num_violations violations."
 
-          cat swiftlint.json
+          cat swiftlint_raw.json
 
           if [ "$num_violations" -gt "$threshold" ]; then
             echo "❌ Linting failed: $num_violations violations found (Threshold: $threshold)."
@@ -123,27 +122,6 @@ jobs:
         with:
           xcode-version: 'latest-stable'
 
-      - name: Select Random iPhone on iOS 18
-        id: select_device
-        run: |
-          echo "🔍 Listing available simulators..."
-          xcrun simctl list > simulators.txt
-
-          devices=$(awk '/iPhone/ && /iOS 18\.[0-9]+/ && /available/ {print}' simulators.txt)
-
-          if [ -z "$devices" ]; then
-            echo "❌ No available iPhone simulators running iOS 18 found."
-            exit 1
-          fi
-
-          selected_device=$(echo "$devices" | shuf -n 1)
-          device_name=$(echo "$selected_device" | awk -F '[()]' '{print $1}' | xargs)
-          device_id=$(echo "$selected_device" | grep -Eo '\([0-9A-F-]+\)' | tr -d '()')
-          os_version=$(echo "$selected_device" | grep -Eo 'iOS 18\.[0-9]+')
-
-          echo "Selected iPhone: $device_name, OS: $os_version, UDID: $device_id"
-          echo "::set-output name=device::platform=iOS Simulator,UDID=$device_id"
-
       - name: Run Tests
         run: |
           echo "🧪 Running Tests for Scheme: ${{ matrix.scheme }}..."
@@ -159,7 +137,7 @@ jobs:
           set -o pipefail && xcodebuild test \
             -scheme "${{ matrix.scheme }}" \
             -"$filetype_parameter" "$file_to_build" \
-            -destination "${{ steps.select_device.outputs.device }}" \
+            -destination "platform=iOS Simulator,OS=18.1" \
             -enableCodeCoverage YES \
             -parallel-testing-enabled YES \
             | tee unit_tests_${{ matrix.scheme }}.log | xcbeautify --is-ci --renderer github-actions
