@@ -58,8 +58,13 @@ jobs:
           # Run SwiftLint and save output to a structured log file
           swiftlint lint --config swiftlint.yml | xcbeautify --is-ci --renderer github-actions > swiftlint_clean.log
 
-          # Set a threshold and count the number of violations
-          num_violations=$(grep -c "warning:" swiftlint_clean.log)
+          # Extract the "Done linting!" line to get the summary
+          summary_line=$(grep "Done linting! Found" swiftlint_clean.log)
+
+          # Parse the number of violations from the summary line
+          num_violations=$(echo "$summary_line" | grep -oP '(?<=Found )\d+')
+
+          # Set the threshold for the maximum allowed violations
           threshold=20
 
           echo "📊 Found $num_violations violations."
@@ -123,23 +128,34 @@ jobs:
           echo "🔍 Listing available simulators..."
           xcrun simctl list > simulators.txt
 
-          cat simulators.txt
+          # Start parsing the simulator list
+          selected_device=""
 
+          # Iterate through simulators.txt to find iOS 18 runtime section and devices
+          while IFS= read -r line; do
+            if echo "$line" | grep -q "iOS 18"; then
+              ios_18_section="true"
+            elif [[ "$line" =~ "--" ]]; then
+              ios_18_section=""
+            elif [[ -n "$ios_18_section" && "$line" =~ "iPhone" && "$line" =~ "available" ]]; then
+              # Add the available iPhone devices under iOS 18.x section to the list
+              available_devices+=("$line")
+            fi
+          done < simulators.txt
 
-
-          # Extract all iPhone devices running iOS 18.x
-          devices=$(awk '/iPhone/ && /iOS 18\.[0-9]+/ && /available/ {print}' simulators.txt)
-
-          if [ -z "$devices" ]; then
+          # Check if there are any available devices
+          if [ ${#available_devices[@]} -eq 0 ]; then
             echo "❌ No available iPhone simulators running iOS 18 found."
             exit 1
           fi
 
-          # Select a random device ensuring all information is extracted from a single line
-          selected_device=$(echo "$devices" | shuf -n 1)
+          # Select a random device from the available list
+          selected_device="${available_devices[$((RANDOM % ${#available_devices[@]}))]}"
+
+          # Extract the relevant information from the selected line
           device_name=$(echo "$selected_device" | awk -F '[()]' '{print $1}' | xargs)
           device_id=$(echo "$selected_device" | grep -Eo '\([0-9A-F-]+\)' | tr -d '()')
-          os_version=$(echo "$selected_device" | grep -Eo 'iOS 18\.[0-9]+')
+          os_version="iOS 18" # This is inferred from the section header we selected from
 
           # Export the selected device information
           echo "Selected iPhone: $device_name, OS: $os_version, UDID: $device_id"
