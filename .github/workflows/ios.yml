@@ -123,6 +123,10 @@ jobs:
           echo "🔍 Listing available simulators..."
           xcrun simctl list > simulators.txt
 
+          cat simulators.txt
+
+
+
           # Extract all iPhone devices running iOS 18.x
           devices=$(awk '/iPhone/ && /iOS 18\.[0-9]+/ && /available/ {print}' simulators.txt)
 
