@@ -23,7 +23,6 @@
 		3F6C770E2CA159AA00492149 /* ProblemGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6C770B2CA159AA00492149 /* ProblemGeneratorTests.swift */; };
 		3F6C770F2CA15B2100492149 /* languages_and_locales.json in Resources */ = {isa = PBXBuildFile; fileRef = 3FE426492CA152FA0025EF36 /* languages_and_locales.json */; };
 		3F6C77102CA16A5A00492149 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 3F296D5B2CA039CA00D1A2C6 /* Localizable.xcstrings */; };
-		3F6C771D2CA20A1100492149 /* AllTests.xctestplan in Resources */ = {isa = PBXBuildFile; fileRef = 3F6C771C2CA20A1100492149 /* AllTests.xctestplan */; };
 		3F8475942C8513000034EC78 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F8475862C8513000034EC78 /* Assets.xcassets */; };
 		3F8475952C8513000034EC78 /* NumericaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8475892C8513000034EC78 /* NumericaApp.swift */; };
 		3F8475962C8513000034EC78 /* ProblemGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F84758B2C8513000034EC78 /* ProblemGenerator.swift */; };
@@ -38,7 +37,6 @@
 		3FDAF7B72C9D877D0089AAFC /* ErrorShowingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDAF7B62C9D877D0089AAFC /* ErrorShowingTextField.swift */; };
 		3FE64FA82C8851240053C96C /* SwiftData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE64FA72C8851240053C96C /* SwiftData.swift */; };
 		3FEEFEBC2CAE8396002A0F3E /* BundleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEEFEBB2CAE8396002A0F3E /* BundleTests.swift */; };
-		3FEEFEBD2CAE83C9002A0F3E /* AllTests.xctestplan in Resources */ = {isa = PBXBuildFile; fileRef = 3F6C771C2CA20A1100492149 /* AllTests.xctestplan */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,7 +74,6 @@
 		3F6C76F62CA1594D00492149 /* NumericaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NumericaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F6C77012CA1598F00492149 /* LocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationTests.swift; sourceTree = "<group>"; };
 		3F6C770B2CA159AA00492149 /* ProblemGeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemGeneratorTests.swift; sourceTree = "<group>"; };
-		3F6C771C2CA20A1100492149 /* AllTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = AllTests.xctestplan; sourceTree = "<group>"; };
 		3F8475862C8513000034EC78 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F8475872C8513000034EC78 /* Entitlements.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Entitlements.entitlements; sourceTree = "<group>"; };
 		3F8475892C8513000034EC78 /* NumericaApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumericaApp.swift; sourceTree = "<group>"; };
@@ -278,7 +275,6 @@
 		3F6C771E2CA20A6200492149 /* Numerica Tests */ = {
 			isa = PBXGroup;
 			children = (
-				3F6C771C2CA20A1100492149 /* AllTests.xctestplan */,
 				3F6C77052CA1598F00492149 /* NumericaUITests */,
 				3F6C770C2CA159AA00492149 /* NumericaTests */,
 			);
@@ -494,7 +490,6 @@
 			files = (
 				3F6C77102CA16A5A00492149 /* Localizable.xcstrings in Resources */,
 				3F6C770F2CA15B2100492149 /* languages_and_locales.json in Resources */,
-				3F6C771D2CA20A1100492149 /* AllTests.xctestplan in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -503,7 +498,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3FAC601F2CACA8C20037A440 /* languages_and_locales.json in Resources */,
-				3FEEFEBD2CAE83C9002A0F3E /* AllTests.xctestplan in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

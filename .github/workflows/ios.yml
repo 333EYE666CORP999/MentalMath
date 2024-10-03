@@ -5,15 +5,15 @@ on:
     branches: [ "develop" ]
 
 jobs:
-  build_and_test:
-    name: Build and Test
+  build:
+    name: Build Numerica
     runs-on: macos-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Setup Xcode
+      - name: Setup Xcode Environment
         uses: maxim-lobanov/setup-xcode@v1
         with:
           xcode-version: 'latest-stable'
@@ -21,39 +21,40 @@ jobs:
       - name: Prepare Environment
         run: |
           echo "🔧 Preparing Environment..."
-          
+
+          # Determine the correct Homebrew prefix
           if [ "$(uname -m)" = "arm64" ]; then
             HOMEBREW_PREFIX="/opt/homebrew"
           else
             HOMEBREW_PREFIX="/usr/local"
           fi
 
-          echo "📦 Checking for Homebrew installation..."
+          # Install or update Homebrew
           if ! command -v brew &> /dev/null; then
             echo "🍺 Installing Homebrew..."
             /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
           else
-            echo "🍺 Homebrew already installed."
+            echo "🍺 Homebrew already installed. Updating packages..."
+            brew upgrade --greedy-latest
           fi
 
-          echo "📦 Updating and upgrading Homebrew packages..."
-          brew upgrade --greedy-latest
-
-          echo "⚙️ Installing SwiftLint if needed..."
+          # Install SwiftLint if necessary
           if [ ! -x "${HOMEBREW_PREFIX}/bin/swiftlint" ]; then
+            echo "⚙️ Installing SwiftLint..."
             brew install swiftlint
           else
             echo "✅ SwiftLint already installed."
           fi
 
-          echo "⚙️ Installing xcbeautify if needed..."
+          # Install xcbeautify if necessary
           if [ ! -x "${HOMEBREW_PREFIX}/bin/xcbeautify" ]; then
+            echo "⚙️ Installing xcbeautify..."
             brew install xcbeautify
           else
             echo "✅ xcbeautify already installed."
           fi
 
-      - name: SwiftLint
+      - name: Run SwiftLint
         run: |
           echo "📝 Running SwiftLint..."
           cd $GITHUB_WORKSPACE/Numerica-iOS
@@ -66,61 +67,18 @@ jobs:
           echo "📊 Found $num_violations violations."
 
           if [ "$num_violations" -gt "$threshold" ]; then
-            echo "Linting ❌: $num_violations violations found (Threshold: $threshold)."
+            echo "❌ Linting failed: $num_violations violations found (Threshold: $threshold)."
             exit 1
           else
-            echo "Linting ✅: $num_violations violations found (Threshold: $threshold)."
+            echo "✅ Linting passed: $num_violations violations found (Threshold: $threshold)."
           fi
 
-      - name: Set Default Scheme
+      - name: Build Numerica Scheme
         run: |
-          echo "⚙️ Setting Default Scheme..."
+          echo "🔨 Building Numerica Scheme..."
           cd $GITHUB_WORKSPACE/Numerica-iOS
 
           # Detect if it's a workspace or project
-          echo "🔍 Detecting Xcode project type..."
-          if [ "$(ls -A | grep -i \.xcworkspace\$)" ]; then
-            filetype_parameter="workspace"
-            file_to_build="$(ls -A | grep -i \.xcworkspace\$)"
-            echo "✅ Workspace detected: $file_to_build"
-          elif [ "$(ls -A | grep -i \.xcodeproj\$)" ]; then
-            filetype_parameter="project"
-            file_to_build="$(ls -A | grep -i \.xcodeproj\$)"
-            echo "✅ Project detected: $file_to_build"
-          else
-            echo "❌ Error: No Xcode workspace or project found."
-            exit 1
-          fi
-
-          # Clean up potential whitespace in the filename
-          file_to_build=$(echo $file_to_build | awk '{$1=$1;print}')
-
-          # Retrieve the scheme list
-          echo "📄 Retrieving scheme list for: $file_to_build ($filetype_parameter)..."
-          scheme_list=$(xcodebuild -list -$filetype_parameter "$file_to_build" -json)
-
-          # Show raw output for debugging
-          echo "📄 Raw scheme list output:"
-          echo "$scheme_list"
-
-          if [ -z "$scheme_list" ]; then
-            echo "❌ Error: Could not retrieve scheme list."
-            exit 1
-          fi
-
-          echo "$scheme_list" > schemes.json
-
-      - name: Build for Testing
-        env:
-          platform: ${{ 'iOS Simulator' }}
-        run: |
-          echo "🔨 Building for Testing..."
-          cd $GITHUB_WORKSPACE/Numerica-iOS
-
-          device="iPhone 15 Pro Max"  # Explicitly specify simulator with a recent model and OS version
-
-          # Determine if it's a workspace or project
-          echo "🔍 Identifying project or workspace file..."
           if [ "$(ls -A | grep -i \.xcworkspace\$)" ]; then
             filetype_parameter="workspace"
             file_to_build="$(ls -A | grep -i \.xcworkspace\$)"
@@ -131,9 +89,8 @@ jobs:
 
           file_to_build=$(echo $file_to_build | awk '{$1=$1;print}')
 
-          # Build with xcbeautify, use pipefail to ensure xcodebuild failures stop the process
-          echo "🏗️ Building using xcodebuild..."
-          set -o pipefail && xcodebuild build-for-testing \
+          # Build the project using the Numerica scheme
+          set -o pipefail && xcodebuild build \
             -scheme "Numerica" \
             -"$filetype_parameter" "$file_to_build" \
             -destination "platform=iOS Simulator,name=iPhone 15 Pro Max,OS=17.4" \
@@ -142,23 +99,37 @@ jobs:
             | xcbeautify --is-ci --renderer github-actions
 
           if [ $? -eq 0 ]; then
-            echo "🔨 Build ✅ Completed successfully."
+            echo "✅ Build completed successfully."
           else
-            echo "🔨 Build ❌ Failed."
+            echo "❌ Build failed."
             exit 1
           fi
 
-      - name: Run All Tests
-        env:
-          platform: ${{ 'iOS Simulator' }}
+  test:
+    name: Run Tests in Parallel
+    needs: build
+    runs-on: macos-latest
+
+    strategy:
+      matrix:
+        scheme: [NumericaTests, NumericaUITests]
+        device: ["iPhone 15 Pro Max"]
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Xcode Environment
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: 'latest-stable'
+
+      - name: Run Tests
         run: |
-          echo "🧪 Running All Tests..."
+          echo "🧪 Running Tests for Scheme: ${{ matrix.scheme }}..."
           cd $GITHUB_WORKSPACE/Numerica-iOS
 
-          device="iPhone 15 Pro Max"
-
           # Determine if it's a workspace or project
-          echo "🔍 Identifying project or workspace file..."
           if [ "$(ls -A | grep -i \.xcworkspace\$)" ]; then
             filetype_parameter="workspace"
             file_to_build="$(ls -A | grep -i \.xcworkspace\$)"
@@ -169,19 +140,17 @@ jobs:
 
           file_to_build=$(echo $file_to_build | awk '{$1=$1;print}')
 
-          # Run unit tests with verbose logging, explicitly use the test plan "AllTests"
-          echo "🚀 Starting all tests using the AllTests test plan..."
+          # Run tests with the specified scheme
           set -o pipefail && xcodebuild test \
-            -scheme "NumericaTests" \
+            -scheme "${{ matrix.scheme }}" \
             -"$filetype_parameter" "$file_to_build" \
-            -destination "platform=iOS Simulator,name=iPhone 15 Pro Max,OS=17.4" \
+            -destination "platform=iOS Simulator,name=${{ matrix.device }},OS=17.4" \
             -enableCodeCoverage YES \
-            -testPlan "AllTests" \
-            | tee unit_tests.log | xcbeautify --is-ci --renderer github-actions
+            | tee unit_tests_${{ matrix.scheme }}.log | xcbeautify --is-ci --renderer github-actions
 
           if [ $? -eq 0 ]; then
-            echo "🧪 Tests ✅ All tests passed successfully."
+            echo "✅ All tests passed for scheme: ${{ matrix.scheme }}."
           else
-            echo "🧪 Tests ❌ Some tests failed. Check the log for details."
+            echo "❌ Some tests failed for scheme: ${{ matrix.scheme }}. Check the log for details."
             exit 1
           fi
