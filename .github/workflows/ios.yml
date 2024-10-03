@@ -55,22 +55,25 @@ jobs:
           echo "📝 Running SwiftLint..."
           cd $GITHUB_WORKSPACE/Numerica-iOS
 
-          # Run SwiftLint and save output to a structured log file
-          swiftlint lint --config swiftlint.yml | xcbeautify --is-ci --renderer github-actions > swiftlint_clean.log
+          # Run SwiftLint with JSON output and save to swiftlint.json
+          swiftlint lint --config swiftlint.yml --reporter json > swiftlint.json
 
-          # Extract the "Done linting!" line to get the summary
-          summary_line=$(grep "Done linting! Found" swiftlint_clean.log)
+          # Install jq for parsing JSON if not available
+          if ! command -v jq &> /dev/null; then
+            echo "Installing jq..."
+            brew install jq
+          fi
 
-          # Parse the number of violations from the summary line
-          num_violations=$(echo "$summary_line" | grep -oP '(?<=Found )\d+')
-
-          # Set the threshold for the maximum allowed violations
+          # Count the number of violations from the JSON output
+          num_violations=$(jq '. | length' swiftlint.json)
           threshold=20
 
           echo "📊 Found $num_violations violations."
 
-          # Output SwiftLint results and decide to fail the build based on the threshold
-          cat swiftlint_clean.log
+          # Output SwiftLint results in a human-readable way
+          cat swiftlint.json | jq
+
+          # Decide to fail the build based on the threshold
           if [ "$num_violations" -gt "$threshold" ]; then
             echo "❌ Linting failed: $num_violations violations found (Threshold: $threshold)."
             exit 1
