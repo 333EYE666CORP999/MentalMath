@@ -22,14 +22,12 @@ jobs:
         run: |
           echo "🔧 Preparing Environment..."
 
-          # Determine the correct Homebrew prefix
           if [ "$(uname -m)" = "arm64" ]; then
             HOMEBREW_PREFIX="/opt/homebrew"
           else
             HOMEBREW_PREFIX="/usr/local"
           fi
 
-          # Install or update Homebrew
           if ! command -v brew &> /dev/null; then
             echo "🍺 Installing Homebrew..."
             /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -38,7 +36,6 @@ jobs:
             brew upgrade --greedy-latest
           fi
 
-          # Install SwiftLint if necessary
           if [ ! -x "${HOMEBREW_PREFIX}/bin/swiftlint" ]; then
             echo "⚙️ Installing SwiftLint..."
             brew install swiftlint
@@ -46,7 +43,6 @@ jobs:
             echo "✅ SwiftLint already installed."
           fi
 
-          # Install xcbeautify if necessary
           if [ ! -x "${HOMEBREW_PREFIX}/bin/xcbeautify" ]; then
             echo "⚙️ Installing xcbeautify..."
             brew install xcbeautify
@@ -59,13 +55,17 @@ jobs:
           echo "📝 Running SwiftLint..."
           cd $GITHUB_WORKSPACE/Numerica-iOS
 
-          swiftlint lint --config swiftlint.yml | tee swiftlint.log | xcbeautify --is-ci --renderer github-actions
+          # Run SwiftLint and save output to a structured log file
+          swiftlint lint --config swiftlint.yml | xcbeautify --is-ci --renderer github-actions > swiftlint_clean.log
 
-          num_violations=$(wc -l < swiftlint.log | xargs)
+          # Set a threshold and count the number of violations
+          num_violations=$(grep -c "warning:" swiftlint_clean.log)
           threshold=20
 
           echo "📊 Found $num_violations violations."
 
+          # Output SwiftLint results and decide to fail the build based on the threshold
+          cat swiftlint_clean.log
           if [ "$num_violations" -gt "$threshold" ]; then
             echo "❌ Linting failed: $num_violations violations found (Threshold: $threshold)."
             exit 1
@@ -77,8 +77,6 @@ jobs:
         run: |
           echo "🔨 Building Numerica Scheme..."
           cd $GITHUB_WORKSPACE/Numerica-iOS
-
-          # Detect if it's a workspace or project
           if [ "$(ls -A | grep -i \.xcworkspace\$)" ]; then
             filetype_parameter="workspace"
             file_to_build="$(ls -A | grep -i \.xcworkspace\$)"
@@ -86,18 +84,14 @@ jobs:
             filetype_parameter="project"
             file_to_build="$(ls -A | grep -i \.xcodeproj\$)"
           fi
-
           file_to_build=$(echo $file_to_build | awk '{$1=$1;print}')
-
-          # Build the project using the Numerica scheme
           set -o pipefail && xcodebuild build \
             -scheme "Numerica" \
             -"$filetype_parameter" "$file_to_build" \
-            -destination "platform=iOS Simulator,name=iPhone 15 Pro Max,OS=17.4" \
+            -destination "platform=iOS Simulator,name=iPhone 15 Pro Max,OS=18.1" \
             CODE_SIGNING_ALLOWED=NO \
             SWIFT_FLAGS="-Xfrontend -strict-concurrency=complete -swift-version 6" \
             | xcbeautify --is-ci --renderer github-actions
-
           if [ $? -eq 0 ]; then
             echo "✅ Build completed successfully."
           else
@@ -113,7 +107,6 @@ jobs:
     strategy:
       matrix:
         scheme: [NumericaTests, NumericaUITests]
-        device: [iPhone 15 Pro Max]
 
     steps:
       - name: Checkout Code
@@ -124,12 +117,34 @@ jobs:
         with:
           xcode-version: 'latest-stable'
 
+      - name: Select Random iPhone on iOS 18
+        id: select_device
+        run: |
+          echo "🔍 Listing available simulators..."
+          xcrun simctl list > simulators.txt
+
+          # Extract all iPhone devices running iOS 18.x
+          devices=$(awk '/iPhone/ && /iOS 18\.[0-9]+/ && /available/ {print}' simulators.txt)
+
+          if [ -z "$devices" ]; then
+            echo "❌ No available iPhone simulators running iOS 18 found."
+            exit 1
+          fi
+
+          # Select a random device ensuring all information is extracted from a single line
+          selected_device=$(echo "$devices" | shuf -n 1)
+          device_name=$(echo "$selected_device" | awk -F '[()]' '{print $1}' | xargs)
+          device_id=$(echo "$selected_device" | grep -Eo '\([0-9A-F-]+\)' | tr -d '()')
+          os_version=$(echo "$selected_device" | grep -Eo 'iOS 18\.[0-9]+')
+
+          # Export the selected device information
+          echo "Selected iPhone: $device_name, OS: $os_version, UDID: $device_id"
+          echo "::set-output name=device::platform=iOS Simulator,UDID=$device_id"
+
       - name: Run Tests
         run: |
           echo "🧪 Running Tests for Scheme: ${{ matrix.scheme }}..."
           cd $GITHUB_WORKSPACE/Numerica-iOS
-
-          # Determine if it's a workspace or project
           if [ "$(ls -A | grep -i \.xcworkspace\$)" ]; then
             filetype_parameter="workspace"
             file_to_build="$(ls -A | grep -i \.xcworkspace\$)"
@@ -137,17 +152,14 @@ jobs:
             filetype_parameter="project"
             file_to_build="$(ls -A | grep -i \.xcodeproj\$)"
           fi
-
           file_to_build=$(echo $file_to_build | awk '{$1=$1;print}')
-
-          # Run tests with the specified scheme
           set -o pipefail && xcodebuild test \
             -scheme "${{ matrix.scheme }}" \
             -"$filetype_parameter" "$file_to_build" \
-            -destination "platform=iOS Simulator, name=${{ matrix.device }}, OS=18.1" \
+            -destination "${{ steps.select_device.outputs.device }}" \
             -enableCodeCoverage YES \
+            -parallel-testing-enabled YES \
             | tee unit_tests_${{ matrix.scheme }}.log | xcbeautify --is-ci --renderer github-actions
-
           if [ $? -eq 0 ]; then
             echo "✅ All tests passed for scheme: ${{ matrix.scheme }}."
           else
