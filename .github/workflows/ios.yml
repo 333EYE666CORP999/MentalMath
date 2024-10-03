@@ -50,30 +50,28 @@ jobs:
             echo "✅ xcbeautify already installed."
           fi
 
+          if ! command -v jq &> /dev/null; then
+            echo "⚙️ Installing jq for JSON parsing..."
+            brew install jq
+          else
+            echo "✅ jq already installed."
+          fi
+
       - name: Run SwiftLint
         run: |
           echo "📝 Running SwiftLint..."
           cd $GITHUB_WORKSPACE/Numerica-iOS
 
-          # Run SwiftLint with JSON output and save to swiftlint.json
-          swiftlint lint --config swiftlint.yml --reporter json > swiftlint.json
+          swiftlint lint --config swiftlint.yml --reporter json > swiftlint_raw.json
+          cat swiftlint_raw.json | jq '.' | xcbeautify --is-ci --renderer github-actions | tee swiftlint.json
 
-          # Install jq for parsing JSON if not available
-          if ! command -v jq &> /dev/null; then
-            echo "Installing jq..."
-            brew install jq
-          fi
-
-          # Count the number of violations from the JSON output
-          num_violations=$(jq '. | length' swiftlint.json)
+          num_violations=$(jq '. | length' swiftlint_raw.json)
           threshold=20
 
           echo "📊 Found $num_violations violations."
 
-          # Output SwiftLint results in a human-readable way
-          cat swiftlint.json | jq
+          cat swiftlint.json
 
-          # Decide to fail the build based on the threshold
           if [ "$num_violations" -gt "$threshold" ]; then
             echo "❌ Linting failed: $num_violations violations found (Threshold: $threshold)."
             exit 1
@@ -131,36 +129,18 @@ jobs:
           echo "🔍 Listing available simulators..."
           xcrun simctl list > simulators.txt
 
-          # Start parsing the simulator list
-          selected_device=""
+          devices=$(awk '/iPhone/ && /iOS 18\.[0-9]+/ && /available/ {print}' simulators.txt)
 
-          # Iterate through simulators.txt to find iOS 18 runtime section and devices
-          while IFS= read -r line; do
-            if echo "$line" | grep -q "iOS 18"; then
-              ios_18_section="true"
-            elif [[ "$line" =~ "--" ]]; then
-              ios_18_section=""
-            elif [[ -n "$ios_18_section" && "$line" =~ "iPhone" && "$line" =~ "available" ]]; then
-              # Add the available iPhone devices under iOS 18.x section to the list
-              available_devices+=("$line")
-            fi
-          done < simulators.txt
-
-          # Check if there are any available devices
-          if [ ${#available_devices[@]} -eq 0 ]; then
+          if [ -z "$devices" ]; then
             echo "❌ No available iPhone simulators running iOS 18 found."
             exit 1
           fi
 
-          # Select a random device from the available list
-          selected_device="${available_devices[$((RANDOM % ${#available_devices[@]}))]}"
-
-          # Extract the relevant information from the selected line
+          selected_device=$(echo "$devices" | shuf -n 1)
           device_name=$(echo "$selected_device" | awk -F '[()]' '{print $1}' | xargs)
           device_id=$(echo "$selected_device" | grep -Eo '\([0-9A-F-]+\)' | tr -d '()')
-          os_version="iOS 18" # This is inferred from the section header we selected from
+          os_version=$(echo "$selected_device" | grep -Eo 'iOS 18\.[0-9]+')
 
-          # Export the selected device information
           echo "Selected iPhone: $device_name, OS: $os_version, UDID: $device_id"
           echo "::set-output name=device::platform=iOS Simulator,UDID=$device_id"
 
