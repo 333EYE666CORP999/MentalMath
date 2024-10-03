@@ -113,7 +113,7 @@ jobs:
     strategy:
       matrix:
         scheme: [NumericaTests, NumericaUITests]
-        device: ["iPhone 15 Pro Max"]
+        device: [iPhone 15 Pro Max]
 
     steps:
       - name: Checkout Code
