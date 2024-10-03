@@ -19,7 +19,7 @@
             parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3F6C76F52CA1594D00492149"
+               BlueprintIdentifier = "3F29B1B32CAE90CB003354CB"
                BuildableName = "NumericaTests.xctest"
                BlueprintName = "NumericaTests"
                ReferencedContainer = "container:Numerica.xcodeproj">

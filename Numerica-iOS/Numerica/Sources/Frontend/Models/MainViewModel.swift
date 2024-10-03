@@ -44,6 +44,7 @@ final class MainViewModel: ObservableObject {
         self.problem = mathGen.getProblem(for: operation)
     }
 
+    // TODO: - переписать, чтоб было две разных кнопки
     func onActionButtonTap() {
         switch isGameStarted {
         case true:

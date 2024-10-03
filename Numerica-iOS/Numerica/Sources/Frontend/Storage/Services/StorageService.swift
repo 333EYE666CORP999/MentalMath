@@ -21,6 +21,7 @@ final class StorageService: Sendable {
 @ModelActor
 actor PersistencyHandler {
 
+    // TODO: - попрофилировать, на каком потоке реально сохраняется в память и если что убрать актор
     typealias SendablePersistentEntity = PersistentModel & Sendable
 
     func saveModel<T: PersistentModel>(_ model: T) async {
