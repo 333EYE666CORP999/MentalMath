@@ -137,13 +137,13 @@ jobs:
           set -o pipefail && xcodebuild test \
             -scheme "${{ matrix.scheme }}" \
             -"$filetype_parameter" "$file_to_build" \
-            -destination "platform=iOS Simulator,name=iPhone 15 Pro Max,OS=18.1"
             -enableCodeCoverage YES \
             -parallel-testing-enabled YES \
-            | tee unit_tests_${{ matrix.scheme }}.log | xcbeautify --is-ci --renderer github-actions
+            2>&1 | tee raw_xcodebuild_${{ matrix.scheme }}.log | xcbeautify --is-ci --renderer github-actions
           if [ $? -eq 0 ]; then
             echo "✅ All tests passed for scheme: ${{ matrix.scheme }}."
           else
             echo "❌ Some tests failed for scheme: ${{ matrix.scheme }}. Check the log for details."
             exit 1
           fi
+
