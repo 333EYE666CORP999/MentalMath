@@ -112,6 +112,7 @@ jobs:
       matrix:
         scheme: [NumericaTests, NumericaUITests]
         target: [NumericaTests, NumericaUITests]
+        testplan: [NumericaTests, NumericaUITests]
 
     steps:
       - name: Checkout Code
@@ -124,7 +125,7 @@ jobs:
 
       - name: Run Tests
         run: |
-          echo "🧪 Running Tests for Scheme: ${{ matrix.scheme }}..."
+          echo "🧪 Running Tests for Scheme: ${{ matrix.scheme }}, Target: ${{ matrix.target }}, and Test Plan: ${{ matrix.testplan }}..."
           cd $GITHUB_WORKSPACE/Numerica-iOS
           if [ "$(ls -A | grep -i \.xcworkspace\$)" ]; then
             filetype_parameter="workspace"
@@ -138,13 +139,14 @@ jobs:
             -scheme "${{ matrix.scheme }}" \
             -target "${{ matrix.target }}" \
             -"$filetype_parameter" "$file_to_build" \
+            -testPlan "${{ matrix.testplan }}" \
             -enableCodeCoverage YES \
             -parallel-testing-enabled YES \
             CODE_SIGNING_ALLOWED=NO \
             | xcbeautify --is-ci --renderer github-actions
           if [ $? -eq 0 ]; then
-            echo "✅ All tests passed for scheme: ${{ matrix.scheme }}."
+            echo "✅ All tests passed for scheme: ${{ matrix.scheme }}, target: ${{ matrix.target }}, and test plan: ${{ matrix.testplan }}."
           else
-            echo "❌ Some tests failed for scheme: ${{ matrix.scheme }}. Check the log for details."
+            echo "❌ Some tests failed for scheme: ${{ matrix.scheme }}, target: ${{ matrix.target }}, and test plan: ${{ matrix.testplan }}. Check the log for details."
             exit 1
           fi
