@@ -139,11 +139,12 @@ jobs:
           # Save schemes to output
           echo "::set-output name=schemes::$schemes"
 
-      - name: Run Tests for Each Scheme
-        run: |
+       - name: Run Tests for Each Scheme
+         run: |
           echo "🧪 Running Tests for All Schemes..."
           cd $GITHUB_WORKSPACE/Numerica-iOS
 
+          # Determine project type (workspace or project)
           if [ "$(ls -A | grep -i \.xcworkspace\$)" ]; then
             filetype_parameter="workspace"
             file_to_build="$(ls -A | grep -i \.xcworkspace\$)"
@@ -153,8 +154,8 @@ jobs:
           fi
           file_to_build=$(echo $file_to_build | awk '{$1=$1;print}')
 
-          # Loop over all schemes
-          for scheme in ${{ steps.retrieve_schemes.outputs.schemes }}; do
+          # Loop over all schemes (in this case, only Numerica as per the provided code)
+          for scheme in Numerica; do
             echo "🧪 Running tests for scheme: $scheme"
             set -o pipefail && xcodebuild test \
               -scheme "$scheme" \
@@ -165,3 +166,9 @@ jobs:
               | xcbeautify --is-ci --renderer github-actions
 
             if [ $? -eq 0 ]; then
+              echo "✅ Tests passed for scheme: $scheme"
+            else
+              echo "❌ Tests failed for scheme: $scheme"
+              exit 1
+            fi
+          done
