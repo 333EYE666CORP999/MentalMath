@@ -112,11 +112,9 @@ jobs:
       matrix:
         config:
           - name: NumericaTests
-            scheme: NumericaTests
             target: NumericaTests
             testplan: NumericaTests
           - name: NumericaUITests
-            scheme: NumericaUITests
             target: NumericaUITests
             testplan: NumericaUITests
 
@@ -142,7 +140,6 @@ jobs:
           fi
           file_to_build=$(echo $file_to_build | awk '{$1=$1;print}')
           set -o pipefail && xcodebuild test \
-            -scheme "${{ matrix.config.scheme }}" \
             -target "${{ matrix.config.target }}" \
             -"$filetype_parameter" "$file_to_build" \
             -testPlan "${{ matrix.config.testplan }}" \
