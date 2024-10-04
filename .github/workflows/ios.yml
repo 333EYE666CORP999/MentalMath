@@ -104,19 +104,9 @@ jobs:
           fi
 
   test:
-    name: Run Tests in Parallel
+    name: Run Tests for All Schemes
     needs: build
     runs-on: macos-latest
-
-    strategy:
-      matrix:
-        config:
-          - name: NumericaTests
-            target: NumericaTests
-            testplan: NumericaTests
-          - name: NumericaUITests
-            target: NumericaUITests
-            testplan: NumericaUITests
 
     steps:
       - name: Checkout Code
@@ -127,10 +117,12 @@ jobs:
         with:
           xcode-version: 'latest-stable'
 
-      - name: Run Tests
+      - name: Retrieve Schemes
+        id: retrieve_schemes
         run: |
-          echo "🧪 Running Tests for Configuration: ${{ matrix.config.name }}..."
+          echo "🔍 Retrieving available schemes..."
           cd $GITHUB_WORKSPACE/Numerica-iOS
+
           if [ "$(ls -A | grep -i \.xcworkspace\$)" ]; then
             filetype_parameter="workspace"
             file_to_build="$(ls -A | grep -i \.xcworkspace\$)"
@@ -139,17 +131,37 @@ jobs:
             file_to_build="$(ls -A | grep -i \.xcodeproj\$)"
           fi
           file_to_build=$(echo $file_to_build | awk '{$1=$1;print}')
-          set -o pipefail && xcodebuild test \
-            -target "${{ matrix.config.target }}" \
-            -"$filetype_parameter" "$file_to_build" \
-            -testPlan "${{ matrix.config.testplan }}" \
-            -enableCodeCoverage YES \
-            -parallel-testing-enabled YES \
-            CODE_SIGNING_ALLOWED=NO \
-            | xcbeautify --is-ci --renderer github-actions
-          if [ $? -eq 0 ]; then
-            echo "✅ All tests passed for configuration: ${{ matrix.config.name }}."
+
+          # List schemes
+          schemes=$(xcodebuild -list -$filetype_parameter "$file_to_build" -json | jq -r '.project.schemes[]')
+          echo "📄 Available schemes: $schemes"
+
+          # Save schemes to output
+          echo "::set-output name=schemes::$schemes"
+
+      - name: Run Tests for Each Scheme
+        run: |
+          echo "🧪 Running Tests for All Schemes..."
+          cd $GITHUB_WORKSPACE/Numerica-iOS
+
+          if [ "$(ls -A | grep -i \.xcworkspace\$)" ]; then
+            filetype_parameter="workspace"
+            file_to_build="$(ls -A | grep -i \.xcworkspace\$)"
           else
-            echo "❌ Some tests failed for configuration: ${{ matrix.config.name }}. Check the log for details."
-            exit 1
+            filetype_parameter="project"
+            file_to_build="$(ls -A | grep -i \.xcodeproj\$)"
           fi
+          file_to_build=$(echo $file_to_build | awk '{$1=$1;print}')
+
+          # Loop over all schemes
+          for scheme in ${{ steps.retrieve_schemes.outputs.schemes }}; do
+            echo "🧪 Running tests for scheme: $scheme"
+            set -o pipefail && xcodebuild test \
+              -scheme "$scheme" \
+              -"$filetype_parameter" "$file_to_build" \
+              -enableCodeCoverage YES \
+              -parallel-testing-enabled YES \
+              CODE_SIGNING_ALLOWED=NO \
+              | xcbeautify --is-ci --renderer github-actions
+
+            if [ $? -eq 0 ]; then
