@@ -139,6 +139,7 @@ jobs:
             -"$filetype_parameter" "$file_to_build" \
             -enableCodeCoverage YES \
             -parallel-testing-enabled YES \
+            CODE_SIGNING_ALLOWED=NO \
             2>&1 | tee raw_xcodebuild_${{ matrix.scheme }}.log | xcbeautify --is-ci --renderer github-actions
           if [ $? -eq 0 ]; then
             echo "✅ All tests passed for scheme: ${{ matrix.scheme }}."
