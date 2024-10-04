@@ -111,6 +111,7 @@ jobs:
     strategy:
       matrix:
         scheme: [NumericaTests, NumericaUITests]
+        target: [NumericaTests, NumericaUITests]
 
     steps:
       - name: Checkout Code
@@ -135,6 +136,7 @@ jobs:
           file_to_build=$(echo $file_to_build | awk '{$1=$1;print}')
           set -o pipefail && xcodebuild test \
             -scheme "${{ matrix.scheme }}" \
+            -target "${{ matrix.target }}" \
             -"$filetype_parameter" "$file_to_build" \
             -enableCodeCoverage YES \
             -parallel-testing-enabled YES \
