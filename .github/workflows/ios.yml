@@ -110,9 +110,15 @@ jobs:
 
     strategy:
       matrix:
-        scheme: [NumericaTests, NumericaUITests]
-        target: [NumericaTests, NumericaUITests]
-        testplan: [NumericaTests, NumericaUITests]
+        config:
+          - name: NumericaTests
+            scheme: NumericaTests
+            target: NumericaTests
+            testplan: NumericaTests
+          - name: NumericaUITests
+            scheme: NumericaUITests
+            target: NumericaUITests
+            testplan: NumericaUITests
 
     steps:
       - name: Checkout Code
@@ -125,7 +131,7 @@ jobs:
 
       - name: Run Tests
         run: |
-          echo "🧪 Running Tests for Scheme: ${{ matrix.scheme }}, Target: ${{ matrix.target }}, and Test Plan: ${{ matrix.testplan }}..."
+          echo "🧪 Running Tests for Configuration: ${{ matrix.config.name }}..."
           cd $GITHUB_WORKSPACE/Numerica-iOS
           if [ "$(ls -A | grep -i \.xcworkspace\$)" ]; then
             filetype_parameter="workspace"
@@ -136,17 +142,17 @@ jobs:
           fi
           file_to_build=$(echo $file_to_build | awk '{$1=$1;print}')
           set -o pipefail && xcodebuild test \
-            -scheme "${{ matrix.scheme }}" \
-            -target "${{ matrix.target }}" \
+            -scheme "${{ matrix.config.scheme }}" \
+            -target "${{ matrix.config.target }}" \
             -"$filetype_parameter" "$file_to_build" \
-            -testPlan "${{ matrix.testplan }}" \
+            -testPlan "${{ matrix.config.testplan }}" \
             -enableCodeCoverage YES \
             -parallel-testing-enabled YES \
             CODE_SIGNING_ALLOWED=NO \
             | xcbeautify --is-ci --renderer github-actions
           if [ $? -eq 0 ]; then
-            echo "✅ All tests passed for scheme: ${{ matrix.scheme }}, target: ${{ matrix.target }}, and test plan: ${{ matrix.testplan }}."
+            echo "✅ All tests passed for configuration: ${{ matrix.config.name }}."
           else
-            echo "❌ Some tests failed for scheme: ${{ matrix.scheme }}, target: ${{ matrix.target }}, and test plan: ${{ matrix.testplan }}. Check the log for details."
+            echo "❌ Some tests failed for configuration: ${{ matrix.config.name }}. Check the log for details."
             exit 1
           fi
