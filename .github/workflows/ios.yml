@@ -1,4 +1,4 @@
-name: Build and Test
+name: Build for Tests
 
 on:
   pull_request:
@@ -66,6 +66,8 @@ jobs:
 
           num_violations=$(jq '. | length' swiftlint_raw.json)
           threshold=20
+
+          cat swiftlint_raw.json
 
           echo "📊 Found $num_violations violations."
 

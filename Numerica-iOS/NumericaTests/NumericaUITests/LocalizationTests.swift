@@ -3,19 +3,19 @@ import XCTest
 
 @preconcurrency
 final class LocalizationTests: XCTestCase {
-
+    
     // swiftlint:disable implicitly_unwrapped_optional
     private var sut: XCUIApplication!
     // swiftlint:enable implicitly_unwrapped_optional
-
+    
     private var languagesAndLocales: [[String: String]] = []
     private let testBundle = Bundle(for: LocalizationTests.self)
     private var randomLocaleCount: Int {
         .random(in: 5...10)
     }
-
+    
     override func setUp() {
-        try  super.setUp()
+        super.setUp()
         continueAfterFailure = false
         sut =  XCUIApplication()
         languagesAndLocales = Array(
@@ -24,25 +24,25 @@ final class LocalizationTests: XCTestCase {
                 .prefix(randomLocaleCount)
         )
     }
-
+    
     override func tearDown() {
         sut = nil
-        try  super.tearDown()
+        super.tearDown()
     }
-
+    
     func testStartButtonLocalization()  {
-         testButtonLocalization(
+        testButtonLocalization(
             buttonIdentifier: "MainView.ActionButton",
             labelKey: "START"
         )
     }
-
+    
     func testSubmitButtonLocalizationAfterStart()  {
-         testButtonLocalization(
+        testButtonLocalization(
             buttonIdentifier: "MainView.ActionButton"
         ) { button, lang, locale in
-             button.tap()
-             self.assertButtonLabel(
+            button.tap()
+            self.assertButtonLabel(
                 button,
                 key: "SUBMIT",
                 lang: lang,
@@ -53,9 +53,9 @@ final class LocalizationTests: XCTestCase {
 }
 
 private extension LocalizationTests {
-
+    
     private typealias Info = [String: [[String: String]]]
-
+    
     func testButtonLocalization(
         buttonIdentifier: String,
         labelKey: String = "",
@@ -68,27 +68,27 @@ private extension LocalizationTests {
             else {
                 return
             }
-
+            
             configureApp(lang: lang, locale: locale)
-
+            
             let button = sut.buttons[buttonIdentifier]
-
+            
             guard !labelKey.isEmpty else {
                 postAction(button, lang, locale)
                 return
             }
-
+            
             assertButtonLabel(
                 button,
                 key: labelKey,
                 lang: lang,
                 locale: locale
             )
-
+            
             postAction(button, lang, locale)
         }
     }
-
+    
     func assertButtonLabel(
         _ button: XCUIElement,
         key: String,
@@ -100,24 +100,24 @@ private extension LocalizationTests {
             language: lang,
             locale: locale
         )
-
+        
         let label =  button.label
-
+        
         XCTAssertEqual(
             label,
             localizedString,
             "Button label mismatch for key: \(key) in \(lang)-\(locale)"
         )
     }
-
+    
     func configureApp(lang: String, locale: String) {
         sut.launchArguments = [
             "-AppleLanguages", "(\(lang))",
             "-AppleLocale", "\(locale)"
         ]
-            sut.launch()
+        sut.launch()
     }
-
+    
     func getLocalizedString(
         for key: String,
         language: String,
@@ -130,10 +130,10 @@ private extension LocalizationTests {
             XCTFail("Missing localization for \(language)-\(locale)")
             return nil
         }
-
+        
         return bundle.localizedString(forKey: key, value: nil, table: nil)
     }
-
+    
     func loadLanguagesAndLocales() -> [[String: String]] {
         guard
             let url = testBundle.url(forResource: "languages_and_locales", withExtension: "json"),
@@ -144,7 +144,8 @@ private extension LocalizationTests {
             XCTFail("Error loading languages and locales")
             return []
         }
-
+        
         return langs
     }
 }
+    
