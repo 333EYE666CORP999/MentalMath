@@ -34,7 +34,6 @@
 		3F8475A32C85A29A0034EC78 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8475A22C85A29A0034EC78 /* StorageService.swift */; };
 		3F8475A72C85D3480034EC78 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8475A62C85D3480034EC78 /* MainViewModel.swift */; };
 		3F8D15942CB32CDE00618694 /* GameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8D15932CB32CDE00618694 /* GameTests.swift */; };
-		3F8D15952CB32CDE00618694 /* GameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8D15932CB32CDE00618694 /* GameTests.swift */; };
 		3FCEDD162CAF234A0021A37C /* ProblemGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6C770B2CA159AA00492149 /* ProblemGeneratorTests.swift */; };
 		3FCEDD282CAF29760021A37C /* LocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6C77012CA1598F00492149 /* LocalizationTests.swift */; };
 		3FDAF7B72C9D877D0089AAFC /* ErrorShowingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDAF7B62C9D877D0089AAFC /* ErrorShowingTextField.swift */; };
@@ -538,7 +537,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3FCEDD162CAF234A0021A37C /* ProblemGeneratorTests.swift in Sources */,
-				3F8D15952CB32CDE00618694 /* GameTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
