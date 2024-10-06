@@ -43,11 +43,11 @@ jobs:
             echo "✅ SwiftLint already installed."
           fi
 
-          if [ ! -x "${HOMEBREW_PREFIX}/bin/xcbeautify" ]; then
-            echo "⚙️ Installing xcbeautify..."
-            brew install xcbeautify
+          if [ ! -x "${HOMEBREW_PREFIX}/bin/xcpretty" ]; then
+            echo "⚙️ Installing xcpretty..."
+            gem install xcpretty
           else
-            echo "✅ xcbeautify already installed."
+            echo "✅ xcpretty already installed."
           fi
 
           if ! command -v jq &> /dev/null; then
@@ -95,7 +95,7 @@ jobs:
             -"$filetype_parameter" "$file_to_build" \
             CODE_SIGNING_ALLOWED=NO \
             SWIFT_FLAGS="-Xfrontend -strict-concurrency=complete -swift-version 6" \
-            | xcbeautify --is-ci --renderer github-actions
+            | xcpretty
           if [ $? -eq 0 ]; then
             echo "✅ Build completed successfully."
           else
@@ -143,7 +143,7 @@ jobs:
             -enableCodeCoverage YES \
             -parallel-testing-enabled YES \
             CODE_SIGNING_ALLOWED=NO \
-            | xcbeautify
+            | xcpretty
 
           if [ $? -eq 0 ]; then
             echo "✅ All tests passed for scheme: ${{ matrix.scheme }}."
