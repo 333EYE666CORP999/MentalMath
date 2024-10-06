@@ -43,13 +43,6 @@ jobs:
             echo "✅ SwiftLint already installed."
           fi
 
-          if [ ! -x "${HOMEBREW_PREFIX}/bin/xcpretty" ]; then
-            echo "⚙️ Installing xcpretty..."
-            gem install xcpretty
-          else
-            echo "✅ xcpretty already installed."
-          fi
-
           if ! command -v jq &> /dev/null; then
             echo "⚙️ Installing jq for JSON parsing..."
             brew install jq
