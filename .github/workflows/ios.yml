@@ -57,11 +57,11 @@ jobs:
             echo "✅ jq already installed."
           fi
 
-          if ! command -v xcparse &> /dev/null; then
-            echo "⚙️ Installing xcparse..."
-            brew install chargepoint/xcparse/xcparse
+          if ! command -v xcresultparser &> /dev/null; then
+            echo "⚙️ Installing xcresultparser..."
+            brew install a7ex/xcresultparser/xcresultparser
           else
-            echo "✅ xcparse already installed."
+            echo "✅ xcresultparser already installed."
           fi
 
       - name: Lint
@@ -105,7 +105,8 @@ jobs:
             -"$filetype_parameter" "$file_to_build" \
             CODE_SIGNING_ALLOWED=NO \
             SWIFT_FLAGS="-Xfrontend -strict-concurrency=complete -swift-version 6" \
-            -resultBundlePath "$result_bundle_path"
+            -resultBundlePath "$result_bundle_path" \
+            -quiet
 
           if [ $? -eq 0 ]; then
             echo "✅ Build completed successfully."
@@ -114,10 +115,9 @@ jobs:
             exit 1
           fi
 
-          # Using xcparse to summarize build results
+          # Using xcresultparser to summarize build results
           echo "📄 Parsing build results from ${result_bundle_path}..."
-          xcparse logs "$result_bundle_path" "build-results/build-log.txt"
-          cat "build-results/build-log.txt"
+          xcresultparser summary "$result_bundle_path"
 
   test:
     name: Test
@@ -162,7 +162,8 @@ jobs:
             -enableCodeCoverage YES \
             -parallel-testing-enabled YES \
             CODE_SIGNING_ALLOWED=NO \
-            -resultBundlePath "$result_bundle_path"
+            -resultBundlePath "$result_bundle_path" \
+            -quiet
 
           if [ $? -eq 0 ]; then
             echo "✅ All tests passed for scheme: ${{ matrix.scheme }}."
@@ -171,11 +172,6 @@ jobs:
             exit 1
           fi
 
-          # Parse the .xcresult bundle using xcparse to extract and print test results
+          # Parse the .xcresult bundle using xcresultparser to extract and print test results
           echo "📄 Parsing test results from ${result_bundle_path}..."
-          xcparse logs "$result_bundle_path" "test-results/${{ matrix.scheme }}-log.txt"
-          cat "test-results/${{ matrix.scheme }}-log.txt"
-
-          # Extracting human-readable test summaries
-          xcparse tests "$result_bundle_path" "test-results/${{ matrix.scheme }}-summary"
-          cat "test-results/${{ matrix.scheme }}-summary/tests.csv"
+          xcresultparser summary "$result_bundle_path"
