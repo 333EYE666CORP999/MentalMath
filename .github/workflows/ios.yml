@@ -90,16 +90,25 @@ jobs:
             file_to_build="$(ls -A | grep -i \.xcodeproj\$)"
           fi
           file_to_build=$(echo $file_to_build | awk '{$1=$1;print}')
+          result_bundle_path="build-results/Numerica.xcresult"
+          mkdir -p build-results
+
           set -o pipefail && xcodebuild build \
             -scheme "Numerica" \
             -"$filetype_parameter" "$file_to_build" \
             CODE_SIGNING_ALLOWED=NO \
             SWIFT_FLAGS="-Xfrontend -strict-concurrency=complete -swift-version 6" \
-            | xcpretty --test --color
+            -resultBundlePath "$result_bundle_path"
+
+          echo "📄 Parsing build results from ${result_bundle_path}..."
+          parsed_build_results=$(xcrun xcresulttool get --legacy --path "$result_bundle_path" --format json)
+
+          echo "$parsed_build_results" | jq '.actions._values[] | select(.schemeCommandName == "Build") | {buildStatus: .buildResult.status._value}'
+
           if [ $? -eq 0 ]; then
             echo "✅ Build completed successfully."
           else
-            echo "❌ Build failed."
+            echo "❌ Build failed. Check the build log for more details."
             exit 1
           fi
 
@@ -137,6 +146,8 @@ jobs:
 
           # Run tests for the scheme with its corresponding test plan
           result_bundle_path="test-results/${{ matrix.scheme }}.xcresult"
+          mkdir -p test-results
+
           set -o pipefail && xcodebuild test \
             -scheme "${{ matrix.scheme }}" \
             -"$filetype_parameter" "$file_to_build" \
@@ -148,12 +159,10 @@ jobs:
 
           # Parse the .xcresult bundle using the --legacy flag to extract test results and print to the console
           echo "📄 Parsing test results from ${result_bundle_path}..."
-          parsed_results=$(xcrun xcresulttool get --legacy --path "$result_bundle_path" --format json)
+          parsed_test_results=$(xcrun xcresulttool get --legacy --path "$result_bundle_path" --format json)
 
-          # Pretty print parsed results to the console
-          echo "$parsed_results" | jq '.actions._values[] | select(.schemeCommandName == "Test").tests._values[] | {testIdentifier: .identifier._value, status: .testStatus._value, duration: .duration._value}'
+          echo "$parsed_test_results" | jq '.actions._values[] | select(.schemeCommandName == "Test").tests._values[] | {testIdentifier: .identifier._value, status: .testStatus._value, duration: .duration._value}'
 
-          # Check if the xcodebuild command succeeded or failed
           if [ $? -eq 0 ]; then
             echo "✅ All tests passed for scheme: ${{ matrix.scheme }}."
           else
