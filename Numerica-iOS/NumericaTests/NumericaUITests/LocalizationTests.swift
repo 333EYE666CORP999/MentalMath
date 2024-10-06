@@ -5,7 +5,7 @@ import XCTest
 final class LocalizationTests: XCTestCase {
 
     // swiftlint:disable implicitly_unwrapped_optional
-    private var sut: XCUIApplication!
+    @MainActor private var sut: XCUIApplication!
     // swiftlint:enable implicitly_unwrapped_optional
 
     private var languagesAndLocales: [[String: String]] = []
@@ -17,7 +17,11 @@ final class LocalizationTests: XCTestCase {
     override func setUp() async throws {
         try await super.setUp()
         continueAfterFailure = false
-        sut = await XCUIApplication()
+
+        await MainActor.run {
+            sut = XCUIApplication()
+        }
+
         languagesAndLocales = Array(
             loadLanguagesAndLocales()
                 .shuffled()
@@ -26,7 +30,10 @@ final class LocalizationTests: XCTestCase {
     }
 
     override func tearDown() async throws {
-        sut = nil
+        await MainActor.run {
+            sut = nil
+        }
+
         try await super.tearDown()
     }
 
@@ -40,8 +47,10 @@ final class LocalizationTests: XCTestCase {
     func testSubmitButtonLocalizationAfterStart() async {
         await testButtonLocalization(
             buttonIdentifier: "MainView.ActionButton"
-        ) { button, lang, locale in
-            await button.tap()
+        ) { button, lang, locale async in
+            await MainActor.run {
+                button.tap()
+            }
             await self.assertButtonLabel(
                 button,
                 key: "SUBMIT",
@@ -101,22 +110,25 @@ private extension LocalizationTests {
             locale: locale
         )
 
-        let label = await button.label
+        await MainActor.run {
+            let label = button.label
 
-        XCTAssertEqual(
-            label,
-            localizedString,
-            "Button label mismatch for key: \(key) in \(lang)-\(locale)"
-        )
+            XCTAssertEqual(
+                label,
+                localizedString,
+                "Button label mismatch for key: \(key) in \(lang)-\(locale)"
+            )
+        }
     }
 
-    @MainActor
-    func configureApp(lang: String, locale: String) {
-        sut.launchArguments = [
-            "-AppleLanguages", "(\(lang))",
-            "-AppleLocale", "\(locale)"
-        ]
-        sut.launch()
+    func configureApp(lang: String, locale: String) async {
+        await MainActor.run {
+            sut.launchArguments = [
+                "-AppleLanguages", "(\(lang))",
+                "-AppleLocale", "\(locale)"
+            ]
+            sut.launch()
+        }
     }
 
     func getLocalizedString(
