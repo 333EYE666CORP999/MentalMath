@@ -142,7 +142,8 @@ jobs:
             -testPlan "${{ matrix.scheme }}" \
             -enableCodeCoverage YES \
             -parallel-testing-enabled YES \
-            CODE_SIGNING_ALLOWED=NO
+            CODE_SIGNING_ALLOWED=NO \
+            | xcbeautify
 
           if [ $? -eq 0 ]; then
             echo "✅ All tests passed for scheme: ${{ matrix.scheme }}."
