@@ -146,9 +146,9 @@ jobs:
             CODE_SIGNING_ALLOWED=NO \
             -resultBundlePath "$result_bundle_path"
 
-          # Parse the .xcresult bundle to extract test results and print to the console
+          # Parse the .xcresult bundle using the --legacy flag to extract test results and print to the console
           echo "📄 Parsing test results from ${result_bundle_path}..."
-          parsed_results=$(xcrun xcresulttool get --path "$result_bundle_path" --format json)
+          parsed_results=$(xcrun xcresulttool get --legacy --path "$result_bundle_path" --format json)
 
           # Pretty print parsed results to the console
           echo "$parsed_results" | jq '.actions._values[] | select(.schemeCommandName == "Test").tests._values[] | {testIdentifier: .identifier._value, status: .testStatus._value, duration: .duration._value}'
