@@ -43,18 +43,18 @@ jobs:
             echo "✅ SwiftLint already installed."
           fi
 
+          if [ ! -x "${HOMEBREW_PREFIX}/bin/xcbeautify" ]; then
+            echo "⚙️ Installing xcbeautify..."
+            brew install xcbeautify
+          else
+            echo "✅ xcbeautify already installed."
+          fi
+
           if ! command -v jq &> /dev/null; then
             echo "⚙️ Installing jq for JSON parsing..."
             brew install jq
           else
             echo "✅ jq already installed."
-          fi
-
-          if ! command -v xcresultparser &> /dev/null; then
-            echo "⚙️ Installing xcresultparser..."
-            brew install a7ex/xcresultparser/xcresultparser
-          else
-            echo "✅ xcresultparser already installed."
           fi
 
       - name: Lint
@@ -99,7 +99,7 @@ jobs:
             CODE_SIGNING_ALLOWED=NO \
             SWIFT_FLAGS="-Xfrontend -strict-concurrency=complete -swift-version 6" \
             -resultBundlePath "$result_bundle_path" \
-            -quiet
+            | xcbeautify --is-ci --renderer github-actions
 
           if [ $? -eq 0 ]; then
             echo "✅ Build completed successfully."
@@ -107,10 +107,6 @@ jobs:
             echo "❌ Build failed. Check the build log for more details."
             exit 1
           fi
-
-          # Using xcresultparser to summarize build results
-          echo "📄 Parsing build results from ${result_bundle_path}..."
-          xcresultparser summary "$result_bundle_path"
 
   test:
     name: Test
@@ -156,7 +152,7 @@ jobs:
             -parallel-testing-enabled YES \
             CODE_SIGNING_ALLOWED=NO \
             -resultBundlePath "$result_bundle_path" \
-            -quiet
+            | xcbeautify --is-ci --renderer github-actions
 
           if [ $? -eq 0 ]; then
             echo "✅ All tests passed for scheme: ${{ matrix.scheme }}."
@@ -164,7 +160,3 @@ jobs:
             echo "❌ Some tests failed for scheme: ${{ matrix.scheme }}. Check the log for details."
             exit 1
           fi
-
-          # Parse the .xcresult bundle using xcresultparser to extract and print test results
-          echo "📄 Parsing test results from ${result_bundle_path}..."
-          xcresultparser summary "$result_bundle_path"
