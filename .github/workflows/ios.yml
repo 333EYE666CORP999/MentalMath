@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    name: Build Numerica
+    name: Build
     runs-on: macos-15  # Set macOS version to Sequoia 15.0
 
     steps:
@@ -57,7 +57,7 @@ jobs:
             echo "✅ jq already installed."
           fi
 
-      - name: Run SwiftLint
+      - name: Lint
         run: |
           echo "📝 Running SwiftLint..."
           cd $GITHUB_WORKSPACE/Numerica-iOS
@@ -78,7 +78,7 @@ jobs:
             echo "✅ Linting passed: $num_violations violations found (Threshold: $threshold)."
           fi
 
-      - name: Build Numerica Scheme
+      - name: Build
         run: |
           echo "🔨 Building Numerica Scheme..."
           cd $GITHUB_WORKSPACE/Numerica-iOS
@@ -104,7 +104,7 @@ jobs:
           fi
 
   test:
-    name: Run Tests for All Schemes
+    name: Test
     needs: build
     runs-on: macos-15  # Set macOS version to Sequoia 15.0
 
@@ -143,7 +143,10 @@ jobs:
             -enableCodeCoverage YES \
             -parallel-testing-enabled YES \
             CODE_SIGNING_ALLOWED=NO \
-            | xcpretty --test --color
+            > raw_test_output.log 2>&1
+
+          # Use xcpretty to format the output and print it to the console
+          cat raw_test_output.log | xcpretty --test --color
 
           if [ $? -eq 0 ]; then
             echo "✅ All tests passed for scheme: ${{ matrix.scheme }}."
