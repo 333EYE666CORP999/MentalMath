@@ -143,10 +143,8 @@ jobs:
             -enableCodeCoverage YES \
             -parallel-testing-enabled YES \
             CODE_SIGNING_ALLOWED=NO \
-            > raw_test_output.log 2>&1
-
-          # Use xcpretty to format the output and print it to the console
-          cat raw_test_output.log | xcpretty --test --color
+            -resultBundlePath test-results/${{ matrix.scheme }}.xcresult \
+            | xcpretty --test --color
 
           if [ $? -eq 0 ]; then
             echo "✅ All tests passed for scheme: ${{ matrix.scheme }}."
