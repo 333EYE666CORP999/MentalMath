@@ -57,6 +57,13 @@ jobs:
             echo "✅ jq already installed."
           fi
 
+          if ! command -v xcparse &> /dev/null; then
+            echo "⚙️ Installing xcparse..."
+            brew install chargepoint/xcparse/xcparse
+          else
+            echo "✅ xcparse already installed."
+          fi
+
       - name: Lint
         run: |
           echo "📝 Running SwiftLint..."
@@ -100,17 +107,17 @@ jobs:
             SWIFT_FLAGS="-Xfrontend -strict-concurrency=complete -swift-version 6" \
             -resultBundlePath "$result_bundle_path"
 
-          echo "📄 Parsing build results from ${result_bundle_path}..."
-          parsed_build_results=$(xcrun xcresulttool get --legacy --path "$result_bundle_path" --format json)
-
-          echo "$parsed_build_results" | jq '.actions._values[] | select(.schemeCommandName == "Build") | {buildStatus: .buildResult.status._value}'
-
           if [ $? -eq 0 ]; then
             echo "✅ Build completed successfully."
           else
             echo "❌ Build failed. Check the build log for more details."
             exit 1
           fi
+
+          # Using xcparse to summarize build results
+          echo "📄 Parsing build results from ${result_bundle_path}..."
+          xcparse logs "$result_bundle_path" "build-results/build-log.txt"
+          cat "build-results/build-log.txt"
 
   test:
     name: Test
@@ -157,15 +164,18 @@ jobs:
             CODE_SIGNING_ALLOWED=NO \
             -resultBundlePath "$result_bundle_path"
 
-          # Parse the .xcresult bundle using the --legacy flag to extract test results and print to the console
-          echo "📄 Parsing test results from ${result_bundle_path}..."
-          parsed_test_results=$(xcrun xcresulttool get --legacy --path "$result_bundle_path" --format json)
-
-          echo "$parsed_test_results" | jq '.actions._values[] | select(.schemeCommandName == "Test").tests._values[] | {testIdentifier: .identifier._value, status: .testStatus._value, duration: .duration._value}'
-
           if [ $? -eq 0 ]; then
             echo "✅ All tests passed for scheme: ${{ matrix.scheme }}."
           else
             echo "❌ Some tests failed for scheme: ${{ matrix.scheme }}. Check the log for details."
             exit 1
           fi
+
+          # Parse the .xcresult bundle using xcparse to extract and print test results
+          echo "📄 Parsing test results from ${result_bundle_path}..."
+          xcparse logs "$result_bundle_path" "test-results/${{ matrix.scheme }}-log.txt"
+          cat "test-results/${{ matrix.scheme }}-log.txt"
+
+          # Extracting human-readable test summaries
+          xcparse tests "$result_bundle_path" "test-results/${{ matrix.scheme }}-summary"
+          cat "test-results/${{ matrix.scheme }}-summary/tests.csv"
