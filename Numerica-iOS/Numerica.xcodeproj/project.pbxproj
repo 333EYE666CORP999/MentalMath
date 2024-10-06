@@ -33,6 +33,9 @@
 		3FCEDD282CAF29760021A37C /* LocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6C77012CA1598F00492149 /* LocalizationTests.swift */; };
 		3FDAF7B72C9D877D0089AAFC /* ErrorShowingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDAF7B62C9D877D0089AAFC /* ErrorShowingTextField.swift */; };
 		3FE64FA82C8851240053C96C /* SwiftData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE64FA72C8851240053C96C /* SwiftData.swift */; };
+		72BFA58A2CB290FA00688102 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BFA5892CB290EC00688102 /* OnboardingView.swift */; };
+		72BFA58C2CB2913400688102 /* PageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BFA58B2CB2913400688102 /* PageView.swift */; };
+		72BFA58F2CB2923200688102 /* UserDefaultsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BFA58E2CB2923200688102 /* UserDefaultsStorage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +87,9 @@
 		3FDAF7B62C9D877D0089AAFC /* ErrorShowingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorShowingTextField.swift; sourceTree = "<group>"; };
 		3FE426492CA152FA0025EF36 /* languages_and_locales.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = languages_and_locales.json; sourceTree = "<group>"; };
 		3FE64FA72C8851240053C96C /* SwiftData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftData.swift; sourceTree = "<group>"; };
+		72BFA5892CB290EC00688102 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		72BFA58B2CB2913400688102 /* PageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageView.swift; sourceTree = "<group>"; };
+		72BFA58E2CB2923200688102 /* UserDefaultsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsStorage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +120,7 @@
 		3F296D562CA0340400D1A2C6 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				72BFA5902CB2929100688102 /* PropertyWrappers */,
 				3F84759B2C8514400034EC78 /* Extensions */,
 				3F480BB12C9462C20047B9AE /* Protocols */,
 				3F296D592CA038CB00D1A2C6 /* Magic Numbers.swift */,
@@ -317,6 +324,7 @@
 			children = (
 				3F480BBA2C94D6BE0047B9AE /* MainView */,
 				3F480BBD2C94D7170047B9AE /* SessionResultsView */,
+				72BFA5882CB290A800688102 /* Onboarding */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -338,6 +346,23 @@
 				3FE64FA72C8851240053C96C /* SwiftData.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		72BFA5882CB290A800688102 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				72BFA5892CB290EC00688102 /* OnboardingView.swift */,
+				72BFA58B2CB2913400688102 /* PageView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		72BFA5902CB2929100688102 /* PropertyWrappers */ = {
+			isa = PBXGroup;
+			children = (
+				72BFA58E2CB2923200688102 /* UserDefaultsStorage.swift */,
+			);
+			path = PropertyWrappers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -531,6 +556,7 @@
 			files = (
 				3F480BB02C9462B40047B9AE /* PersistentLayer.swift in Sources */,
 				3F8475982C8513000034EC78 /* GameSessionObject.swift in Sources */,
+				72BFA58C2CB2913400688102 /* PageView.swift in Sources */,
 				3F8475992C8513000034EC78 /* MainView.swift in Sources */,
 				3F296D582CA0371F00D1A2C6 /* SessionResutsListItem.swift in Sources */,
 				3FE64FA82C8851240053C96C /* SwiftData.swift in Sources */,
@@ -544,12 +570,14 @@
 				3F8475A72C85D3480034EC78 /* MainViewModel.swift in Sources */,
 				3F8475962C8513000034EC78 /* ProblemGenerator.swift in Sources */,
 				3F296D5A2CA038CB00D1A2C6 /* Magic Numbers.swift in Sources */,
+				72BFA58F2CB2923200688102 /* UserDefaultsStorage.swift in Sources */,
 				3F8475A32C85A29A0034EC78 /* StorageService.swift in Sources */,
 				3FDAF7B72C9D877D0089AAFC /* ErrorShowingTextField.swift in Sources */,
 				3F8475952C8513000034EC78 /* NumericaApp.swift in Sources */,
 				3F6435062C899BD60016C7AC /* ActionButton.swift in Sources */,
 				3F480BB52C9464140047B9AE /* ProblemModel.swift in Sources */,
 				3F480BB72C9464220047B9AE /* GameSessionModel.swift in Sources */,
+				72BFA58A2CB290FA00688102 /* OnboardingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

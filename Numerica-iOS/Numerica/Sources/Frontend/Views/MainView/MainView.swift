@@ -6,6 +6,7 @@ struct MainView: View {
     @EnvironmentObject var viewModel: MainViewModel
     @FocusState private var isTextFieldFocused: Bool
     @State private var navigationPath = NavigationPath()
+    @State private var needsOnboarding: Bool = true // UD Value is now true for test
 
     var body: some View {
         NavigationStack(path: $navigationPath) {
@@ -41,6 +42,9 @@ struct MainView: View {
                     navigationPath.append("SessionResultsView")
                 }
             }
+        }
+        .sheet(isPresented: $needsOnboarding) {
+            OnboardingView()
         }
     }
 
