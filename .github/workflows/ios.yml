@@ -22,14 +22,12 @@ jobs:
         run: |
           echo "🔧 Preparing Environment..."
 
-          # Detect architecture and set HOMEBREW_PREFIX accordingly
           if [ "$(uname -m)" = "arm64" ]; then
             HOMEBREW_PREFIX="/opt/homebrew"
           else
             HOMEBREW_PREFIX="/usr/local"
           fi
 
-          # Install Homebrew if it's not already installed
           if ! command -v brew &> /dev/null; then
             echo "🍺 Installing Homebrew..."
             /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -38,7 +36,6 @@ jobs:
             brew upgrade --greedy-latest
           fi
 
-          # Install SwiftLint if not installed
           if [ ! -x "${HOMEBREW_PREFIX}/bin/swiftlint" ]; then
             echo "⚙️ Installing SwiftLint..."
             brew install swiftlint
@@ -46,7 +43,6 @@ jobs:
             echo "✅ SwiftLint already installed."
           fi
 
-          # Install xcbeautify if not installed
           if [ ! -x "${HOMEBREW_PREFIX}/bin/xcbeautify" ]; then
             echo "⚙️ Installing xcbeautify..."
             brew install xcbeautify
@@ -54,7 +50,6 @@ jobs:
             echo "✅ xcbeautify already installed."
           fi
 
-          # Install jq if not installed
           if ! command -v jq &> /dev/null; then
             echo "⚙️ Installing jq for JSON parsing..."
             brew install jq
@@ -107,15 +102,13 @@ jobs:
           fi
 
   test:
-    name: Run Tests in Parallel
+    name: Run Tests for All Schemes
     needs: build
     runs-on: macos-15  # Set macOS version to Sequoia 15.0
 
     strategy:
       matrix:
-        scheme:
-          - NumericaTests
-          - NumericaUITests
+        scheme: [ "NumericaTests", "NumericaUITests" ]
 
     steps:
       - name: Checkout Code
@@ -126,7 +119,7 @@ jobs:
         with:
           xcode-version: '16.0'
 
-      - name: Run Tests
+      - name: Run Tests for Scheme
         run: |
           echo "🧪 Running Tests for Scheme: ${{ matrix.scheme }}..."
           cd $GITHUB_WORKSPACE/Numerica-iOS
@@ -140,15 +133,14 @@ jobs:
           fi
           file_to_build=$(echo $file_to_build | awk '{$1=$1;print}')
 
-          # Run tests for the scheme from the matrix
+          # Run tests for the scheme with its corresponding test plan
           set -o pipefail && xcodebuild test \
             -scheme "${{ matrix.scheme }}" \
             -"$filetype_parameter" "$file_to_build" \
+            -testPlan "${{ matrix.scheme }}" \
             -enableCodeCoverage YES \
             -parallel-testing-enabled YES \
-            CODE_SIGNING_ALLOWED=NO \
-            SWIFT_FLAGS="-Xfrontend -strict-concurrency=complete -swift-version 6" \
-            | xcbeautify --is-ci --renderer github-actions
+            CODE_SIGNING_ALLOWED=NO
 
           if [ $? -eq 0 ]; then
             echo "✅ All tests passed for scheme: ${{ matrix.scheme }}."
