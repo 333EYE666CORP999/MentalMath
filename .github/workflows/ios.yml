@@ -136,6 +136,7 @@ jobs:
           file_to_build=$(echo $file_to_build | awk '{$1=$1;print}')
 
           # Run tests for the scheme with its corresponding test plan
+          result_bundle_path="test-results/${{ matrix.scheme }}.xcresult"
           set -o pipefail && xcodebuild test \
             -scheme "${{ matrix.scheme }}" \
             -"$filetype_parameter" "$file_to_build" \
@@ -143,9 +144,16 @@ jobs:
             -enableCodeCoverage YES \
             -parallel-testing-enabled YES \
             CODE_SIGNING_ALLOWED=NO \
-            -resultBundlePath test-results/${{ matrix.scheme }}.xcresult \
-            | xcpretty --test --color
+            -resultBundlePath "$result_bundle_path"
 
+          # Parse the .xcresult bundle to extract test results and print to the console
+          echo "📄 Parsing test results from ${result_bundle_path}..."
+          parsed_results=$(xcrun xcresulttool get --path "$result_bundle_path" --format json)
+
+          # Pretty print parsed results to the console
+          echo "$parsed_results" | jq '.actions._values[] | select(.schemeCommandName == "Test").tests._values[] | {testIdentifier: .identifier._value, status: .testStatus._value, duration: .duration._value}'
+
+          # Check if the xcodebuild command succeeded or failed
           if [ $? -eq 0 ]; then
             echo "✅ All tests passed for scheme: ${{ matrix.scheme }}."
           else
