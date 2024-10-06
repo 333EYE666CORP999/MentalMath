@@ -81,6 +81,31 @@ jobs:
             echo "✅ Linting passed: $num_violations violations found (Threshold: $threshold)."
           fi
 
+      - name: Build Numerica Scheme
+        run: |
+          echo "🔨 Building Numerica Scheme..."
+          cd $GITHUB_WORKSPACE/Numerica-iOS
+          if [ "$(ls -A | grep -i \.xcworkspace\$)" ]; then
+            filetype_parameter="workspace"
+            file_to_build="$(ls -A | grep -i \.xcworkspace\$)"
+          else
+            filetype_parameter="project"
+            file_to_build="$(ls -A | grep -i \.xcodeproj\$)"
+          fi
+          file_to_build=$(echo $file_to_build | awk '{$1=$1;print}')
+          set -o pipefail && xcodebuild build \
+            -scheme "Numerica" \
+            -"$filetype_parameter" "$file_to_build" \
+            CODE_SIGNING_ALLOWED=NO \
+            SWIFT_FLAGS="-Xfrontend -strict-concurrency=complete -swift-version 6" \
+            | xcbeautify --is-ci --renderer github-actions
+          if [ $? -eq 0 ]; then
+            echo "✅ Build completed successfully."
+          else
+            echo "❌ Build failed."
+            exit 1
+          fi
+
   test:
     name: Run Tests in Parallel
     needs: build
@@ -119,7 +144,6 @@ jobs:
           set -o pipefail && xcodebuild test \
             -scheme "${{ matrix.scheme }}" \
             -"$filetype_parameter" "$file_to_build" \
-            -destination "platform=iOS Simulator,name=Any iOS Simulator Device" \
             -enableCodeCoverage YES \
             -parallel-testing-enabled YES \
             CODE_SIGNING_ALLOWED=NO
