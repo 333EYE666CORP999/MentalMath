@@ -62,25 +62,6 @@ jobs:
             echo "✅ jq already installed."
           fi
 
-          # Set up Xcode Command Line Tools version 2409 if not installed
-          echo "🔧 Checking Xcode Command Line Tools version..."
-          current_version=$(pkgutil --pkg-info=com.apple.pkg.CLTools_Executables 2>/dev/null | grep version | awk '{print $2}' | cut -d'.' -f1)
-
-          if [ "$current_version" = "2409" ]; then
-            echo "✅ Xcode Command Line Tools version 2409 is already installed."
-          elif [ -z "$current_version" ]; then
-            echo "⚙️ Installing Xcode Command Line Tools..."
-            sudo xcode-select --install || true
-            echo "⚙️ Waiting for Command Line Tools installation to complete..."
-            until [ -d "/Library/Developer/CommandLineTools" ]; do
-              sleep 5
-            done
-            echo "✅ Xcode Command Line Tools installed successfully."
-          else
-            echo "❌ Required Xcode Command Line Tools version 2409 not found. Please update manually if needed."
-            exit 1
-          fi
-
       - name: Run SwiftLint
         run: |
           echo "📝 Running SwiftLint..."
@@ -118,7 +99,7 @@ jobs:
       - name: Setup Xcode Environment
         uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: 'latest-stable'
+          xcode-version: '16.0'
 
       - name: Run Tests
         run: |
