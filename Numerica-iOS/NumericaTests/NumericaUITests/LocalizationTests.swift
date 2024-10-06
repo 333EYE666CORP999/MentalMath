@@ -61,7 +61,7 @@ final class LocalizationTests: XCTestCase {
     }
 }
 
-private extension LocalizationTests {
+extension LocalizationTests {
 
     private typealias Info = [String: [[String: String]]]
 

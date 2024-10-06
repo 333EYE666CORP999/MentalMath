@@ -21,6 +21,9 @@ struct ErrorShowingTextField: View {
                     .keyboardType(.numberPad)
                     .font(.primary)
                     .multilineTextAlignment(.center)
+                    .accessibilityIdentifier(
+                        "MainView.InputTextField"
+                    )
             }
             .animation(
                 .easeInOut(

@@ -76,6 +76,9 @@ struct MainView: View {
             .foregroundStyle(.white)
             .multilineTextAlignment(.center)
             .font(.primary)
+            .accessibilityIdentifier(
+                "MainView.ProblemView"
+            )
     }
 
     var inputTextField: some View {
@@ -100,7 +103,9 @@ struct MainView: View {
             title: $viewModel.actionButtonText,
             action: viewModel.onActionButtonTap
         )
-        .accessibilityIdentifier("MainView.ActionButton")
+        .accessibilityIdentifier(
+            "MainView.ActionButton"
+        )
     }
 
     var endGameButtonView: some View {
@@ -113,6 +118,9 @@ struct MainView: View {
                 )
                 .foregroundStyle(.white)
                 .font(.secondary)
+                .accessibilityIdentifier(
+                    "MainView.EndButton"
+                )
                 Spacer()
             }
             Spacer()
