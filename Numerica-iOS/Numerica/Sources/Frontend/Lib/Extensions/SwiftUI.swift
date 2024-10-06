@@ -14,6 +14,12 @@ extension Font {
         weight: .bold,
         design: .monospaced
     )
+    
+    static let basicText: Self = .system(
+        size: 20,
+        weight: .regular,
+        design: .monospaced
+    )
 }
 
 extension View {

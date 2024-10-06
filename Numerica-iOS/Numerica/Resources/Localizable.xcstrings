@@ -13,21 +13,6 @@
     "❌" : {
 
     },
-    "First Page" : {
-
-    },
-    "Page 1" : {
-
-    },
-    "Page 2" : {
-
-    },
-    "Page 3" : {
-
-    },
-    "Second Page" : {
-
-    },
     "SESSION RESULTS" : {
       "localizations" : {
         "af" : {
@@ -955,9 +940,6 @@
           }
         }
       }
-    },
-    "Third Page" : {
-
     }
   },
   "version" : "1.0"
