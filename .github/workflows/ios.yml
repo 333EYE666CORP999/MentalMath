@@ -161,11 +161,11 @@ jobs:
             echo "🧪 Running tests for scheme: $scheme"
             set -o pipefail && xcodebuild test \
               -scheme "$scheme" \
-              -"$filetype_parameter" "$file_to_build" \
+              #-"$filetype_parameter" "$file_to_build" \
               -enableCodeCoverage YES \
               -parallel-testing-enabled YES \
               CODE_SIGNING_ALLOWED=NO \
-              | xcbeautify --is-ci --renderer github-actions
+              #| xcbeautify --is-ci --renderer github-actions
 
             if [ $? -eq 0 ]; then
               echo "✅ Tests passed for scheme: $scheme"
