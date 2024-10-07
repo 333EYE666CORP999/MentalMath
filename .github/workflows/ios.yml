@@ -88,10 +88,7 @@ jobs:
             -scheme "Numerica" \
             -"$filetype_parameter" "$file_to_build" \
             CODE_SIGNING_ALLOWED=NO \
-            SWIFT_FLAGS="-Xfrontend -strict-concurrency=complete -swift-version 6" \
-            > build-results/build.log
-
-          cat build-results/build.log
+            SWIFT_FLAGS="-Xfrontend -strict-concurrency=complete -swift-version 6"
 
           if [ $? -eq 0 ]; then
             echo "✅ Build completed successfully."
@@ -139,10 +136,6 @@ jobs:
             -enableCodeCoverage YES \
             -parallel-testing-enabled YES \
             CODE_SIGNING_ALLOWED=NO \
-            > test-results/${{ matrix.scheme }}-test.log
-
-          # Output the raw log for better visibility in CI
-          cat test-results/${{ matrix.scheme }}-test.log
 
           if [ $? -eq 0 ]; then
             echo "✅ All tests passed for scheme: ${{ matrix.scheme }}."
