@@ -52,7 +52,7 @@ jobs:
 
           if ! command -v xcresultparser &> /dev/null; then
             echo "⚙️ Installing xcresultparser..."
-            brew tap a7ex/tap
+            brew tap a7ex/tap git@github.com:a7ex/homebrew-tap.git
             brew install xcresultparser
           else
             echo "✅ xcresultparser already installed."
