@@ -90,15 +90,12 @@ jobs:
             file_to_build="$(ls -A | grep -i \.xcodeproj\$)"
           fi
           file_to_build=$(echo $file_to_build | awk '{$1=$1;print}')
-          result_bundle_path="build-results/Numerica.xcresult"
-          mkdir -p build-results
 
           set -o pipefail && xcodebuild build \
             -scheme "Numerica" \
             -"$filetype_parameter" "$file_to_build" \
             CODE_SIGNING_ALLOWED=NO \
             SWIFT_FLAGS="-Xfrontend -strict-concurrency=complete -swift-version 6" \
-            -resultBundlePath "$result_bundle_path" \
             | xcbeautify --is-ci --renderer github-actions
 
           if [ $? -eq 0 ]; then
@@ -147,7 +144,6 @@ jobs:
             -enableCodeCoverage YES \
             -parallel-testing-enabled YES \
             CODE_SIGNING_ALLOWED=NO \
-            -resultBundlePath "$result_bundle_path" \
             | xcbeautify --is-ci --renderer github-actions
 
           if [ $? -eq 0 ]; then
