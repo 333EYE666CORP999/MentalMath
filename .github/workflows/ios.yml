@@ -50,13 +50,6 @@ jobs:
             echo "✅ jq already installed."
           fi
 
-          if ! command -v xcresultparser &> /dev/null; then
-            echo "⚙️ Installing xcresultparser..."
-            brew install xcresultparser
-          else
-            echo "✅ xcresultparser already installed."
-          fi
-
       - name: SwiftLint
         run: |
           echo "📝 Running SwiftLint..."
@@ -91,23 +84,14 @@ jobs:
           fi
           file_to_build=$(echo $file_to_build | awk '{$1=$1;print}')
 
-          result_bundle_path="build-results/Numerica.xcresult"
-          mkdir -p build-results
-
           set -o pipefail && xcodebuild build \
             -scheme "Numerica" \
             -"$filetype_parameter" "$file_to_build" \
             CODE_SIGNING_ALLOWED=NO \
             SWIFT_FLAGS="-Xfrontend -strict-concurrency=complete -swift-version 6" \
-            -resultBundlePath "$result_bundle_path" \
             > build-results/build.log
 
           cat build-results/build.log
-
-          # Parsing the build xcresult bundle using xcresultparser
-          echo "📄 Parsing build results from ${result_bundle_path}..."
-          xcresultparser parse --path "$result_bundle_path" --output build-results/build-report.json
-          cat build-results/build-report.json
 
           if [ $? -eq 0 ]; then
             echo "✅ Build completed successfully."
@@ -148,10 +132,6 @@ jobs:
           fi
           file_to_build=$(echo $file_to_build | awk '{$1=$1;print}')
 
-          result_bundle_path="test-results/${{ matrix.scheme }}.xcresult"
-          mkdir -p test-results
-
-          # Running tests and redirecting logs to a file for easier inspection
           set -o pipefail && xcodebuild test \
             -scheme "${{ matrix.scheme }}" \
             -"$filetype_parameter" "$file_to_build" \
@@ -159,16 +139,10 @@ jobs:
             -enableCodeCoverage YES \
             -parallel-testing-enabled YES \
             CODE_SIGNING_ALLOWED=NO \
-            -resultBundlePath "$result_bundle_path" \
             > test-results/${{ matrix.scheme }}-test.log
 
           # Output the raw log for better visibility in CI
           cat test-results/${{ matrix.scheme }}-test.log
-
-          # Parse xcresult using xcresultparser for better insight into test results
-          echo "📄 Parsing test results from ${result_bundle_path}..."
-          xcresultparser parse --path "$result_bundle_path" --output test-results/${{ matrix.scheme }}-report.json
-          cat test-results/${{ matrix.scheme }}-report.json
 
           if [ $? -eq 0 ]; then
             echo "✅ All tests passed for scheme: ${{ matrix.scheme }}."
