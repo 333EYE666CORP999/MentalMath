@@ -13,7 +13,7 @@ struct NumericaApp: App {
                         storageService: StorageService(
                             container: sharedModelContainer
                         ),
-                        mathGen: ProblemGenerator()
+                        problemGenerator: ProblemGenerator()
                     )
                 )
             // FIXME: - убрать через семантические цвета на ui

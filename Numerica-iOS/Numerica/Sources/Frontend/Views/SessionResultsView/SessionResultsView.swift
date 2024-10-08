@@ -18,6 +18,7 @@ struct SessionResultsView: View {
                         solution: rowItem.solution,
                         solved: rowItem.solved
                     )
+                    .accessibilityIdentifier("SessionResults.ListItem")
                 }
             }
         }

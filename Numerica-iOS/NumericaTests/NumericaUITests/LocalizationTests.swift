@@ -1,6 +1,8 @@
 @testable import Numerica
 import XCTest
 
+// MARK: - LocalizationTests
+
 @preconcurrency
 final class LocalizationTests: XCTestCase {
 
@@ -10,9 +12,6 @@ final class LocalizationTests: XCTestCase {
 
     private var languagesAndLocales: [[String: String]] = []
     private let testBundle = Bundle(for: LocalizationTests.self)
-    private var randomLocaleCount: Int {
-        .random(in: 5...10)
-    }
 
     override func setUp() async throws {
         try await super.setUp()
@@ -23,9 +22,8 @@ final class LocalizationTests: XCTestCase {
         }
 
         languagesAndLocales = Array(
-            loadLanguagesAndLocales()
+            getLanguagesAndLocales()
                 .shuffled()
-                .prefix(randomLocaleCount)
         )
     }
 
@@ -36,6 +34,11 @@ final class LocalizationTests: XCTestCase {
 
         try await super.tearDown()
     }
+}
+
+// MARK: - Tests
+
+extension LocalizationTests {
 
     func testStartButtonLocalization() async {
         await testButtonLocalization(
@@ -59,7 +62,31 @@ final class LocalizationTests: XCTestCase {
             )
         }
     }
+
+    func testLangsStubMatchesLocalizationLanguages() {
+        var notFoundLanguages = [String]()
+
+        languagesAndLocales.forEach { element in
+            guard
+                let langCode = element["-AppleLanguage"],
+                let url = Bundle(for: Self.self).url(
+                    forResource: "\(langCode)",
+                    withExtension: "lproj"
+                )
+            else {
+                notFoundLanguages.append(element["-AppleLanguage"] ?? "")
+                return
+            }
+
+            XCTAssertTrue(
+                notFoundLanguages.isEmpty,
+                "Some langs missing in Localizable: \(notFoundLanguages)"
+            )
+        }
+    }
 }
+
+// MARK: - Helpers
 
 extension LocalizationTests {
 
@@ -147,7 +174,7 @@ extension LocalizationTests {
         return bundle.localizedString(forKey: key, value: nil, table: nil)
     }
 
-    func loadLanguagesAndLocales() -> [[String: String]] {
+    func getLanguagesAndLocales() -> [[String: String]] {
         guard
             let url = testBundle.url(forResource: "languages_and_locales", withExtension: "json"),
             let data = try? Data(contentsOf: url),

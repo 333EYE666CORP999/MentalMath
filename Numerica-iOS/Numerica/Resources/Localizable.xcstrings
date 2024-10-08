@@ -13,6 +13,251 @@
     "❌" : {
 
     },
+    "INPUT NUMBER" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "af" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VOER GETAL IN"
+          }
+        },
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أَدْخِلْ رَقَمًا"
+          }
+        },
+        "be" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "УВЕДЗІЦЕ ЛІК"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ВЪВЕДЕТЕ ЧИСЛО"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ZADEJTE ČÍSLO"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "INDSÆT TAL"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ZAHL EINGEBEN"
+          }
+        },
+        "dz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ཨང་གྲངས་བཙུགས་པ།"
+          }
+        },
+        "dz-BT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ཨང་གྲངས་ནང་བཙུགས།"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ΕΙΣΑΓΕΤΕ ΑΡΙΘΜΟ"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "INPUT NUMBER"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "INTRODUCIR NÚMERO"
+          }
+        },
+        "et" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SISENE NUMBER"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SYÖTÄ NUMERO"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ENTREZ UN NOMBRE"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "הזן מספר"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "संख्या दर्ज करें"
+          }
+        },
+        "hy" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ՄՈՒՏՔԱԳՐԵՔ ԹԻՎ"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "INSERISCI NUMERO"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "数字を入力"
+          }
+        },
+        "ka" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "შეიყვანეთ რიცხვი"
+          }
+        },
+        "kk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "НӨМІР ЕНГІЗІҢІЗ"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "숫자 입력"
+          }
+        },
+        "ky" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "САНДАРДЫ КИРГИЗ"
+          }
+        },
+        "la" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "INSERERE NUMERUM"
+          }
+        },
+        "mk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ВНЕСЕТЕ БРОЈ"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VOER GETAL IN"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "WPROWADŹ NUMER"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "INTRODUCEȚI NUMĂRUL"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ВВЕДИТЕ ЧИСЛО"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ZADAJTE ČÍSLO"
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VNESITE ŠTEVILKO"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ANGE TAL"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ป้อนหมายเลข"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NUMARA GİRİN"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ВВЕДІТЬ ЧИСЛО"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RAQAM KIRITISH"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "输入数字"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "輸入數字"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "輸入數字"
+          }
+        }
+      }
+    },
     "SESSION RESULTS" : {
       "localizations" : {
         "af" : {
@@ -55,6 +300,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "SITZUNGSERGEBNISSE"
+          }
+        },
+        "dz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ཚོགས་འདུའི་འབྲས་བུ།"
+          }
+        },
+        "dz-BT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "སྦྱོང་ཚན་ཀྱི་འབྲས་བུ།"
           }
         },
         "el" : {
@@ -289,6 +546,18 @@
             "value" : "START"
           }
         },
+        "dz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "འགོ་བཙུགས།"
+          }
+        },
+        "dz-BT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "སྒོ་འབྱེད།"
+          }
+        },
         "el" : {
           "stringUnit" : {
             "state" : "translated",
@@ -521,6 +790,18 @@
             "value" : "STOP"
           }
         },
+        "dz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "འཛུགས་ཞུགས།"
+          }
+        },
+        "dz-BT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "འཇོག་པ།"
+          }
+        },
         "el" : {
           "stringUnit" : {
             "state" : "translated",
@@ -751,6 +1032,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "EINREICHEN"
+          }
+        },
+        "dz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "སྤྲོད་པ།"
+          }
+        },
+        "dz-BT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "བསྐྱོད་པ།"
           }
         },
         "el" : {

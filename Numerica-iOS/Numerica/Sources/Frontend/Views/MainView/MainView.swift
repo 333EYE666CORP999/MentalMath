@@ -32,6 +32,7 @@ struct MainView: View {
                         sessionResults: viewModel.sessionResults
                     )
                     .navigationTitle("SESSION RESULTS")
+                    .accessibilityIdentifier("SessionResults.View")
                 }
             }
             .onChange(
@@ -135,7 +136,7 @@ struct MainView: View {
 //                storageService: StorageService(
 //                    modelContext: sharedModelContainer.mainContext
 //                ),
-//                mathGen: ProblemGenerator()
+//                problemGenerator: ProblemGenerator()
 //            )
 //        )
 }

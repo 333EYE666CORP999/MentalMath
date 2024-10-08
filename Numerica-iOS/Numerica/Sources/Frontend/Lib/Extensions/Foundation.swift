@@ -65,3 +65,10 @@ extension Double {
 
     var intValue: Int { Int(self) }
 }
+
+extension String {
+
+    var localized: String {
+        NSLocalizedString(self, comment: "")
+    }
+}

@@ -22,6 +22,8 @@
 		3F640F082CB2A6DE00050872 /* NumericaUITests.xctestplan in Resources */ = {isa = PBXBuildFile; fileRef = 3F640F072CB2A6DE00050872 /* NumericaUITests.xctestplan */; };
 		3F6435062C899BD60016C7AC /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6435052C899BD60016C7AC /* ActionButton.swift */; };
 		3F65EE6C2C91AA98004F08EB /* ProblemObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F65EE6B2C91AA98004F08EB /* ProblemObject.swift */; };
+		3F6CAE7F2CB5243C002BE632 /* MainViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6CAE7E2CB5243C002BE632 /* MainViewModelTests.swift */; };
+		3F6CAE812CB52F5F002BE632 /* OperatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6CAE802CB52F5F002BE632 /* OperatorTests.swift */; };
 		3F8190152CB2B5890010AE29 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 3F296D5B2CA039CA00D1A2C6 /* Localizable.xcstrings */; };
 		3F8475942C8513000034EC78 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F8475862C8513000034EC78 /* Assets.xcassets */; };
 		3F8475952C8513000034EC78 /* NumericaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8475892C8513000034EC78 /* NumericaApp.swift */; };
@@ -76,6 +78,8 @@
 		3F65EE6B2C91AA98004F08EB /* ProblemObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemObject.swift; sourceTree = "<group>"; };
 		3F6C77012CA1598F00492149 /* LocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationTests.swift; sourceTree = "<group>"; };
 		3F6C770B2CA159AA00492149 /* ProblemGeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemGeneratorTests.swift; sourceTree = "<group>"; };
+		3F6CAE7E2CB5243C002BE632 /* MainViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModelTests.swift; sourceTree = "<group>"; };
+		3F6CAE802CB52F5F002BE632 /* OperatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperatorTests.swift; sourceTree = "<group>"; };
 		3F8475862C8513000034EC78 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F8475872C8513000034EC78 /* Entitlements.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Entitlements.entitlements; sourceTree = "<group>"; };
 		3F8475892C8513000034EC78 /* NumericaApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumericaApp.swift; sourceTree = "<group>"; };
@@ -272,6 +276,8 @@
 			isa = PBXGroup;
 			children = (
 				3F640F052CB2A6D400050872 /* NumericaTests.xctestplan */,
+				3F6CAE7E2CB5243C002BE632 /* MainViewModelTests.swift */,
+				3F6CAE802CB52F5F002BE632 /* OperatorTests.swift */,
 				3F6C770B2CA159AA00492149 /* ProblemGeneratorTests.swift */,
 			);
 			path = NumericaTests;
@@ -464,6 +470,8 @@
 				da,
 				tr,
 				th,
+				"dz-BT",
+				dz,
 			);
 			mainGroup = 3F415BB72C83800500C94EB6;
 			preferredProjectObjectVersion = 77;
@@ -537,6 +545,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				3FCEDD162CAF234A0021A37C /* ProblemGeneratorTests.swift in Sources */,
+				3F6CAE812CB52F5F002BE632 /* OperatorTests.swift in Sources */,
+				3F6CAE7F2CB5243C002BE632 /* MainViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -26,8 +26,8 @@ final class MainViewModel: ObservableObject {
     }
 
     private var gameSession: GameSessionModel?
-    private let storageService: StorageService
-    private let problemGenerator: ProblemGenerator
+    private let storageService: StorageServiceInput
+    private let problemGenerator: ProblemGeneratorInput
     private var timerManager: TimerManager?
 
     private var cancellables = Set<AnyCancellable>()
@@ -36,12 +36,12 @@ final class MainViewModel: ObservableObject {
     }
 
     init(
-        storageService: StorageService,
-        mathGen: ProblemGenerator
+        storageService: StorageServiceInput,
+        problemGenerator: ProblemGeneratorInput
     ) {
         self.storageService = storageService
-        self.problemGenerator = ProblemGenerator()
-        self.problem = mathGen.getProblem(for: operation)
+        self.problemGenerator = problemGenerator
+        self.problem = .empty
     }
 
     // TODO: - переписать, чтоб было две разных кнопки
@@ -51,6 +51,7 @@ final class MainViewModel: ObservableObject {
             processAnswer()
             userInput.removeAll()
         case false:
+            setupTimerIfNeeded()
             start()
         }
     }
@@ -122,26 +123,24 @@ private extension MainViewModel {
     }
 
     func showErrorPlaceholder() {
-        guard !showingError else {
-            return
-        }
+        if !showingError {
+            showingError = true
 
-        showingError = true
-
-        withAnimation(
-            .easeInOut(duration: 0.5)
-        ) {
-            self.placeholderText = "input number"
-            self.placeholderColor = .red
-        }
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             withAnimation(
                 .easeInOut(duration: 0.5)
             ) {
-                self.placeholderText.removeAll()
-                self.placeholderColor = .gray
-                self.showingError = false
+                self.placeholderText = "INPUT NUMBER".localized
+                self.placeholderColor = .red
+            }
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                withAnimation(
+                    .easeInOut(duration: 0.5)
+                ) {
+                    self.placeholderText.removeAll()
+                    self.placeholderColor = .gray
+                    self.showingError = false
+                }
             }
         }
     }

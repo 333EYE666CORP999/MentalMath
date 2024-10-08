@@ -1,12 +1,19 @@
 import Foundation
 import SwiftData
 
+protocol StorageServiceInput {
+    func save<T: PersistentModel>(_ model: T)
+}
+
 final class StorageService: Sendable {
     private let modelActor: PersistencyHandler
 
     init(container: ModelContainer) {
         self.modelActor = PersistencyHandler(modelContainer: container)
     }
+}
+
+extension StorageService: StorageServiceInput {
 
     func save<T: PersistentModel & Sendable>(_ model: T) {
         Task { @Sendable [weak self] in

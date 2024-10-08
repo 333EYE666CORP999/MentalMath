@@ -20,16 +20,19 @@ struct SessionResultsListItem: View {
                 VStack {
                     Text(problemString)
                         .foregroundStyle(.white)
+                        .accessibilityIdentifier("SessionResults.ListItem.ProblemText")
                 }
                 Spacer()
                 VStack {
                     Text(solution.stringValue)
                         .foregroundStyle(.white)
+                        .accessibilityIdentifier("SessionResults.ListItem.SolutionText")
                 }
                 Spacer()
                 VStack {
                     Text(solved ? "✅" : "❌")
                         .foregroundStyle(.white)
+                        .accessibilityIdentifier("SessionResults.ListItem.ResultText")
                 }
             }
             .padding()

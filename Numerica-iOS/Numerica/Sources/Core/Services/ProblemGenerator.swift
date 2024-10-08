@@ -3,7 +3,15 @@ import Foundation
 // MARK: - ProblemGenerator
 
 @MainActor
-final class ProblemGenerator {
+protocol ProblemGeneratorInput {
+
+    func getProblem(for selected: Operator) -> ProblemModel
+}
+
+@MainActor
+final class ProblemGenerator: ProblemGeneratorInput {
+
+    typealias Problem = ProblemModel
 
     static var rng = SystemRandomNumberGenerator()
 

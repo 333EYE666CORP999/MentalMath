@@ -9,14 +9,9 @@ enum Operator: String, CaseIterable, Codable {
     case division = "/"
 
     static var random: Self {
-        guard
-            let random = Self.allCases.randomElement(
-                using: &ProblemGenerator.rng
-            )
-        else {
-            return .subtraction
-        }
-
-        return random
+        Self.allCases[Int.random(
+            in: 0..<Self.allCases.count,
+            using: &ProblemGenerator.rng
+        )]
     }
 }
