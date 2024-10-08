@@ -29,9 +29,8 @@ extension StorageService: StorageServiceInput {
 actor PersistencyHandler {
 
     // TODO: - попрофилировать, на каком потоке реально сохраняется в память и если что убрать актор
-    typealias SendablePersistentEntity = PersistentModel & Sendable
 
-    func saveModel<T: PersistentModel>(_ model: T) async {
+    func saveModel(_ model: any PersistentModel) async {
         modelContext.insert(model)
         do {
             try modelContext.save()

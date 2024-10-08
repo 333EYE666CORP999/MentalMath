@@ -5,7 +5,6 @@
 //  Created by Dmitry Aksyonov on 06.10.2024.
 //
 
-@testable import Numerica
 import XCTest
 
 // MARK: - GameTests
@@ -14,7 +13,7 @@ import XCTest
 final class GameTests: XCTestCase {
 
     // swiftlint:disable implicitly_unwrapped_optional
-    @MainActor private var sut: XCUIApplication!
+    @MainActor private var sut: XCUIApplicationWrapper!
     // swiftlint:enable implicitly_unwrapped_optional
 
     override func setUp() async throws {
@@ -22,7 +21,11 @@ final class GameTests: XCTestCase {
         continueAfterFailure = false
 
         await MainActor.run {
-            sut = makeApp()
+            sut = XCUIApplicationWrapper(
+                app: XCUIApplication()
+            )
+            sut.configureApp(lang: "en", locale: "en-US")
+            sut.launch()
         }
     }
 
@@ -43,50 +46,50 @@ extension GameTests {
     func testGameLaunchesWithProperUIElements() {
         // Arrange
         // Act
-        sut.buttons["MainView.ActionButton"].tap()
+        sut.tapButton(with: "MainView.ActionButton")
 
         // Assert
-        XCTAssert(sut.staticTexts["MainView.ProblemView"].exists)
-        XCTAssert(sut.buttons["MainView.EndButton"].exists)
-        XCTAssert(sut.buttons["MainView.ActionButton"].exists)
-        XCTAssert(sut.textFields["MainView.InputTextField"].exists)
+        XCTAssert(sut.button(with: "MainView.EndButton").exists)
+        XCTAssert(sut.staticText(with: "MainView.ProblemView").exists)
+        XCTAssert(sut.textField(with: "MainView.InputTextField").exists)
+        XCTAssert(sut.button(with: "MainView.ActionButton").exists)
     }
 
     @MainActor
     func testGameStopsWhenUserPressesEndButton() {
         // Arrange
         // Act
-        play()
+        sut.play(tries: .zero)
 
         // Assert
-        XCTAssert(sut.buttons["MainView.ActionButton"].exists)
-        XCTAssert(!sut.staticTexts["MainView.ProblemView"].exists)
-        XCTAssert(!sut.buttons["MainView.EndButton"].exists)
-        XCTAssert(!sut.textFields["MainView.InputTextField"].exists)
-        XCTAssert(!sut.otherElements["SessionResults.View"].exists)
+        XCTAssert(sut.button(with: "MainView.ActionButton").exists)
+        XCTAssert(!sut.button(with: "MainView.ProblemView").exists)
+        XCTAssert(!sut.button(with: "MainView.EndButton").exists)
+        XCTAssert(!sut.textField(with: "MainView.InputTextField").exists)
+        XCTAssert(!sut.other(with: "SessionResults.View").exists)
     }
 
     @MainActor
-    func testSessionResultsIsShownWhenAtLeasOneAnswerGiven() {
+    func testGameResultsShownWhenAtLeasOneAnswerGiven() {
         // Arrange
         // Act
-        play()
+        sut.play()
 
         // Assert
         assertSessionResultsViewExists()
     }
 
     @MainActor
-    func testSessionResultsCountCorrespondsWithAnswersCount() {
+    func testGameResultsCountEqualsAnswersCount() {
         // Arrange
         // Act
-        let answersCount = play()
+        let answersCount = sut.play()
 
         // Assert
         assertSessionResultsViewExists()
         XCTAssertEqual(
             answersCount,
-            sut.collectionViews["SessionResults.View"].cells.count
+            sut.collectionView(with: "SessionResults.View").cells.count
         )
     }
 
@@ -94,34 +97,22 @@ extension GameTests {
     func testSessionResultsRendersContent() {
         // Arrange
         // Act
-        play()
+        sut.play(tries: 10)
 
         // Assert
         assertSessionResultsViewExists()
-        sut
-            .collectionViews["SessionResults.View"]
-            .staticTexts
-            .allElementsBoundByIndex
-            .map {
-                $0.label
+        sut.sessionResultsContent.enumerated().forEach { idx, value in
+            switch idx % 3 {
+            case 0:
+                assertProblemStringIsValid(value)
+            case 1:
+                XCTAssertNotNil(Int(value))
+            case 2:
+                XCTAssertTrue(String.problemSolutionStatuses.contains { $0 == value })
+            default:
+                break
             }
-            .enumerated()
-            .forEach { idx, value in
-                switch idx % 3 {
-                case 0:
-                    let problemStirng = value.split(separator: " ").map(String.init)
-                    XCTAssertEqual(problemStirng.count, 3)
-                    XCTAssertNotNil(Int(problemStirng[0]))
-                    XCTAssertTrue(["+", "-", "*", "/"].contains(problemStirng[1]))
-                    XCTAssertNotNil(Int(problemStirng[2]))
-                case 1:
-                    XCTAssertNotNil(Int(value))
-                case 2:
-                    XCTAssertTrue(String.problemSolutionStatuses.contains { $0 == value })
-                default:
-                    break
-                }
-            }
+        }
     }
 }
 
@@ -131,46 +122,19 @@ private extension GameTests {
 
     @MainActor
     func assertSessionResultsViewExists() {
-        XCTAssert(sut.collectionViews["SessionResults.View"].exists)
-        XCTAssert(sut.navigationBars["SESSION RESULTS"].exists)
-        XCTAssert(sut.staticTexts["SESSION RESULTS"].exists)
-        XCTAssert(sut.buttons["Back"].exists)
+        XCTAssert(sut.collectionView(with: "SessionResults.View").exists)
+        XCTAssert(sut.navigationBar(with: "SESSION RESULTS").exists)
+        XCTAssert(sut.staticText(with: "SESSION RESULTS").exists)
+        XCTAssert(sut.button(with: "Back").exists)
     }
 
     @MainActor
-    func makeApp() -> XCUIApplication {
-        let app = XCUIApplication()
-        app.launchArguments.append("--uitesting")
-        app.launch()
-        return app
-    }
-
-    @MainActor
-    func tap(button identifier: String) {
-        sut.buttons[identifier].tap()
-    }
-
-    @MainActor
-    @discardableResult
-    func play() -> Int {
-        let answersCount = Int.random(in: 0...10)
-        tap(button: "MainView.ActionButton")
-
-        if answersCount > 0 {
-            for number in 0..<answersCount {
-                answer(String(number))
-            }
-        }
-
-        tap(button: "MainView.EndButton")
-
-        return answersCount
-    }
-
-    @MainActor
-    func answer(_ answer: String) {
-        sut.textFields["MainView.InputTextField"].typeText(answer)
-        tap(button: "MainView.ActionButton")
+    func assertProblemStringIsValid(_ problem: String) {
+        let problemStirng = problem.split(separator: " ").map(String.init)
+        XCTAssertEqual(problemStirng.count, 3)
+        XCTAssertNotNil(Int(problemStirng[0]))
+        XCTAssertTrue(["+", "-", "*", "/"].contains(problemStirng[1]))
+        XCTAssertNotNil(Int(problemStirng[2]))
     }
 }
 

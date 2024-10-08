@@ -4,12 +4,6 @@ import SwiftUI
 // FIXME: - нужно дорабтотать, пока early prototype
 struct SessionResultsListItem: View {
 
-    static var empty = Self(
-        problemString: "",
-        solution: .zero,
-        solved: .random()
-    )
-
     var problemString: String
     var solution: Int
     var solved: Bool

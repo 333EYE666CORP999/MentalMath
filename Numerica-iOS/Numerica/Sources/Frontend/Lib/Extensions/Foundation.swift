@@ -25,11 +25,6 @@ extension Int {
 extension String {
 
     static let minutesSecondsFormat: Self = "%02d:%02d"
-    static let space: Self = " "
-
-    var isNumeric: Bool {
-        self.allSatisfy { $0.isNumber }
-    }
 
     var intValue: Int? {
         Int(self)
@@ -41,15 +36,6 @@ extension Character {
     static let space: Self = " "
 }
 
-extension DateFormatter {
-
-    static let dateTimeDateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd.MM.YYYY, HH:mm:ss"
-        return formatter
-    }()
-}
-
 extension Decimal {
 
     var intValue: Int {
@@ -59,11 +45,6 @@ extension Decimal {
             accordingToBehavior: nil
         ).intValue
     }
-}
-
-extension Double {
-
-    var intValue: Int { Int(self) }
 }
 
 extension String {

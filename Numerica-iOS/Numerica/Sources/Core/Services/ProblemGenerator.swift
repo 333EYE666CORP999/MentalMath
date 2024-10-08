@@ -114,7 +114,7 @@ private extension ProblemGenerator {
         // Decremented by `1` as 10^2 = 100. 100-1 = 99, max 2-digit number
         let maxValue = (
             pow(10.0, Double(maxValueExponent)) - 1
-        ).intValue
+        ).exponent
 
         var randomNumber = Int.random(
             in: .zero...maxValue,

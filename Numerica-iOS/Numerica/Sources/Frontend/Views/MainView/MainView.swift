@@ -16,12 +16,7 @@ struct MainView: View {
                     endGameButtonView
                 }
 
-                switch viewModel.mode {
-                case .zen:
-                    zenMainView
-                case .timed:
-                    timedMainView
-                }
+                zenMainView
             }
             .navigationDestination(
                 for: String.self
@@ -53,23 +48,6 @@ struct MainView: View {
             }
             actionButton
         }
-    }
-
-    var timedMainView: some View {
-        VStack {
-            if viewModel.isGameStarted {
-                countdown
-                problemView
-                inputTextField
-            }
-            actionButton
-        }
-    }
-
-    var countdown: some View {
-        CountdownTimerView(
-            remainingTime: $viewModel.remainingTime
-        )
     }
 
     var problemView: some View {

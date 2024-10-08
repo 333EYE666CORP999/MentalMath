@@ -28,7 +28,6 @@ final class MainViewModel: ObservableObject {
     private var gameSession: GameSessionModel?
     private let storageService: StorageServiceInput
     private let problemGenerator: ProblemGeneratorInput
-    private var timerManager: TimerManager?
 
     private var cancellables = Set<AnyCancellable>()
     private var operation: Operator {
@@ -51,7 +50,6 @@ final class MainViewModel: ObservableObject {
             processAnswer()
             userInput.removeAll()
         case false:
-            setupTimerIfNeeded()
             start()
         }
     }
@@ -83,7 +81,6 @@ private extension MainViewModel {
         isGameStarted = true
         problem = problemGenerator.getProblem(for: operation)
         actionButtonText = .submitButtonTitle
-        timerManager?.startTimer()
         gameSession = GameSessionModel(sessionDate: Date())
     }
 
@@ -143,28 +140,6 @@ private extension MainViewModel {
                 }
             }
         }
-    }
-}
-
-// MARK: - Private Methods
-
-private extension MainViewModel {
-
-    func setupTimerIfNeeded() {
-        guard mode != .zen else {
-            return
-        }
-        timerManager = TimerManager()
-        bindTimer()
-    }
-
-    func bindTimer() {
-        timerManager?.$remainingTime
-            .assign(to: \.remainingTime, on: self)
-            .store(in: &cancellables)
-        timerManager?.timerEndSubject
-            .sink { [weak self] in self?.end() }
-            .store(in: &cancellables)
     }
 }
 

@@ -36,10 +36,6 @@ struct ProblemModel {
         self.rhs = rhs
         self.solution = solution
     }
-
-    mutating func setSolved() {
-        self.solved = true
-    }
 }
 
 // TODO: - поднять в кодстайл - протоколы хотя бы без одного дефолта - в экстеншены

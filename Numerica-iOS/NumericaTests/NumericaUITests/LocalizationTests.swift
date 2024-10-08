@@ -22,8 +22,7 @@ final class LocalizationTests: XCTestCase {
         }
 
         languagesAndLocales = Array(
-            getLanguagesAndLocales()
-                .shuffled()
+            getLanguagesAndLocales() .shuffled()
         )
     }
 
