@@ -37,7 +37,7 @@
 		3F640F082CB2A6DE00050872 /* NumericaUITests.xctestplan in Resources */ = {isa = PBXBuildFile; fileRef = 3F640F072CB2A6DE00050872 /* NumericaUITests.xctestplan */; };
 		3F6435062C899BD60016C7AC /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6435052C899BD60016C7AC /* ActionButton.swift */; };
 		3F65EE6C2C91AA98004F08EB /* ProblemObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F65EE6B2C91AA98004F08EB /* ProblemObject.swift */; };
-		3F6BB9DB2CB5C7FB00B83E82 /* XCUIApplicationWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6BB9DA2CB5C7FB00B83E82 /* XCUIApplicationWrapper.swift */; };
+		3F6BB9DB2CB5C7FB00B83E82 /* XCUIApplicationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6BB9DA2CB5C7FB00B83E82 /* XCUIApplicationHandler.swift */; };
 		3F6CAE7F2CB5243C002BE632 /* MainViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6CAE7E2CB5243C002BE632 /* MainViewModelTests.swift */; };
 		3F6CAE812CB52F5F002BE632 /* OperatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6CAE802CB52F5F002BE632 /* OperatorTests.swift */; };
 		3F8190152CB2B5890010AE29 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 3F296D5B2CA039CA00D1A2C6 /* Localizable.xcstrings */; };
@@ -89,7 +89,7 @@
 		3F640F072CB2A6DE00050872 /* NumericaUITests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = NumericaUITests.xctestplan; sourceTree = "<group>"; };
 		3F6435052C899BD60016C7AC /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
 		3F65EE6B2C91AA98004F08EB /* ProblemObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemObject.swift; sourceTree = "<group>"; };
-		3F6BB9DA2CB5C7FB00B83E82 /* XCUIApplicationWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCUIApplicationWrapper.swift; sourceTree = "<group>"; };
+		3F6BB9DA2CB5C7FB00B83E82 /* XCUIApplicationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCUIApplicationHandler.swift; sourceTree = "<group>"; };
 		3F6C77012CA1598F00492149 /* LocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationTests.swift; sourceTree = "<group>"; };
 		3F6C770B2CA159AA00492149 /* ProblemGeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemGeneratorTests.swift; sourceTree = "<group>"; };
 		3F6CAE7E2CB5243C002BE632 /* MainViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModelTests.swift; sourceTree = "<group>"; };
@@ -278,7 +278,7 @@
 				3F640F072CB2A6DE00050872 /* NumericaUITests.xctestplan */,
 				3F8D15932CB32CDE00618694 /* GameTests.swift */,
 				3F6C77012CA1598F00492149 /* LocalizationTests.swift */,
-				3F6BB9DA2CB5C7FB00B83E82 /* XCUIApplicationWrapper.swift */,
+				3F6BB9DA2CB5C7FB00B83E82 /* XCUIApplicationHandler.swift */,
 			);
 			path = NumericaUITests;
 			sourceTree = "<group>";
@@ -612,7 +612,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3FCEDD282CAF29760021A37C /* LocalizationTests.swift in Sources */,
-				3F6BB9DB2CB5C7FB00B83E82 /* XCUIApplicationWrapper.swift in Sources */,
+				3F6BB9DB2CB5C7FB00B83E82 /* XCUIApplicationHandler.swift in Sources */,
 				3F8D15942CB32CDE00618694 /* GameTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

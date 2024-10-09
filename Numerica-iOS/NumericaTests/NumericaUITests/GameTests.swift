@@ -13,7 +13,7 @@ import XCTest
 final class GameTests: XCTestCase {
 
     // swiftlint:disable implicitly_unwrapped_optional
-    @MainActor private var sut: XCUIApplicationWrapper!
+    @MainActor private var sut: XCUIApplicationHandler!
     // swiftlint:enable implicitly_unwrapped_optional
 
     override func setUp() async throws {
@@ -21,9 +21,7 @@ final class GameTests: XCTestCase {
         continueAfterFailure = false
 
         await MainActor.run {
-            sut = XCUIApplicationWrapper(
-                app: XCUIApplication()
-            )
+            sut = .basic
             sut.configureApp(lang: "en", locale: "en-US")
             sut.launch()
         }

@@ -8,7 +8,6 @@ final class MainViewModel: ObservableObject {
 
     // TODO: - Refactor ErrorShowingView logic - mb some unused
 
-    @Published var mode: Mode = .zen
     @Published var isGameStarted = false
     @Published var shouldShowResultsView = false
 
@@ -16,7 +15,6 @@ final class MainViewModel: ObservableObject {
     @Published var problem: ProblemModel = .empty
 
     @Published var actionButtonText: String = .startButtonTitle
-    @Published var remainingTime: Int = .defaultTimeInterval
     @Published var placeholderText = ""
     @Published var placeholderColor: Color = .gray
     @Published var showingError = false
@@ -29,7 +27,6 @@ final class MainViewModel: ObservableObject {
     private let storageService: StorageServiceInput
     private let problemGenerator: ProblemGeneratorInput
 
-    private var cancellables = Set<AnyCancellable>()
     private var operation: Operator {
         .random
     }
@@ -63,15 +60,6 @@ final class MainViewModel: ObservableObject {
     }
 }
 
-// MARK: - Game Mode
-
-extension MainViewModel {
-
-    enum Mode {
-        case zen, timed
-    }
-}
-
 // MARK: - Game Logic
 
 private extension MainViewModel {
@@ -92,7 +80,6 @@ private extension MainViewModel {
         storageService.save(gameSession.convertToObject())
         actionButtonText = .startButtonTitle
         isGameStarted = false
-        remainingTime = .defaultTimeInterval
         problem = .empty
         userInput.removeAll()
     }

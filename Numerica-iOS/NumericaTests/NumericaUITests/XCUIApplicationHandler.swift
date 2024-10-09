@@ -1,7 +1,7 @@
 import XCTest
 
 @MainActor
-class XCUIApplicationWrapper {
+final class XCUIApplicationHandler {
 
     typealias Child = XCUIElement
 
@@ -19,27 +19,11 @@ class XCUIApplicationWrapper {
     init(app: XCUIApplication) {
         self.app = app
     }
-
-    // MARK: - Launch and Terminate
-
-
-    // MARK: - Button Interactions
-
-
-    func tapAndAssertButtonLabel(
-        buttonIdentifier: String,
-        expectedLabel: String,
-        postAction: (() -> Void)? = nil
-    ) {
-        let button = button(with: buttonIdentifier)
-        button.tap()
-        postAction?()
-    }
 }
 
 // MARK: - Lifecycle
 
-extension XCUIApplicationWrapper {
+extension XCUIApplicationHandler {
 
     func configureApp(lang: String, locale: String) {
         app.launchArguments = [
@@ -55,15 +39,11 @@ extension XCUIApplicationWrapper {
         }
         app.launch()
     }
-
-    func terminateApp() {
-        app.terminate()
-    }
 }
 
 // MARK: - Elements Access
 
-extension XCUIApplicationWrapper {
+extension XCUIApplicationHandler {
 
     func button(with identifier: String) -> Child {
         app.buttons[identifier]
@@ -71,10 +51,6 @@ extension XCUIApplicationWrapper {
 
     func collectionView(with identifier: String) -> Child {
         app.collectionViews[identifier]
-    }
-
-    func collectionViewCell(with identifier: String) -> Child {
-        app.collectionViews.cells[identifier]
     }
 
     func staticText(with identifier: String) -> Child {
@@ -96,9 +72,10 @@ extension XCUIApplicationWrapper {
 
 // MARK: - Game Logic
 
-extension XCUIApplicationWrapper {
+extension XCUIApplicationHandler {
 
     @discardableResult
+    @MainActor
     func play(tries: Int = .random(in: 1...10)) -> Int {
         tapButton(with: "MainView.ActionButton")
 
@@ -119,19 +96,11 @@ extension XCUIApplicationWrapper {
 
         return tries
     }
-
-    func start() {
-        tapButton(with: "MainView.ActionButton")
-    }
-
-    func end() {
-        tapButton(with: "MainView.EndButton")
-    }
 }
 
 // MARK: - Game Controls
 
-extension XCUIApplicationWrapper {
+extension XCUIApplicationHandler {
 
     func tapButton(with identifier: String) {
         app.buttons[identifier].tap()
@@ -147,5 +116,14 @@ extension XCUIApplicationWrapper {
             textField.tap()
         }
         textField.typeText(text)
+    }
+}
+
+// MARK: - Basic Wrapper
+
+extension XCUIApplicationHandler {
+
+    static var basic: Self {
+        Self(app: XCUIApplication())
     }
 }

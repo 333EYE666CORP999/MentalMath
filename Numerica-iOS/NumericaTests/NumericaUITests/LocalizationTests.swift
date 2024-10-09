@@ -1,4 +1,3 @@
-@testable import Numerica
 import XCTest
 
 // MARK: - LocalizationTests
@@ -7,7 +6,7 @@ import XCTest
 final class LocalizationTests: XCTestCase {
 
     // swiftlint:disable implicitly_unwrapped_optional
-    @MainActor private var sut: XCUIApplication!
+    @MainActor private var sut: XCUIApplicationHandler!
     // swiftlint:enable implicitly_unwrapped_optional
 
     private var languagesAndLocales: [[String: String]] = []
@@ -18,11 +17,11 @@ final class LocalizationTests: XCTestCase {
         continueAfterFailure = false
 
         await MainActor.run {
-            sut = XCUIApplication()
+            sut = .basic
         }
 
         languagesAndLocales = Array(
-            getLanguagesAndLocales() .shuffled()
+            getLanguagesAndLocales().shuffled()
         )
     }
 
@@ -68,10 +67,10 @@ extension LocalizationTests {
         languagesAndLocales.forEach { element in
             guard
                 let langCode = element["-AppleLanguage"],
-                let url = Bundle(for: Self.self).url(
+                Bundle(for: Self.self).url(
                     forResource: "\(langCode)",
                     withExtension: "lproj"
-                )
+                ) != nil
             else {
                 notFoundLanguages.append(element["-AppleLanguage"] ?? "")
                 return
@@ -101,12 +100,12 @@ extension LocalizationTests {
                 let lang = localeData["-AppleLanguage"],
                 let locale = localeData["-AppleLocale"]
             else {
+                XCTFail("Could not find Language or Locale for \(localeData)")
                 return
             }
 
-            await configureApp(lang: lang, locale: locale)
-
-            let button = await sut.buttons[buttonIdentifier]
+            await sut.configureApp(lang: lang, locale: locale)
+            let button = await sut.button(with: buttonIdentifier)
 
             guard !labelKey.isEmpty else {
                 await postAction(button, lang, locale)
@@ -144,16 +143,6 @@ extension LocalizationTests {
                 localizedString,
                 "Button label mismatch for key: \(key) in \(lang)-\(locale)"
             )
-        }
-    }
-
-    func configureApp(lang: String, locale: String) async {
-        await MainActor.run {
-            sut.launchArguments = [
-                "-AppleLanguages", "(\(lang))",
-                "-AppleLocale", "\(locale)"
-            ]
-            sut.launch()
         }
     }
 
