@@ -1,10 +1,3 @@
-//
-//  GameTests.swift
-//  NumericaTests
-//
-//  Created by Dmitry Aksyonov on 06.10.2024.
-//
-
 import XCTest
 
 // MARK: - GameTests

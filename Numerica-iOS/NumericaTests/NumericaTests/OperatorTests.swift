@@ -1,10 +1,3 @@
-//
-//  OperatorTests.swift
-//  NumericaTests
-//
-//  Created by Dmitry Aksyonov on 08.10.2024.
-//
-
 import Foundation
 @testable import Numerica
 import Testing
