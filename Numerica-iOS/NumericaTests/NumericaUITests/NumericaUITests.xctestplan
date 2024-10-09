@@ -1,0 +1,25 @@
+{
+  "configurations" : [
+    {
+      "id" : "7E60ACD5-4A4B-44CF-B69C-542904FB4E7B",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:Numerica.xcodeproj",
+        "identifier" : "3FCEDD1B2CAF241E0021A37C",
+        "name" : "NumericaUITests"
+      }
+    }
+  ],
+  "version" : 1
+}
