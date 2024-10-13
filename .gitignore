@@ -14,11 +14,13 @@ build/
 *.pbxuser
 *.xcbkptlist
 !default.pbxuser
+*.xcresult
 
 # Swift Package Manager
 Packages/
 Package.pins
 Package.resolved
+.swiftpm/
 
 # CocoaPods
 Pods/
@@ -57,4 +59,6 @@ playground.xcworkspace
 # User-specific files
 *.xcuserdatad
 *.xcworkspace/xcuserdata/
-*.xcworkspace/contents.xcworkspacedata
+*.xcworkspacedata
+*.xcschememanagement.plist
+Docs/.obsidian

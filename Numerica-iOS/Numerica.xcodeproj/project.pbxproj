@@ -1,0 +1,1009 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 63;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		3F6BB9DD2CB5D63700B83E82 /* Periphery */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 3F6BB9DE2CB5D63700B83E82 /* Build configuration list for PBXAggregateTarget "Periphery" */;
+			buildPhases = (
+				3F6BB9E12CB5D63E00B83E82 /* Periphery */,
+			);
+			dependencies = (
+			);
+			name = Periphery;
+			packageProductDependencies = (
+			);
+			productName = Periphery;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		3F12E7342CB2B2C2001124EC /* languages_and_locales.json in Resources */ = {isa = PBXBuildFile; fileRef = 3FE426492CA152FA0025EF36 /* languages_and_locales.json */; };
+		3F296D582CA0371F00D1A2C6 /* SessionResutsListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F296D572CA0371F00D1A2C6 /* SessionResutsListItem.swift */; };
+		3F296D5C2CA039CA00D1A2C6 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 3F296D5B2CA039CA00D1A2C6 /* Localizable.xcstrings */; };
+		3F415BCE2C83800800C94EB6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F415BCD2C83800800C94EB6 /* Preview Assets.xcassets */; };
+		3F41CE762C9C67B0006358E4 /* Operator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F41CE752C9C67B0006358E4 /* Operator.swift */; };
+		3F480BB02C9462B40047B9AE /* PersistentLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F480BAF2C9462B40047B9AE /* PersistentLayer.swift */; };
+		3F480BB52C9464140047B9AE /* ProblemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F480BB42C9464140047B9AE /* ProblemModel.swift */; };
+		3F480BB72C9464220047B9AE /* GameSessionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F480BB62C9464220047B9AE /* GameSessionModel.swift */; };
+		3F480BBC2C94D70F0047B9AE /* SessionResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F480BBB2C94D70F0047B9AE /* SessionResultsView.swift */; };
+		3F4DB9032C8C71DD0013DB66 /* Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4DB9022C8C71DD0013DB66 /* Foundation.swift */; };
+		3F640F062CB2A6D400050872 /* NumericaTests.xctestplan in Resources */ = {isa = PBXBuildFile; fileRef = 3F640F052CB2A6D400050872 /* NumericaTests.xctestplan */; };
+		3F640F082CB2A6DE00050872 /* NumericaUITests.xctestplan in Resources */ = {isa = PBXBuildFile; fileRef = 3F640F072CB2A6DE00050872 /* NumericaUITests.xctestplan */; };
+		3F6435062C899BD60016C7AC /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6435052C899BD60016C7AC /* ActionButton.swift */; };
+		3F65EE6C2C91AA98004F08EB /* ProblemObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F65EE6B2C91AA98004F08EB /* ProblemObject.swift */; };
+		3F6BB9DB2CB5C7FB00B83E82 /* XCUIApplicationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6BB9DA2CB5C7FB00B83E82 /* XCUIApplicationHandler.swift */; };
+		3F6CAE7F2CB5243C002BE632 /* MainViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6CAE7E2CB5243C002BE632 /* MainViewModelTests.swift */; };
+		3F6CAE812CB52F5F002BE632 /* OperatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6CAE802CB52F5F002BE632 /* OperatorTests.swift */; };
+		3F8190152CB2B5890010AE29 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 3F296D5B2CA039CA00D1A2C6 /* Localizable.xcstrings */; };
+		3F8475942C8513000034EC78 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F8475862C8513000034EC78 /* Assets.xcassets */; };
+		3F8475952C8513000034EC78 /* NumericaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8475892C8513000034EC78 /* NumericaApp.swift */; };
+		3F8475962C8513000034EC78 /* ProblemGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F84758B2C8513000034EC78 /* ProblemGenerator.swift */; };
+		3F8475982C8513000034EC78 /* GameSessionObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F84758E2C8513000034EC78 /* GameSessionObject.swift */; };
+		3F8475992C8513000034EC78 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8475902C8513000034EC78 /* MainView.swift */; };
+		3F8475A12C8527E90034EC78 /* SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8475A02C8527E90034EC78 /* SwiftUI.swift */; };
+		3F8475A32C85A29A0034EC78 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8475A22C85A29A0034EC78 /* StorageService.swift */; };
+		3F8475A72C85D3480034EC78 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8475A62C85D3480034EC78 /* MainViewModel.swift */; };
+		3F8D15942CB32CDE00618694 /* GameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8D15932CB32CDE00618694 /* GameTests.swift */; };
+		3FCEDD162CAF234A0021A37C /* ProblemGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6C770B2CA159AA00492149 /* ProblemGeneratorTests.swift */; };
+		3FCEDD282CAF29760021A37C /* LocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6C77012CA1598F00492149 /* LocalizationTests.swift */; };
+		3FDAF7B72C9D877D0089AAFC /* ErrorShowingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDAF7B62C9D877D0089AAFC /* ErrorShowingTextField.swift */; };
+		3FE64FA82C8851240053C96C /* SwiftData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE64FA72C8851240053C96C /* SwiftData.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3F29B1B82CAE90CB003354CB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3F415BB82C83800500C94EB6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3F415BBF2C83800500C94EB6;
+			remoteInfo = Numerica;
+		};
+		3FCEDD222CAF241E0021A37C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3F415BB82C83800500C94EB6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3F415BBF2C83800500C94EB6;
+			remoteInfo = Numerica;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		3F296D572CA0371F00D1A2C6 /* SessionResutsListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionResutsListItem.swift; sourceTree = "<group>"; };
+		3F296D5B2CA039CA00D1A2C6 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		3F29B1B42CAE90CB003354CB /* NumericaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NumericaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F415BC02C83800500C94EB6 /* Numerica.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Numerica.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F415BCD2C83800800C94EB6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		3F41CE752C9C67B0006358E4 /* Operator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operator.swift; sourceTree = "<group>"; };
+		3F480BAF2C9462B40047B9AE /* PersistentLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentLayer.swift; sourceTree = "<group>"; };
+		3F480BB42C9464140047B9AE /* ProblemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemModel.swift; sourceTree = "<group>"; };
+		3F480BB62C9464220047B9AE /* GameSessionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSessionModel.swift; sourceTree = "<group>"; };
+		3F480BBB2C94D70F0047B9AE /* SessionResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionResultsView.swift; sourceTree = "<group>"; };
+		3F4DB9022C8C71DD0013DB66 /* Foundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Foundation.swift; sourceTree = "<group>"; };
+		3F640F052CB2A6D400050872 /* NumericaTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = NumericaTests.xctestplan; sourceTree = "<group>"; };
+		3F640F072CB2A6DE00050872 /* NumericaUITests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = NumericaUITests.xctestplan; sourceTree = "<group>"; };
+		3F6435052C899BD60016C7AC /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
+		3F65EE6B2C91AA98004F08EB /* ProblemObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemObject.swift; sourceTree = "<group>"; };
+		3F6BB9DA2CB5C7FB00B83E82 /* XCUIApplicationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCUIApplicationHandler.swift; sourceTree = "<group>"; };
+		3F6C77012CA1598F00492149 /* LocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationTests.swift; sourceTree = "<group>"; };
+		3F6C770B2CA159AA00492149 /* ProblemGeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemGeneratorTests.swift; sourceTree = "<group>"; };
+		3F6CAE7E2CB5243C002BE632 /* MainViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModelTests.swift; sourceTree = "<group>"; };
+		3F6CAE802CB52F5F002BE632 /* OperatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperatorTests.swift; sourceTree = "<group>"; };
+		3F8475862C8513000034EC78 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3F8475872C8513000034EC78 /* Entitlements.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Entitlements.entitlements; sourceTree = "<group>"; };
+		3F8475892C8513000034EC78 /* NumericaApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumericaApp.swift; sourceTree = "<group>"; };
+		3F84758B2C8513000034EC78 /* ProblemGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProblemGenerator.swift; sourceTree = "<group>"; };
+		3F84758E2C8513000034EC78 /* GameSessionObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSessionObject.swift; sourceTree = "<group>"; };
+		3F8475902C8513000034EC78 /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		3F8475A02C8527E90034EC78 /* SwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI.swift; sourceTree = "<group>"; };
+		3F8475A22C85A29A0034EC78 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
+		3F8475A62C85D3480034EC78 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		3F8D15932CB32CDE00618694 /* GameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTests.swift; sourceTree = "<group>"; };
+		3FCEDD1C2CAF241E0021A37C /* NumericaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NumericaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3FDAF7B62C9D877D0089AAFC /* ErrorShowingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorShowingTextField.swift; sourceTree = "<group>"; };
+		3FE426492CA152FA0025EF36 /* languages_and_locales.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = languages_and_locales.json; sourceTree = "<group>"; };
+		3FE64FA72C8851240053C96C /* SwiftData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftData.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3F29B1B12CAE90CB003354CB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3F415BBD2C83800500C94EB6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3FCEDD192CAF241E0021A37C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3F296D562CA0340400D1A2C6 /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+				3F84759B2C8514400034EC78 /* Extensions */,
+				3F480BB12C9462C20047B9AE /* Protocols */,
+			);
+			path = Lib;
+			sourceTree = "<group>";
+		};
+		3F415BB72C83800500C94EB6 = {
+			isa = PBXGroup;
+			children = (
+				3F415BC22C83800500C94EB6 /* Numerica */,
+				3F6C771E2CA20A6200492149 /* NumericaTests */,
+				3F415BC12C83800500C94EB6 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3F415BC12C83800500C94EB6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3F415BC02C83800500C94EB6 /* Numerica.app */,
+				3F29B1B42CAE90CB003354CB /* NumericaTests.xctest */,
+				3FCEDD1C2CAF241E0021A37C /* NumericaUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3F415BC22C83800500C94EB6 /* Numerica */ = {
+			isa = PBXGroup;
+			children = (
+				3F415BCC2C83800800C94EB6 /* Preview Content */,
+				3F8475882C8513000034EC78 /* Resources */,
+				3F8475932C8513000034EC78 /* Sources */,
+			);
+			path = Numerica;
+			sourceTree = "<group>";
+		};
+		3F415BCC2C83800800C94EB6 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				3F415BCD2C83800800C94EB6 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		3F41CE712C9C66D8006358E4 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				3F41CE742C9C6791006358E4 /* Lib */,
+				3F41CE732C9C6733006358E4 /* Models */,
+				3F84758D2C8513000034EC78 /* Services */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		3F41CE722C9C66EF006358E4 /* Frontend */ = {
+			isa = PBXGroup;
+			children = (
+				3F84758A2C8513000034EC78 /* Common */,
+				3F296D562CA0340400D1A2C6 /* Lib */,
+				3F6435042C899BC20016C7AC /* Models */,
+				3F84758F2C8513000034EC78 /* Storage */,
+				3F8475922C8513000034EC78 /* Views */,
+			);
+			path = Frontend;
+			sourceTree = "<group>";
+		};
+		3F41CE732C9C6733006358E4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3F480BB62C9464220047B9AE /* GameSessionModel.swift */,
+				3F480BB42C9464140047B9AE /* ProblemModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		3F41CE742C9C6791006358E4 /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+				3F41CE752C9C67B0006358E4 /* Operator.swift */,
+			);
+			path = Lib;
+			sourceTree = "<group>";
+		};
+		3F480BB12C9462C20047B9AE /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				3F480BAF2C9462B40047B9AE /* PersistentLayer.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		3F480BB22C9463F40047B9AE /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				3F84758E2C8513000034EC78 /* GameSessionObject.swift */,
+				3F65EE6B2C91AA98004F08EB /* ProblemObject.swift */,
+			);
+			path = Objects;
+			sourceTree = "<group>";
+		};
+		3F480BB32C9463FF0047B9AE /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				3F8475A22C85A29A0034EC78 /* StorageService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		3F480BBA2C94D6BE0047B9AE /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+				3F6435052C899BD60016C7AC /* ActionButton.swift */,
+				3F8475902C8513000034EC78 /* MainView.swift */,
+				3FDAF7B62C9D877D0089AAFC /* ErrorShowingTextField.swift */,
+			);
+			path = MainView;
+			sourceTree = "<group>";
+		};
+		3F480BBD2C94D7170047B9AE /* SessionResultsView */ = {
+			isa = PBXGroup;
+			children = (
+				3F480BBB2C94D70F0047B9AE /* SessionResultsView.swift */,
+				3F296D572CA0371F00D1A2C6 /* SessionResutsListItem.swift */,
+			);
+			path = SessionResultsView;
+			sourceTree = "<group>";
+		};
+		3F6435042C899BC20016C7AC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3F8475A62C85D3480034EC78 /* MainViewModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		3F6C77052CA1598F00492149 /* NumericaUITests */ = {
+			isa = PBXGroup;
+			children = (
+				3F640F072CB2A6DE00050872 /* NumericaUITests.xctestplan */,
+				3F8D15932CB32CDE00618694 /* GameTests.swift */,
+				3F6C77012CA1598F00492149 /* LocalizationTests.swift */,
+				3F6BB9DA2CB5C7FB00B83E82 /* XCUIApplicationHandler.swift */,
+			);
+			path = NumericaUITests;
+			sourceTree = "<group>";
+		};
+		3F6C770C2CA159AA00492149 /* NumericaTests */ = {
+			isa = PBXGroup;
+			children = (
+				3F640F052CB2A6D400050872 /* NumericaTests.xctestplan */,
+				3F6CAE7E2CB5243C002BE632 /* MainViewModelTests.swift */,
+				3F6CAE802CB52F5F002BE632 /* OperatorTests.swift */,
+				3F6C770B2CA159AA00492149 /* ProblemGeneratorTests.swift */,
+			);
+			path = NumericaTests;
+			sourceTree = "<group>";
+		};
+		3F6C771E2CA20A6200492149 /* NumericaTests */ = {
+			isa = PBXGroup;
+			children = (
+				3F6C77052CA1598F00492149 /* NumericaUITests */,
+				3F6C770C2CA159AA00492149 /* NumericaTests */,
+			);
+			path = NumericaTests;
+			sourceTree = "<group>";
+		};
+		3F8475882C8513000034EC78 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3F8475862C8513000034EC78 /* Assets.xcassets */,
+				3F8475872C8513000034EC78 /* Entitlements.entitlements */,
+				3F296D5B2CA039CA00D1A2C6 /* Localizable.xcstrings */,
+				3FE426492CA152FA0025EF36 /* languages_and_locales.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		3F84758A2C8513000034EC78 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				3F8475892C8513000034EC78 /* NumericaApp.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		3F84758D2C8513000034EC78 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				3F84758B2C8513000034EC78 /* ProblemGenerator.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		3F84758F2C8513000034EC78 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				3F480BB22C9463F40047B9AE /* Objects */,
+				3F480BB32C9463FF0047B9AE /* Services */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		3F8475922C8513000034EC78 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3F480BBA2C94D6BE0047B9AE /* MainView */,
+				3F480BBD2C94D7170047B9AE /* SessionResultsView */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3F8475932C8513000034EC78 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				3F41CE712C9C66D8006358E4 /* Core */,
+				3F41CE722C9C66EF006358E4 /* Frontend */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		3F84759B2C8514400034EC78 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3F4DB9022C8C71DD0013DB66 /* Foundation.swift */,
+				3F8475A02C8527E90034EC78 /* SwiftUI.swift */,
+				3FE64FA72C8851240053C96C /* SwiftData.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3F29B1B32CAE90CB003354CB /* NumericaTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3F29B1BA2CAE90CB003354CB /* Build configuration list for PBXNativeTarget "NumericaTests" */;
+			buildPhases = (
+				3F29B1B02CAE90CB003354CB /* Sources */,
+				3F29B1B12CAE90CB003354CB /* Frameworks */,
+				3F29B1B22CAE90CB003354CB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3F29B1B92CAE90CB003354CB /* PBXTargetDependency */,
+			);
+			name = NumericaTests;
+			packageProductDependencies = (
+			);
+			productName = NumericaTests;
+			productReference = 3F29B1B42CAE90CB003354CB /* NumericaTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		3F415BBF2C83800500C94EB6 /* Numerica */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3F415BE72C83800800C94EB6 /* Build configuration list for PBXNativeTarget "Numerica" */;
+			buildPhases = (
+				3F65EE712C91DAC0004F08EB /* SwiftLint */,
+				3F415BBC2C83800500C94EB6 /* Sources */,
+				3F415BBD2C83800500C94EB6 /* Frameworks */,
+				3F415BBE2C83800500C94EB6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Numerica;
+			productName = MentalMath;
+			productReference = 3F415BC02C83800500C94EB6 /* Numerica.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3FCEDD1B2CAF241E0021A37C /* NumericaUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3FCEDD242CAF241E0021A37C /* Build configuration list for PBXNativeTarget "NumericaUITests" */;
+			buildPhases = (
+				3FCEDD182CAF241E0021A37C /* Sources */,
+				3FCEDD192CAF241E0021A37C /* Frameworks */,
+				3FCEDD1A2CAF241E0021A37C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3FCEDD232CAF241E0021A37C /* PBXTargetDependency */,
+			);
+			name = NumericaUITests;
+			packageProductDependencies = (
+			);
+			productName = NumericaUITests;
+			productReference = 3FCEDD1C2CAF241E0021A37C /* NumericaUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3F415BB82C83800500C94EB6 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					3F29B1B32CAE90CB003354CB = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = 3F415BBF2C83800500C94EB6;
+					};
+					3F415BBF2C83800500C94EB6 = {
+						CreatedOnToolsVersion = 15.3;
+					};
+					3F6BB9DD2CB5D63700B83E82 = {
+						CreatedOnToolsVersion = 16.0;
+					};
+					3FCEDD1B2CAF241E0021A37C = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = 3F415BBF2C83800500C94EB6;
+					};
+				};
+			};
+			buildConfigurationList = 3F415BBB2C83800500C94EB6 /* Build configuration list for PBXProject "Numerica" */;
+			compatibilityVersion = "Xcode 15.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				ru,
+				"zh-Hans",
+				fr,
+				de,
+				it,
+				ja,
+				ko,
+				pl,
+				es,
+				sv,
+				uk,
+				ar,
+				cs,
+				fi,
+				hi,
+				he,
+				ro,
+				el,
+				sk,
+				nl,
+				da,
+				tr,
+				th,
+				"dz-BT",
+				dz,
+			);
+			mainGroup = 3F415BB72C83800500C94EB6;
+			productRefGroup = 3F415BC12C83800500C94EB6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3F415BBF2C83800500C94EB6 /* Numerica */,
+				3F29B1B32CAE90CB003354CB /* NumericaTests */,
+				3FCEDD1B2CAF241E0021A37C /* NumericaUITests */,
+				3F6BB9DD2CB5D63700B83E82 /* Periphery */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3F29B1B22CAE90CB003354CB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F640F062CB2A6D400050872 /* NumericaTests.xctestplan in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3F415BBE2C83800500C94EB6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F8475942C8513000034EC78 /* Assets.xcassets in Resources */,
+				3F415BCE2C83800800C94EB6 /* Preview Assets.xcassets in Resources */,
+				3F296D5C2CA039CA00D1A2C6 /* Localizable.xcstrings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3FCEDD1A2CAF241E0021A37C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F640F082CB2A6DE00050872 /* NumericaUITests.xctestplan in Resources */,
+				3F12E7342CB2B2C2001124EC /* languages_and_locales.json in Resources */,
+				3F8190152CB2B5890010AE29 /* Localizable.xcstrings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3F65EE712C91DAC0004F08EB /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/sh\n\nif [[ \"$(uname -m)\" == arm64 ]]; then\n  export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint > /dev/null; then\n  swiftlint --config \"swiftlint.yml\"\nelse\n  echo \"warning: SwiftLint not installed, do `brew bundle` in repo root\"\nfi\n";
+		};
+		3F6BB9E12CB5D63E00B83E82 /* Periphery */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Periphery;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/bash\n\nif [[ \"$(uname -m)\" == \"arm64\" ]]; then\n    HOMEBREW_PREFIX=\"/opt/homebrew\"\nelse\n    HOMEBREW_PREFIX=\"/usr/local\"\nfi\n\nPERIPHERY=\"$HOMEBREW_PREFIX/bin/periphery\"\n\nif ! command -v \"$PERIPHERY\" &> /dev/null\nthen\n    echo \"Periphery is not installed. Install it with Homebrew using: brew install peripheryapp/periphery/periphery\"\n    exit 1\nfi\n\n\"$PERIPHERY\" scan \\\n  --project \"${SRCROOT}/Numerica.xcodeproj\" \\\n  --targets \"Numerica\" \"NumericaTests\" \"NumericaUITests\" \\\n  --schemes \"Numerica\" \"NumericaTests\" \"NumericaUITests\" \\\n  --retain-public \\\n  --verbose \\\n  --format xcode \\\n  --index-exclude \"**/*.xctestplan\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3F29B1B02CAE90CB003354CB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3FCEDD162CAF234A0021A37C /* ProblemGeneratorTests.swift in Sources */,
+				3F6CAE812CB52F5F002BE632 /* OperatorTests.swift in Sources */,
+				3F6CAE7F2CB5243C002BE632 /* MainViewModelTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3F415BBC2C83800500C94EB6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F480BB02C9462B40047B9AE /* PersistentLayer.swift in Sources */,
+				3F8475982C8513000034EC78 /* GameSessionObject.swift in Sources */,
+				3F8475992C8513000034EC78 /* MainView.swift in Sources */,
+				3F296D582CA0371F00D1A2C6 /* SessionResutsListItem.swift in Sources */,
+				3FE64FA82C8851240053C96C /* SwiftData.swift in Sources */,
+				3F8475A12C8527E90034EC78 /* SwiftUI.swift in Sources */,
+				3F480BBC2C94D70F0047B9AE /* SessionResultsView.swift in Sources */,
+				3F41CE762C9C67B0006358E4 /* Operator.swift in Sources */,
+				3F4DB9032C8C71DD0013DB66 /* Foundation.swift in Sources */,
+				3F65EE6C2C91AA98004F08EB /* ProblemObject.swift in Sources */,
+				3F8475A72C85D3480034EC78 /* MainViewModel.swift in Sources */,
+				3F8475962C8513000034EC78 /* ProblemGenerator.swift in Sources */,
+				3F8475A32C85A29A0034EC78 /* StorageService.swift in Sources */,
+				3FDAF7B72C9D877D0089AAFC /* ErrorShowingTextField.swift in Sources */,
+				3F8475952C8513000034EC78 /* NumericaApp.swift in Sources */,
+				3F6435062C899BD60016C7AC /* ActionButton.swift in Sources */,
+				3F480BB52C9464140047B9AE /* ProblemModel.swift in Sources */,
+				3F480BB72C9464220047B9AE /* GameSessionModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3FCEDD182CAF241E0021A37C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3FCEDD282CAF29760021A37C /* LocalizationTests.swift in Sources */,
+				3F6BB9DB2CB5C7FB00B83E82 /* XCUIApplicationHandler.swift in Sources */,
+				3F8D15942CB32CDE00618694 /* GameTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3F29B1B92CAE90CB003354CB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3F415BBF2C83800500C94EB6 /* Numerica */;
+			targetProxy = 3F29B1B82CAE90CB003354CB /* PBXContainerItemProxy */;
+		};
+		3FCEDD232CAF241E0021A37C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3F415BBF2C83800500C94EB6 /* Numerica */;
+			targetProxy = 3FCEDD222CAF241E0021A37C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		3F29B1BB2CAE90CB003354CB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = FH9R39U9P3;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wcgb.NumericaTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Numerica.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Numerica";
+			};
+			name = Debug;
+		};
+		3F29B1BC2CAE90CB003354CB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FH9R39U9P3;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wcgb.NumericaTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Numerica.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Numerica";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3F415BE52C83800800C94EB6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		3F415BE62C83800800C94EB6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+		3F415BE82C83800800C94EB6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Numerica/Resources/Entitlements.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"Numerica/Preview Content\"";
+				DEVELOPMENT_TEAM = FH9R39U9P3;
+				ENABLE_HARDENED_RUNTIME = NO;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				GENERATE_PROFILING_CODE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Numerica;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				OTHER_SWIFT_FLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = eyecorp.Numerica;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3F415BE92C83800800C94EB6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Numerica/Resources/Entitlements.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"Numerica/Preview Content\"";
+				DEVELOPMENT_TEAM = FH9R39U9P3;
+				ENABLE_HARDENED_RUNTIME = NO;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				GENERATE_PROFILING_CODE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Numerica;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				OTHER_SWIFT_FLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = eyecorp.Numerica;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		3F6BB9DF2CB5D63700B83E82 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FH9R39U9P3;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		3F6BB9E02CB5D63700B83E82 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FH9R39U9P3;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		3FCEDD252CAF241E0021A37C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = FH9R39U9P3;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wcgb.NumericaUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Numerica;
+			};
+			name = Debug;
+		};
+		3FCEDD262CAF241E0021A37C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FH9R39U9P3;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wcgb.NumericaUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Numerica;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3F29B1BA2CAE90CB003354CB /* Build configuration list for PBXNativeTarget "NumericaTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3F29B1BB2CAE90CB003354CB /* Debug */,
+				3F29B1BC2CAE90CB003354CB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		3F415BBB2C83800500C94EB6 /* Build configuration list for PBXProject "Numerica" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3F415BE52C83800800C94EB6 /* Debug */,
+				3F415BE62C83800800C94EB6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		3F415BE72C83800800C94EB6 /* Build configuration list for PBXNativeTarget "Numerica" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3F415BE82C83800800C94EB6 /* Debug */,
+				3F415BE92C83800800C94EB6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		3F6BB9DE2CB5D63700B83E82 /* Build configuration list for PBXAggregateTarget "Periphery" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3F6BB9DF2CB5D63700B83E82 /* Debug */,
+				3F6BB9E02CB5D63700B83E82 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		3FCEDD242CAF241E0021A37C /* Build configuration list for PBXNativeTarget "NumericaUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3FCEDD252CAF241E0021A37C /* Debug */,
+				3FCEDD262CAF241E0021A37C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3F415BB82C83800500C94EB6 /* Project object */;
+}

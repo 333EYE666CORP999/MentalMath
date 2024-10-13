@@ -1,44 +1,145 @@
-name: iOS starter workflow
+name: Build for Tests
 
 on:
-  push:
-    branches: [ "develop" ]
   pull_request:
     branches: [ "develop" ]
 
 jobs:
   build:
-    name: Build and Test default scheme using any available iPhone simulator
-    runs-on: macos-latest
+    name: Build
+    runs-on: macos-15
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Set Default Scheme
+
+      - name: Select Xcode
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: '16.0'
+
+      - name: Prepare Environment
         run: |
-          scheme_list=$(xcodebuild -list -json | tr -d "\n")
-          default=$(echo $scheme_list | ruby -e "require 'json'; puts JSON.parse(STDIN.gets)['project']['targets'][0]")
-          echo $default | cat >default
-          echo Using default scheme: $default
+          echo "🔧 Preparing Environment..."
+
+          if [ "$(uname -m)" = "arm64" ]; then
+            HOMEBREW_PREFIX="/opt/homebrew"
+          else
+            HOMEBREW_PREFIX="/usr/local"
+          fi
+
+          if ! command -v brew &> /dev/null; then
+            echo "🍺 Installing Homebrew..."
+            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+          else
+            echo "🍺 Homebrew already installed. Updating packages..."
+            brew upgrade --greedy-latest
+          fi
+
+          if [ ! -x "${HOMEBREW_PREFIX}/bin/swiftlint" ]; then
+            echo "⚙️ Installing SwiftLint..."
+            brew install swiftlint
+          else
+            echo "✅ SwiftLint already installed."
+          fi
+
+          if ! command -v jq &> /dev/null; then
+            echo "⚙️ Installing jq for JSON parsing..."
+            brew install jq
+          else
+            echo "✅ jq already installed."
+          fi
+
+      - name: SwiftLint
+        run: |
+          echo "📝 Running SwiftLint..."
+          cd $GITHUB_WORKSPACE/Numerica-iOS
+
+          swiftlint lint --config swiftlint.yml --reporter json > swiftlint_raw.json
+
+          num_violations=$(jq '. | length' swiftlint_raw.json)
+          threshold=20
+
+          cat swiftlint_raw.json
+
+          echo "📊 Found $num_violations violations."
+
+          if [ "$num_violations" -gt "$threshold" ]; then
+            echo "❌ Linting failed: $num_violations violations found (Threshold: $threshold)."
+            exit 1
+          else
+            echo "✅ Linting passed: $num_violations violations found (Threshold: $threshold)."
+          fi
+
       - name: Build
-        env:
-          scheme: ${{ 'default' }}
-          platform: ${{ 'iOS Simulator' }}
         run: |
-          # xcrun xctrace returns via stderr, not the expected stdout (see https://developer.apple.com/forums/thread/663959)
-          device=`xcrun xctrace list devices 2>&1 | grep -oE 'iPhone.*?[^\(]+' | head -1 | awk '{$1=$1;print}' | sed -e "s/ Simulator$//"`
-          if [ $scheme = default ]; then scheme=$(cat default); fi
-          if [ "`ls -A | grep -i \\.xcworkspace\$`" ]; then filetype_parameter="workspace" && file_to_build="`ls -A | grep -i \\.xcworkspace\$`"; else filetype_parameter="project" && file_to_build="`ls -A | grep -i \\.xcodeproj\$`"; fi
-          file_to_build=`echo $file_to_build | awk '{$1=$1;print}'`
-          xcodebuild build-for-testing -scheme "$scheme" -"$filetype_parameter" "$file_to_build" -destination "platform=$platform,name=$device"
-      - name: Test
-        env:
-          scheme: ${{ 'default' }}
-          platform: ${{ 'iOS Simulator' }}
+          echo "🔨 Building Numerica Scheme..."
+          cd $GITHUB_WORKSPACE/Numerica-iOS
+          if [ "$(ls -A | grep -i \.xcworkspace\$)" ]; then
+            filetype_parameter="workspace"
+            file_to_build="$(ls -A | grep -i \.xcworkspace\$)"
+          else
+            filetype_parameter="project"
+            file_to_build="$(ls -A | grep -i \.xcodeproj\$)"
+          fi
+          file_to_build=$(echo $file_to_build | awk '{$1=$1;print}')
+
+          set -o pipefail && xcodebuild build \
+            -scheme "Numerica" \
+            -"$filetype_parameter" "$file_to_build" \
+            CODE_SIGNING_ALLOWED=NO \
+            SWIFT_FLAGS="-Xfrontend -strict-concurrency=complete -swift-version 6"
+
+          if [ $? -eq 0 ]; then
+            echo "✅ Build completed successfully."
+          else
+            echo "❌ Build failed. Check the build log for more details."
+            exit 1
+          fi
+
+  test:
+    name: Test
+    needs: build
+    runs-on: macos-15
+
+    strategy:
+      matrix:
+        scheme: [ "NumericaTests", "NumericaUITests" ]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Select Xcode
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: '16.0'
+
+      - name: Run Tests
         run: |
-          # xcrun xctrace returns via stderr, not the expected stdout (see https://developer.apple.com/forums/thread/663959)
-          device=`xcrun xctrace list devices 2>&1 | grep -oE 'iPhone.*?[^\(]+' | head -1 | awk '{$1=$1;print}' | sed -e "s/ Simulator$//"`
-          if [ $scheme = default ]; then scheme=$(cat default); fi
-          if [ "`ls -A | grep -i \\.xcworkspace\$`" ]; then filetype_parameter="workspace" && file_to_build="`ls -A | grep -i \\.xcworkspace\$`"; else filetype_parameter="project" && file_to_build="`ls -A | grep -i \\.xcodeproj\$`"; fi
-          file_to_build=`echo $file_to_build | awk '{$1=$1;print}'`
-          xcodebuild test-without-building -scheme "$scheme" -"$filetype_parameter" "$file_to_build" -destination "platform=$platform,name=$device"
+          echo "🧪 Running Tests for Scheme: ${{ matrix.scheme }}..."
+          cd $GITHUB_WORKSPACE/Numerica-iOS
+
+          if [ "$(ls -A | grep -i \.xcworkspace\$)" ]; then
+            filetype_parameter="workspace"
+            file_to_build="$(ls -A | grep -i \.xcworkspace\$)"
+          else
+            filetype_parameter="project"
+            file_to_build="$(ls -A | grep -i \.xcodeproj\$)"
+          fi
+          file_to_build=$(echo $file_to_build | awk '{$1=$1;print}')
+
+          set -o pipefail && xcodebuild test \
+            -scheme "${{ matrix.scheme }}" \
+            -"$filetype_parameter" "$file_to_build" \
+            -testPlan "${{ matrix.scheme }}" \
+            -enableCodeCoverage YES \
+            -parallel-testing-enabled YES \
+            CODE_SIGNING_ALLOWED=NO \
+
+          if [ $? -eq 0 ]; then
+            echo "✅ All tests passed for scheme: ${{ matrix.scheme }}."
+          else
+            echo "❌ Some tests failed for scheme: ${{ matrix.scheme }}. Check the log for details."
+            exit 1
+          fi
