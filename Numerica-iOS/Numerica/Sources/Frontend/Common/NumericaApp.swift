@@ -11,7 +11,7 @@ struct NumericaApp: App {
                 .environmentObject(
                     MainViewModel(
                         storageService: StorageService(
-                            container: sharedModelContainer
+                            modelContext: sharedModelContainer.mainContext
                         ),
                         problemGenerator: ProblemGenerator()
                     )

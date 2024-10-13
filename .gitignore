@@ -14,11 +14,13 @@ build/
 *.pbxuser
 *.xcbkptlist
 !default.pbxuser
+*.xcresult
 
 # Swift Package Manager
 Packages/
 Package.pins
 Package.resolved
+.swiftpm/
 
 # CocoaPods
 Pods/

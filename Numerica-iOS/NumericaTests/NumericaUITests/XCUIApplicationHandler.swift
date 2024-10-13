@@ -16,7 +16,7 @@ final class XCUIApplicationHandler {
             }
     }
 
-    init(app: XCUIApplication) {
+    init(app: XCUIApplication = XCUIApplication()) {
         self.app = app
     }
 }
@@ -37,7 +37,13 @@ extension XCUIApplicationHandler {
         if !arguments.isEmpty {
             app.launchArguments = arguments
         }
-        app.launch()
+        if app.state == .notRunning {
+            app.launch()
+        }
+    }
+
+    func terminate() {
+        app.terminate()
     }
 }
 
@@ -76,7 +82,11 @@ extension XCUIApplicationHandler {
 
     @discardableResult
     @MainActor
-    func play(tries: Int = .random(in: 1...10)) -> Int {
+    func play(_ tries: Int = .random(in: 1...10)) -> Int {
+        if collectionView(with: "SessionResults.View").exists {
+            goToMainScreenFromResults()
+        }
+
         tapButton(with: "MainView.ActionButton")
 
         guard tries > 0 else {
@@ -98,7 +108,7 @@ extension XCUIApplicationHandler {
     }
 }
 
-// MARK: - Game Controls
+// MARK: - Controls
 
 extension XCUIApplicationHandler {
 
@@ -117,13 +127,18 @@ extension XCUIApplicationHandler {
         }
         textField.typeText(text)
     }
+
+    func goToMainScreenFromResults() {
+        button(with: "Back").tap()
+    }
 }
 
-// MARK: - Basic Wrapper
+private extension XCUIElement {
 
-extension XCUIApplicationHandler {
-
-    static var basic: Self {
-        Self(app: XCUIApplication())
+    var staticTextsContent: String {
+        self.staticTexts
+            .allElementsBoundByIndex
+            .map(\.label)
+            .joined()
     }
 }

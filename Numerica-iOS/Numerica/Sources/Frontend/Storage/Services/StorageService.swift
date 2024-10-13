@@ -2,40 +2,29 @@ import Foundation
 import SwiftData
 
 protocol StorageServiceInput {
+
     func save<T: PersistentModel>(_ model: T)
 }
 
-final class StorageService: Sendable {
-    private let modelActor: PersistencyHandler
+final class StorageService {
 
-    init(container: ModelContainer) {
-        self.modelActor = PersistencyHandler(modelContainer: container)
+    var modelContext: ModelContext
+
+    init(modelContext: ModelContext) {
+        self.modelContext = modelContext
     }
 }
 
 extension StorageService: StorageServiceInput {
 
-    func save<T: PersistentModel & Sendable>(_ model: T) {
-        Task { @Sendable [weak self] in
-            guard let self else {
-                return
-            }
-            await modelActor.saveModel(model)
-        }
-    }
-}
+    typealias Object = PersistentModel & PersistentObject
 
-@ModelActor
-actor PersistencyHandler {
-
-    // TODO: - попрофилировать, на каком потоке реально сохраняется в память и если что убрать актор
-
-    func saveModel(_ model: any PersistentModel) async {
-        modelContext.insert(model)
+    func save<T: PersistentModel>(_ model: T) {
         do {
+            modelContext.insert(model)
             try modelContext.save()
-        } catch {
-            print("Error saving model: \(error.localizedDescription)")
+        } catch let error as NSError {
+            print(error)
         }
     }
 }

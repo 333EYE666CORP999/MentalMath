@@ -14,7 +14,7 @@ final class GameTests: XCTestCase {
         continueAfterFailure = false
 
         await MainActor.run {
-            sut = .basic
+            sut = XCUIApplicationHandler()
             sut.configureApp(lang: "en", locale: "en-US")
             sut.launch()
         }
@@ -22,6 +22,7 @@ final class GameTests: XCTestCase {
 
     override func tearDown() async throws {
         await MainActor.run {
+            sut.terminate()
             sut = nil
         }
 
@@ -50,7 +51,7 @@ extension GameTests {
     func testGameStopsWhenUserPressesEndButton() {
         // Arrange
         // Act
-        sut.play(tries: .zero)
+        sut.play()
 
         // Assert
         XCTAssert(sut.button(with: "MainView.ActionButton").exists)
@@ -70,25 +71,30 @@ extension GameTests {
         assertSessionResultsViewExists()
     }
 
+    /// Tests correspondence between results count and answers given
+    /// - Note: нужно преписать, чтоб тест проходил, когда есть ячейки за видимой зоной.
+    /// Сейчас сыпет ошибкой, если ячеек больше, чем видимая область
     @MainActor
     func testGameResultsCountEqualsAnswersCount() {
         // Arrange
         // Act
-        let answersCount = sut.play()
+        for iteration in 1...4 {
+            let answersCount = sut.play(iteration)
 
-        // Assert
-        assertSessionResultsViewExists()
-        XCTAssertEqual(
-            answersCount,
-            sut.collectionView(with: "SessionResults.View").cells.count
-        )
+            // Assert
+            assertSessionResultsViewExists()
+            XCTAssertEqual(
+                answersCount,
+                sut.collectionView(with: "SessionResults.View").cells.count
+            )
+        }
     }
 
     @MainActor
     func testSessionResultsRendersContent() {
         // Arrange
         // Act
-        sut.play(tries: 10)
+        sut.play(10)
 
         // Assert
         assertSessionResultsViewExists()

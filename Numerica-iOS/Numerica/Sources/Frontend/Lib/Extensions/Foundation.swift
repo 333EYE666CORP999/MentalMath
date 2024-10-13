@@ -42,3 +42,10 @@ extension String {
         NSLocalizedString(self, comment: "")
     }
 }
+
+extension Double {
+
+    var intValue: Int {
+        Int(self)
+    }
+}

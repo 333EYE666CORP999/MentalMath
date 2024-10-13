@@ -17,7 +17,7 @@ final class LocalizationTests: XCTestCase {
         continueAfterFailure = false
 
         await MainActor.run {
-            sut = .basic
+            sut = XCUIApplicationHandler()
         }
 
         languagesAndLocales = Array(
