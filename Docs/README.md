@@ -6,8 +6,5 @@ Welcome to Numerica Doc Hub 😀👋🏻. This page lists all meaningful docs th
 1. [General Development Conventions](1.%20General%20Conventions.md)
 2. [Problem Generation](2.%20Problem%20Generation.md)
 3. [TDR: Rust [TBD]](3.%20Rust.md)
-### Business
-1. [MVP Vision](1.%20MVP%20Vision.md)
-2. [Features Overview](1.%20MVP%20Vision.md)
 ### Methodology
 1. [Problem Generation](2.%20Problem%20Generation.md)
